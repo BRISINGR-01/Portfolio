@@ -5,7 +5,7 @@ My Bio
 ## Books
 
  - [The Rust Programming Language](https://doc.rust-lang.org/book/)
- - [C Programming Language, 2nd Edition by Brian Kernighan]([https://www.amazon.com/Programming-Language-2nd-Brian-Kernighan/dp/0131103628](https://seriouscomputerist.atariverse.com/media/pdf/book/C%20Programming%20Language%20-%202nd%20Edition%20(OCR).pdf)https://seriouscomputerist.atariverse.com/media/pdf/book/C%20Programming%20Language%20-%202nd%20Edition%20(OCR).pdf)
+ - [C Programming Language, 2nd Edition by Brian Kernighan](https://www.amazon.com/Programming-Language-2nd-Brian-Kernighan/dp/0131103628](https://seriouscomputerist.atariverse.com/media/pdf/book/C%20Programming%20Language%20-%202nd%20Edition%20(OCR).pdf)https://seriouscomputerist.atariverse.com/media/pdf/book/C%20Programming%20Language%20-%202nd%20Edition%20(OCR).pdf)
  - [Clean Code by Robert C. Martin](https://www.google.bg/books/edition/Clean_Code/_i6bDeoCQzsC?hl=en&gbpv=0)
 
 ## Classes/Courses
