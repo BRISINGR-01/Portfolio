@@ -6,7 +6,7 @@ knowledge and skills:
 Courses, books and other resources:
   - Hack the box
   - Fontys + Academic preperation
-  - Books
+  - Books:
     - The Rust Programming Language: (Rust)
     - C Programming Language, 2nd Edition by Brian Kernighan: (c)
     - Clean Code by Robert C. Martin: (OOP)
@@ -15,14 +15,14 @@ Courses, books and other resources:
 Projects:
   - latin is simple (React, Bootstrap, React-Bootstrap, js/html/css, python)
   - A1 (React, js/html/css, Express, GraphQL, docker, nodejs)
-  Fontys:
-    semester 1: python, js/html/css, C#, .NET, RazorPages, WinForms, SQL
-      - Greenhouse: python, js/html/css
-      - Pizzeria: python, js/html/css
-    semester 2: Docker, Azure, js/html/css, C#, .NET, RazorPages, WinForms, OOP, pipelines, SQL, ThreeJS
+  - Fontys:
+      - semester 1: python, js/html/css, C#, .NET, RazorPages, WinForms, SQL
+        - Greenhouse: python, js/html/css
+        - Pizzeria: python, js/html/css
+      - semester 2: Docker, Azure, js/html/css, C#, .NET, RazorPages, WinForms, OOP, pipelines, SQL, ThreeJS
       - Event-Manager-TSH
       - Basic-SQL-Query-Builder
-  Personal:
+  - Personal:
     - pravets-resort: js/html/css, Firebase
     - Ablanitsa: js/html/css, Firebase, ThreeJS
     - bike_tracker: Flutter, dart, all OSes
