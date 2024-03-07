@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { createScene } from "$lib/controllers/setUp";
 	import { onMount } from "svelte";
-	import { createScene } from "$lib/scene";
 
 	let el: HTMLCanvasElement;
 

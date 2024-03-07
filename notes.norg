@@ -2,3 +2,10 @@ https://medium.com/front-end-weekly/svelte-v-s-vue-which-is-the-best-frontend-fr
 https://blog.openreplay.com/svelte-vs-bue--a-comparison/
 https://discoverthreejs.com/book/first-steps/world-app/
 https://github.com/jasonsturges/threejs-sveltekit/tree/main
+https://github.com/vultix/ts-results
+
+* Project structure
+I have decided to use MVC for a few reasons:
+ - Learn something new
+ - Popular and used in lots of projects
+ - Not so new to me, so I want to make sure I have mastered it
