@@ -2,7 +2,7 @@
 	import { createScene } from "$lib/controllers/setUp";
 	import { onMount } from "svelte";
 
-	let el: HTMLCanvasElement;
+	let el: HTMLElement;
 
 	onMount(() => {
 		createScene(el);
@@ -14,4 +14,4 @@
 	<meta name="description" content="Three.js example app built with Svelte" />
 </svelte:head>
 
-<canvas bind:this={el} />
+<div bind:this={el} />

@@ -6,8 +6,8 @@ load("wings").then((obj) => {
 	if (obj.ok) world.add(obj.val);
 });
 
-window.addEventListener("resize", world.resize);
+window.addEventListener("resize", () => world.resize());
 
-export const createScene = (el: HTMLCanvasElement) => {
+export const createScene = (el: HTMLElement) => {
 	world.create(el);
 };
