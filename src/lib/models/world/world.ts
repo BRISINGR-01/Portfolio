@@ -21,6 +21,7 @@ export default class World {
 		this.scene.background = new Color("gray");
 
 		this.camera = new Camera();
+		this.camera.position.set(2, 2, 2);
 		this.renderer = new WebGLRenderer({ antialias: true });
 
 		const controls = new Controls(this.camera, document.body);

@@ -16,23 +16,35 @@ export default class Character extends Entity {
 	}
 
 	adjustRotation() {
-		if (this.rotaionDirection.isNoneX) {
+		if (this.rotaionDirection.isNoneX && this.rotation.x) {
 			if (this.rotation.x > 0) {
-				this.rotateRight();
-				if (this.rotation.x < ROTATION_FORCE) this.rotation.x = 0;
+				if (this.rotation.x < ROTATION_FORCE) {
+					this.rotation.x = 0;
+				} else {
+					this.rotateRight();
+				}
 			} else if (this.rotation.x < 0) {
-				this.rotateLeft();
-				if (this.rotation.x > -ROTATION_FORCE) this.rotation.x = 0;
+				if (this.rotation.x > -ROTATION_FORCE) {
+					this.rotation.x = 0;
+				} else {
+					this.rotateLeft();
+				}
 			}
 		}
 
-		if (this.rotaionDirection.isNoneZ) {
+		if (this.rotaionDirection.isNoneZ && this.rotation.z) {
 			if (this.rotation.z > 0) {
-				this.rotateBackward();
-				if (this.rotation.z < ROTATION_FORCE) this.rotation.z = 0;
+				if (this.rotation.z < ROTATION_FORCE) {
+					this.rotation.z = 0;
+				} else {
+					this.rotateBackward();
+				}
 			} else if (this.rotation.z < 0) {
-				this.rotateForward();
-				if (this.rotation.z > -ROTATION_FORCE) this.rotation.z = 0;
+				if (this.rotation.z > -ROTATION_FORCE) {
+					this.rotation.z = 0;
+				} else {
+					this.rotateForward();
+				}
 			}
 		}
 	}
