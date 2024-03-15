@@ -18,7 +18,7 @@ export default class World {
 
 	constructor() {
 		this.scene = new Scene();
-		this.scene.background = new Color("gray");
+		this.scene.background = new Color("skyblue");
 
 		this.camera = new Camera();
 		this.camera.position.set(2, 2, 2);

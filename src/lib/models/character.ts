@@ -3,7 +3,7 @@ import { ROTATION_FORCE } from "./world/constants";
 import Entity from "./world/entity";
 
 export default class Character extends Entity {
-	movementState: "walking" | "idle" | "flying" = "idle";
+	movementState: "walking" | "idle" | "flying" = "flying";
 	rotaionDirection: MovementState = new MovementState();
 
 	constructor() {
@@ -17,33 +17,15 @@ export default class Character extends Entity {
 
 	adjustRotation() {
 		if (this.rotaionDirection.isNoneX && this.rotation.x) {
-			if (this.rotation.x > 0) {
-				if (this.rotation.x < ROTATION_FORCE) {
-					this.rotation.x = 0;
-				} else {
+			const xAbs = Math.abs(this.rotation.x);
+
+			if (xAbs < ROTATION_FORCE || Math.PI - xAbs < ROTATION_FORCE) {
+				this.rotation.x = 0;
+			} else {
+				if (this.rotation.x > 0) {
 					this.rotateRight();
-				}
-			} else if (this.rotation.x < 0) {
-				if (this.rotation.x > -ROTATION_FORCE) {
-					this.rotation.x = 0;
 				} else {
 					this.rotateLeft();
-				}
-			}
-		}
-
-		if (this.rotaionDirection.isNoneZ && this.rotation.z) {
-			if (this.rotation.z > 0) {
-				if (this.rotation.z < ROTATION_FORCE) {
-					this.rotation.z = 0;
-				} else {
-					this.rotateBackward();
-				}
-			} else if (this.rotation.z < 0) {
-				if (this.rotation.z > -ROTATION_FORCE) {
-					this.rotation.z = 0;
-				} else {
-					this.rotateForward();
 				}
 			}
 		}

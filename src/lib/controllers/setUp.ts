@@ -13,7 +13,8 @@ setKeyBindings(world.eventHandler);
 setCharacterKeyBindings(character, world.eventHandler);
 
 const buildings = new Entity();
-buildings.position.setY(-2);
+buildings.position.set(-5, -1, -5);
+buildings.scale.addScalar(3);
 buildings.load("futuristic_building");
 world.add(buildings);
 
