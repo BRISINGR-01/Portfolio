@@ -1,53 +1,55 @@
-import { AmbientLight, Color, DirectionalLight, Object3D, Scene, WebGLRenderer } from "three";
+import { Object3D, Scene, WebGLRenderer } from "three";
+import { CSS3DRenderer } from "three/examples/jsm/renderers/CSS3DRenderer";
 import Context from "../context";
 import EventHandler from "../events/eventHandler";
 import Camera from "./camera";
 import { TICKS_COOLDOWN } from "./constants";
-import Controls from "./controls";
 import Entity from "./entity";
+import HTMLEntity from "./htmlEntity";
 
 export default class World {
-	private scene: Scene;
+	public scene: Scene;
+	private sceneHTML: Scene;
 	private renderer: WebGLRenderer;
-	private camera: Camera;
+	private rendererHTML: CSS3DRenderer;
 	private tickCount = 0;
 	private tickCallbacks: Func[] = [];
 
+	public camera: Camera;
 	public context = new Context();
-	public eventHandler = new EventHandler();
+	public eventHandler;
 
 	constructor() {
 		this.scene = new Scene();
-		this.scene.background = new Color("skyblue");
+		this.sceneHTML = new Scene();
 
 		this.camera = new Camera();
-		this.camera.position.set(2, 2, 2);
 		this.renderer = new WebGLRenderer({ antialias: true });
+		this.rendererHTML = new CSS3DRenderer();
+		this.rendererHTML.domElement.style.position = "absolute";
+		this.rendererHTML.domElement.style.top = "0px";
 
-		const controls = new Controls(this.camera, document.body);
-		// new EventHandler(document.body).onClick(() => controls.lock());
-
-		const ambientLight = new AmbientLight("white", 10);
-		ambientLight.position.set(0, 100, 10);
-		this.add(ambientLight);
-
-		const light = new DirectionalLight("white", 10);
-		light.position.set(10, 10, 10);
-		this.add(light);
+		this.eventHandler = new EventHandler();
 	}
 
 	create(el: HTMLElement) {
 		el.appendChild(this.renderer.domElement);
+		el.appendChild(this.rendererHTML.domElement);
 		this.resize();
 		this.render();
 	}
 
-	add(object: Object3D | Entity) {
-		this.scene.add(object);
+	add(object: Object3D | Entity | HTMLEntity) {
+		if (object instanceof HTMLEntity) {
+			this.sceneHTML.add(object);
+		} else {
+			this.scene.add(object);
+		}
 	}
 
 	resize() {
 		this.renderer.setSize(window.innerWidth, window.innerHeight);
+		this.rendererHTML.setSize(window.innerWidth, window.innerHeight);
 		this.renderer.setPixelRatio(window.devicePixelRatio);
 		this.camera.aspect = window.innerWidth / window.innerHeight;
 		this.camera.updateProjectionMatrix();
@@ -60,10 +62,11 @@ export default class World {
 	private render() {
 		if (++this.tickCount > TICKS_COOLDOWN) {
 			this.tickCount = 0;
-			this.cycleUpdate();
 		}
+		this.cycleUpdate();
 
-		this.renderer!.render(this.scene, this.camera);
+		this.renderer.render(this.scene, this.camera);
+		this.rendererHTML.render(this.sceneHTML, this.camera);
 		requestAnimationFrame(this.render.bind(this));
 	}
 

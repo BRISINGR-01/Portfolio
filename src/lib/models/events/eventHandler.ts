@@ -4,7 +4,6 @@ import HoldEvent from "./holdEvent";
 import KeyEvent from "./keyEvent";
 
 const el = document.body;
-
 export default class EventHandler {
 	private events: KeyEvent[] = [];
 
@@ -17,9 +16,11 @@ export default class EventHandler {
 
 		el.addEventListener("keydown", (e) => {
 			for (const event of this.events) {
+				if (!event.check(e)) continue;
+
 				if (event.type === EventType.Press) {
 					event.execute();
-				} else if (event instanceof HoldEvent && event.check(e)) {
+				} else if (event instanceof HoldEvent) {
 					event.start();
 				}
 			}
@@ -27,9 +28,11 @@ export default class EventHandler {
 
 		el.addEventListener("keyup", (e) => {
 			for (const event of this.events) {
+				if (!event.check(e)) continue;
+
 				if (event.type === EventType.Release) {
 					event.execute();
-				} else if (event instanceof HoldEvent && event.check(e)) {
+				} else if (event instanceof HoldEvent) {
 					event.stop();
 				}
 			}
@@ -50,7 +53,9 @@ export default class EventHandler {
 
 	executeHolding() {
 		for (const event of this.events) {
-			if (event instanceof HoldEvent) event.execute();
+			if (event instanceof HoldEvent) {
+				event.execute();
+			}
 		}
 	}
 }

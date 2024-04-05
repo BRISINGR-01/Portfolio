@@ -1,50 +1,43 @@
 import Character from "$lib/models/character";
 import EventHandler from "$lib/models/events/eventHandler";
-import { KEYS, ROTATION_FORCE } from "$lib/models/world/constants";
+import { KEYS } from "$lib/models/world/constants";
 
 export function setKeyBindings(eventHandler: EventHandler) {}
 
 export function setCharacterKeyBindings(character: Character, eventHandler: EventHandler) {
-	const spedUpRotationForce = ROTATION_FORCE * 2;
-	for (const key of [KEYS.W, KEYS.UP]) {
+	for (const key of KEYS.W) {
 		eventHandler
 			.bindKey(key)
-			.onPress(() => character.rotaionDirection.setForward())
-			.onHold(() => {
-				character.rotateForward(spedUpRotationForce);
-			})
-			.onRelease(() => {
-				character.rotaionDirection.clearZ();
-			});
+			.onPress(() => (character.controls.w = true))
+			.onRelease(() => (character.controls.w = false));
 	}
 
-	for (const key of [KEYS.S, KEYS.DOWN]) {
+	for (const key of KEYS.S) {
 		eventHandler
 			.bindKey(key)
-			.onPress(() => character.rotaionDirection.setBackward())
-			.onHold(() => {
-				character.rotateBackward(spedUpRotationForce);
-			})
-			.onRelease(() => character.rotaionDirection.clearZ());
+			.onPress(() => (character.controls.s = true))
+			.onRelease(() => (character.controls.s = false));
 	}
 
-	for (const key of [KEYS.A, KEYS.LEFT]) {
+	for (const key of KEYS.A) {
 		eventHandler
 			.bindKey(key)
-			.onPress(() => character.rotaionDirection.setLeft())
-			.onHold(() => {
-				character.rotateLeft(spedUpRotationForce);
-			})
-			.onRelease(() => character.rotaionDirection.clearX());
+			.onPress(() => (character.controls.a = true))
+			.onRelease(() => (character.controls.a = false));
 	}
 
-	for (const key of [KEYS.D, KEYS.RIGHT]) {
+	for (const key of KEYS.D) {
 		eventHandler
 			.bindKey(key)
-			.onPress(() => character.rotaionDirection.setRight())
-			.onHold(() => {
-				character.rotateRight(spedUpRotationForce);
-			})
-			.onRelease(() => character.rotaionDirection.clearX());
+			.onPress(() => (character.controls.d = true))
+			.onRelease(() => (character.controls.d = false));
 	}
+	eventHandler
+		.bindKey("r")
+		.onPress(() => (character.controls.r = true))
+		.onRelease(() => (character.controls.r = false));
+	eventHandler
+		.bindKey("Shift")
+		.onPress(() => (character.controls.shift = true))
+		.onRelease(() => (character.controls.shift = false));
 }

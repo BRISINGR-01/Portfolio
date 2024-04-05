@@ -7,12 +7,8 @@ export const ROTATION_FORCE = Math.PI / 100;
 export const TICKS_COOLDOWN = 2;
 
 export const KEYS = {
-	A: "a",
-	W: "w",
-	S: "s",
-	D: "d",
-	LEFT: "ArrowLeft",
-	UP: "ArrowUp",
-	RIGHT: "ArrowRight",
-	DOWN: "ArrowDown"
+	A: ["a", "A", "ArrowLeft"],
+	W: ["w", "W", "ArrowUp"],
+	S: ["s", "S", "ArrowDown"],
+	D: ["d", "D", "ArrowRight"]
 };

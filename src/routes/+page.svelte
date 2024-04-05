@@ -1,11 +1,14 @@
 <script lang="ts">
-	import { createScene } from "$lib/controllers/setUp";
+	import { createWorld } from "$lib/controllers/setUp";
 	import { onMount } from "svelte";
+	import Info from "../components/info.svelte";
 
-	let el: HTMLElement;
+	let canvas: HTMLElement;
+	let info: HTMLElement;
 
 	onMount(() => {
-		createScene(el);
+		const world = createWorld(canvas);
+		// createDisplay(info, world);
 	});
 </script>
 
@@ -14,4 +17,8 @@
 	<meta name="description" content="Three.js example app built with Svelte" />
 </svelte:head>
 
-<div bind:this={el} />
+<div bind:this={canvas} />
+
+<div bind:this={info}>
+	<Info />
+</div>
