@@ -2,7 +2,8 @@ import Character from "$lib/models/character";
 import Controls from "$lib/models/world/controls";
 import Entity from "$lib/models/world/entity";
 import World from "$lib/models/world/world";
-import { AmbientLight, Color, DirectionalLight } from "three";
+import { AmbientLight, AxesHelper, Color, DirectionalLight } from "three";
+import { ModeType } from "../../utils/enums";
 import { setCharacterKeyBindings, setKeyBindings } from "./keyBindings";
 
 const world = new World();
@@ -19,8 +20,14 @@ const light = new DirectionalLight("white", 10);
 light.position.set(10, 10, 10);
 world.add(light);
 
+world.add(new AxesHelper());
+
 const character = new Character();
-character.load();
+character.load().then(() => {
+	character.switchMode(ModeType.Flying);
+	character.render(world);
+	character.switchMode(ModeType.Idle);
+});
 world.add(character);
 world.onTick(() => character.render(world));
 

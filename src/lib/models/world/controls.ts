@@ -1,4 +1,5 @@
-import { Camera } from "three";
+// import { Camera } from "three";
+// import { PointerLockControls } from "three/examples/jsm/controls/PointerLockControls";
 
 // export default class Controls extends PointerLockControls {
 // 	constructor(camera: Camera, el: HTMLElement) {
@@ -10,6 +11,7 @@ import { Camera } from "three";
 // 	}
 // }
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import Camera from "./camera";
 
 export default class Controls extends OrbitControls {
 	constructor(camera: Camera, el: HTMLElement) {

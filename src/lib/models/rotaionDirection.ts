@@ -1,4 +1,4 @@
-export default class MovementState {
+export default class ModeState {
 	private x: number = 0;
 	private z: number = 0;
 

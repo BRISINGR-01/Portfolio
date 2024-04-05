@@ -6,7 +6,9 @@ export default class Entity extends Object3D {
 
 	async load(objectName: string) {
 		const res = await load(objectName);
+		const obj = res.unwrap();
+		this.add(obj);
 
-		this.add(res.unwrap());
+		return obj;
 	}
 }

@@ -2,5 +2,12 @@ export enum EventType {
 	Click,
 	Hold,
 	Press,
-	Release
+	Release,
+	Custom
+}
+
+export enum ModeType {
+	Walking,
+	Idle,
+	Flying
 }
