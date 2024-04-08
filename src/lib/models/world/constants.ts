@@ -7,7 +7,7 @@ export const ROTATION_FORCE = Math.PI / 100;
 export const TICKS_COOLDOWN = 2;
 export const VELOCITY = 0.02;
 export const INTERPOLATION_FACTOR = 0.175;
-export const MAX_VELOCITY = 0.02;
+export const MAX_VELOCITY = 0.01;
 
 export const KEYS = {
 	A: ["a", "A", "ArrowLeft"],

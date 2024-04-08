@@ -1,5 +1,5 @@
 // import { ModeStrategy } from "../../../utils/types";
-import * as types from "../../../utils/types";
+import * as types from "../../utils/types";
 import Character from "../character";
 import World from "../world/world";
 

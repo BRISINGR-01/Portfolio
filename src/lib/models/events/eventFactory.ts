@@ -1,4 +1,4 @@
-import { EventType } from "../../../utils/enums";
+import { EventType } from "../../utils/enums";
 import EventHandler from "./eventHandler";
 import HoldEvent from "./holdEvent";
 import KeyEvent from "./keyEvent";

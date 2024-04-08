@@ -1,7 +1,8 @@
-import { ModeType } from "../../utils/enums";
-import * as types from "../../utils/types";
+import type { ModeStrategy } from "$lib/utils/types";
+import { ModeType } from "../utils/enums";
 import Context from "./context";
-import Idle from "./modes/IdleMode";
+import Controls from "./Controls";
+import ModeDecorator from "./modes/ModeDecorator";
 import PlaneMode from "./modes/PlaneMode";
 import WalkMode from "./modes/WalkMode";
 import Entity from "./world/entity";
@@ -9,25 +10,39 @@ import World from "./world/world";
 
 export default class Character extends Entity {
 	context: Context = new Context();
-	mode: types.ModeStrategy = new Idle();
+
+	private mode: ModeStrategy = new WalkMode();
+	controls = new Controls();
 	object: Entity = new Entity();
 
-	switchMode(ModeState: ModeType) {
-		this.mode.stop(this);
-		switch (ModeState) {
+	async switchMode(modeType: ModeType) {
+		if (this.mode instanceof ModeDecorator) return false;
+
+		this.mode = new ModeDecorator(this.mode);
+
+		this.controls.lock();
+		await this.mode.stop(this);
+
+		let mode: ModeStrategy;
+		switch (modeType) {
 			case ModeType.Flying:
-				this.mode = new PlaneMode();
+				mode = new PlaneMode();
 				break;
 			case ModeType.Walking:
-				this.mode = new WalkMode();
-				break;
-
-			case ModeType.Idle:
-				this.mode = new Idle();
+				mode = new WalkMode();
 				break;
 		}
 
-		this.mode.start(this);
+		this.context.ModeState = modeType;
+
+		this.mode = new ModeDecorator(mode);
+
+		await this.mode.start(this);
+		this.controls.unlock();
+
+		this.mode = mode;
+
+		return true;
 	}
 
 	async load() {

@@ -1,4 +1,4 @@
-import { EventType } from "../../../utils/enums";
+import { EventType } from "../../utils/enums";
 import Event from "./Event";
 
 export default class KeyEvent extends Event<KeyboardEvent> {

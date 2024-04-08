@@ -1,4 +1,4 @@
-import { EventType } from "../../../utils/enums";
+import { EventType } from "../../utils/enums";
 import Event from "./Event";
 import EventFactory from "./eventFactory";
 import HoldEvent from "./holdEvent";

@@ -1,6 +1,7 @@
 import Character from "$lib/models/character";
 import EventHandler from "$lib/models/events/eventHandler";
 import { KEYS } from "$lib/models/world/constants";
+import { EventType, ModeType } from "../utils/enums";
 
 export function setKeyBindings(eventHandler: EventHandler) {}
 
@@ -8,36 +9,34 @@ export function setCharacterKeyBindings(character: Character, eventHandler: Even
 	for (const key of KEYS.W) {
 		eventHandler
 			.bindKey(key)
-			.onPress(() => (character.context.controls.w = true))
-			.onRelease(() => (character.context.controls.w = false));
+			.onPress(() => (character.controls.w = true))
+			.onRelease(() => (character.controls.w = false));
 	}
 
 	for (const key of KEYS.S) {
 		eventHandler
 			.bindKey(key)
-			.onPress(() => (character.context.controls.s = true))
-			.onRelease(() => (character.context.controls.s = false));
+			.onPress(() => (character.controls.s = true))
+			.onRelease(() => (character.controls.s = false));
 	}
 
 	for (const key of KEYS.A) {
 		eventHandler
 			.bindKey(key)
-			.onPress(() => (character.context.controls.a = true))
-			.onRelease(() => (character.context.controls.a = false));
+			.onPress(() => (character.controls.a = true))
+			.onRelease(() => (character.controls.a = false));
 	}
 
 	for (const key of KEYS.D) {
 		eventHandler
 			.bindKey(key)
-			.onPress(() => (character.context.controls.d = true))
-			.onRelease(() => (character.context.controls.d = false));
+			.onPress(() => (character.controls.d = true))
+			.onRelease(() => (character.controls.d = false));
 	}
 	eventHandler
-		.bindKey("r")
-		.onPress(() => (character.context.controls.r = true))
-		.onRelease(() => (character.context.controls.r = false));
-	eventHandler
 		.bindKey("Shift")
-		.onPress(() => (character.context.controls.shift = true))
-		.onRelease(() => (character.context.controls.shift = false));
+		.onPress(() => (character.controls.shift = true))
+		.onRelease(() => (character.controls.shift = false));
+	eventHandler.bindKey("m").onPress(() => eventHandler.fire(EventType.SwitchMode, character.context.ModeState === ModeType.Flying ? ModeType.Walking : ModeType.Flying));
+	eventHandler.bindKey("i").onPress(() => eventHandler.fire(EventType.OpenMenu, null));
 }

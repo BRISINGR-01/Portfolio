@@ -1,4 +1,4 @@
-import { EventType } from "../../../utils/enums";
+import { EventType } from "../../utils/enums";
 
 export default class Event<T> {
 	type: EventType;

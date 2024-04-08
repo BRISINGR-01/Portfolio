@@ -3,11 +3,11 @@ export enum EventType {
 	Hold,
 	Press,
 	Release,
-	Custom
+	SwitchMode,
+	OpenMenu
 }
 
 export enum ModeType {
 	Walking,
-	Idle,
 	Flying
 }
