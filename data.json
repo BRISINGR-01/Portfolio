@@ -1,0 +1,368 @@
+{
+  "sections": [
+    {
+      "type": "environment",
+      "name": "Web",
+      "description": "My career's focus circles around web-development. I have primarily worked on projects for the web using a variety of tools and languages. Even though my experience is limited to deploying monolith projects I have explored and written research concerning various system designs such as microservices, event-driven, and other more scalabe architectures.",
+      "connections": [
+        "HTML",
+        "CSS",
+        "NodeJS",
+        "Typescript",
+        "C#",
+        "React",
+        "Bootstrap",
+        "Express",
+        "GraphQl",
+        "ThreeJS",
+        "MySQL",
+        ".NET",
+        "Docker",
+        "Firebase",
+        "Heroku"
+      ]
+    },
+    {
+      "name": "Cross-platform",
+      "type": "environment",
+      "description": "Mostly for personal projects I have developed and used apps on all popular platforms, but I have spent most time working on Linux, Windows, and Android. One of the apps is available on Google Play Store.",
+      "connections": [
+        "Dart",
+        "React",
+        "Flutter",
+        "Linux",
+        "Windows",
+        "Android"
+      ]
+    },
+    {
+      "name": "Low-level systems",
+      "type": "environment",
+      "description": "My curiousity in the internal workings of code combined with my desire to write efficient programs brought me to the world of memory management, tcp connections, terminals... I was guided mostly by interest, so fewer projects of mine are connected with this section.",
+      "connections": [
+        "Rust",
+        "C/C++",
+        "Bash",
+        "Docker",
+        "Hack the Box",
+        "Linux"
+      ]
+    },
+    {
+      "name": "A1 Marketing tool",
+      "type": "project",
+      "timespan": [
+        "01.07.2021",
+        "30.09.2021"
+      ],
+      "description": "My first internship was at one of the largest telecomunication companies in Bulgaria. It was a project lead by the Belgian branch with the help of a Bulgarian team, in which I took part. Its objective was mainly structured around selecting the content for TV programs. My tasks varied between working on the front- and backend",
+      "connections": [
+        "React",
+        "Express",
+        "Docker",
+        "GraphQl"
+      ]
+    },
+    {
+      "name": "Latin is simple",
+      "type": "project",
+      "timespan": [
+        "03.01.2022"
+      ],
+      "description": "Owned by two Austrian graduates this language learning app has gained dozens of thousands users over the years. It is primarily used by students learning Latin. It provides tools such as learning trainers, sentence analisys, and many more.",
+      "connections": [
+        "React",
+        "Bootstrap",
+        "Python"
+      ]
+    },
+    {
+      "name": "Information club “Digital Studio”",
+      "type": "project",
+      "timespan": [
+        "01.10.2020",
+        "01.06.2021"
+      ],
+      "description": "This is an ethnic diversity cooperation project with \"St. Paisiy Hilendarski\" School. I was offered to participate by my IT teacher at my highschool and I worked side by side with students from different grades.",
+      "connections": [
+        "HTML",
+        "CSS",
+        "NodeJS",
+        "ThreeJS",
+        "Firebase"
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "name": "The Rust Programming Language",
+      "type": "book",
+      "cover": "The Rust Programming Language.jpg"
+    },
+    {
+      "name": "C Programming Language",
+      "type": "book",
+      "cover": "C Programming Language, 2nd Edition by Brian Kernighan.jpg"
+    },
+    {
+      "name": "Clean Code by Robert C. Martin",
+      "type": "book",
+      "cover": "Clean Code by Robert C. Martin.jpg"
+    },
+    {
+      "name": "Software Architecture Patterns",
+      "type": "book",
+      "cover": "Software Architecture Patterns.jpg"
+    },
+    {
+      "name": "System Design Interview",
+      "type": "book",
+      "cover": "system design interview.jpg"
+    },
+    {
+      "name": "Design Patterns",
+      "type": "book",
+      "cover": "design patterns.jpg"
+    },
+    {
+      "name": "The Breakthrough UI Developer Process Web Class by Pete Heard",
+      "type": "class"
+    },
+    {
+      "name": "NodeJS - The Complete Guide (MVC, REST, APIs, GraphQl)",
+      "type": "class"
+    },
+    {
+      "name": "Hack the box",
+      "type": "class"
+    },
+    {
+      "name": "Fontys (Academic preperation)",
+      "type": "class"
+    }
+  ],
+  "entities": [
+    {
+      "type": "language",
+      "value": "HTML",
+      "icon": "html.svg"
+    },
+    {
+      "type": "language",
+      "value": "CSS",
+      "icon": "css.svg"
+    },
+    {
+      "type": "language",
+      "value": "NodeJS",
+      "icon": "node.svg"
+    },
+    {
+      "type": "language",
+      "value": "Typescript",
+      "icon": "ts.svg"
+    },
+    {
+      "type": "language",
+      "value": "Dart",
+      "icon": "dart.svg"
+    },
+    {
+      "type": "language",
+      "value": "Python",
+      "icon": "python.svg"
+    },
+    {
+      "type": "language",
+      "value": "Lua",
+      "icon": "lua.svg"
+    },
+    {
+      "type": "language",
+      "value": "C#",
+      "icon": "c#.svg"
+    },
+    {
+      "type": "language",
+      "value": "Rust",
+      "icon": "rust.svg"
+    },
+    {
+      "type": "language",
+      "value": "C/C++",
+      "icon": "c.svg"
+    },
+    {
+      "type": "language",
+      "value": "SQL",
+      "icon": "sql.svg"
+    },
+    {
+      "type": "language",
+      "value": "Cypher",
+      "icon": "cypher.svg"
+    },
+    {
+      "type": "language",
+      "value": "Bash",
+      "icon": "bash.svg"
+    },
+    {
+      "type": "technology",
+      "value": "React",
+      "icon": "react.svg"
+    },
+    {
+      "type": "technology",
+      "value": "Bootstrap",
+      "icon": "bootstrap.svg"
+    },
+    {
+      "type": "technology",
+      "value": "Express",
+      "icon": "express.svg"
+    },
+    {
+      "type": "technology",
+      "value": "GraphQl",
+      "icon": "graphQl.svg"
+    },
+    {
+      "type": "technology",
+      "value": "ThreeJS",
+      "icon": "threejs.svg"
+    },
+    {
+      "type": "technology",
+      "value": "MySQL",
+      "icon": "mysql.svg"
+    },
+    {
+      "type": "technology",
+      "value": ".NET",
+      "icon": "net.svg"
+    },
+    {
+      "type": "technology",
+      "value": "Flutter",
+      "icon": "flutter.svg"
+    },
+    {
+      "type": "technology",
+      "value": "Docker",
+      "icon": "Docker.svg"
+    },
+    {
+      "type": "technology",
+      "value": "Neo4j",
+      "icon": "neo4j.svg"
+    },
+    {
+      "type": "other",
+      "value": "Hack the Box",
+      "icon": "hackthebox.svg"
+    },
+    {
+      "type": "other",
+      "value": "Linux",
+      "icon": "linux.svg"
+    },
+    {
+      "type": "other",
+      "value": "Windows",
+      "icon": "windows.svg"
+    },
+    {
+      "type": "other",
+      "value": "Android",
+      "icon": "android.svg"
+    },
+    {
+      "type": "other",
+      "value": "Firebase",
+      "icon": "firebase.svg"
+    },
+    {
+      "type": "other",
+      "value": "Heroku",
+      "icon": "heroku.svg"
+    },
+    {
+      "type": "language",
+      "value": "Bulgarian",
+      "icon": "bulgarian.svg"
+    },
+    {
+      "type": "language",
+      "value": "Dutch",
+      "icon": "dutch.svg"
+    },
+    {
+      "type": "language",
+      "value": "German",
+      "icon": "german.svg"
+    },
+    {
+      "type": "language",
+      "value": "French",
+      "icon": "french.svg"
+    },
+    {
+      "type": "language",
+      "value": "Spanish",
+      "icon": "spanish.svg"
+    },
+    {
+      "type": "language",
+      "value": "Italian",
+      "icon": "italian.svg"
+    },
+    {
+      "type": "language",
+      "value": "Portuguese",
+      "icon": "portuguese.svg"
+    },
+    {
+      "type": "contact",
+      "value": "Gmail",
+      "icon": "gmail.svg",
+      "address": "alexander.popov233@gmail.com"
+    },
+    {
+      "type": "contact",
+      "value": "Github",
+      "icon": "github.svg",
+      "address": "BRISINGR-01"
+    },
+    {
+      "type": "contact",
+      "value": "Gitlab",
+      "icon": "gitlab.svg",
+      "address": "BRISINGR-01"
+    },
+    {
+      "type": "contact",
+      "value": "LinkedIn",
+      "icon": "linkedin.svg",
+      "address": "alexander-popov-61126825a"
+    },
+    {
+      "type": "contact",
+      "value": "X",
+      "icon": "x.svg",
+      "address": "AlexPopov233"
+    },
+    {
+      "type": "contact",
+      "value": "Instagram",
+      "icon": "instagram.svg",
+      "address": "@alexan6451"
+    },
+    {
+      "type": "contact",
+      "value": "Whatsapp",
+      "icon": "whatsapp.svg",
+      "address": "+359888011088"
+    }
+  ]
+}
