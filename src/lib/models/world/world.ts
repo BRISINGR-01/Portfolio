@@ -1,3 +1,4 @@
+import type { Func } from "$lib/utils/types";
 import { Object3D, Scene, WebGLRenderer } from "three";
 import { CSS3DRenderer } from "three/examples/jsm/renderers/CSS3DRenderer";
 import Context from "../context";
@@ -30,13 +31,14 @@ export default class World {
 		this.rendererHTML.domElement.style.top = "0px";
 
 		this.eventHandler = new EventHandler();
+
+		this.render();
 	}
 
 	create(el: HTMLElement) {
 		el.appendChild(this.renderer.domElement);
 		el.appendChild(this.rendererHTML.domElement);
 		this.resize();
-		this.render();
 	}
 
 	add(object: Object3D | Entity | HTMLEntity) {

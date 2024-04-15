@@ -1,5 +1,5 @@
 export default class Controls {
-	private data = { a: false, s: false, w: false, d: false, shift: false };
+	private data = { left: false, down: false, up: false, right: false, turbo: false, space: false, shift: false };
 	private isLocked = false;
 	lock() {
 		this.isLocked = true;
@@ -8,34 +8,46 @@ export default class Controls {
 		this.isLocked = false;
 	}
 
-	public get a() {
-		return this.data.a;
+	public get left() {
+		return this.data.left;
 	}
-	public set a(value) {
-		this.data.a = value;
+	public set left(value) {
+		this.data.left = value;
 	}
-	public get d() {
-		return this.data.d;
+	public get right() {
+		return this.data.right;
 	}
-	public set d(value) {
-		this.data.d = value;
+	public set right(value) {
+		this.data.right = value;
 	}
-	public get w() {
-		return this.data.w;
+	public get up() {
+		return this.data.up;
 	}
-	public set w(value) {
-		this.data.w = value;
+	public set up(value) {
+		this.data.up = value;
 	}
-	public get s() {
-		return this.data.s;
+	public get down() {
+		return this.data.down;
 	}
-	public set s(value) {
-		this.data.s = value;
+	public set down(value) {
+		this.data.down = value;
+	}
+	public get turbo() {
+		return this.data.turbo;
+	}
+	public set turbo(value) {
+		this.data.turbo = value;
+	}
+	public get space() {
+		return this.data.space;
+	}
+	public set space(value) {
+		this.data.turbo = value;
 	}
 	public get shift() {
 		return this.data.shift;
 	}
 	public set shift(value) {
-		this.data.shift = value;
+		this.data.turbo = value;
 	}
 }

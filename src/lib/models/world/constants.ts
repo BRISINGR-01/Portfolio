@@ -13,5 +13,6 @@ export const KEYS = {
 	A: ["a", "A", "ArrowLeft"],
 	W: ["w", "W", "ArrowUp"],
 	S: ["s", "S", "ArrowDown"],
-	D: ["d", "D", "ArrowRight"]
+	D: ["d", "D", "ArrowRight"],
+	T: ["t", "T"]
 };

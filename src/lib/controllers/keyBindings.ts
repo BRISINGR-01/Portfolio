@@ -9,30 +9,40 @@ export function setCharacterKeyBindings(character: Character, eventHandler: Even
 	for (const key of KEYS.W) {
 		eventHandler
 			.bindKey(key)
-			.onPress(() => (character.controls.w = true))
-			.onRelease(() => (character.controls.w = false));
+			.onPress(() => (character.controls.up = true))
+			.onRelease(() => (character.controls.up = false));
 	}
 
 	for (const key of KEYS.S) {
 		eventHandler
 			.bindKey(key)
-			.onPress(() => (character.controls.s = true))
-			.onRelease(() => (character.controls.s = false));
+			.onPress(() => (character.controls.down = true))
+			.onRelease(() => (character.controls.down = false));
 	}
 
 	for (const key of KEYS.A) {
 		eventHandler
 			.bindKey(key)
-			.onPress(() => (character.controls.a = true))
-			.onRelease(() => (character.controls.a = false));
+			.onPress(() => (character.controls.left = true))
+			.onRelease(() => (character.controls.left = false));
 	}
 
 	for (const key of KEYS.D) {
 		eventHandler
 			.bindKey(key)
-			.onPress(() => (character.controls.d = true))
-			.onRelease(() => (character.controls.d = false));
+			.onPress(() => (character.controls.right = true))
+			.onRelease(() => (character.controls.right = false));
 	}
+	for (const key of KEYS.T) {
+		eventHandler
+			.bindKey("t")
+			.onPress(() => (character.controls.turbo = true))
+			.onRelease(() => (character.controls.turbo = false));
+	}
+	eventHandler
+		.bindKey("Space")
+		.onPress(() => (character.controls.space = true))
+		.onRelease(() => (character.controls.space = false));
 	eventHandler
 		.bindKey("Shift")
 		.onPress(() => (character.controls.shift = true))

@@ -2,8 +2,8 @@ import type { ModeStrategy } from "$lib/utils/types";
 import { ModeType } from "../utils/enums";
 import Context from "./context";
 import Controls from "./Controls";
+import FlyMode from "./modes/FlyMode";
 import ModeDecorator from "./modes/ModeDecorator";
-import PlaneMode from "./modes/PlaneMode";
 import WalkMode from "./modes/WalkMode";
 import Entity from "./world/entity";
 import World from "./world/world";
@@ -26,7 +26,7 @@ export default class Character extends Entity {
 		let mode: ModeStrategy;
 		switch (modeType) {
 			case ModeType.Flying:
-				mode = new PlaneMode();
+				mode = new FlyMode();
 				break;
 			case ModeType.Walking:
 				mode = new WalkMode();

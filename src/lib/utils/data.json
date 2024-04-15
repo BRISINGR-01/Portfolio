@@ -51,6 +51,7 @@
     {
       "name": "A1 Marketing tool",
       "type": "project",
+      "image": "A1",
       "timespan": [
         "01.07.2021",
         "30.09.2021"
@@ -62,6 +63,16 @@
         "Docker",
         "GraphQl"
       ]
+    },
+    {
+      "name": "SDG Challenge",
+      "type": "project",
+      "timespan": [
+        "09.04.2024",
+        "05.07.2024"
+      ],
+      "description": "The SDG (Sustainable Developement Goals) are a set of goals defined by UN (United Nations) meant to make the world a better place. The challenge is organized a coulple of times a year in different countries. The aim is to work with large companies on one or a few SDGs in order to help the company lower their emissions, improve its employees' quality of life... My assigned establishment was Sabic. This is the second biggest plastic producer and a leading industry in agriculture, transportation, packaging, technology and more.",
+      "connections": []
     },
     {
       "name": "Latin is simple",
@@ -95,49 +106,49 @@
   ],
   "resources": [
     {
-      "name": "The Rust Programming Language",
+      "value": "The Rust Programming Language",
       "type": "book",
-      "cover": "The Rust Programming Language.jpg"
+      "image": "The Rust Programming Language.jpg"
     },
     {
-      "name": "C Programming Language",
+      "value": "C Programming Language",
       "type": "book",
-      "cover": "C Programming Language, 2nd Edition by Brian Kernighan.jpg"
+      "image": "C Programming Language, 2nd Edition by Brian Kernighan.jpg"
     },
     {
-      "name": "Clean Code by Robert C. Martin",
+      "value": "Clean Code by Robert C. Martin",
       "type": "book",
-      "cover": "Clean Code by Robert C. Martin.jpg"
+      "image": "Clean Code by Robert C. Martin.jpg"
     },
     {
-      "name": "Software Architecture Patterns",
+      "value": "Software Architecture Patterns",
       "type": "book",
-      "cover": "Software Architecture Patterns.jpg"
+      "image": "Software Architecture Patterns.jpg"
     },
     {
-      "name": "System Design Interview",
+      "value": "System Design Interview",
       "type": "book",
-      "cover": "system design interview.jpg"
+      "image": "system design interview.jpg"
     },
     {
-      "name": "Design Patterns",
+      "value": "Design Patterns",
       "type": "book",
-      "cover": "design patterns.jpg"
+      "image": "design patterns.jpg"
     },
     {
-      "name": "The Breakthrough UI Developer Process Web Class by Pete Heard",
+      "value": "The Breakthrough UI Developer Process Web Class by Pete Heard",
       "type": "class"
     },
     {
-      "name": "NodeJS - The Complete Guide (MVC, REST, APIs, GraphQl)",
+      "value": "NodeJS - The Complete Guide (MVC, REST, APIs, GraphQl)",
       "type": "class"
     },
     {
-      "name": "Hack the box",
+      "value": "Hack the Box",
       "type": "class"
     },
     {
-      "name": "Fontys (Academic preperation)",
+      "value": "Fontys (Academic preperation)",
       "type": "class"
     }
   ],
@@ -145,223 +156,218 @@
     {
       "type": "language",
       "value": "HTML",
-      "icon": "html.svg"
+      "image": "html"
     },
     {
       "type": "language",
       "value": "CSS",
-      "icon": "css.svg"
+      "image": "css"
     },
     {
       "type": "language",
       "value": "NodeJS",
-      "icon": "node.svg"
+      "image": "node"
     },
     {
       "type": "language",
       "value": "Typescript",
-      "icon": "ts.svg"
+      "image": "ts"
     },
     {
       "type": "language",
       "value": "Dart",
-      "icon": "dart.svg"
+      "image": "dart"
     },
     {
       "type": "language",
       "value": "Python",
-      "icon": "python.svg"
+      "image": "python"
     },
     {
       "type": "language",
       "value": "Lua",
-      "icon": "lua.svg"
+      "image": "lua"
     },
     {
       "type": "language",
       "value": "C#",
-      "icon": "c#.svg"
+      "image": "c#"
     },
     {
       "type": "language",
       "value": "Rust",
-      "icon": "rust.svg"
+      "image": "rust"
     },
     {
       "type": "language",
       "value": "C/C++",
-      "icon": "c.svg"
+      "image": "c"
     },
     {
       "type": "language",
       "value": "SQL",
-      "icon": "sql.svg"
+      "image": "sql"
     },
     {
       "type": "language",
       "value": "Cypher",
-      "icon": "cypher.svg"
+      "image": "cypher"
     },
     {
       "type": "language",
       "value": "Bash",
-      "icon": "bash.svg"
+      "image": "bash"
     },
     {
       "type": "technology",
       "value": "React",
-      "icon": "react.svg"
+      "image": "react"
     },
     {
       "type": "technology",
       "value": "Bootstrap",
-      "icon": "bootstrap.svg"
+      "image": "bootstrap"
     },
     {
       "type": "technology",
       "value": "Express",
-      "icon": "express.svg"
+      "image": "express"
     },
     {
       "type": "technology",
       "value": "GraphQl",
-      "icon": "graphQl.svg"
+      "image": "graphQl"
     },
     {
       "type": "technology",
       "value": "ThreeJS",
-      "icon": "threejs.svg"
+      "image": "threejs"
     },
     {
       "type": "technology",
       "value": "MySQL",
-      "icon": "mysql.svg"
+      "image": "mysql"
     },
     {
       "type": "technology",
       "value": ".NET",
-      "icon": "net.svg"
+      "image": "net"
     },
     {
       "type": "technology",
       "value": "Flutter",
-      "icon": "flutter.svg"
+      "image": "flutter"
     },
     {
       "type": "technology",
       "value": "Docker",
-      "icon": "Docker.svg"
+      "image": "docker"
     },
     {
       "type": "technology",
       "value": "Neo4j",
-      "icon": "neo4j.svg"
+      "image": "neo4j"
     },
     {
       "type": "other",
       "value": "Hack the Box",
-      "icon": "hackthebox.svg"
+      "image": "hackthebox"
     },
     {
       "type": "other",
       "value": "Linux",
-      "icon": "linux.svg"
+      "image": "linux"
     },
     {
       "type": "other",
       "value": "Windows",
-      "icon": "windows.svg"
+      "image": "windows"
     },
     {
       "type": "other",
       "value": "Android",
-      "icon": "android.svg"
+      "image": "android"
     },
     {
       "type": "other",
       "value": "Firebase",
-      "icon": "firebase.svg"
+      "image": "firebase"
     },
     {
       "type": "other",
       "value": "Heroku",
-      "icon": "heroku.svg"
+      "image": "heroku"
     },
     {
-      "type": "language",
-      "value": "Bulgarian",
-      "icon": "bulgarian.svg"
-    },
-    {
-      "type": "language",
-      "value": "Dutch",
-      "icon": "dutch.svg"
-    },
-    {
-      "type": "language",
+      "type": "spoken-language",
       "value": "German",
-      "icon": "german.svg"
+      "image": "german"
     },
     {
-      "type": "language",
+      "type": "spoken-language",
+      "value": "Dutch",
+      "image": "dutch"
+    },
+    {
+      "type": "spoken-language",
+      "value": "Bulgarian",
+      "image": "bulgarian"
+    },
+    {
+      "type": "spoken-language",
       "value": "French",
-      "icon": "french.svg"
+      "image": "french"
     },
     {
-      "type": "language",
+      "type": "spoken-language",
       "value": "Spanish",
-      "icon": "spanish.svg"
+      "image": "spanish"
     },
     {
-      "type": "language",
+      "type": "spoken-language",
       "value": "Italian",
-      "icon": "italian.svg"
+      "image": "italian"
     },
     {
-      "type": "language",
+      "type": "spoken-language",
       "value": "Portuguese",
-      "icon": "portuguese.svg"
-    },
+      "image": "portuguese"
+    }
+  ],
+  "contact": [
     {
-      "type": "contact",
       "value": "Gmail",
-      "icon": "gmail.svg",
+      "image": "gmail",
       "address": "alexander.popov233@gmail.com"
     },
     {
-      "type": "contact",
       "value": "Github",
-      "icon": "github.svg",
+      "image": "github",
       "address": "BRISINGR-01"
     },
     {
-      "type": "contact",
       "value": "Gitlab",
-      "icon": "gitlab.svg",
+      "image": "gitlab",
       "address": "BRISINGR-01"
     },
     {
-      "type": "contact",
       "value": "LinkedIn",
-      "icon": "linkedin.svg",
+      "image": "linkedin",
       "address": "alexander-popov-61126825a"
     },
     {
-      "type": "contact",
       "value": "X",
-      "icon": "x.svg",
+      "image": "x",
       "address": "AlexPopov233"
     },
     {
-      "type": "contact",
       "value": "Instagram",
-      "icon": "instagram.svg",
+      "image": "instagram",
       "address": "@alexan6451"
     },
     {
-      "type": "contact",
       "value": "Whatsapp",
-      "icon": "whatsapp.svg",
+      "image": "whatsapp",
       "address": "+359888011088"
     }
   ]

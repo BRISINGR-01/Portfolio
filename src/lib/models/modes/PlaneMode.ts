@@ -56,17 +56,11 @@ export default class PlaneMode implements ModeStrategy {
 
 	stop(character: Character) {
 		// jawVelocity = 0;
+		console.log(1);
+
 		// pitchVelocity = 0;
 		let isReady = true || this.isRestarted();
-
-		if (Math.abs(z.z) < 0.99) {
-			// 	x.applyAxisAngle(z, jawVelocity);
-			// y.applyAxisAngle(z, jawVelocity);
-			z.applyAxisAngle(x, z.z > 0 ? 0.3 : -0.004);
-			y.applyAxisAngle(x, z.z > 0 ? 0.3 : -0.004);
-			isReady = false;
-		}
-		character.object.rotateX(VELOCITY * 3);
+		character.object.rotateX(VELOCITY);
 
 		if (character.object.rotation.x >= 0) {
 			character.object.rotation.x = 0;
@@ -80,7 +74,6 @@ export default class PlaneMode implements ModeStrategy {
 		// console.log("x", x.x, x.y, x.z);
 		// console.log("y", y.x, y.y, y.z);
 		// console.log("z", z.x, z.y, z.z);
-		console.log("z", z.z);
 		jawVelocity *= 0.95;
 		pitchVelocity *= 0.95;
 
@@ -91,14 +84,14 @@ export default class PlaneMode implements ModeStrategy {
 			pitchVelocity = Math.sign(pitchVelocity) * MAX_VELOCITY;
 		}
 
-		if (character.controls.a) {
+		if (character.controls.left) {
 			jawVelocity += VELOCITY;
-		} else if (character.controls.d) {
+		} else if (character.controls.right) {
 			jawVelocity -= VELOCITY;
 		}
-		if (character.controls.s) {
+		if (character.controls.down) {
 			pitchVelocity += VELOCITY;
-		} else if (character.controls.w) {
+		} else if (character.controls.up) {
 			pitchVelocity -= VELOCITY;
 		}
 
@@ -111,7 +104,7 @@ export default class PlaneMode implements ModeStrategy {
 		y.normalize();
 		z.normalize();
 
-		if (character.controls.shift) {
+		if (character.controls.turbo) {
 			turbo += VELOCITY;
 		} else {
 			turbo *= 0.9;
@@ -135,13 +128,8 @@ export default class PlaneMode implements ModeStrategy {
 		character.matrix.copy(matrix);
 		character.matrixWorldNeedsUpdate = true;
 
-		const quaternionA = new Quaternion().copy(delayedQuaternion);
-		const quaternionB = new Quaternion();
-		quaternionB.setFromRotationMatrix(rotMatrix);
-
-		const interpolationQuaternion = new Quaternion().copy(quaternionA);
-		interpolationQuaternion.slerp(quaternionB, INTERPOLATION_FACTOR);
-		delayedQuaternion.copy(interpolationQuaternion);
+		const rotationQuaternion = new Quaternion().setFromRotationMatrix(rotMatrix);
+		delayedQuaternion.slerp(rotationQuaternion, INTERPOLATION_FACTOR);
 
 		delayedRotMatrix.identity();
 		delayedRotMatrix.makeRotationFromQuaternion(delayedQuaternion);

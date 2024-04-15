@@ -4,16 +4,20 @@
 	import type InfoTable from "$lib/models/world/InfoTable";
 	import { EventType } from "$lib/utils/enums";
 	import { onMount } from "svelte";
+	import Loader from "../components/Loader.svelte";
 	import Info from "../components/info.svelte";
 
 	let canvas: HTMLElement;
 	let info: Info;
 	let menu: InfoTable;
+	let hasLoaded = false;
 
 	onMount(() => {
-		const world = createWorld(canvas);
-		menu = createDisplay(info, world);
-		world.eventHandler.on(EventType.OpenMenu, () => info.toggle());
+		createWorld(canvas).then(world => {
+			menu = createDisplay(info, world);
+			world.eventHandler.on(EventType.OpenMenu, () => info.toggle());
+			hasLoaded = true;
+		})
 	});
 </script>
 
@@ -22,5 +26,10 @@
 	<meta name="description" content="Three.js example app built with Svelte" />
 </svelte:head>
 
+{#if hasLoaded}
+	<Info {menu} bind:this={info} />
+{:else}
+	<Loader />
+{/if}
+
 <div bind:this={canvas} />
-<Info {menu} bind:this={info} />
