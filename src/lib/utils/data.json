@@ -19,7 +19,9 @@
         ".NET",
         "Docker",
         "Firebase",
-        "Heroku"
+        "Heroku",
+        "Next JS",
+        "Vercel"
       ]
     },
     {
@@ -51,12 +53,12 @@
     {
       "name": "A1 Marketing tool",
       "type": "project",
-      "image": "A1",
+      "image": "A1.png",
       "timespan": [
         "01.07.2021",
         "30.09.2021"
       ],
-      "description": "My first internship was at one of the largest telecomunication companies in Bulgaria. It was a project lead by the Belgian branch with the help of a Bulgarian team, in which I took part. Its objective was mainly structured around selecting the content for TV programs. My tasks varied between working on the front- and backend",
+      "description": "My first internship was at one of the largest telecomunication companies in Bulgaria. It was a project lead by the Belgian branch with the help of a Bulgarian team, in which I took part. Its objective was mainly structured around selecting the content for TV programs. My tasks varied between working on the front- and backend.",
       "connections": [
         "React",
         "Express",
@@ -66,21 +68,28 @@
     },
     {
       "name": "SDG Challenge",
+      "image": "SDG.webp",
       "type": "project",
       "timespan": [
         "09.04.2024",
         "05.07.2024"
       ],
       "description": "The SDG (Sustainable Developement Goals) are a set of goals defined by UN (United Nations) meant to make the world a better place. The challenge is organized a coulple of times a year in different countries. The aim is to work with large companies on one or a few SDGs in order to help the company lower their emissions, improve its employees' quality of life... My assigned establishment was Sabic. This is the second biggest plastic producer and a leading industry in agriculture, transportation, packaging, technology and more.",
-      "connections": []
+      "connections": [
+        "Vercel",
+        "Typescript",
+        "Next JS",
+        "Next UI"
+      ]
     },
     {
       "name": "Latin is simple",
       "type": "project",
+      "image": "latin-is-simple.jpg",
       "timespan": [
         "03.01.2022"
       ],
-      "description": "Owned by two Austrian graduates this language learning app has gained dozens of thousands users over the years. It is primarily used by students learning Latin. It provides tools such as learning trainers, sentence analisys, and many more.",
+      "description": "Owned by two Austrian graduates this language learning app has gained dozens of thousands of users over the years. It is primarily used by students learning Latin. It provides tools such as learning trainers, sentence analisys, and many more.",
       "connections": [
         "React",
         "Bootstrap",
@@ -89,6 +98,7 @@
     },
     {
       "name": "Information club “Digital Studio”",
+      "image": "2aeg.webp",
       "type": "project",
       "timespan": [
         "01.10.2020",
@@ -191,7 +201,7 @@
     {
       "type": "language",
       "value": "C#",
-      "image": "c#"
+      "image": "c-sharp"
     },
     {
       "type": "language",
@@ -262,6 +272,21 @@
       "type": "technology",
       "value": "Docker",
       "image": "docker"
+    },
+    {
+      "type": "technology",
+      "value": "Vercel",
+      "image": "vercel"
+    },
+    {
+      "type": "technology",
+      "value": "Next JS",
+      "image": "nextjs"
+    },
+    {
+      "type": "technology",
+      "value": "Next UI",
+      "image": "nextui"
     },
     {
       "type": "technology",
