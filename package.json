@@ -14,7 +14,8 @@
 	},
 	"homepage": "https://github.com/BRISINGR-01/BRIZINGR-01#readme",
 	"scripts": {
-		"dev": "vite dev"
+		"dev": "vite dev",
+		"build": "vite build"
 	},
 	"dependencies": {
 		"svelte-ux": "^0.62.8",
@@ -25,7 +26,6 @@
 	},
 	"devDependencies": {
 		"@mdi/js": "^7.3.67",
-		"@playwright/test": "^1.28.1",
 		"@sveltejs/adapter-auto": "next",
 		"@types/three": "^0.155.0",
 		"autoprefixer": "^10.4.14",
