@@ -1,36 +1,41 @@
-import type { Func } from "$lib/utils/types";
 import { Object3D, Scene, WebGLRenderer } from "three";
+import { PointerLockControls } from "three/examples/jsm/controls/PointerLockControls";
 import { CSS3DRenderer } from "three/examples/jsm/renderers/CSS3DRenderer";
-import Context from "../context";
 import EventHandler from "../events/eventHandler";
 import Camera from "./camera";
-import { TICKS_COOLDOWN } from "./constants";
 import Entity from "./entity";
 import HTMLEntity from "./htmlEntity";
 
 export default class World {
-  public scene: Scene;
   private sceneHTML: Scene;
   private renderer: WebGLRenderer;
   private rendererHTML: CSS3DRenderer;
-  private tickCount = 0;
-  private tickCallbacks: Func[] = [];
+  private renderCallbacks: ((wworld: World) => void)[] = [];
 
+  public controls: PointerLockControls;
+  public scene: Scene;
   public camera: Camera;
-  public context = new Context();
+
   public eventHandler;
 
   constructor() {
     this.scene = new Scene();
     this.sceneHTML = new Scene();
-
-    this.camera = new Camera();
     this.renderer = new WebGLRenderer({ antialias: true });
     this.rendererHTML = new CSS3DRenderer();
     this.rendererHTML.domElement.style.position = "absolute";
     this.rendererHTML.domElement.style.top = "0px";
 
+    this.camera = new Camera();
+    this.controls = new PointerLockControls(this.camera, document.body);
+    this.controls.pointerSpeed = 0.05;
+    this.add(this.controls.getObject());
+
     this.eventHandler = new EventHandler();
+    this.eventHandler.onClick(() => {
+      this.controls.lock();
+    });
+    this.onRender(() => this.eventHandler.executeHolding());
 
     this.render();
   }
@@ -57,30 +62,16 @@ export default class World {
     this.camera.updateProjectionMatrix();
   }
 
-  onTick(cb: Func) {
-    this.tickCallbacks.push(cb);
+  onRender(cb: () => void) {
+    this.renderCallbacks.push(cb);
   }
 
   private render() {
-    if (++this.tickCount > TICKS_COOLDOWN) {
-      this.tickCount = 0;
-    }
-    this.cycleUpdate();
-
+    requestAnimationFrame(this.render.bind(this));
     this.renderer.render(this.scene, this.camera);
     this.rendererHTML.render(this.sceneHTML, this.camera);
-    requestAnimationFrame(this.render.bind(this));
-  }
-
-  private cycleUpdate() {
-    this.eventHandler.executeHolding();
-
-    for (const cb of this.tickCallbacks) {
-      cb();
-    }
-
-    for (const child of this.scene.children) {
-      // if (child instanceof Entity && child.onTickUpdate !== null) child.onTickUpdate();
+    for (const cb of this.renderCallbacks) {
+      cb(this);
     }
   }
 }

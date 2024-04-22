@@ -27,8 +27,6 @@ export default class SVGEntity extends Entity {
 
       const material = new MeshPhongMaterial({
         color: new Color().setStyle(fillColor),
-        opacity: 1,
-        transparent: true,
         side: DoubleSide,
         depthWrite: true,
       });

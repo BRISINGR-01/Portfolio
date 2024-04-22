@@ -1,7 +1,6 @@
-import { easeOutQuad, wait } from "$lib/utils/helpers";
-import type { ModeStrategy } from "$lib/utils/types";
+import { easeOutQuad } from "$lib/utils/helpers";
+import { ModeStrategy } from "$lib/utils/types";
 import { Matrix4, Quaternion, Vector3 } from "three";
-import type Character from "../character";
 import {
   fov,
   INTERPOLATION_FACTOR,
@@ -28,16 +27,8 @@ let pitchVelocity = 0;
 let speed = 0.02;
 const delayedRotMatrix = new Matrix4();
 const delayedQuaternion = new Quaternion();
-export default class FlyMode implements ModeStrategy {
-  start(character: Character) {
-    return wait(false);
-  }
-
-  stop(character: Character) {
-    return wait(false);
-  }
-
-  update(world: World, character: Character) {
+export default class FlyMode extends ModeStrategy {
+  update(world: World) {
     // console.log("x", x.x, x.y, x.z);
     // console.log("y", y.x, y.y, y.z);
     // console.log("z", z.x, z.y, z.z);
@@ -70,7 +61,7 @@ export default class FlyMode implements ModeStrategy {
     z.normalize();
   }
 
-  render(world: World, character: Character) {
+  render(world: World) {
     // console.log(x, y, z);
 
     this.update(world, character);

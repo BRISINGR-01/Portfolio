@@ -1,52 +1,61 @@
-import Character from "$lib/models/character";
+import type Controls from "$lib/models/Controls";
 import EventHandler from "$lib/models/events/eventHandler";
 import { KEYS } from "$lib/models/world/constants";
-import { EventType, ModeType } from "../utils/enums";
+import { EventType } from "../utils/enums";
 
-export function setKeyBindings(eventHandler: EventHandler) {}
+export function setKeyBindings(eventHandler: EventHandler, controls: Controls) {
+  setCharacterKeyBindings(eventHandler, controls);
+}
 
-export function setCharacterKeyBindings(character: Character, eventHandler: EventHandler) {
-	for (const key of KEYS.W) {
-		eventHandler
-			.bindKey(key)
-			.onPress(() => (character.controls.up = true))
-			.onRelease(() => (character.controls.up = false));
-	}
+export function setCharacterKeyBindings(
+  eventHandler: EventHandler,
+  controls: Controls
+) {
+  for (const key of KEYS.W) {
+    eventHandler
+      .bindKey(key)
+      .onPress(() => (controls.up = true))
+      .onRelease(() => (controls.up = false));
+  }
 
-	for (const key of KEYS.S) {
-		eventHandler
-			.bindKey(key)
-			.onPress(() => (character.controls.down = true))
-			.onRelease(() => (character.controls.down = false));
-	}
+  for (const key of KEYS.S) {
+    eventHandler
+      .bindKey(key)
+      .onPress(() => (controls.down = true))
+      .onRelease(() => (controls.down = false));
+  }
 
-	for (const key of KEYS.A) {
-		eventHandler
-			.bindKey(key)
-			.onPress(() => (character.controls.left = true))
-			.onRelease(() => (character.controls.left = false));
-	}
+  for (const key of KEYS.A) {
+    eventHandler
+      .bindKey(key)
+      .onPress(() => (controls.left = true))
+      .onRelease(() => (controls.left = false));
+  }
 
-	for (const key of KEYS.D) {
-		eventHandler
-			.bindKey(key)
-			.onPress(() => (character.controls.right = true))
-			.onRelease(() => (character.controls.right = false));
-	}
-	for (const key of KEYS.T) {
-		eventHandler
-			.bindKey("t")
-			.onPress(() => (character.controls.turbo = true))
-			.onRelease(() => (character.controls.turbo = false));
-	}
-	eventHandler
-		.bindKey("Space")
-		.onPress(() => (character.controls.space = true))
-		.onRelease(() => (character.controls.space = false));
-	eventHandler
-		.bindKey("Shift")
-		.onPress(() => (character.controls.shift = true))
-		.onRelease(() => (character.controls.shift = false));
-	eventHandler.bindKey("m").onPress(() => eventHandler.fire(EventType.SwitchMode, character.context.ModeState === ModeType.Flying ? ModeType.Walking : ModeType.Flying));
-	eventHandler.bindKey("i").onPress(() => eventHandler.fire(EventType.OpenMenu, null));
+  for (const key of KEYS.D) {
+    eventHandler
+      .bindKey(key)
+      .onPress(() => (controls.right = true))
+      .onRelease(() => (controls.right = false));
+  }
+  for (const key of KEYS.T) {
+    eventHandler
+      .bindKey("t")
+      .onPress(() => (controls.turbo = true))
+      .onRelease(() => (controls.turbo = false));
+  }
+  eventHandler
+    .bindKey(" ")
+    .onPress(() => (controls.space = true))
+    .onRelease(() => (controls.space = false));
+  eventHandler
+    .bindKey("Shift")
+    .onPress(() => (controls.shift = true))
+    .onRelease(() => (controls.shift = false));
+  eventHandler
+    .bindKey("m")
+    .onPress(() => eventHandler.fire(EventType.SwitchMode, {}));
+  eventHandler
+    .bindKey("i")
+    .onPress(() => eventHandler.fire(EventType.OpenMenu, null));
 }

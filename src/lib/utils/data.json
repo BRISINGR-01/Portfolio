@@ -322,78 +322,128 @@
       "type": "other",
       "value": "Heroku",
       "image": "heroku"
+    }
+  ],
+  "languages": [
+    {
+      "type": "spoken-language",
+      "value": "Bulgarian",
+      "image": "bulgarian",
+      "level": "Native"
     },
     {
       "type": "spoken-language",
-      "value": "German",
-      "image": "german"
+      "value": "English",
+      "image": "english",
+      "level": "C2"
     },
     {
       "type": "spoken-language",
       "value": "Dutch",
-      "image": "dutch"
+      "image": "dutch",
+      "level": "B1"
     },
     {
       "type": "spoken-language",
-      "value": "Bulgarian",
-      "image": "bulgarian"
+      "value": "German",
+      "image": "german",
+      "level": "B2"
     },
     {
       "type": "spoken-language",
       "value": "French",
-      "image": "french"
+      "image": "french",
+      "level": "B2"
     },
     {
       "type": "spoken-language",
       "value": "Spanish",
-      "image": "spanish"
+      "image": "spanish",
+      "level": "A2"
     },
     {
       "type": "spoken-language",
       "value": "Italian",
-      "image": "italian"
+      "image": "italian",
+      "level": "A2"
     },
     {
       "type": "spoken-language",
       "value": "Portuguese",
-      "image": "portuguese"
+      "image": "portuguese",
+      "level": "A1"
     }
   ],
   "contact": [
     {
       "value": "Gmail",
       "image": "gmail",
-      "address": "alexander.popov233@gmail.com"
+      "address": "alexander.popov233@gmail.com",
+      "url": "mailto:alexander.popov233@gmail.com"
     },
     {
       "value": "Github",
       "image": "github",
-      "address": "BRISINGR-01"
+      "address": "BRISINGR-01",
+      "url": "https://github.com/BRISINGR-01"
     },
     {
       "value": "Gitlab",
       "image": "gitlab",
-      "address": "BRISINGR-01"
+      "address": "BRISINGR-01",
+      "url": "https://gitlab.com/BRISINGR-01"
     },
     {
       "value": "LinkedIn",
       "image": "linkedin",
-      "address": "alexander-popov-61126825a"
+      "address": "alexander-popov-61126825a",
+      "url": "https://www.linkedin.com/in/alexander-popov-61126825a/"
     },
     {
       "value": "X",
       "image": "x",
-      "address": "AlexPopov233"
+      "address": "AlexPopov233",
+      "url": "https://twitter.com/AlexPopov233"
     },
     {
       "value": "Instagram",
       "image": "instagram",
-      "address": "@alexan6451"
+      "address": "@alexan6451",
+      "url": "https://www.instagram.com/alexan6451/"
     },
     {
       "value": "Whatsapp",
       "image": "whatsapp",
-      "address": "+359888011088"
+      "address": "+31620429868",
+      "url": "tel:+31620429868"
+    }
+  ],
+  "files": [
+    {
+      "name": "CAE",
+      "url": "CAE.pdf"
+    },
+    {
+      "name": "Recommendation letter",
+      "url": "Recommendation letter - Alexander Popov.pdf"
+    },
+    {
+      "name": "Hack the box badges",
+      "url": "Hack the box.png"
+    }
+  ],
+  "external": [
+    {
+      "title": "Flink",
+      "description": ""
+    },
+    {
+      "title": "TSH Event committee",
+      "description": ""
+    },
+    {
+      "title": "Highschool events",
+      "description": ""
     }
   ]
 }

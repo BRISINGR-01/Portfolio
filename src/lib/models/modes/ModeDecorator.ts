@@ -1,42 +1,42 @@
-import type { ModeStrategy } from "$lib/utils/types";
+import { ModeStrategy } from "$lib/utils/types";
 import { wait } from "../../utils/helpers";
-import Character from "../character";
 import World from "../world/world";
 
-export default class ModeDecorator implements ModeStrategy {
-	child: ModeStrategy;
-	finish: (val: boolean) => void;
-	private isReady: () => Promise<boolean>;
+export default class ModeDecorator extends ModeStrategy {
+  child: ModeStrategy;
+  finish: (val: boolean) => void;
+  private isReady: () => Promise<boolean>;
 
-	constructor(child: ModeStrategy) {
-		this.child = child;
-		this.finish = () => false;
-		this.isReady = () => wait(false);
-	}
+  constructor(child: ModeStrategy) {
+    super(child.character, child.controls);
+    this.child = child;
+    this.finish = () => false;
+    this.isReady = () => wait(false);
+  }
 
-	start(character: Character) {
-		this.isReady = () => this.child.start(character);
+  start() {
+    this.isReady = () => this.child.start();
 
-		return new Promise<boolean>((resolve) => {
-			this.finish = resolve;
-		});
-	}
+    return new Promise<boolean>((resolve) => {
+      this.finish = resolve;
+    });
+  }
 
-	stop(character: Character) {
-		this.isReady = () => this.child.stop(character);
+  stop() {
+    this.isReady = () => this.child.stop();
 
-		return new Promise<boolean>((resolve) => {
-			this.finish = resolve;
-		});
-	}
+    return new Promise<boolean>((resolve) => {
+      this.finish = resolve;
+    });
+  }
 
-	render(world: World, character: Character) {
-		this.isReady().then((isReady) => {
-			if (isReady) {
-				this.finish(true);
-			} else {
-				this.child.render(world, character);
-			}
-		});
-	}
+  render(world: World) {
+    this.isReady().then((isReady) => {
+      if (isReady) {
+        this.finish(true);
+      } else {
+        this.child.render(world);
+      }
+    });
+  }
 }

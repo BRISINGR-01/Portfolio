@@ -1,10 +1,23 @@
-import Character from "$lib/models/character";
+import type Controls from "$lib/models/Controls";
+import type Entity from "$lib/models/world/entity";
 import World from "$lib/models/world/world";
+import { wait } from "./helpers";
 
-export type Func = () => void;
+export abstract class ModeStrategy {
+  character: Entity;
+  controls: Controls;
+  constructor(character: Entity, controls: Controls) {
+    this.character = character;
+    this.controls = controls;
+  }
 
-export interface ModeStrategy {
-	start(character: Character): Promise<boolean>;
-	stop(character: Character): Promise<boolean>;
-	render(world: World, character: Character): void;
+  start(): Promise<boolean> {
+    return wait(true);
+  }
+
+  stop(): Promise<boolean> {
+    return wait(true);
+  }
+
+  abstract render(world: World): void;
 }
