@@ -33,18 +33,23 @@
     <br />
     <h4>
       This semester I am building my portfolio, but until then you can take a
-      look at my <a style="text-decoration: underline;" href="/files/cv.pdf" download="Alex Popov - CV.pdf">CV</a> →
+      look at my <a style="text-decoration: underline;" href="/files/cv.pdf" download="Alex Popov - CV.pdf">CV</a> ⇒
     </h4>
   </div>
-  <div>
+  <div style="position: relative;">
     <img
       src="/files/CV.png"
       alt="cv"
-      style="height: calc(80% + 1em); position: absolute;z-index: 0; filter: blur(10px)"
+      style="height: calc(80vh + 2em); position: absolute;z-index: 0; filter: blur(23px)"
+    />
+    <img
+      src="/files/CV.png"
+      alt="cv"
+      style="margin: 1em;height: calc(80vh); position: absolute;z-index: 0; filter: blur(3px)"
     />
 		<div style="margin: 1em;box-shadow: 0 0 8px 8px white inset;z-index: 1000;">
 
-			<img src="/files/CV.png" alt="cv" style="position: relative;height: 80%;z-index: 2; box-shadow: inset 0px 0px 40px 40px;" />
+			<img src="/files/CV.png" alt="cv" style="position: relative;height: 80vh;z-index: 2; box-shadow: inset 0px 0px 40px 40px;" />
 		</div>
   </div>
 </div>
