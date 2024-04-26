@@ -1,4 +1,4 @@
-import allData from "$lib/utils/data.json";
+import allData from "../../utils/data.json";
 
 export interface Section {
   name: string;

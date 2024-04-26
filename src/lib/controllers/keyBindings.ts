@@ -1,6 +1,6 @@
-import type Controls from "$lib/models/Controls";
-import EventHandler from "$lib/models/events/eventHandler";
-import { KEYS } from "$lib/models/world/constants";
+import type Controls from "../models/Controls";
+import EventHandler from "../models/events/eventHandler";
+import { KEYS } from "../models/world/constants";
 import { EventType } from "../utils/enums";
 
 export function setKeyBindings(eventHandler: EventHandler, controls: Controls) {

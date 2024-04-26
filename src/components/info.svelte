@@ -1,7 +1,7 @@
 <script lang="ts">
-	import DataWrapper from "$lib/models/data/DataWrapper";
-	import type InfoTable from "$lib/models/world/InfoTable";
-	import Steps from "./Steps.svelte";
+  import DataWrapper from "../lib/models/data/DataWrapper";
+  import type InfoTable from "../lib/models/world/InfoTable";
+  import Steps from "./Steps.svelte";
 
 	let isMenuShown = false;
 	let mode = "Walking";

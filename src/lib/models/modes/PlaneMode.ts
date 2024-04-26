@@ -1,6 +1,6 @@
-import { ModeStrategy } from "$lib/utils/types";
 import { Matrix4, Quaternion, Vector3 } from "three";
 import { easeOutQuad, wait } from "../../utils/helpers";
+import { ModeStrategy } from "../../utils/types";
 import {
   fov,
   INTERPOLATION_FACTOR,
@@ -49,10 +49,10 @@ export default class PlaneMode extends ModeStrategy {
   start() {
     if (1 < 9) return wait(true);
     const isReady = true || this.isRestarted();
-    character.rotateX(-VELOCITY * 3);
+    this.character.rotateX(-VELOCITY * 3);
 
-    if (character.rotation.x <= -Math.PI / 2) {
-      character.rotation.x = -Math.PI / 2;
+    if (this.character.rotation.x <= -Math.PI / 2) {
+      this.character.rotation.x = -Math.PI / 2;
       return wait(isReady);
     }
 
@@ -65,10 +65,10 @@ export default class PlaneMode extends ModeStrategy {
 
     // pitchVelocity = 0;
     let isReady = true || this.isRestarted();
-    character.rotateX(VELOCITY);
+    this.character.rotateX(VELOCITY);
 
-    if (character.rotation.x >= 0) {
-      character.rotation.x = 0;
+    if (this.character.rotation.x >= 0) {
+      this.character.rotation.x = 0;
       return wait(isReady);
     }
 
@@ -89,14 +89,14 @@ export default class PlaneMode extends ModeStrategy {
       pitchVelocity = Math.sign(pitchVelocity) * MAX_VELOCITY;
     }
 
-    if (character.controls.left) {
+    if (this.controls.left) {
       jawVelocity += VELOCITY;
-    } else if (character.controls.right) {
+    } else if (this.controls.right) {
       jawVelocity -= VELOCITY;
     }
-    if (character.controls.down) {
+    if (this.controls.down) {
       pitchVelocity += VELOCITY;
-    } else if (character.controls.up) {
+    } else if (this.controls.up) {
       pitchVelocity -= VELOCITY;
     }
 
@@ -109,7 +109,7 @@ export default class PlaneMode extends ModeStrategy {
     y.normalize();
     z.normalize();
 
-    if (character.controls.turbo) {
+    if (this.controls.turbo) {
       turbo += VELOCITY;
     } else {
       turbo *= 0.9;
@@ -120,20 +120,22 @@ export default class PlaneMode extends ModeStrategy {
     world.camera.fov = fov + turboSpeed * 900;
     world.camera.updateProjectionMatrix();
 
-    character.position.add(z.clone().multiplyScalar(-speed - turboSpeed * 4));
+    this.character.position.add(
+      z.clone().multiplyScalar(-speed - turboSpeed * 4)
+    );
   }
 
   render(world: World) {
-    this.update(world, character);
+    this.update(world);
 
     const rotMatrix = new Matrix4().makeBasis(x, y, z);
 
     const matrix = new Matrix4()
-      .multiply(new Matrix4().makeTranslation(character.position))
+      .multiply(new Matrix4().makeTranslation(this.character.position))
       .multiply(rotMatrix);
-    character.matrixAutoUpdate = false;
-    character.matrix.copy(matrix);
-    character.matrixWorldNeedsUpdate = true;
+    this.character.matrixAutoUpdate = false;
+    this.character.matrix.copy(matrix);
+    this.character.matrixWorldNeedsUpdate = true;
 
     const rotationQuaternion = new Quaternion().setFromRotationMatrix(
       rotMatrix
@@ -144,7 +146,7 @@ export default class PlaneMode extends ModeStrategy {
     delayedRotMatrix.makeRotationFromQuaternion(delayedQuaternion);
 
     const cameraMatrix = new Matrix4()
-      .multiply(new Matrix4().makeTranslation(character.position))
+      .multiply(new Matrix4().makeTranslation(this.character.position))
       .multiply(delayedRotMatrix)
       .multiply(new Matrix4().makeRotationX(-0.2))
       .multiply(new Matrix4().makeTranslation(0, 1, 2.5));

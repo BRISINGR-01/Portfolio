@@ -3,25 +3,30 @@
     {
       "type": "environment",
       "name": "Web",
-      "description": "My career's focus circles around web-development. I have primarily worked on projects for the web using a variety of tools and languages. Even though my experience is limited to deploying monolith projects I have explored and written research concerning various system designs such as microservices, event-driven, and other more scalabe architectures.",
+      "description": "My career's focus circles around web-development. I have primarily worked on projects for the web using a variety of tools and languages. Even though my experience is limited to deploying monolith projects I have explored and written research concerning various system designs such as microservices, event-driven, and other more scalabe architectures. I have worked with various deployment platforms such as Vercel, Firebase and Heroku. My expertise extends beyond simple websites, encompassing the development of browser extensions, basic cybersecurity obtained through experiences like Hack The Box challenges, and the creation of immersive 3D experiences.",
       "connections": [
         "HTML",
         "CSS",
-        "NodeJS",
         "Typescript",
         "C#",
-        "React",
-        "Bootstrap",
+        "NodeJS",
         "Express",
         "GraphQl",
         "ThreeJS",
-        "MySQL",
+        "React",
+        "Bootstrap",
+        "Mantine",
+        "Next UI",
+        "Next JS",
+        "SvelteKit",
         ".NET",
+        "RazorPages",
+        "MySQL",
         "Docker",
         "Firebase",
         "Heroku",
-        "Next JS",
-        "Vercel"
+        "Vercel",
+        "Hack the Box"
       ]
     },
     {
@@ -29,9 +34,8 @@
       "type": "environment",
       "description": "Mostly for personal projects I have developed and used apps on all popular platforms, but I have spent most time working on Linux, Windows, and Android. One of the apps is available on Google Play Store.",
       "connections": [
-        "Dart",
-        "React",
         "Flutter",
+        "React-Native",
         "Linux",
         "Windows",
         "Android"
@@ -78,8 +82,10 @@
       "connections": [
         "Vercel",
         "Typescript",
+        "React",
         "Next JS",
-        "Next UI"
+        "Next UI",
+        "C/C++"
       ]
     },
     {
@@ -219,6 +225,11 @@
       "image": "sql"
     },
     {
+      "type": "technology",
+      "value": "Supabase",
+      "image": ""
+    },
+    {
       "type": "language",
       "value": "Cypher",
       "image": "cypher"
@@ -232,6 +243,16 @@
       "type": "technology",
       "value": "React",
       "image": "react"
+    },
+    {
+      "type": "technology",
+      "value": "React-Native",
+      "image": "react"
+    },
+    {
+      "type": "technology",
+      "value": "Jest",
+      "image": "jest.svg"
     },
     {
       "type": "technology",
@@ -280,6 +301,16 @@
     },
     {
       "type": "technology",
+      "value": "Svelte",
+      "image": "svelte.svg"
+    },
+    {
+      "type": "technology",
+      "value": "Svelte Kit",
+      "image": "svelte.svg"
+    },
+    {
+      "type": "technology",
       "value": "Next JS",
       "image": "nextjs"
     },
@@ -292,6 +323,16 @@
       "type": "technology",
       "value": "Neo4j",
       "image": "neo4j"
+    },
+    {
+      "type": "technology",
+      "value": "GraphQl",
+      "image": "graphql.svg"
+    },
+    {
+      "type": "language",
+      "value": "SMT",
+      "image": "smt.svg"
     },
     {
       "type": "other",
@@ -420,6 +461,10 @@
   ],
   "files": [
     {
+      "name": "CV",
+      "url": "cv.pdf"
+    },
+    {
       "name": "CAE",
       "url": "CAE.pdf"
     },
@@ -430,6 +475,10 @@
     {
       "name": "Hack the box badges",
       "url": "Hack the box.png"
+    },
+    {
+      "name": "Neo4j certificate",
+      "url": "Neo4j certificate.png"
     }
   ],
   "external": [

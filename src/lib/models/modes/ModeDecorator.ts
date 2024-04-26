@@ -1,5 +1,5 @@
-import { ModeStrategy } from "$lib/utils/types";
 import { wait } from "../../utils/helpers";
+import { ModeStrategy } from "../../utils/types";
 import World from "../world/world";
 
 export default class ModeDecorator extends ModeStrategy {

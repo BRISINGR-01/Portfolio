@@ -1,17 +1,17 @@
 import KeyEvent from "./keyEvent";
 
 export default class HoldEvent extends KeyEvent {
-	private isOngoing = false;
+  private isOngoing = false;
 
-	start() {
-		this.isOngoing = true;
-	}
+  start() {
+    this.isOngoing = true;
+  }
 
-	stop() {
-		this.isOngoing = false;
-	}
+  stop() {
+    this.isOngoing = false;
+  }
 
-	execute() {
-		if (this.isOngoing) super.execute();
-	}
+  execute(e: KeyboardEvent) {
+    if (this.isOngoing) super.execute(e);
+  }
 }

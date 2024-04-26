@@ -1,10 +1,10 @@
-import DataWrapper from "$lib/models/data/DataWrapper";
-import SVGEntity from "$lib/models/data/SVGEntity";
-import Text from "$lib/models/data/Text";
-import Entity from "$lib/models/world/entity";
-import { load } from "$lib/models/world/utils";
-import type World from "$lib/models/world/world";
 import { Euler, Vector3 } from "three";
+import DataWrapper from "../models/data/DataWrapper";
+import SVGEntity from "../models/data/SVGEntity";
+import Text from "../models/data/Text";
+import Entity from "../models/world/entity";
+import { load } from "../models/world/utils";
+import type World from "../models/world/world";
 import { Wall } from "./Wall";
 
 const data = new DataWrapper();

@@ -28,7 +28,7 @@ export default class World {
 
     this.camera = new Camera();
     this.controls = new PointerLockControls(this.camera, document.body);
-    this.controls.pointerSpeed = 0.05;
+    this.controls.pointerSpeed = 0.5;
     this.add(this.controls.getObject());
 
     this.eventHandler = new EventHandler();

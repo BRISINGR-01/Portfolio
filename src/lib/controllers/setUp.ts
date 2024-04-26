@@ -1,10 +1,10 @@
-import Controls from "$lib/models/Controls";
-import FlyMode from "$lib/models/modes/FlyMode";
-import ModeDecorator from "$lib/models/modes/ModeDecorator";
-import PlaneMode from "$lib/models/modes/PlaneMode";
-import WalkMode from "$lib/models/modes/WalkMode";
-import World from "$lib/models/world/world";
 import { AmbientLight, Cache, Color, DirectionalLight } from "three";
+import Controls from "../models/Controls";
+import FlyMode from "../models/modes/FlyMode";
+import ModeDecorator from "../models/modes/ModeDecorator";
+import PlaneMode from "../models/modes/PlaneMode";
+import WalkMode from "../models/modes/WalkMode";
+import World from "../models/world/world";
 import { EventType } from "../utils/enums";
 import { setKeyBindings } from "./keyBindings";
 import loadEntities from "./loadEntities";

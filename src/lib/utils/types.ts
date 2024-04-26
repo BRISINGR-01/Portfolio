@@ -1,6 +1,6 @@
-import type Controls from "$lib/models/Controls";
-import type Entity from "$lib/models/world/entity";
-import World from "$lib/models/world/world";
+import type Controls from "../models/Controls";
+import type Entity from "../models/world/entity";
+import World from "../models/world/world";
 import { wait } from "./helpers";
 
 export abstract class ModeStrategy {

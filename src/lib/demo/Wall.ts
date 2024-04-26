@@ -24,15 +24,15 @@ export class Wall extends Object3D {
   }
 
   async load() {
-    this.makeWall();
-    await this.makeDescription();
+    const wallHeight = await this.makeDescription();
+    this.makeWall(wallHeight);
     await this.makeImage();
     await this.makeTitle();
     await this.makeConnections();
   }
 
-  private makeWall() {
-    const geometry = new BoxGeometry(10, 6, 0.1);
+  private makeWall(wallHeight: number) {
+    const geometry = new BoxGeometry(10, wallHeight / 2.5, 0.1);
     const material = new MeshPhongMaterial({ color: 0x232c3b });
     const cube = new Mesh(geometry, material);
     this.add(cube);
@@ -60,9 +60,11 @@ export class Wall extends Object3D {
       description.add(text);
     }
 
-    description.position.set(-2.2, 1.7, 0);
+    description.position.set(-2.2, 1.7, 0.02);
 
     this.add(description);
+
+    return descriptionContent.length;
   }
 
   private async makeTitle() {
