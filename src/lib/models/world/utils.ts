@@ -1,8 +1,25 @@
+import { LoadingManager } from "three";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-export async function load(name: string) {
-  const loader = new GLTFLoader();
-  const gltf = await loader.loadAsync(`3d-objects/${name}/scene.gltf`);
+const loadingManager = new LoadingManager();
+const dracoLoader = new DRACOLoader();
+dracoLoader.setDecoderPath("/draco/");
+dracoLoader.preload();
+const gltfLoader = new GLTFLoader(loadingManager);
+gltfLoader.setDRACOLoader(dracoLoader);
 
-  return gltf.scene;
+export async function load(name: string, type?: "gltf" | "glb") {
+  let gltf;
+  switch (type) {
+    case "glb":
+      gltf = await gltfLoader.loadAsync(`3d-objects/${name}/scene.glb`);
+      break;
+    default:
+    case "gltf":
+      gltf = await gltfLoader.loadAsync(`3d-objects/${name}/scene.gltf`);
+      break;
+  }
+
+  return gltf;
 }

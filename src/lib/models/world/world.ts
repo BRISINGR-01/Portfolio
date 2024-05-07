@@ -1,4 +1,4 @@
-import { Object3D, Scene, WebGLRenderer } from "three";
+import { Object3D, Scene, WebGLRenderer, type AnimationClip } from "three";
 import { PointerLockControls } from "three/examples/jsm/controls/PointerLockControls";
 import { CSS3DRenderer } from "three/examples/jsm/renderers/CSS3DRenderer";
 import EventHandler from "../events/eventHandler";
@@ -46,7 +46,7 @@ export default class World {
     this.resize();
   }
 
-  add(object: Object3D | Entity | HTMLEntity) {
+  add(object: Object3D | Entity | HTMLEntity, animation?: AnimationClip) {
     if (object instanceof HTMLEntity) {
       this.sceneHTML.add(object);
     } else {

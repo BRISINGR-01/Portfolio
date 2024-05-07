@@ -94,6 +94,8 @@ export class Wall extends Object3D {
 
   private async makeConnections() {
     const connections = new Entity();
+    console.log(this.section);
+
     for (let i = 0; i < this.section.connections.length; i++) {
       const svgGroup = new Group();
       const svg = new SVGEntity();

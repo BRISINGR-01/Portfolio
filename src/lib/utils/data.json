@@ -18,7 +18,7 @@
         "Mantine",
         "Next UI",
         "Next JS",
-        "SvelteKit",
+        "Svelte",
         ".NET",
         "RazorPages",
         "MySQL",
@@ -226,8 +226,18 @@
     },
     {
       "type": "technology",
+      "value": "Mantine",
+      "image": "mantine"
+    },
+    {
+      "type": "technology",
       "value": "Supabase",
-      "image": ""
+      "image": "supabase"
+    },
+    {
+      "type": "technology",
+      "value": "Svelte",
+      "image": "svelte"
     },
     {
       "type": "language",
@@ -252,7 +262,7 @@
     {
       "type": "technology",
       "value": "Jest",
-      "image": "jest.svg"
+      "image": "jest"
     },
     {
       "type": "technology",
@@ -302,12 +312,12 @@
     {
       "type": "technology",
       "value": "Svelte",
-      "image": "svelte.svg"
+      "image": "svelte"
     },
     {
       "type": "technology",
-      "value": "Svelte Kit",
-      "image": "svelte.svg"
+      "value": "RazorPages",
+      "image": "net"
     },
     {
       "type": "technology",
@@ -327,12 +337,12 @@
     {
       "type": "technology",
       "value": "GraphQl",
-      "image": "graphql.svg"
+      "image": "graphql"
     },
     {
       "type": "language",
       "value": "SMT",
-      "image": "smt.svg"
+      "image": "smt"
     },
     {
       "type": "other",
