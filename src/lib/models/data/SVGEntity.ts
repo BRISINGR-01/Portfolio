@@ -7,6 +7,7 @@ import {
   MeshPhongMaterial,
   Vector3,
 } from "three";
+
 import { SVGLoader } from "three/examples/jsm/loaders/SVGLoader";
 import Entity from "../world/entity";
 

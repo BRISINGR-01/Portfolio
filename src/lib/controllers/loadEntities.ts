@@ -80,7 +80,7 @@ export default async (world: World) => {
   const cyclistAnimation = mixer.clipAction(cyclistGltf.animations[0]);
   cyclistAnimation.play();
   world.onRender(() => mixer.update(clock.getDelta()));
-  world.add(character, cyclistGltf.animations[0]);
+  // world.add(character, cyclistGltf.animations[0]);
 
   return { character };
 };
