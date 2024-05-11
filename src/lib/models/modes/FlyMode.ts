@@ -29,9 +29,6 @@ const delayedRotMatrix = new Matrix4();
 const delayedQuaternion = new Quaternion();
 export default class FlyMode extends ModeStrategy {
   update(world: World) {
-    // console.log("x", x.x, x.y, x.z);
-    // console.log("y", y.x, y.y, y.z);
-    // console.log("z", z.x, z.y, z.z);
     jawVelocity *= 0.95;
     pitchVelocity *= 0.95;
 

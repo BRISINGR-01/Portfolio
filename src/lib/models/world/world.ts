@@ -1,5 +1,4 @@
 import { Object3D, Scene, WebGLRenderer, type AnimationClip } from "three";
-import { PointerLockControls } from "three/examples/jsm/controls/PointerLockControls";
 import { CSS3DRenderer } from "three/examples/jsm/renderers/CSS3DRenderer";
 import EventHandler from "../events/eventHandler";
 import Camera from "./camera";
@@ -12,7 +11,7 @@ export default class World {
   private rendererHTML: CSS3DRenderer;
   private renderCallbacks: ((wworld: World) => void)[] = [];
 
-  public controls: PointerLockControls;
+  // public controls: PointerLockControls;
   public scene: Scene;
   public camera: Camera;
 
@@ -27,13 +26,13 @@ export default class World {
     this.rendererHTML.domElement.style.top = "0px";
 
     this.camera = new Camera();
-    this.controls = new PointerLockControls(this.camera, document.body);
-    this.controls.pointerSpeed = 0.5;
-    this.add(this.controls.getObject());
+    // this.controls = new PointerLockControls(this.camera, document.body);
+    // this.controls.pointerSpeed = 0.5;
+    // this.add(this.controls.getObject());
 
     this.eventHandler = new EventHandler();
     this.eventHandler.onClick(() => {
-      this.controls.lock();
+      // this.controls.lock();
     });
     this.onRender(() => this.eventHandler.executeHolding());
 

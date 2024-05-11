@@ -5,6 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: black;
   }
   .loader {
     --s: 5vw;

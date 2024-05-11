@@ -39,16 +39,18 @@ export class Wall extends Object3D {
   }
 
   private async makeDescription() {
-    const description = new Entity();
+    const description = new Group();
+    description.position.set(-2.2, 1.7, 0);
+    this.add(description);
 
     const descriptionContent: string[] = [""];
     const text = this.section.description.split(" ");
-    for (let i = 0, j = 0; i < text.length; i++) {
-      if (descriptionContent[j].length + text[i].length <= textLength) {
-        descriptionContent[j] += text[i] + " ";
-      } else if (i !== text.length - 1) {
-        j++;
-        descriptionContent.push(text[i] + " ");
+    for (let wordI = 0, rowI = 0; wordI < text.length; wordI++) {
+      if (descriptionContent[rowI].length + text[wordI].length <= textLength) {
+        descriptionContent[rowI] += text[wordI] + " ";
+      } else if (wordI !== text.length) {
+        rowI++;
+        descriptionContent.push(text[wordI] + " ");
       }
     }
 
@@ -59,10 +61,6 @@ export class Wall extends Object3D {
 
       description.add(text);
     }
-
-    description.position.set(-2.2, 1.7, 0);
-
-    this.add(description);
   }
 
   private async makeTitle() {

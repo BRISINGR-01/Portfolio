@@ -1,12 +1,9 @@
-import { AmbientLight, Cache, Color, DirectionalLight, Vector3 } from "three";
+import { AmbientLight, Cache, Color, DirectionalLight } from "three";
+import Character from "../models/Character";
 import Controls from "../models/Controls";
 import World from "../models/world/world";
 import { setKeyBindings } from "./keyBindings";
 import loadEntities from "./loadEntities";
-
-let prevTime = performance.now();
-const velocity = new Vector3();
-const direction = new Vector3();
 
 export async function createWorld(el: HTMLElement) {
   Cache.enabled = true;
@@ -25,30 +22,12 @@ export async function createWorld(el: HTMLElement) {
   const controls = new Controls();
   setKeyBindings(world.eventHandler, controls);
 
-  const { character } = await loadEntities(world).then();
-  world.onRender(() => {
-    if (!world.controls.isLocked) return;
+  await loadEntities(world);
 
-    velocity.multiplyScalar(0.95);
+  const character = await Character.load(world);
 
-    direction.x = Number(controls.right) - Number(controls.left);
-    direction.y = Number(controls.space) - Number(controls.shift);
-    direction.z = Number(controls.up) - Number(controls.down);
-    direction.normalize(); // this ensures consistent movements in all directions
-
-    velocity.x += direction.x / 200;
-    velocity.y += direction.y / 200;
-    velocity.z += direction.z / 200;
-
-    world.controls.moveRight(velocity.x);
-    world.controls.moveForward(velocity.z);
-    world.controls.getObject().position.y += velocity.y;
-
-    character.position
-      .copy(world.controls.getObject().position)
-      .add(new Vector3(0, -1, -1));
-  });
-
+  world.add(character);
+  world.onRender(() => character.update(world, controls));
   window.addEventListener("resize", () => world.resize());
 
   world.create(el);

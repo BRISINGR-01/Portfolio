@@ -6,6 +6,6 @@ node_modules
 .env
 .env.*
 !.env.example
-3d-objects/
+# 3d-objects/
 Session.vim
 .vercel
