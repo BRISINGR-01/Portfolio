@@ -1,4 +1,5 @@
 import { Object3D, Scene, WebGLRenderer, type AnimationClip } from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { CSS3DRenderer } from "three/examples/jsm/renderers/CSS3DRenderer";
 import EventHandler from "../events/eventHandler";
 import Camera from "./camera";
@@ -9,7 +10,7 @@ export default class World {
   private sceneHTML: Scene;
   private renderer: WebGLRenderer;
   private rendererHTML: CSS3DRenderer;
-  private renderCallbacks: ((wworld: World) => void)[] = [];
+  private renderCallbacks: ((world: World) => void)[] = [];
 
   // public controls: PointerLockControls;
   public scene: Scene;
@@ -22,10 +23,13 @@ export default class World {
     this.sceneHTML = new Scene();
     this.renderer = new WebGLRenderer({ antialias: true });
     this.rendererHTML = new CSS3DRenderer();
-    this.rendererHTML.domElement.style.position = "absolute";
-    this.rendererHTML.domElement.style.top = "0px";
+    // this.rendererHTML.domElement.style.position = "absolute";
+    // this.rendererHTML.domElement.style.top = "0px";
 
     this.camera = new Camera();
+    const controls = new OrbitControls(this.camera, this.renderer.domElement);
+    controls.update();
+    this.onRender(() => controls.update());
     // this.controls = new PointerLockControls(this.camera, document.body);
     // this.controls.pointerSpeed = 0.5;
     // this.add(this.controls.getObject());
@@ -66,11 +70,11 @@ export default class World {
   }
 
   private render() {
-    requestAnimationFrame(this.render.bind(this));
     this.renderer.render(this.scene, this.camera);
-    this.rendererHTML.render(this.sceneHTML, this.camera);
+    // this.rendererHTML.render(this.sceneHTML, this.camera);
     for (const cb of this.renderCallbacks) {
       cb(this);
     }
+    requestAnimationFrame(this.render.bind(this));
   }
 }

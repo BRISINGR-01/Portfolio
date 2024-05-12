@@ -1,14 +1,13 @@
+import { Vec3 } from "cannon";
+import type Character from "../models/Character";
 import type Controls from "../models/Controls";
 import EventHandler from "../models/events/eventHandler";
 import { KEYS } from "../models/world/constants";
 import { EventType } from "../utils/enums";
 
-export function setKeyBindings(eventHandler: EventHandler, controls: Controls) {
-  setCharacterKeyBindings(eventHandler, controls);
-}
-
-export function setCharacterKeyBindings(
+export function setKeyBindings(
   eventHandler: EventHandler,
+  character: Character,
   controls: Controls
 ) {
   for (const key of KEYS.W) {
@@ -46,7 +45,12 @@ export function setCharacterKeyBindings(
   }
   eventHandler
     .bindKey(" ")
-    .onPress(() => (controls.space = true))
+    .onPress(() => {
+      character.hitbox.chassisBody.applyImpulse(
+        new Vec3(0, 30, 0),
+        character.hitbox.chassisBody.position.vadd(new Vec3(0, 0, 0))
+      );
+    })
     .onRelease(() => (controls.space = false));
   eventHandler
     .bindKey("Shift")

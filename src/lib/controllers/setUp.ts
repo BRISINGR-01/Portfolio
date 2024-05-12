@@ -20,11 +20,10 @@ export async function createWorld(el: HTMLElement) {
   world.add(light);
 
   const controls = new Controls();
-  setKeyBindings(world.eventHandler, controls);
-
-  await loadEntities(world);
 
   const character = await Character.load(world);
+  await loadEntities(world, character);
+  setKeyBindings(world.eventHandler, character, controls);
 
   world.add(character);
   world.onRender(() => character.update(world, controls));
