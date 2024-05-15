@@ -38,8 +38,7 @@ export default class Character extends Group {
       }
     });
 
-    characterObject.position.y = -0.95;
-    characterObject.rotateY(-Math.PI / 2);
+    characterObject.position.y = -0.9;
 
     world.camera.lookAt(characterObject.position);
 
@@ -73,8 +72,8 @@ export default class Character extends Group {
     direction.z = Number(controls.up) - Number(controls.down);
     direction.normalize(); // this ensures consistent movements in all directions
 
-    velocity.x += direction.x / 200;
-    velocity.z += direction.z / 200;
+    velocity.x += direction.x / 20;
+    velocity.z += direction.z / 20;
     if (this.isJumping) {
       if (velocity.y < 0.001) this.isJumping = false;
     } else {
