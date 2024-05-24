@@ -22,7 +22,7 @@ export async function createWorld(el: HTMLElement) {
   const controls = new Controls();
 
   const character = await Character.load(world);
-  await loadEntities(world, character);
+  await loadEntities(world, character, controls);
   setKeyBindings(world.eventHandler, character, controls);
 
   world.add(character);

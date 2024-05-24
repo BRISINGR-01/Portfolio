@@ -1,4 +1,4 @@
-import { Body, RigidVehicle } from "cannon";
+import { Body } from "cannon";
 import {
   AnimationMixer,
   Clock,
@@ -19,7 +19,7 @@ export default class Character extends Group {
   private isJumping = false;
   private isBeingFixed = false;
   private animation: AnimationAction;
-  public hitbox = new RigidVehicle({ chassisBody: new Body() });
+  public hitbox = new Body();
 
   constructor(object: Group, animation: AnimationAction) {
     super();
@@ -38,8 +38,7 @@ export default class Character extends Group {
       }
     });
 
-    characterObject.position.y = -0.9;
-
+    characterObject.position.y = -1;
     world.camera.lookAt(characterObject.position);
 
     const mixer = new AnimationMixer(characterObject);
@@ -54,10 +53,10 @@ export default class Character extends Group {
   checkForFlipover() {
     console.clear();
 
+    console.log(this.rotation.x + this.rotation.z);
     if (this.isBeingFixed) {
-      console.log(this.isBeingFixed);
-      this.hitbox.chassisBody.applyForce;
-      this.hitbox.chassisBody.position.y += 0.2;
+      // this.hitbox.chassisBody.applyForce(0.2);
+      this.hitbox.position.y += 0.2;
       // this.hitbox.this.hitbox.rotation.z -= this.rotation.z / 10;
     }
 
@@ -72,19 +71,14 @@ export default class Character extends Group {
     direction.z = Number(controls.up) - Number(controls.down);
     direction.normalize(); // this ensures consistent movements in all directions
 
-    velocity.x += direction.x / 20;
-    velocity.z += direction.z / 20;
+    velocity.x += direction.x / 10;
+    velocity.z += direction.z / 10;
     if (this.isJumping) {
       if (velocity.y < 0.001) this.isJumping = false;
     } else {
       velocity.y += direction.y / 20;
       if (velocity.y > 0.2) this.isJumping = true;
     }
-
-    // this.hitbox.position.x += velocity.x;
-    // this.hitbox.position.x += velocity.x;
-    // this.hitbox.position.z += velocity.z;
-    // this.hitbox.position.y += velocity.y;
 
     this.animation.timeScale = velocity.x + velocity.z;
 

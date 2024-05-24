@@ -2,9 +2,10 @@ import {
   Body,
   Box,
   World as CannonWorld,
+  Cylinder,
+  HingeConstraint,
   Material,
   Plane,
-  RigidVehicle,
   Sphere,
   Vec3,
 } from "cannon";
@@ -18,6 +19,7 @@ import {
   Vector3,
 } from "three";
 import type Character from "../models/Character";
+import type Controls from "../models/Controls";
 import DataWrapper from "../models/data/DataWrapper";
 import SVGEntity from "../models/data/SVGEntity";
 import Text from "../models/data/Text";
@@ -26,37 +28,72 @@ import CannonDebugRenderer from "../utils/cannon";
 import { convert } from "../utils/helpers";
 import { Wall } from "./Wall";
 
-function createBike(position: Vec3) {
+function createBike(world: CannonWorld) {
+  const bikeSize = new Vec3(1.15, 0.9, 0.3);
+  const wheelSize = 0.5;
+
   const body = new Body({
     mass: 5,
-    position,
-    shape: new Box(new Vec3(1.15, 0.9, 0.3)),
+    position: new Vec3(0, 1, 0),
+    shape: new Box(bikeSize),
   });
-  const bike = new RigidVehicle({ chassisBody: body });
-  for (const pos of [
-    [0.5, 1.9, 0],
-    [-0.5, 1.9, 0.25],
-    [-0.5, 1, -0.25],
-  ]) {
-    const wheel = new Body({
-      mass: 1,
-      material: new Material("wheel"),
-      shape: new Sphere(0.25),
-      angularDamping: 0.4,
-    });
+  body.position.set(0, 2, 0);
+  world.addBody(body);
 
-    // bike.addWheel({
-    //   body: wheel,
-    //   position: new Vec3(...pos),
-    //   axis: new Vec3(1, 0, 0),
-    //   direction: new Vec3(0, -1, 0),
-    // });
-  }
+  const frontWheelBody = new Body({
+    mass: 1,
+    material: new Material("wheel"),
+    shape: new Cylinder(0.25, 0.25, bikeSize.z * 4, 100),
+    angularDamping: 0.4,
+  });
+  frontWheelBody.position.set(4 / 2, 0.5, 0);
+  world.addBody(frontWheelBody);
 
-  return bike;
+  const rearWheelBody = new Body({
+    mass: 1,
+    material: new Material("wheel"),
+    shape: new Cylinder(0.25, 0.25, bikeSize.z * 4, 100),
+    angularDamping: 0.4,
+  });
+  rearWheelBody.position.set(-4 / 2, 0.5, 0);
+  rearWheelBody.position.set(0, 0.5, -2);
+  rearWheelBody.quaternion.setFromAxisAngle(new Vec3(1, 1, 0), Math.PI / 8);
+  world.addBody(rearWheelBody);
+
+  const frontHingeConstraint = new HingeConstraint(body, frontWheelBody, {
+    pivotA: new Vec3(bikeSize.x / 2, -bikeSize.y - wheelSize, 0), // Pivot point on chassis
+    axisA: new Vec3(0, 0, 1), // Rotation axis on chassis
+    pivotB: new Vec3(0, 0, 0), // Pivot point on wheel
+    axisB: new Vec3(0, 0, 1), // Rotation axis on wheel
+  });
+  world.addConstraint(frontHingeConstraint);
+
+  const rearHingeConstraint = new HingeConstraint(body, rearWheelBody, {
+    pivotA: new Vec3(-bikeSize.x / 2, -bikeSize.y - wheelSize, 0), // Pivot point on chassis
+    axisA: new Vec3(0, 0, 1), // Rotation axis on chassis
+    pivotB: new Vec3(0, 0, 0), // Pivot point on wheel
+    axisB: new Vec3(0, 0, 1), // Rotation axis on wheel
+  });
+  world.addConstraint(rearHingeConstraint);
+
+  frontWheelBody;
+
+  return {
+    steer: (goesLeft: boolean) => {
+      const prev = frontHingeConstraint.axisA.x;
+
+      if (goesLeft ? prev >= 1 : prev <= -1) return;
+
+      let x = prev + (goesLeft ? 0.1 : -0.1);
+
+      frontHingeConstraint.axisA.set(x, 0, 1);
+    },
+    move: (val: number) =>
+      body.applyLocalForce(new Vec3(val, 0, 0), new Vec3(0, 0, 0)),
+    body,
+  };
 }
-
-export default async (world: World, character: Character) => {
+async function loadSVGs(world: World) {
   const data = new DataWrapper();
   const langCoordinates = [
     {
@@ -113,6 +150,14 @@ export default async (world: World, character: Character) => {
     await wall.load();
     world.add(wall);
   }
+}
+
+export default async (
+  world: World,
+  character: Character,
+  controls: Controls
+) => {
+  // loadSVGs()
 
   const normalMaterial = new MeshPhongMaterial();
 
@@ -127,7 +172,7 @@ export default async (world: World, character: Character) => {
     new MeshPhongMaterial({ color: "#f4d3ab" })
   );
   sphereMesh.position.x = -1;
-  sphereMesh.position.y = 10;
+  sphereMesh.position.y = 20;
   sphereMesh.castShadow = true;
   world.add(sphereMesh);
   const sphereShape = new Sphere(0.15);
@@ -148,11 +193,9 @@ export default async (world: World, character: Character) => {
   physicsWorld.addBody(planeBody);
 
   character.position.x = -1;
-  character.position.y = 3;
+  character.position.y += 4;
   character.castShadow = true;
-  const characterHitBox = createBike(convert(character.position));
-  characterHitBox.addToWorld(physicsWorld);
-  characterHitBox.chassisBody.position.copy(convert(character.position));
+  const { body: characterHitBox, move, steer } = createBike(physicsWorld);
   character.hitbox = characterHitBox;
 
   const clock = new Clock();
@@ -163,7 +206,7 @@ export default async (world: World, character: Character) => {
     cannonDebugRenderer.update();
     for (const pair of [
       // [sphereMesh, character.hitbox.wheelBodies[0]],
-      [character, characterHitBox.chassisBody],
+      [character, characterHitBox],
     ]) {
       pair[0].position.set(
         pair[1].position.x,
@@ -176,6 +219,25 @@ export default async (world: World, character: Character) => {
         pair[1].quaternion.z,
         pair[1].quaternion.w
       );
+    }
+
+    // world.camera.position.set(
+    //   character.position.x,
+    //   character.position.y + 0.5,
+    //   character.position.z + 1
+    // );
+    // world.camera.lookAt(character.position);
+
+    if (controls.down) {
+      move(-50);
+    } else if (controls.up) {
+      move(50);
+    }
+
+    if (controls.left) {
+      steer(true);
+    } else if (controls.right) {
+      steer(false);
     }
   });
 };

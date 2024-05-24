@@ -29,6 +29,7 @@ export default class World {
     this.camera = new Camera();
     const controls = new OrbitControls(this.camera, this.renderer.domElement);
     controls.update();
+    this.camera.position.set(-5, 5, 0);
     this.onRender(() => controls.update());
     // this.controls = new PointerLockControls(this.camera, document.body);
     // this.controls.pointerSpeed = 0.5;
