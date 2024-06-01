@@ -38,7 +38,7 @@ export default class Character extends Group {
       }
     });
 
-    characterObject.position.y = -1;
+    characterObject.position.y = -1.4;
     world.camera.lookAt(characterObject.position);
 
     const mixer = new AnimationMixer(characterObject);
@@ -50,29 +50,15 @@ export default class Character extends Group {
     return new Character(characterObject, animation);
   }
 
-  checkForFlipover() {
-    console.clear();
-
-    console.log(this.rotation.x + this.rotation.z);
-    if (this.isBeingFixed) {
-      // this.hitbox.chassisBody.applyForce(0.2);
-      this.hitbox.position.y += 0.2;
-      // this.hitbox.this.hitbox.rotation.z -= this.rotation.z / 10;
-    }
-
-    this.isBeingFixed = Math.abs(this.rotation.x + this.rotation.z) > 0.4;
-  }
-
   update(world: World, controls: Controls) {
     velocity.multiplyScalar(0.95);
 
-    direction.x = Number(controls.right) - Number(controls.left);
+    direction.z = Number(controls.right) - Number(controls.left);
     direction.y = Number(controls.space); // - Number(controls.shift);
-    direction.z = Number(controls.up) - Number(controls.down);
+    direction.x = Number(controls.up) - Number(controls.down);
     direction.normalize(); // this ensures consistent movements in all directions
 
     velocity.x += direction.x / 10;
-    velocity.z += direction.z / 10;
     if (this.isJumping) {
       if (velocity.y < 0.001) this.isJumping = false;
     } else {
@@ -80,8 +66,6 @@ export default class Character extends Group {
       if (velocity.y > 0.2) this.isJumping = true;
     }
 
-    this.animation.timeScale = velocity.x + velocity.z;
-
-    // this.checkForFlipover();
+    this.animation.timeScale = velocity.x;
   }
 }

@@ -16,7 +16,6 @@
         "React",
         "Bootstrap",
         "Mantine",
-        "Next UI",
         "Next JS",
         "Svelte",
         ".NET",
@@ -51,7 +50,8 @@
         "Bash",
         "Docker",
         "Hack the Box",
-        "Linux"
+        "Linux",
+        "Neo4j"
       ]
     },
     {
@@ -84,7 +84,6 @@
         "Typescript",
         "React",
         "Next JS",
-        "Next UI",
         "C/C++"
       ]
     },
@@ -323,11 +322,6 @@
       "type": "technology",
       "value": "Next JS",
       "image": "nextjs"
-    },
-    {
-      "type": "technology",
-      "value": "Next UI",
-      "image": "nextui"
     },
     {
       "type": "technology",
