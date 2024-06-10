@@ -1,5 +1,4 @@
 <script>
-  import Card from "../../components/simple/Card.svelte";
   import Cv from "../../components/simple/Cv.svelte";
   import Linkdin from "../../components/simple/Linkdin.svelte";
   document.addEventListener("DOMContentLoaded", () => {
@@ -52,7 +51,7 @@
   <Cv />
 </div>
 
-<div style="background-black">
+<!-- <div style="background-black">
   <div
     style="display: flex; flex-wrap: wrap; width: min-content; flex-direction: row"
   >
@@ -198,4 +197,4 @@
       </div>
     </Card>
   </div>
-</div>
+</div> -->

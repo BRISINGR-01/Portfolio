@@ -1,6 +1,7 @@
 import { AmbientLight, Cache, Color, DirectionalLight } from "three";
 import Character from "../models/Character";
 import Controls from "../models/Controls";
+import { load } from "../models/world/utils";
 import World from "../models/world/world";
 import { setKeyBindings } from "./keyBindings";
 import loadEntities from "./loadEntities";
@@ -21,11 +22,12 @@ export async function createWorld(el: HTMLElement) {
 
   const controls = new Controls();
 
-  const character = await Character.load(world);
+  const character = new Character(world, await load("cyclist", "glb"));
+  world.add(character.visual.object);
+
   await loadEntities(world, character, controls);
   setKeyBindings(world.eventHandler, character, controls);
 
-  world.add(character);
   world.onRender(() => character.update(world, controls));
   window.addEventListener("resize", () => world.resize());
 

@@ -46,9 +46,9 @@ export function setKeyBindings(
   eventHandler
     .bindKey(" ")
     .onPress(() => {
-      character.hitbox.applyImpulse(
-        new Vec3(0, 30, 0),
-        character.hitbox.position.vadd(new Vec3(0, 0, 0))
+      character.physics.body.applyImpulse(
+        new Vec3(0, 20, 0),
+        character.physics.body.position.vadd(new Vec3(0, 1, 0))
       );
     })
     .onRelease(() => (controls.space = false));

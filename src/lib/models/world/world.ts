@@ -1,5 +1,4 @@
 import { Object3D, Scene, WebGLRenderer, type AnimationClip } from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { CSS3DRenderer } from "three/examples/jsm/renderers/CSS3DRenderer";
 import EventHandler from "../events/eventHandler";
 import Camera from "./camera";
@@ -27,10 +26,10 @@ export default class World {
     // this.rendererHTML.domElement.style.top = "0px";
 
     this.camera = new Camera();
-    const controls = new OrbitControls(this.camera, this.renderer.domElement);
-    controls.update();
+    // const controls = new OrbitControls(this.camera, this.renderer.domElement);
+    // controls.update();
     this.camera.position.set(-5, 5, 0);
-    this.onRender(() => controls.update());
+    // this.onRender(() => controls.update());
     // this.controls = new PointerLockControls(this.camera, document.body);
     // this.controls.pointerSpeed = 0.5;
     // this.add(this.controls.getObject());
