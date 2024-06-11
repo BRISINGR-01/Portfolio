@@ -47,7 +47,7 @@ export function setKeyBindings(
     .bindKey(" ")
     .onPress(() => {
       character.physics.body.applyImpulse(
-        new Vec3(0, 20, 0),
+        new Vec3(0, 40, 0),
         character.physics.body.position.vadd(new Vec3(0, 1, 0))
       );
     })

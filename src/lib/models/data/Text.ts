@@ -36,8 +36,6 @@ export default class Text extends Entity {
       specular: 0x56bf84,
     });
     const mesh = new Mesh(geometry, textMaterial);
-    mesh.castShadow = true;
-    mesh.receiveShadow = true;
 
     this.add(mesh);
 

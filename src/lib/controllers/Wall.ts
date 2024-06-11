@@ -99,8 +99,7 @@ export class Wall extends Object3D {
       connections.add(svgGroup);
 
       await svg.load(this.section.connections[i].image!);
-      svg.scale.multiplyScalar(0.1);
-      svg.rotateX(Math.PI / 2);
+
       if (!this.section.image) {
         if (i < 6) {
           svg.position.set(i % 2, ((i % 2 ? 1 : 0) - i) / 1.5, 0.1);

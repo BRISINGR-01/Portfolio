@@ -15,10 +15,14 @@ import {
   Vector3,
 } from "three";
 import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
+import { sync } from "../utils/helpers";
 import type Controls from "./Controls";
 import type World from "./world/world";
 
 const clock = new Clock();
+let velocity = 0,
+  duration = 0;
+
 export default class Character {
   public visual: {
     object: Object3D;
@@ -40,15 +44,14 @@ export default class Character {
     const mixer = new AnimationMixer(gltf.scene);
     const animation = mixer.clipAction(gltf.animations[0]);
     animation.play();
+    animation.timeScale = 0;
+    duration = animation.getClip().duration;
+
     this.visual = {
       object: gltf.scene,
       mixer,
       animation,
     };
-
-    this.tireMeshes.push(this.visual.object.getObjectByName("DEFFrontWheel")!);
-    this.tireMeshes.push(this.visual.object.getObjectByName("Bike_frontHub")!);
-    this.tireMeshes.push(this.visual.object.getObjectByName("Bike_Fork")!);
 
     this.visual.object.traverse(function (node) {
       if (node.isObject3D) {
@@ -56,6 +59,13 @@ export default class Character {
         node.receiveShadow = true;
       }
     });
+
+    for (const name of ["DEFFrontWheel"]) {
+      const mesh = this.visual.object.getObjectByName(name)!;
+      mesh.removeFromParent();
+      world.add(mesh);
+      this.tireMeshes.push(mesh);
+    }
 
     world.camera.lookAt(this.visual.object.position);
     this.visual.object.children[0].position.y = -1.45;
@@ -80,14 +90,14 @@ export default class Character {
     const frontWheelBody = new Body({
       mass: 5,
       material: new Material("wheel"),
-      shape: new Cylinder(wheelSize, wheelSize, bikeSize.z / 2, 400),
+      shape: new Cylinder(wheelSize, wheelSize, 0.02, 400),
       angularDamping: 0.8,
     });
 
     const rearWheelBody = new Body({
       mass: 5,
       material: new Material("wheel"),
-      shape: new Cylinder(wheelSize, wheelSize, bikeSize.z / 2, 400),
+      shape: new Cylinder(wheelSize, wheelSize, 0.02, 400),
       angularDamping: 0.8,
     });
 
@@ -132,90 +142,85 @@ export default class Character {
     this.physics.hinges = [frontHingeConstraint, rearHingeConstraint];
   }
 
-  steer(goesLeft: boolean | null) {
-    if (goesLeft === null) {
+  steer(goesRight: boolean | null) {
+    if (goesRight === null) {
       this.physics.hinges[0].axisA.set(0, 0, 1);
       return;
     }
     const prev = this.physics.hinges[0].axisA.x;
 
-    if (goesLeft ? prev >= 0.6 : prev <= -0.6) return;
+    const steerTreshold = 0.3;
+    if (goesRight ? prev >= steerTreshold : prev <= -steerTreshold) return;
 
-    let x = prev + (goesLeft ? 0.025 : -0.025);
+    let x = prev + (goesRight ? 1 : -1) * 0.025;
 
-    this.physics.hinges[0].axisA.set(x, 0, 1);
-    this.tireMeshes.forEach((tire) =>
-      tire.rotateOnAxis(
-        new Vector3(window.x || 0, window.y || 0, window.z || 0),
-        x / 10
-      )
-    );
+    this.physics.hinges[0].axisA.set(x, 0, -0.5);
   }
 
   move(val: number) {
-    this.physics.body.applyLocalForce(
-      new Vec3(val * -3, 0, 0),
-      new Vec3(0, 0, 0)
-    );
+    this.physics.body.applyLocalForce(new Vec3(val, 0, 0), new Vec3(0, 0, 0));
   }
 
   update(world: World, controls: Controls) {
+    velocity *= 0.95;
     this.visual.mixer.update(clock.getDelta());
-    const prevPosition = this.visual.object.position.clone();
 
-    this.visual.object.position.lerp(
-      new Vector3(...this.physics.body.position.toArray()),
-      0.1
-    );
-    this.visual.object.quaternion.set(
-      this.physics.body.quaternion.x,
-      this.physics.body.quaternion.y,
-      this.physics.body.quaternion.z,
-      this.physics.body.quaternion.w
-    );
+    this.visual.animation.time += velocity;
+    if (this.visual.animation.time > duration) {
+      this.visual.animation.time = 0;
+    } else if (this.visual.animation.time < 0) {
+      this.visual.animation.time = duration;
+    }
 
-    this.visual.animation.timeScale =
-      prevPosition.distanceTo(this.visual.object.position) * 10;
+    sync(this.visual.object, this.physics.body);
+    for (const tirePart of this.tireMeshes) {
+      sync(tirePart, this.physics.wheels[0]);
+    }
 
     const euler = new Vec3();
     this.physics.body.quaternion.toEuler(euler);
-    this.physics.body.angularVelocity.x *=
-      1 / (Math.PI / Math.abs(euler.x || 0.1));
+    this.physics.body.angularVelocity.x = 0;
+    // this.physics.body.angularVelocity.x *=
+    //   1 / (Math.PI / Math.abs(euler.x || 0.1));
 
     if (this.physics.body.position.y < 1.5) {
-      if (Math.abs(euler.x) > 1.2 || Math.abs(euler.z) > 1.2) return;
+      // if (Math.abs(euler.x) > 1.2 || Math.abs(euler.z) > 1.2) return;
+
+      const force = new Vec3(
+        0,
+        0,
+        Math.sign(euler.x) * (euler.x * 10) ** 2 * -100
+      );
 
       this.physics.body.applyLocalForce(
-        new Vec3(0, 0, euler.x * -50),
-        new Vec3(1, 1, 0)
+        force,
+        new Vec3(euler.x > 0 ? -1 : 1, 1, 0)
       );
-      this.physics.body.applyLocalForce(
-        new Vec3(0, 0, euler.x * -50),
-        new Vec3(-1, 1, 0)
-      );
+      // this.physics.body.applyLocalForce(force, new Vec3(-1, 1, 0));
     }
 
-    // const dir = new Vector3(-Math.PI / 2, 0, 0);
     const dir = new Vector3(-1, 0, 0);
     dir.applyQuaternion(this.visual.object.quaternion);
     dir.multiplyScalar(4);
+    dir.y += 3;
 
     const cameraPos = this.visual.object.position.clone().add(dir);
-    cameraPos.y = 4;
 
     world.camera.position.copy(cameraPos);
     world.camera.lookAt(this.visual.object.position);
 
     if (controls.down) {
-      this.move(15);
+      velocity += -0.001;
+      this.move(-30);
     } else if (controls.up) {
-      this.move(-15);
+      velocity += 0.001;
+      this.move(30);
     }
 
     if (controls.left) {
-      this.steer(true);
-    } else if (controls.right) {
       this.steer(false);
+    } else if (controls.right) {
+      this.steer(true);
     } else {
       this.steer(null);
     }

@@ -21,6 +21,7 @@ export default class World {
     this.scene = new Scene();
     this.sceneHTML = new Scene();
     this.renderer = new WebGLRenderer({ antialias: true });
+    this.renderer.shadowMap.enabled = true;
     this.rendererHTML = new CSS3DRenderer();
     // this.rendererHTML.domElement.style.position = "absolute";
     // this.rendererHTML.domElement.style.top = "0px";

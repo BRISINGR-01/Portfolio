@@ -14,18 +14,26 @@ export async function createWorld(el: HTMLElement) {
 
   world.add(new AmbientLight(0xffffff, 1));
 
-  const light = new DirectionalLight(0xffffff, 3);
-  light.position.set(50, 200, 100);
-  light.position.multiplyScalar(1.3);
+  const light = new DirectionalLight(0xffffff, 1);
+  light.position.set(4, 10, 4);
   light.castShadow = true;
   world.add(light);
+
+  light.shadow.mapSize.width = 5120;
+  light.shadow.mapSize.height = 5120;
+  light.shadow.camera.near = 0.5;
+  light.shadow.camera.far = 500;
+
+  light.shadow.camera.right = light.shadow.camera.top = 16;
+  light.shadow.camera.left = light.shadow.camera.bottom =
+    -light.shadow.camera.top;
 
   const controls = new Controls();
 
   const character = new Character(world, await load("cyclist", "glb"));
   world.add(character.visual.object);
 
-  await loadEntities(world, character, controls);
+  await loadEntities(world, character);
   setKeyBindings(world.eventHandler, character, controls);
 
   world.onRender(() => character.update(world, controls));
