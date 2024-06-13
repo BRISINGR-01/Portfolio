@@ -38,7 +38,7 @@ export default class Character {
     wheels: [],
     hinges: [],
   };
-  tireMeshes: Object3D[] = [];
+  tireMesh: Object3D;
 
   constructor(world: World, gltf: GLTF) {
     const mixer = new AnimationMixer(gltf.scene);
@@ -60,12 +60,10 @@ export default class Character {
       }
     });
 
-    for (const name of ["DEFFrontWheel"]) {
-      const mesh = this.visual.object.getObjectByName(name)!;
-      mesh.removeFromParent();
-      world.add(mesh);
-      this.tireMeshes.push(mesh);
-    }
+    const mesh = this.visual.object.getObjectByName("DEFFrontWheel")!;
+    mesh.removeFromParent();
+    world.add(mesh);
+    this.tireMesh = mesh;
 
     world.camera.lookAt(this.visual.object.position);
     this.visual.object.children[0].position.y = -1.45;
@@ -90,15 +88,15 @@ export default class Character {
     const frontWheelBody = new Body({
       mass: 5,
       material: new Material("wheel"),
-      shape: new Cylinder(wheelSize, wheelSize, 0.02, 400),
-      angularDamping: 0.8,
+      shape: new Cylinder(wheelSize, wheelSize, 0.005, 400),
+      angularDamping: 0.95,
     });
 
     const rearWheelBody = new Body({
       mass: 5,
       material: new Material("wheel"),
-      shape: new Cylinder(wheelSize, wheelSize, 0.02, 400),
-      angularDamping: 0.8,
+      shape: new Cylinder(wheelSize, wheelSize, 0.005, 400),
+      angularDamping: 0.95,
     });
 
     rearWheelBody.position.set(-bikeSize.x * 2, wheelSize * 2, 0);
@@ -149,10 +147,10 @@ export default class Character {
     }
     const prev = this.physics.hinges[0].axisA.x;
 
-    const steerTreshold = 0.3;
+    const steerTreshold = 0.2;
     if (goesRight ? prev >= steerTreshold : prev <= -steerTreshold) return;
 
-    let x = prev + (goesRight ? 1 : -1) * 0.025;
+    let x = prev + (goesRight ? 1 : -1) * 0.008;
 
     this.physics.hinges[0].axisA.set(x, 0, -0.5);
   }
@@ -173,48 +171,43 @@ export default class Character {
     }
 
     sync(this.visual.object, this.physics.body);
-    for (const tirePart of this.tireMeshes) {
-      sync(tirePart, this.physics.wheels[0]);
-    }
+    sync(this.tireMesh, this.physics.wheels[0]);
 
-    const euler = new Vec3();
-    this.physics.body.quaternion.toEuler(euler);
+    const bikeRotation = new Vec3();
+    this.physics.body.quaternion.toEuler(bikeRotation);
     this.physics.body.angularVelocity.x = 0;
-    // this.physics.body.angularVelocity.x *=
-    //   1 / (Math.PI / Math.abs(euler.x || 0.1));
 
     if (this.physics.body.position.y < 1.5) {
-      // if (Math.abs(euler.x) > 1.2 || Math.abs(euler.z) > 1.2) return;
+      if (Math.abs(bikeRotation.x) + Math.abs(bikeRotation.z) > 0.2) return;
 
       const force = new Vec3(
+        -2,
         0,
-        0,
-        Math.sign(euler.x) * (euler.x * 10) ** 2 * -100
+        Math.sign(bikeRotation.x) * (bikeRotation.x * 10) ** 2 * -100
       );
 
       this.physics.body.applyLocalForce(
         force,
-        new Vec3(euler.x > 0 ? -1 : 1, 1, 0)
+        new Vec3(bikeRotation.x > 0 ? -1 : 1, 1, 0)
       );
-      // this.physics.body.applyLocalForce(force, new Vec3(-1, 1, 0));
     }
 
-    const dir = new Vector3(-1, 0, 0);
+    const dir = new Vector3(-1, 0, 1);
     dir.applyQuaternion(this.visual.object.quaternion);
     dir.multiplyScalar(4);
-    dir.y += 3;
 
     const cameraPos = this.visual.object.position.clone().add(dir);
+    cameraPos.y = 3;
 
     world.camera.position.copy(cameraPos);
     world.camera.lookAt(this.visual.object.position);
 
     if (controls.down) {
       velocity += -0.001;
-      this.move(-30);
+      this.move(-50);
     } else if (controls.up) {
+      this.move(50);
       velocity += 0.001;
-      this.move(30);
     }
 
     if (controls.left) {

@@ -10,6 +10,7 @@ export default class World {
   private renderer: WebGLRenderer;
   private rendererHTML: CSS3DRenderer;
   private renderCallbacks: ((world: World) => void)[] = [];
+  // gui: GUI = new GUI();
 
   // public controls: PointerLockControls;
   public scene: Scene;
@@ -29,15 +30,12 @@ export default class World {
     this.camera = new Camera();
     // const controls = new OrbitControls(this.camera, this.renderer.domElement);
     // controls.update();
-    this.camera.position.set(-5, 5, 0);
     // this.onRender(() => controls.update());
-    // this.controls = new PointerLockControls(this.camera, document.body);
-    // this.controls.pointerSpeed = 0.5;
-    // this.add(this.controls.getObject());
 
     this.eventHandler = new EventHandler();
-    this.eventHandler.onClick(() => {
-      // this.controls.lock();
+    this.eventHandler.onClick(() => document.body.requestPointerLock());
+    this.eventHandler.bindKey("Escape").onPress(() => {
+      document.exitPointerLock();
     });
     this.onRender(() => this.eventHandler.executeHolding());
 

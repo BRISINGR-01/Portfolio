@@ -14,9 +14,9 @@ export function convert<
   R = T extends Vector3 ? Vec3 : Vector3
 >(vec: T): R {
   if (vec instanceof Vector3) {
-    return new Vector3(vec.x, vec.y, vec.z) as R;
-  } else {
     return new Vec3(vec.x, vec.y, vec.z) as R;
+  } else {
+    return new Vector3(vec.x, vec.y, vec.z) as R;
   }
 }
 

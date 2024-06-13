@@ -33,11 +33,12 @@
       "type": "environment",
       "description": "Mostly for personal projects I have developed and used apps on all popular platforms, but I have spent most time working on Linux, Windows, and Android. One of the apps is available on Google Play Store.",
       "connections": [
-        "Flutter",
         "React-Native",
+        "Flutter",
         "Linux",
         "Windows",
-        "Android"
+        "Android",
+        "Dart"
       ]
     },
     {
@@ -80,11 +81,12 @@
       ],
       "description": "The SDG (Sustainable Developement Goals) are a set of goals defined by UN (United Nations) meant to make the world a better place. The challenge is organized a coulple of times a year in different countries. The aim is to work with large companies on one or a few SDGs in order to help the company lower their emissions, improve its employees' quality of life... My assigned establishment was Sabic. This is the second biggest plastic producer and a leading industry in agriculture, transportation, packaging, technology and more.",
       "connections": [
-        "Vercel",
+        "Next JS",
         "Typescript",
         "React",
-        "Next JS",
-        "C/C++"
+        "Vercel",
+        "C/C++",
+        "Arduino"
       ]
     },
     {
@@ -98,6 +100,7 @@
       "connections": [
         "React",
         "Bootstrap",
+        "Javascript",
         "Python"
       ]
     },
@@ -187,6 +190,11 @@
       "type": "language",
       "value": "Typescript",
       "image": "ts"
+    },
+    {
+      "type": "language",
+      "value": "Javascript",
+      "image": "javascript"
     },
     {
       "type": "language",
@@ -297,6 +305,11 @@
       "type": "technology",
       "value": "Flutter",
       "image": "flutter"
+    },
+    {
+      "type": "technology",
+      "value": "Arduino",
+      "image": "arduino"
     },
     {
       "type": "technology",

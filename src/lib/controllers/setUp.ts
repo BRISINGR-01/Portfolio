@@ -31,6 +31,7 @@ export async function createWorld(el: HTMLElement) {
   const controls = new Controls();
 
   const character = new Character(world, await load("cyclist", "glb"));
+
   world.add(character.visual.object);
 
   await loadEntities(world, character);
