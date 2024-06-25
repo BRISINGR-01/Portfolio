@@ -1,9 +1,9 @@
 <script lang="ts">
+  import type { Section } from "../lib/models/data/DataWrapper";
   import type InfoTable from "../lib/models/world/InfoTable";
   import Steps from "./Steps.svelte";
 
   let isMenuShown = false;
-  let mode = "Walking";
 
   export const toggle = () => {
     isMenuShown = !isMenuShown;
@@ -12,13 +12,15 @@
   export let menu: InfoTable;
 
   window.data = [];
-  let data = window.data;
+  let data = window.data as Section[];
 </script>
 
 <div style="display: {isMenuShown ? 'flex' : 'none'};" class="container">
   <Steps {data}>
     <div slot="item" let:item>
-      <img src="/images/{item.image}" style="max-width: 10em;" />
+      {#if item.image}
+        <img src="/images/{item.image}" style="max-width: 10em;" />
+      {/if}
       <div class="text-xl font-bold">{item.name}</div>
       <div class="text-xl white text-surface-content/50">
         {item.timespan ?? ""}

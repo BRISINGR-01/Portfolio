@@ -33,8 +33,12 @@ export default class World {
     // this.onRender(() => controls.update());
 
     this.eventHandler = new EventHandler();
-    this.eventHandler.onClick(() => document.body.requestPointerLock());
+    this.eventHandler.onClick(() => {
+      document.documentElement.requestFullscreen();
+      document.body.requestPointerLock();
+    });
     this.eventHandler.bindKey("Escape").onPress(() => {
+      document.exitFullscreen();
       document.exitPointerLock();
     });
     this.onRender(() => this.eventHandler.executeHolding());

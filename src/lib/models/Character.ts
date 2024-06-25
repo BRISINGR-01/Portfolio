@@ -75,7 +75,7 @@ export default class Character {
   }
 
   async loadPhysics(world: CannonWorld) {
-    const bikeSize = new Vec3(1, 0.5, 0.3);
+    const bikeSize = new Vec3(1, 0.5, 0.2);
     const wheelSize = 0.48;
 
     this.physics.body = new Body({
@@ -157,6 +157,10 @@ export default class Character {
 
   move(val: number) {
     this.physics.body.applyLocalForce(new Vec3(val, 0, 0), new Vec3(0, 0, 0));
+    // const torque = new Vec3(0, 0, val * -1);
+    // const wheel = this.physics.wheels[0];
+    // const worldTorque = wheel.quaternion.vmult(torque);
+    // wheel.torque.vadd(worldTorque, wheel.torque);
   }
 
   update(world: World, controls: Controls) {
@@ -178,12 +182,13 @@ export default class Character {
     this.physics.body.angularVelocity.x = 0;
 
     if (this.physics.body.position.y < 1.5) {
-      if (Math.abs(bikeRotation.x) + Math.abs(bikeRotation.z) > 0.2) return;
+      // treshold for falling (if it has fallen too much let it fall down)
+      if (this.hasFallen) return;
 
       const force = new Vec3(
         -2,
         0,
-        Math.sign(bikeRotation.x) * (bikeRotation.x * 10) ** 2 * -100
+        Math.sign(bikeRotation.x) * (bikeRotation.x * 10) ** 2 * -80
       );
 
       this.physics.body.applyLocalForce(
@@ -192,7 +197,7 @@ export default class Character {
       );
     }
 
-    const dir = new Vector3(-1, 0, 1);
+    const dir = new Vector3(-1, 0, 0);
     dir.applyQuaternion(this.visual.object.quaternion);
     dir.multiplyScalar(4);
 
@@ -202,12 +207,15 @@ export default class Character {
     world.camera.position.copy(cameraPos);
     world.camera.lookAt(this.visual.object.position);
 
-    if (controls.down) {
-      velocity += -0.001;
-      this.move(-50);
-    } else if (controls.up) {
-      this.move(50);
-      velocity += 0.001;
+    const movingDir = controls.down ? -1 : controls.up ? 1 : 0;
+    if (movingDir !== 0) {
+      velocity += 0.001 * movingDir;
+      let movingForce = 50 * movingDir;
+      if (controls.shift && !controls.left && !controls.right) {
+        movingForce *= 1.5;
+      }
+
+      this.move(movingForce);
     }
 
     if (controls.left) {
@@ -217,5 +225,12 @@ export default class Character {
     } else {
       this.steer(null);
     }
+  }
+
+  get hasFallen() {
+    const bikeRotation = new Vec3();
+    this.physics.body.quaternion.toEuler(bikeRotation);
+    this.physics.body.angularVelocity.x = 0;
+    return Math.abs(bikeRotation.x) + Math.abs(bikeRotation.z) > 0.3;
   }
 }

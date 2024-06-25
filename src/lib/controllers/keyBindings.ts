@@ -46,11 +46,12 @@ export function setKeyBindings(
   eventHandler
     .bindKey(" ")
     .onPress(() => {
-      if (character.physics.body.position.y < 2)
-        character.physics.body.applyImpulse(
-          new Vec3(0, 40, 0),
-          character.physics.body.position.vadd(new Vec3(0, 1, 0))
-        );
+      if (character.physics.body.position.y > 2) return;
+
+      character.physics.body.applyImpulse(
+        new Vec3(0, 40, 0),
+        character.physics.body.position.vadd(new Vec3(0, 1, 0))
+      );
     })
     .onRelease(() => (controls.space = false));
   eventHandler

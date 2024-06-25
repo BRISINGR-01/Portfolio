@@ -21,8 +21,6 @@ import CannonDebugRenderer from "../utils/cannon";
 import { convert } from "../utils/helpers";
 
 export default async (world: World, character: Character) => {
-  // loadSVGs(world);
-
   const physicsWorld = new CannonWorld();
   const cannonDebugRenderer = new CannonDebugRenderer(
     world.scene,
@@ -45,17 +43,11 @@ export default async (world: World, character: Character) => {
         (section) => section.name === svgData[distances.indexOf(val)].name
       )
     );
-
-    window.data = [
-      new DataWrapper().sections.find(
-        (section) => section.name === svgData[distances.indexOf(val)].name
-      )!,
-    ];
   });
 
   world.onRender(() => {
     physicsWorld.step(Math.min(clock.getDelta(), 0.1));
-    // cannonDebugRenderer.update();
+    cannonDebugRenderer.update();
   });
 };
 
@@ -289,7 +281,7 @@ async function loadPiedestalls(world: World, physicsWorld: CannonWorld) {
     pedestal.receiveShadow = true;
     section.add(pedestal);
 
-    window.a = [];
+    // window.a = [];
 
     for (let i = 0; i < data.connections.length; i++) {
       const tech = data.connections[i];
