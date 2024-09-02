@@ -7,6 +7,7 @@ My Bio
 - [The Rust Programming Language](https://doc.rust-lang.org/book/)
 - [C Programming Language, 2nd Edition by Brian Kernighan](<https://www.amazon.com/Programming-Language-2nd-Brian-Kernighan/dp/0131103628](https://seriouscomputerist.atariverse.com/media/pdf/book/C%20Programming%20Language%20-%202nd%20Edition%20(OCR).pdf)https://seriouscomputerist.atariverse.com/media/pdf/book/C%20Programming%20Language%20-%202nd%20Edition%20(OCR).pdf>)
 - [Clean Code by Robert C. Martin](https://www.google.bg/books/edition/Clean_Code/_i6bDeoCQzsC?hl=en&gbpv=0)
+- Code: The Hidden Language of Computer Hardware and Software
 
 ## Classes/Courses
 
@@ -30,3 +31,7 @@ My Bio
 - [MacOS Fundamentals](https://academy.hackthebox.com/achievement/badge/fc268eab-3add-11ee-acfc-bea50ffe6cb4)
 - [Linux Fundamentals](https://academy.hackthebox.com/achievement/badge/60f85477-3b47-11ee-acfc-bea50ffe6cb4)
 - [Windows Fundamentals](https://academy.hackthebox.com/achievement/badge/b2ba9762-c408-11ed-acfc-bea50ffe6cb4)
+
+certificate Hands-on JavaScript for Ethical Hacking
+
+- https://codered.eccouncil.org/certificate/8154a5e3-460b-4e7a-9496-5d65ead9aba9?logged=true

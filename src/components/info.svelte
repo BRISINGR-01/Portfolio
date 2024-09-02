@@ -7,7 +7,9 @@
 
   export const toggle = () => {
     isMenuShown = !isMenuShown;
-    data = window.data;
+    setTimeout(() => {
+      data = window.data;
+    }, 10);
   };
   export let menu: InfoTable;
 

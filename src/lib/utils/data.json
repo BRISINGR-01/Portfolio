@@ -122,52 +122,132 @@
       ]
     }
   ],
-  "resources": [
+  "education": [
     {
-      "value": "The Rust Programming Language",
-      "type": "book",
-      "image": "The Rust Programming Language.jpg"
+      "value": "The Breakthrough UI Developer Process Web Class by Pete Heard"
     },
     {
-      "value": "C Programming Language",
-      "type": "book",
-      "image": "C Programming Language, 2nd Edition by Brian Kernighan.jpg"
+      "value": "NodeJS - The Complete Guide (MVC, REST, APIs, GraphQl)"
     },
     {
-      "value": "Clean Code by Robert C. Martin",
-      "type": "book",
-      "image": "Clean Code by Robert C. Martin.jpg"
+      "value": "Hack the Box"
     },
     {
-      "value": "Software Architecture Patterns",
-      "type": "book",
-      "image": "Software Architecture Patterns.jpg"
+      "value": "Fontys (Academic preperation)"
     },
     {
-      "value": "System Design Interview",
-      "type": "book",
-      "image": "system design interview.jpg"
+      "value": "Hands-on JavaScript for Ethical Hacking",
+      "hasCertificate": true
+    }
+  ],
+  "HTB": {
+    "badges": [
+      {
+        "title": "Academician",
+        "description": "Introduction to Academy module completed"
+      },
+      {
+        "title": "Our favorite seabird",
+        "description": "Linux Fundamentals module completed"
+      },
+      {
+        "title": "Everything is connected",
+        "description": "Introduction to Networking module completed"
+      },
+      {
+        "title": "Your request is my demand",
+        "description": "Web Requests module completed"
+      },
+      {
+        "title": "Playing with the mess",
+        "description": "JavaScript Deobfuscation module completed"
+      },
+      {
+        "title": "Out of bounds",
+        "description": "Stack-Based Buffer Overflows on Linux x86 module completed"
+      },
+      {
+        "title": "Crawl, walk, run",
+        "description": "Windows Fundamentals module completed"
+      },
+      {
+        "title": "Developer",
+        "description": "Introduction to Web Applications module completed"
+      },
+      {
+        "title": "An apple a day...",
+        "description": "MacOS Fundamentals module completed"
+      },
+      {
+        "title": "First things first",
+        "description": "Operating System Fundamentals path completed"
+      },
+      {
+        "title": "Unwavering User",
+        "description": "Awarded when you achieve your first weekly streak"
+      },
+      {
+        "title": "The hunt is on",
+        "description": "Cracking into Hack the Box path completed"
+      }
+    ]
+  },
+  "books": [
+    {
+      "title": "The Rust Programming Language",
+      "subTitle": "Covers Rust 2018",
+      "author": "Steve Klabnik and Carol Nichols",
+      "description": "The official book on the Rust programming language, written by the Rust development team at the Mozilla Foundation, fully updated for Rust 2018",
+      "cover": "The Rust Programming Language.jpg"
     },
     {
-      "value": "Design Patterns",
-      "type": "book",
-      "image": "design patterns.jpg"
+      "title": "C Programming Language",
+      "subTitle": "2nd Edition",
+      "author": "Brian Kernighan and Dennis Ritchie",
+      "description": "The complete guide to ANSI standard C language programming, written by the developers of C.",
+      "cover": "C Programming Language, 2nd Edition by Brian Kernighan.jpg"
     },
     {
-      "value": "The Breakthrough UI Developer Process Web Class by Pete Heard",
-      "type": "class"
+      "title": "Clean Code",
+      "subTitle": "A Handbook of Agile Software Craftsmanship",
+      "description": "Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees. Every year, countless hours and significant resources are lost because of poorly written code. But it doesn't have to be that way.",
+      "author": "Robert C. Martin",
+      "cover": "Clean Code by Robert C. Martin.jpg"
     },
     {
-      "value": "NodeJS - The Complete Guide (MVC, REST, APIs, GraphQl)",
-      "type": "class"
+      "title": "Software Architecture Patterns",
+      "subTitle": "2nd Edition",
+      "author": "Mark Richards",
+      "description": "The success of any software application or system depends on the architecture style you use. This updated report presents several common architecture styles to guide designers and developers on how to design components and to help you determine the ways in which those components should interact.",
+      "cover": "Software Architecture Patterns.jpg"
     },
     {
-      "value": "Hack the Box",
-      "type": "class"
+      "title": "System Design Interview",
+      "subTitle": "An insider's guide",
+      "author": "Alex Xu",
+      "cover": "system design interview.jpg",
+      "description": " This book provides a step-by-step framework for how to tackle a system design question. It includes many real-world examples to illustrate the systematic approach, with detailed steps that you can follow."
     },
     {
-      "value": "Fontys (Academic preperation)",
-      "type": "class"
+      "title": "Design Patterns",
+      "subTitle": "Elements of Reusable Object-Oriented Software",
+      "cover": "design patterns.jpg",
+      "author": " Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides",
+      "description": "Capturing a wealth of experience about the design of object-oriented software, four top-notch designers present a catalog of simple and succinct solutions to commonly occurring design problems. Previously undocumented, these 23 patterns allow designers to create more flexible, elegant, and ultimately reusable designs without having to rediscover the design solutions themselves."
+    },
+    {
+      "title": "Code",
+      "subTitle": "The Hidden Language of Computer Hardware and Software",
+      "author": "Charles Petzold",
+      "cover": "Code: The Hidden Language of Computer Hardware and Software.jpg",
+      "description": "Dives into the fundamental concepts of computer science, starting from basic electrical circuits to the intricate workings of modern computers. The book explores how simple ideas and technologies evolve into complex systems, making the world of computing accessible and engaging for both technical and non-technical readers."
+    },
+    {
+      "title": "Refactoring",
+      "subTitle": "Improving the Design of Existing Code",
+      "author": "Martin Fowler, with Kent Beck",
+      "description": "The guide to how to transform code with safe and rapid process, vital to keeping it cheap and easy to modify for future needs.",
+      "cover": "Refactoring.jpg"
     }
   ],
   "entities": [
@@ -439,43 +519,43 @@
   ],
   "contact": [
     {
-      "value": "Gmail",
+      "name": "Gmail",
       "image": "gmail",
       "address": "alexander.popov233@gmail.com",
       "url": "mailto:alexander.popov233@gmail.com"
     },
     {
-      "value": "Github",
+      "name": "Github",
       "image": "github",
       "address": "BRISINGR-01",
       "url": "https://github.com/BRISINGR-01"
     },
     {
-      "value": "Gitlab",
+      "name": "Gitlab",
       "image": "gitlab",
       "address": "BRISINGR-01",
       "url": "https://gitlab.com/BRISINGR-01"
     },
     {
-      "value": "LinkedIn",
+      "name": "LinkedIn",
       "image": "linkedin",
       "address": "alexander-popov-61126825a",
       "url": "https://www.linkedin.com/in/alexander-popov-61126825a/"
     },
     {
-      "value": "X",
+      "name": "X",
       "image": "x",
       "address": "AlexPopov233",
       "url": "https://twitter.com/AlexPopov233"
     },
     {
-      "value": "Instagram",
+      "name": "Instagram",
       "image": "instagram",
       "address": "@alexan6451",
       "url": "https://www.instagram.com/alexan6451/"
     },
     {
-      "value": "Whatsapp",
+      "name": "Whatsapp",
       "image": "whatsapp",
       "address": "+31620429868",
       "url": "tel:+31620429868"
@@ -484,23 +564,31 @@
   "files": [
     {
       "name": "CV",
-      "url": "cv.pdf"
+      "image": "cv.pdf"
     },
     {
       "name": "CAE",
-      "url": "CAE.pdf"
+      "image": "CAE.pdf"
     },
     {
       "name": "Recommendation letter",
-      "url": "Recommendation letter - Alexander Popov.pdf"
+      "image": "Recommendation letter - Alexander Popov.pdf"
     },
     {
       "name": "Hack the box badges",
-      "url": "Hack the box.png"
+      "image": "Hack the box.png"
     },
     {
       "name": "Neo4j certificate",
-      "url": "Neo4j certificate.png"
+      "image": "Neo4j certificate.png"
+    },
+    {
+      "name": "Zelinsoft certificate",
+      "image": "Zelinsoft certificate.png"
+    },
+    {
+      "name": "Troubleshooting Slow Network with Wireshark",
+      "image": "Troubleshooting Slow Network with Wireshark.png"
     }
   ],
   "external": [

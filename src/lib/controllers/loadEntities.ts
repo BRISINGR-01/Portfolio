@@ -38,16 +38,14 @@ export default async (world: World, character: Character) => {
       data.center.distanceTo(character.visual.object.position)
     );
     const val = distances.reduce((a, b) => Math.min(a, b));
-    console.log(
-      new DataWrapper().sections.find(
-        (section) => section.name === svgData[distances.indexOf(val)].name
-      )
+    window.data = new DataWrapper().sections.find(
+      (section) => section.name === svgData[distances.indexOf(val)].name
     );
   });
 
   world.onRender(() => {
     physicsWorld.step(Math.min(clock.getDelta(), 0.1));
-    cannonDebugRenderer.update();
+    // cannonDebugRenderer.update();
   });
 };
 
