@@ -189,6 +189,10 @@
       {
         "title": "The hunt is on",
         "description": "Cracking into Hack the Box path completed"
+      },
+      {
+        "title": "Lurk in the packets",
+        "description": "Intro to Network Traffic Analysis module completed"
       }
     ]
   },
@@ -248,6 +252,13 @@
       "author": "Martin Fowler, with Kent Beck",
       "description": "The guide to how to transform code with safe and rapid process, vital to keeping it cheap and easy to modify for future needs.",
       "cover": "Refactoring.jpg"
+    },
+    {
+      "title": "Clean Coder",
+      "subTitle": "A Code of Conduct for Professional Programmers",
+      "author": "Robert C. Martin",
+      "description": "Programmers who endure and succeed amidst swirling uncertainty and nonstop pressure share a common attribute: They care deeply about the practice of creating software. They treat it as a craft. They are professionals.",
+      "cover": "Clean Coder.jpg"
     }
   ],
   "entities": [
