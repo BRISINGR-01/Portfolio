@@ -600,6 +600,14 @@
     {
       "name": "Troubleshooting Slow Network with Wireshark",
       "image": "Troubleshooting Slow Network with Wireshark.png"
+    },
+    {
+      "name": "Linux Network Configuration",
+      "image": "CertificateOfCompletion_Linux Network Configuration.png"
+    },
+    {
+      "name": "Raspberry Pi Essential Training",
+      "image": "Raspberry Pi Essential Training.jpeg"
     }
   ],
   "external": [
