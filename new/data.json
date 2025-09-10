@@ -1,0 +1,1127 @@
+{
+  "tags": [
+    [
+      "Linux",
+      "Operating Systems"
+    ],
+    [
+      "Javascript",
+      "Web Development"
+    ]
+  ],
+  "sections": [
+    {
+      "type": "environment",
+      "name": "Web",
+      "description": "My career's focus circles around web-development. I have primarily worked on projects for the web using a variety of tools and languages. Even though my experience is limited to deploying monolith projects I have explored and written research concerning various system designs such as microservices, event-driven, and other more scalabe architectures. I have worked with various deployment platforms such as Vercel, Firebase and Heroku. My expertise extends beyond simple websites, encompassing the development of browser extensions, basic cybersecurity obtained through experiences like Hack The Box challenges, and the creation of immersive 3D experiences.",
+      "connections": [
+        "HTML",
+        "CSS",
+        "Typescript",
+        "NodeJS",
+        "Express",
+        "GraphQl",
+        "ThreeJS",
+        "React",
+        "Bootstrap",
+        "Next JS",
+        "C#",
+        ".NET",
+        "RazorPages",
+        "MySQL",
+        "Docker",
+        "Firebase",
+        "Vercel",
+        "Hack the Box"
+      ]
+    },
+    {
+      "name": "Cross-platform",
+      "type": "environment",
+      "description": "Mostly for personal projects, I have developed and used apps on all popular platforms, but I have spent most time working on Linux, Windows, and Android. One of the apps is available on Google Play Store.",
+      "connections": [
+        "React-Native",
+        "Dart",
+        "Flutter",
+        "Linux",
+        "Windows",
+        "Android"
+      ]
+    },
+    {
+      "name": "Embedded systems",
+      "type": "environment",
+      "description": "My curiousity in the internal workings of code combined with my desire to write efficient programs brought me to the world of memory management, tcp connections, terminals... I was guided mostly by interest, so fewer projects of mine are connected with this section.",
+      "connections": [
+        "Rust",
+        "C/C++",
+        "Bash",
+        "Hack the Box",
+        "Linux"
+      ]
+    },
+    {
+      "name": "A1 Internship",
+      "type": "project",
+      "image": "A1.png",
+      "timespan": [
+        "01.07.2021",
+        "30.09.2021"
+      ],
+      "description": "My first internship was at one of the largest telecomunication companies in Bulgaria. It was a project lead by the Belgian branch with the help of a Bulgarian team, in which I took part. Its objective was mainly structured around selecting the content for TV programs. My tasks varied between working on the front- and backend.",
+      "connections": [
+        "React",
+        "Express",
+        "Docker",
+        "GraphQl"
+      ]
+    },
+    {
+      "name": "SDG Challenge - Sabic",
+      "image": "SDG.webp",
+      "type": "project",
+      "timespan": [
+        "09.04.2024",
+        "05.07.2024"
+      ],
+      "description": "The SDG (Sustainable Developement Goals) are a set of goals defined by UN (United Nations) meant to make the world a better place. The challenge is organized a coulple of times a year in different countries. The aim is to work with large companies on one or a few SDGs in order to help the company lower their emissions, improve its employees' quality of life... My assigned establishment was Sabic. This is the second biggest plastic producer and a leading industry in agriculture, transportation, packaging, technology and more.",
+      "connections": [
+        "Next JS",
+        "Typescript",
+        "React",
+        "Vercel",
+        "C/C++",
+        "Arduino"
+      ]
+    },
+    {
+      "name": "SDG Challenge - Solarwatt",
+      "image": "SDG.webp",
+      "type": "project",
+      "timespan": [
+        "09.04.2025",
+        "05.07.2025"
+      ],
+      "description": "The SDG (Sustainable Developement Goals) are a set of goals defined by UN (United Nations) meant to make the world a better place. The challenge is organized a coulple of times a year in different countries. The aim is to work with large companies on one or a few SDGs in order to help the company lower their emissions, improve its employees' quality of life... My assigned establishment was Solarwatt. This is a solar panel industry. We are proud to share that our team has made it to the finals of the SDG Challenge 2025, where we partnered with Solarwatt on a project called SolarTrace. SolarTrace is a platform that helps bring more transparency to the solar energy industry. It includes an interactive map that shows how solar panel materials move through Europe and Asia, giving users a clearer view of the supply chain. My main focus was on the course and certification module. I built a simple learning path that introduces Solarwatt, its mission, and products, and at the end, users get a professional, shareable certificate automatically..",
+      "connections": [
+        "Typescript",
+        "React",
+        "React-Bootstrap",
+        "Vercel"
+      ]
+    },
+    {
+      "name": "Latin is simple",
+      "type": "project",
+      "image": "latin-is-simple.jpg",
+      "timespan": [
+        "03.01.2022"
+      ],
+      "description": "Owned by two Austrian graduates this language learning app has gained dozens of thousands of users over the years. It is primarily used by students learning Latin. It provides tools such as learning trainers, sentence analisys, and many more.",
+      "connections": [
+        "React",
+        "Bootstrap",
+        "Javascript",
+        "Python"
+      ]
+    },
+    {
+      "name": "Information club “Digital Studio”",
+      "image": "2aeg.webp",
+      "type": "project",
+      "timespan": [
+        "01.10.2020",
+        "01.06.2021"
+      ],
+      "description": "This is an ethnic diversity cooperation project with \"St. Paisiy Hilendarski\" School. I was offered to participate by my IT teacher at my highschool and I worked side by side with students from different grades.",
+      "connections": [
+        "HTML",
+        "CSS",
+        "NodeJS",
+        "ThreeJS",
+        "Firebase"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "value": "The Breakthrough UI Developer Process Web Class by Pete Heard"
+    },
+    {
+      "value": "Intro to Theoretical Computer Science",
+      "url": "https://udacity.com/enrollment/cs313"
+    },
+    {
+      "value": "NodeJS - The Complete Guide (MVC, REST, APIs, GraphQl)"
+    },
+    {
+      "value": "Hack the Box"
+    },
+    {
+      "value": "Fontys (Academic preperation)"
+    }
+  ],
+  "HTB": {
+    "badges": [
+      {
+        "title": "Academician",
+        "description": "Introduction to Academy module completed"
+      },
+      {
+        "title": "Our favorite seabird",
+        "description": "Linux Fundamentals module completed"
+      },
+      {
+        "title": "Everything is connected",
+        "description": "Introduction to Networking module completed"
+      },
+      {
+        "title": "Your request is my demand",
+        "description": "Web Requests module completed"
+      },
+      {
+        "title": "Playing with the mess",
+        "description": "JavaScript Deobfuscation module completed"
+      },
+      {
+        "title": "Out of bounds",
+        "description": "Stack-Based Buffer Overflows on Linux x86 module completed"
+      },
+      {
+        "title": "Crawl, walk, run",
+        "description": "Windows Fundamentals module completed"
+      },
+      {
+        "title": "Developer",
+        "description": "Introduction to Web Applications module completed"
+      },
+      {
+        "title": "An apple a day...",
+        "description": "MacOS Fundamentals module completed"
+      },
+      {
+        "title": "First things first",
+        "description": "Operating System Fundamentals path completed"
+      },
+      {
+        "title": "Unwavering User",
+        "description": "Awarded when you achieve your first weekly streak"
+      },
+      {
+        "title": "The hunt is on",
+        "description": "Cracking into Hack the Box path completed"
+      },
+      {
+        "title": "Lurk in the packets",
+        "description": "Intro to Network Traffic Analysis module completed"
+      }
+    ]
+  },
+  "books": [
+    {
+      "title": "The Rust Programming Language",
+      "subTitle": "Covers Rust 2018",
+      "author": "Steve Klabnik and Carol Nichols",
+      "description": "The official book on the Rust programming language, written by the Rust development team at the Mozilla Foundation, fully updated for Rust 2018",
+      "cover": "The Rust Programming Language.jpg",
+      "tags": [
+        "Rust"
+      ]
+    },
+    {
+      "title": "C Programming Language",
+      "subTitle": "2nd Edition",
+      "author": "Brian Kernighan and Dennis Ritchie",
+      "description": "The complete guide to ANSI standard C language programming, written by the developers of C.",
+      "cover": "C Programming Language, 2nd Edition by Brian Kernighan.jpg",
+      "tags": [
+        "C"
+      ]
+    },
+    {
+      "title": "The C++ Programming Language",
+      "subTitle": "4th Edition",
+      "description": "The C++ Programming Language, Fourth Edition, delivers meticulous, richly explained, and integrated coverage of the entire language—its facilities, abstraction mechanisms, standard libraries, and key design techniques. Throughout, Stroustrup presents concise, “pure C++11” examples, which have been carefully crafted to clarify both usage and program design. To promote deeper understanding, the author provides extensive cross-references, both within the book and to the ISO standard.",
+      "author": "Bjarne Stroustrup",
+      "cover": "The C++ Programming Language.jpg",
+      "tags": [
+        "C++"
+      ]
+    },
+    {
+      "title": "Clean Code",
+      "subTitle": "A Handbook of Agile Software Craftsmanship",
+      "description": "Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees. Every year, countless hours and significant resources are lost because of poorly written code. But it doesn't have to be that way.",
+      "author": "Robert C. Martin",
+      "cover": "Clean Code by Robert C. Martin.jpg",
+      "tags": [
+        "Java",
+        "Code Quality"
+      ]
+    },
+    {
+      "title": "Software Architecture Patterns",
+      "subTitle": "2nd Edition",
+      "author": "Mark Richards",
+      "description": "The success of any software application or system depends on the architecture style you use. This updated report presents several common architecture styles to guide designers and developers on how to design components and to help you determine the ways in which those components should interact.",
+      "cover": "Software Architecture Patterns.jpg",
+      "tags": [
+        "Software Architecture",
+        "Code Quality"
+      ]
+    },
+    {
+      "title": "System Design Interview",
+      "subTitle": "An insider's guide",
+      "author": "Alex Xu",
+      "cover": "system design interview.jpg",
+      "description": " This book provides a step-by-step framework for how to tackle a system design question. It includes many real-world examples to illustrate the systematic approach, with detailed steps that you can follow.",
+      "tags": [
+        "Software Architecture",
+        "Code Quality"
+      ]
+    },
+    {
+      "title": "Design Patterns",
+      "subTitle": "Elements of Reusable Object-Oriented Software",
+      "cover": "design patterns.jpg",
+      "author": " Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides",
+      "description": "Capturing a wealth of experience about the design of object-oriented software, four top-notch designers present a catalog of simple and succinct solutions to commonly occurring design problems. Previously undocumented, these 23 patterns allow designers to create more flexible, elegant, and ultimately reusable designs without having to rediscover the design solutions themselves.",
+      "tags": [
+        "Software Architecture",
+        "Code Quality",
+        "Design Patterns"
+      ]
+    },
+    {
+      "title": "Code",
+      "subTitle": "The Hidden Language of Computer Hardware and Software",
+      "author": "Charles Petzold",
+      "cover": "Code: The Hidden Language of Computer Hardware and Software.jpg",
+      "description": "Dives into the fundamental concepts of computer science, starting from basic electrical circuits to the intricate workings of modern computers. The book explores how simple ideas and technologies evolve into complex systems, making the world of computing accessible and engaging for both technical and non-technical readers.",
+      "tags": [
+        "Embedded Systems"
+      ]
+    },
+    {
+      "title": "Refactoring",
+      "subTitle": "Improving the Design of Existing Code",
+      "author": "Martin Fowler, with Kent Beck",
+      "description": "The guide to how to transform code with safe and rapid process, vital to keeping it cheap and easy to modify for future needs.",
+      "cover": "Refactoring.jpg",
+      "tags": [
+        "Code Quality",
+        "JavaScript"
+      ]
+    },
+    {
+      "title": "Clean Coder",
+      "subTitle": "A Code of Conduct for Professional Programmers",
+      "author": "Robert C. Martin",
+      "description": "Programmers who endure and succeed amidst swirling uncertainty and nonstop pressure share a common attribute: They care deeply about the practice of creating software. They treat it as a craft. They are professionals.",
+      "cover": "Clean Coder.jpg",
+      "tags": [
+        "Code Quality"
+      ]
+    },
+    {
+      "title": "Little Book Of Semaphores",
+      "subTitle": "The Ins and Outs of Concurrency Control and Common Mistakes",
+      "author": "Allen B. Downey",
+      "description": "The Little Book of Semaphores is a textbook that introduces the principles of synchronization for concurrent programming. In most computer science curricula, synchronization is a module in an Operating Systems class.",
+      "cover": "LittleBookOfSemaphores.webp",
+      "tags": [
+        "Code Quality",
+        "Concurrency"
+      ]
+    },
+    {
+      "title": "The Pragmatic Programmer",
+      "subTitle": "your journey to mastery",
+      "author": "David Thomas and Andrew Hunt",
+      "description": "Written as a series of self-contained sections and filled with classic and fresh anecdotes, thoughtful examples, and interesting analogies, The Pragmatic Programmer illustrates the best approaches and major pitfalls of many different aspects of software development.",
+      "cover": "The Pragmatic Programmer.jpg",
+      "tags": [
+        "Code Quality",
+        "Proferssionalism"
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "type": "language",
+      "value": "HTML",
+      "image": "html"
+    },
+    {
+      "type": "language",
+      "value": "CSS",
+      "image": "css"
+    },
+    {
+      "type": "language",
+      "value": "NodeJS",
+      "image": "node"
+    },
+    {
+      "type": "language",
+      "value": "Typescript",
+      "image": "ts"
+    },
+    {
+      "type": "language",
+      "value": "Javascript",
+      "image": "javascript"
+    },
+    {
+      "type": "language",
+      "value": "Dart",
+      "image": "dart"
+    },
+    {
+      "type": "language",
+      "value": "Python",
+      "image": "python"
+    },
+    {
+      "type": "language",
+      "value": "Lua",
+      "image": "lua"
+    },
+    {
+      "type": "language",
+      "value": "C#",
+      "image": "c-sharp"
+    },
+    {
+      "type": "language",
+      "value": "Rust",
+      "image": "rust"
+    },
+    {
+      "type": "language",
+      "value": "C/C++",
+      "image": "c"
+    },
+    {
+      "type": "language",
+      "value": "SQL",
+      "image": "sql"
+    },
+    {
+      "type": "technology",
+      "value": "Mantine",
+      "image": "mantine"
+    },
+    {
+      "type": "technology",
+      "value": "Supabase",
+      "image": "supabase"
+    },
+    {
+      "type": "technology",
+      "value": "Svelte",
+      "image": "svelte"
+    },
+    {
+      "type": "language",
+      "value": "Cypher",
+      "image": "cypher"
+    },
+    {
+      "type": "language",
+      "value": "Bash",
+      "image": "bash"
+    },
+    {
+      "type": "technology",
+      "value": "React",
+      "image": "react"
+    },
+    {
+      "type": "technology",
+      "value": "React-Native",
+      "image": "react"
+    },
+    {
+      "type": "technology",
+      "value": "Wireshark",
+      "image": ""
+    },
+    {
+      "type": "technology",
+      "value": "Jest",
+      "image": "jest"
+    },
+    {
+      "type": "technology",
+      "value": "Bootstrap",
+      "image": "bootstrap"
+    },
+    {
+      "type": "technology",
+      "value": "Express",
+      "image": "express"
+    },
+    {
+      "type": "technology",
+      "value": "GraphQl",
+      "image": "graphQl"
+    },
+    {
+      "type": "technology",
+      "value": "ThreeJS",
+      "image": "threejs"
+    },
+    {
+      "type": "technology",
+      "value": "MySQL",
+      "image": "mysql"
+    },
+    {
+      "type": "technology",
+      "value": ".NET",
+      "image": "net"
+    },
+    {
+      "type": "technology",
+      "value": "Flutter",
+      "image": "flutter"
+    },
+    {
+      "type": "technology",
+      "value": "Arduino",
+      "image": "arduino"
+    },
+    {
+      "type": "technology",
+      "value": "Docker",
+      "image": "docker"
+    },
+    {
+      "type": "technology",
+      "value": "Vercel",
+      "image": "vercel"
+    },
+    {
+      "type": "technology",
+      "value": "Svelte",
+      "image": "svelte"
+    },
+    {
+      "type": "technology",
+      "value": "RazorPages",
+      "image": "net"
+    },
+    {
+      "type": "technology",
+      "value": "Next JS",
+      "image": "nextjs"
+    },
+    {
+      "type": "technology",
+      "value": "Neo4j",
+      "image": "neo4j"
+    },
+    {
+      "type": "technology",
+      "value": "GraphQl",
+      "image": "graphql"
+    },
+    {
+      "type": "language",
+      "value": "SMT",
+      "image": "smt"
+    },
+    {
+      "type": "other",
+      "value": "Hack the Box",
+      "image": "hackthebox"
+    },
+    {
+      "type": "other",
+      "value": "Linux",
+      "image": "linux"
+    },
+    {
+      "type": "other",
+      "value": "Windows",
+      "image": "windows"
+    },
+    {
+      "type": "other",
+      "value": "Android",
+      "image": "android"
+    },
+    {
+      "type": "other",
+      "value": "Firebase",
+      "image": "firebase"
+    },
+    {
+      "type": "other",
+      "value": "Heroku",
+      "image": "heroku"
+    },
+    {
+      "type": "course",
+      "value": "\"The Last Algorithms Course You'll Need\" by The Primeagen",
+      "image": "primeagen.webp"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Learning Linux Command Line",
+      "tags": [
+        "Linux",
+        "Linux System Administration",
+        "CLI"
+      ]
+    },
+    {
+      "name": "Linux: Files and Permissions",
+      "tags": [
+        "Linux"
+      ]
+    },
+    {
+      "name": "Ubuntu Linux Professional Certificate by Canonical",
+      "company": "Canonical",
+      "subCertificates": [
+        "Ubuntu Linux: Operating System Basics",
+        "Ubuntu Linux: Storage Management"
+      ],
+      "tags": [
+        "Linux",
+        "Linux System Administration",
+        "Ubuntu",
+        "User Management",
+        "CLI"
+      ]
+    },
+    {
+      "name": "Ubuntu Linux: User and Group Management",
+      "tags": [
+        "Linux System Administration",
+        "Ubuntu",
+        "Linux",
+        "User Management"
+      ]
+    },
+    {
+      "name": "Ubuntu Linux: Operating System Basics",
+      "tags": [
+        "Linux",
+        "Linux System Administration",
+        "Ubuntu"
+      ]
+    },
+    {
+      "name": "Ubuntu Linux: Storage Management",
+      "tags": [
+        "Storage Management",
+        "Linux System Administration",
+        "Ubuntu",
+        "Linux"
+      ]
+    },
+    {
+      "name": "Getting Started with Linux",
+      "tags": [
+        "Linux",
+        "Linux System Administration"
+      ],
+      "subCertificates": [
+        "Introduction to Linux",
+        "Linux: Overview and Installation",
+        "Linux: Files and Permissions"
+      ]
+    },
+    {
+      "name": "Introduction to Linux",
+      "tags": [
+        "Linux"
+      ]
+    },
+    {
+      "name": "IoT Foundations: Operating Systems Fundamentals",
+      "tags": [
+        "Internet of Things (IoT)"
+      ]
+    },
+    {
+      "name": "Linux: Overview and Installation",
+      "tags": [
+        "Linux"
+      ]
+    },
+    {
+      "name": "Prepare for the Red Hat Certified System Administrator (EX200) Exam",
+      "tags": [
+        "Red Hat",
+        "Linux"
+      ],
+      "subCertificates": [
+        "Red Hat Certified System Administrator (EX200) Cert Prep: 1 Deploy, Co nfigure, and Manage",
+        "Red Hat Certified System Administrator (EX200) Cert Prep: 2 File Access, Storage, and Security"
+      ]
+    },
+    {
+      "name": "Red Hat Certified System Administrator (EX200) Cert Prep: 1 Deploy, Configure, and Manage",
+      "tags": [
+        "System Administration",
+        "Red Hat",
+        "Linux"
+      ]
+    },
+    {
+      "name": "Red Hat Certified System Administrator (EX200) Cert Prep: 2 File Access, Storage, and Security",
+      "tags": [
+        "Linux System Administration",
+        "Red Hat",
+        "Linux"
+      ]
+    },
+    {
+      "name": "Linux: Network Configuration",
+      "tags": [
+        "Linux Network Administration",
+        "Linux"
+      ]
+    },
+    {
+      "name": "Go Essentials: Concurrency, Connectivity, and High-Performance Apps",
+      "tags": [
+        "Go (Programming Language)",
+        "Code Quality"
+      ]
+    },
+    {
+      "name": "Master C++",
+      "tags": [
+        "C++",
+        "Concurrent Programming",
+        "Parallel Programming",
+        "Test-Driven Development",
+        "Data Structures",
+        "Software Design Patterns",
+        "Code Quality"
+      ],
+      "subCertificates": [
+        "Complete Guide to C++ Programming Foundations",
+        "Parallel and Concurrent Programming with C++ Part 1",
+        "Parallel and Concurrent Programming with C++ Part 2",
+        "Test-Driven Development in C++",
+        "C++ Design Patterns: Behavioral",
+        "C++ Design Patterns: Creational",
+        "C++ Development: Advanced Concepts, Lambda Expressions, and Best Practices"
+      ]
+    },
+    {
+      "name": "Complete Guide to C++ Programming Foundations",
+      "tags": [
+        "C++"
+      ]
+    },
+    {
+      "name": "Parallel and Concurrent Programming with C++ Part 2",
+      "tags": [
+        "Concurrent Programming",
+        "C++",
+        "Parallel Programming"
+      ]
+    },
+    {
+      "name": "Advanced Linux: The Linux Kernel (2020)",
+      "tags": [
+        "Linux Kernel",
+        "Linux"
+      ]
+    },
+    {
+      "name": "C++ Design Patterns: Behavioral",
+      "tags": [
+        "Software Design Patterns",
+        "Data Structures",
+        "C++"
+      ]
+    },
+    {
+      "name": "C++ Design Patterns: Creational",
+      "tags": [
+        "Data Structures",
+        "Software Design Patterns",
+        "C++"
+      ]
+    },
+    {
+      "name": "C++ Programming Professional Certificate by OpenEDG C++ Institute",
+      "company": "OpenEDG",
+      "subCertificates": [
+        "C++ Design Patterns: Structural",
+        "C++ Development: Advanced Concepts, Lambda Expressions, and Best Practices",
+        "C++ Essential Training"
+      ],
+      "tags": [
+        "Data Structures",
+        "C++"
+      ]
+    },
+    {
+      "name": "C++ Design Patterns: Structural",
+      "tags": [
+        "Data Structures",
+        "Software Design Patterns",
+        "C++"
+      ]
+    },
+    {
+      "name": "C++ Development: Advanced Concepts, Lambda Expressions, and Best Practices",
+      "tags": [
+        "C++"
+      ]
+    },
+    {
+      "name": "C++ Essential Training",
+      "tags": [
+        "C++"
+      ]
+    },
+    {
+      "name": "C++ Standard Template Library",
+      "tags": [
+        "C++"
+      ]
+    },
+    {
+      "name": "Parallel and Concurrent Programming with C++ Part 1",
+      "tags": [
+        "Concurrent Programming",
+        "Parallel Programming",
+        "C++"
+      ]
+    },
+    {
+      "name": "Test-Driven Development in C++",
+      "tags": [
+        "Test-Driven Development",
+        "C++"
+      ]
+    },
+    {
+      "name": "Docker Foundations Professional Certificate",
+      "company": "Docker",
+      "subCertificates": [
+        "Learning Docker",
+        "Docker: Your First Project",
+        "Learning Docker Compose"
+      ],
+      "tags": [
+        "Containerization",
+        "Docker"
+      ]
+    },
+    {
+      "name": "Learning Docker",
+      "tags": [
+        "Docker"
+      ]
+    },
+    {
+      "name": "Docker: Your First Project",
+      "tags": [
+        "Docker"
+      ]
+    },
+    {
+      "name": "Learning Docker Compose",
+      "tags": [
+        "Docker"
+      ]
+    },
+    {
+      "name": "JavaScript Foundations Professional Certificate by Mozilla",
+      "tags": [
+        "Web Development",
+        "JavaScript",
+        "Code Quality"
+      ],
+      "company": "Mozilla",
+      "subCertificates": [
+        "JavaScript Essential Training",
+        "Learning the JavaScript Language"
+      ]
+    },
+    {
+      "name": "JavaScript Essential Training",
+      "tags": [
+        "JavaScript"
+      ]
+    },
+    {
+      "name": "Learning the JavaScript Language",
+      "tags": [
+        "JavaScript"
+      ]
+    },
+    {
+      "name": "Advanced TypeScript Concepts",
+      "tags": [
+        "Web Development",
+        "Front-End Development",
+        "TypeScript",
+        "Code Quality"
+      ]
+    },
+    {
+      "name": "Kubernetes: Native Tools (2018)",
+      "tags": [
+        "Kubernetes"
+      ]
+    },
+    {
+      "name": "Learning Kubernetes",
+      "tags": [
+        "Kubernetes"
+      ]
+    },
+    {
+      "name": "Kubernetes: Your First Project",
+      "tags": [
+        "Kubernetes"
+      ]
+    },
+    {
+      "name": "Raspberry Pi Essential Training",
+      "tags": [
+        "Raspberry Pi",
+        "Internet of Things (IoT)",
+        "Embedded Systems"
+      ]
+    },
+    {
+      "name": "IoT Foundations: Fundamentals",
+      "tags": [
+        "Internet of Things (IoT)",
+        "Embedded Systems"
+      ]
+    },
+    {
+      "name": "Hands-on JavaScript for Ethical Hacking",
+      "ext": "png",
+      "tags": [
+        "Ethical Hacking",
+        "Cybersecurity",
+        "JavaScript"
+      ]
+    },
+    {
+      "name": "Troubleshooting Slow Network with Wireshark",
+      "ext": "png",
+      "tags": [
+        "Ethical Hacking",
+        "Cybersecurity",
+        "Network Security",
+        "Wireshark"
+      ]
+    },
+    {
+      "name": "Neo4j Certified Professional",
+      "company": "Neo4j",
+      "subCertificates": [
+        "Neo4j Fundamentals",
+        "Cypher Fundamentals",
+        "Intermediate Cypher Queries",
+        "Graph Data Modeling Fundamentals",
+        "Importing CSV data into Neo4j",
+        "Intermediate Cypher Queries",
+        "Building Neo4j Applications with Go"
+      ],
+      "tags": [
+        "Databases",
+        "Neo4j",
+        "Cypher",
+        "Go (Programming Language)",
+        "Code Quality"
+      ]
+    },
+    {
+      "name": "Neo4j Fundamentals",
+      "tags": [
+        "Databases",
+        "Neo4j"
+      ]
+    },
+    {
+      "name": "Cypher Fundamentals",
+      "tags": [
+        "Databases",
+        "Cypher"
+      ]
+    },
+    {
+      "name": "Intermediate Cypher Queries",
+      "tags": [
+        "Databases",
+        "Cypher"
+      ]
+    },
+    {
+      "name": "Graph Data Modeling Fundamentals",
+      "tags": [
+        "Databases",
+        "Neo4j"
+      ]
+    },
+    {
+      "name": "Importing CSV data into Neo4j",
+      "tags": [
+        "Databases",
+        "Neo4j"
+      ]
+    },
+    {
+      "name": "Building Neo4j Applications with Go",
+      "tags": [
+        "Databases",
+        "Neo4j",
+        "Go (Programming Language)"
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "E.S.H.A Trojan Horse CTF",
+      "pictures": [
+        "other/trojan-horse-classroom.jpg",
+        "other/trojan-horse-lecture.jpg",
+        "other/trojan-horse-poster.jpeg"
+      ],
+      "description": "It was a mix of web, network, and binary challenges - cookie manipulation, port abuse, steganography, .NET reverse engineering, and even some classic buffer overflow exploitation. Each challenge pushed me to learn something new or dig deeper into old tools in unexpected ways. I especially enjoyed the variety and how it forced me to stay flexible — jumping from Gobuster scans to decoding a payload from an embedded PowerShell script felt like a proper mental workout."
+    },
+    {
+      "name": "Mine the Matrix"
+    },
+    {
+      "name": "Websumit"
+    }
+  ],
+  "spoken-languages": [
+    {
+      "value": "Bulgarian",
+      "level": "Native"
+    },
+    {
+      "value": "English",
+      "level": "C2"
+    },
+    {
+      "value": "Dutch",
+      "level": "B1"
+    },
+    {
+      "value": "German",
+      "level": "B2"
+    },
+    {
+      "value": "French",
+      "level": "B2"
+    },
+    {
+      "value": "Spanish",
+      "level": "B1"
+    },
+    {
+      "value": "Italian",
+      "level": "A1"
+    },
+    {
+      "value": "Portuguese",
+      "level": "A2"
+    }
+  ],
+  "contact": [
+    {
+      "name": "Gmail",
+      "image": "gmail",
+      "address": "alexander.popov233@gmail.com",
+      "url": "mailto:alexander.popov233@gmail.com"
+    },
+    {
+      "name": "Github",
+      "image": "github",
+      "address": "BRISINGR-01",
+      "url": "https://github.com/BRISINGR-01"
+    },
+    {
+      "name": "Gitlab",
+      "image": "gitlab",
+      "address": "BRISINGR-01",
+      "url": "https://gitlab.com/BRISINGR-01"
+    },
+    {
+      "name": "LinkedIn",
+      "image": "linkedin",
+      "address": "alexander-popov-61126825a",
+      "url": "https://www.linkedin.com/in/alexander-popov-61126825a/"
+    },
+    {
+      "name": "X",
+      "image": "x",
+      "address": "AlexPopov233",
+      "url": "https://twitter.com/AlexPopov233"
+    },
+    {
+      "name": "Instagram",
+      "image": "instagram",
+      "address": "@alexan6451",
+      "url": "https://www.instagram.com/alexan6451/"
+    },
+    {
+      "name": "Whatsapp",
+      "image": "whatsapp",
+      "address": "+31620429868",
+      "url": "tel:+31620429868"
+    }
+  ],
+  "files": [
+    {
+      "name": "CV",
+      "image": "cv.pdf"
+    },
+    {
+      "name": "CAE",
+      "image": "CAE.pdf"
+    },
+    {
+      "name": "Recommendation letter",
+      "image": "Recommendation letter - Alexander Popov.pdf"
+    },
+    {
+      "name": "Hack the box badges",
+      "image": "Hack the box.png"
+    },
+    {
+      "name": "DailyDev - Top Reader in Shell",
+      "image": "January 2025 Top Reader in Shell.png"
+    },
+    {
+      "name": "Zelinsoft certificate",
+      "image": "Zelinsoft certificate.png"
+    }
+  ],
+  "external": [
+    {
+      "title": "Flink",
+      "description": ""
+    },
+    {
+      "title": "TSH Event committee",
+      "description": ""
+    },
+    {
+      "title": "Highschool events",
+      "description": ""
+    }
+  ]
+}
