@@ -1,97 +1,110 @@
-import { OrbitControls, useGLTF } from "@react-three/drei";
-import { Canvas, useLoader } from "@react-three/fiber";
-import { Euler, ExtrudeGeometry, MeshStandardMaterial, Shape, TextureLoader, type Texture } from "three";
+import { OrbitControls } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { useControls } from "leva";
+import { Suspense } from "react";
+import { BufferGeometry, Mesh } from "three";
+import {
+	acceleratedRaycast,
+	computeBatchedBoundsTree,
+	computeBoundsTree,
+	disposeBatchedBoundsTree,
+	disposeBoundsTree,
+} from "three-mesh-bvh";
+import { BatchedMesh } from "three/webgpu";
+import Loader from "./Loader";
+import Raycast from "./Raycast";
+import SVGObject, { type SVGObjectProps } from "./SVGObject";
+import Table from "./Table";
 
-function Table() {
-	const { scene } = useGLTF("assets/3d/hologram-table.glb");
-	return <primitive object={scene} scale={40} rotation={[0, 0.77, 0]} />;
-}
+BufferGeometry.prototype.computeBoundsTree = computeBoundsTree;
+BufferGeometry.prototype.disposeBoundsTree = disposeBoundsTree;
+Mesh.prototype.raycast = acceleratedRaycast;
 
-function ImagePlane({ url }) {
-	const texture = useLoader(TextureLoader, url) as Texture;
-
-	// return (
-	// 	<RoundedBox
-	// 		args={[2, 2, 0.5]}
-	// 		rotation={[-0.69, 0.86, 0.82, Euler.DEFAULT_ORDER]}
-	// 		scale={[0.5, 0.5, 0.5]}
-	// 		position={[-1.08, 1.89, 1.05]}
-	// 		material={[
-	// 			new MeshStandardMaterial({ color: "gray" }), // right
-	// 			new MeshStandardMaterial({ color: "gray" }), // left
-	// 			new MeshStandardMaterial({ color: "gray" }), // top
-	// 			new MeshStandardMaterial({ color: "gray" }), // bottom
-	// 			new MeshStandardMaterial({ map: texture }), // front (your image)
-	// 			new MeshStandardMaterial({ color: "gray" }), // back
-	// 		]}
-	// 	/>
-	// );
-	return (
-		<mesh
-			rotation={[-0.69, 0.86, 0.82, Euler.DEFAULT_ORDER]}
-			scale={[0.5, 0.5, 0.5]}
-			position={[-1.08, 1.89, 1.05]}
-			geometry={RoundedBox2({})}
-			material={[
-				new MeshStandardMaterial({ color: "gray" }), // right
-				new MeshStandardMaterial({ color: "gray" }), // left
-				new MeshStandardMaterial({ color: "gray" }), // top
-				new MeshStandardMaterial({ color: "gray" }), // bottom
-				new MeshStandardMaterial({ map: texture }), // front (your image)
-				new MeshStandardMaterial({ color: "gray" }), // back
-			]}
-		>
-			{Array.from({ length: 6 }).map((_, index) => (
-				<meshStandardMaterial
-					key={index}
-					attach={`material-${index}`}
-					color={index === 4 ? undefined : "gray"}
-					map={index === 4 ? texture : undefined}
-				/>
-			))}
-			{/* <boxGeometry args={[2, 2, 0.5]} /> */}
-			{/* <RoundedBox args={[2, 2, 0.5]} /> */}
-		</mesh>
-	);
-}
-
-function RoundedBox2({ width = 2, height = 2, depth = 2, radius = 0.2 }) {
-	// Create rounded rectangle shape
-	const shape = new Shape();
-	const hw = width / 2 - radius;
-	const hh = height / 2 - radius;
-
-	shape.moveTo(-hw, -hh + radius);
-	shape.lineTo(-hw, hh - radius);
-	shape.quadraticCurveTo(-hw, hh, -hw + radius, hh);
-	shape.lineTo(hw - radius, hh);
-	shape.quadraticCurveTo(hw, hh, hw, hh - radius);
-	shape.lineTo(hw, -hh + radius);
-	shape.quadraticCurveTo(hw, -hh, hw - radius, -hh);
-	shape.lineTo(-hw + radius, -hh);
-	shape.quadraticCurveTo(-hw, -hh, -hw, -hh + radius);
-
-	// Extrude to 3D
-	const geometry = new ExtrudeGeometry(shape, {
-		depth: depth,
-		bevelEnabled: false,
-		steps: 1,
-	});
-
-	return geometry;
-}
+BatchedMesh.prototype.computeBoundsTree = computeBatchedBoundsTree;
+BatchedMesh.prototype.disposeBoundsTree = disposeBatchedBoundsTree;
+BatchedMesh.prototype.raycast = acceleratedRaycast;
 
 export default function App() {
+	const svgs: SVGObjectProps[] = [
+		{
+			url: "assets/icons/other/latin-is-simple.svg",
+			scale: 0.0015,
+			position: [-0.38, 0.37, 0],
+			rotation: [0, 0.4, 0],
+			wide: true,
+		},
+		{
+			url: "assets/icons/other/SDG.svg",
+			scale: 0.002,
+			position: [-1.2, 0.63, 0.6],
+			rotation: [0.15, 0.5, 0],
+			wide: false,
+		},
+		{
+			url: "assets/icons/other/2aeg.svg",
+			scale: 0.005,
+			position: [-1.45, -0.31, 0.25],
+			rotation: [-1.54, 0, 0],
+			wide: true,
+		},
+		{
+			url: "assets/icons/other/ASML.svg",
+			scale: 0.002,
+			position: [0.21, 0.2, -0.36],
+			rotation: [-0.35, -0.18, 0.04],
+			wide: true,
+		},
+		{
+			url: "assets/icons/other/ICClogo.svg",
+			scale: 0.001,
+			position: [-0.61, 0.33, 0.1],
+			rotation: [-0.53, -0.11, 0],
+			wide: true,
+		},
+		{
+			url: "assets/icons/other/A1.svg",
+			scale: 0.0015,
+			position: [1.97, 0.4, 0.27],
+			rotation: [-0.04, 0.19, 0],
+			wide: true,
+		},
+	];
+
+	for (const svg of svgs) {
+		// eslint-disable-next-line react-hooks/rules-of-hooks
+		const ctrl = useControls(svg.url.split("/").at(-1)!.replace(".svg", ""), {
+			position: {
+				x: svg.position[0],
+				y: svg.position[1],
+				z: svg.position[2],
+			},
+			rotation: {
+				value: {
+					x: svg.rotation ? svg.rotation[0] : 0,
+					y: svg.rotation ? svg.rotation[1] : 0,
+					z: svg.rotation ? svg.rotation[2] : 0,
+				},
+			},
+		});
+
+		svg.position = [ctrl.position.x, ctrl.position.y, ctrl.position.z];
+		svg.rotation = [ctrl.rotation.x, ctrl.rotation.y, ctrl.rotation.z];
+	}
+
 	return (
-		<Canvas camera={{ position: [5, 5, 5], fov: 50 }}>
-			<ambientLight intensity={0.4} />
-			<pointLight position={[5, 5, 2]} intensity={6} />
-			{/* <DebugControl> */}
-			<ImagePlane url="assets/images/latin-is-simple-logo-blue.png" />
-			{/* </DebugControl> */}
-			<Table />
+		<Canvas camera={{ position: [1, 1, 6], fov: 50 }} shadows gl={{ antialias: true }} frameloop="always">
+			<ambientLight intensity={0.7} />
+			<directionalLight intensity={1} position={[200, 100, 300]} castShadow={true} />
 
 			<OrbitControls />
+			<Suspense fallback={<Loader />}>
+				<Raycast onClick={(m: Mesh) => console.log(m.name)}>
+					{svgs.map((props, i) => (
+						<SVGObject key={i} {...props} />
+					))}
+				</Raycast>
+				<Table />
+			</Suspense>
 		</Canvas>
 	);
 }

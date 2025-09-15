@@ -1,3 +1,9 @@
+:root {
+	--primary: #54baf5;
+	--secondary: #04152d;
+	--tertiary: #6ff1d5;
+}
+
 * {
 	box-sizing: border-box;
 }
