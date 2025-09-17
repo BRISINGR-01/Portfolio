@@ -24,45 +24,45 @@ BatchedMesh.prototype.computeBoundsTree = computeBatchedBoundsTree;
 BatchedMesh.prototype.disposeBoundsTree = disposeBatchedBoundsTree;
 BatchedMesh.prototype.raycast = acceleratedRaycast;
 
-export default function App() {
+export default function Portfolio3D() {
 	const svgs: SVGObjectProps[] = [
 		{
-			url: "assets/icons/other/latin-is-simple.svg",
+			url: "/icons/other/latin-is-simple.svg",
 			scale: 0.0015,
 			position: [-0.38, 0.37, 0],
 			rotation: [0, 0.4, 0],
 			wide: true,
 		},
 		{
-			url: "assets/icons/other/SDG.svg",
+			url: "/icons/other/SDG.svg",
 			scale: 0.002,
 			position: [-1.2, 0.63, 0.6],
 			rotation: [0.15, 0.5, 0],
 			wide: false,
 		},
 		{
-			url: "assets/icons/other/2aeg.svg",
+			url: "/icons/other/2aeg.svg",
 			scale: 0.005,
 			position: [-1.45, -0.31, 0.25],
 			rotation: [-1.54, 0, 0],
 			wide: true,
 		},
 		{
-			url: "assets/icons/other/ASML.svg",
+			url: "/icons/other/ASML.svg",
 			scale: 0.002,
 			position: [0.21, 0.2, -0.36],
 			rotation: [-0.35, -0.18, 0.04],
 			wide: true,
 		},
 		{
-			url: "assets/icons/other/ICClogo.svg",
+			url: "/icons/other/ICClogo.svg",
 			scale: 0.001,
 			position: [-0.61, 0.33, 0.1],
 			rotation: [-0.53, -0.11, 0],
 			wide: true,
 		},
 		{
-			url: "assets/icons/other/A1.svg",
+			url: "/icons/other/A1.svg",
 			scale: 0.0015,
 			position: [1.97, 0.4, 0.27],
 			rotation: [-0.04, 0.19, 0],
@@ -71,6 +71,8 @@ export default function App() {
 	];
 
 	for (const svg of svgs) {
+		if (!import.meta.env.DEV) continue;
+
 		// eslint-disable-next-line react-hooks/rules-of-hooks
 		const ctrl = useControls(svg.url.split("/").at(-1)!.replace(".svg", ""), {
 			position: {
@@ -95,8 +97,8 @@ export default function App() {
 		<Canvas camera={{ position: [1, 1, 6], fov: 50 }} shadows gl={{ antialias: true }} frameloop="always">
 			<ambientLight intensity={0.7} />
 			<directionalLight intensity={1} position={[200, 100, 300]} castShadow={true} />
-
 			<OrbitControls />
+
 			<Suspense fallback={<Loader />}>
 				<Raycast onClick={(m: Mesh) => console.log(m.name)}>
 					{svgs.map((props, i) => (

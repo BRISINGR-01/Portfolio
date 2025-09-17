@@ -1,5 +1,5 @@
 import { Html } from "@react-three/drei";
-import "./loader.css";
+import "../../css/loader.css";
 
 export default function Loader() {
 	return (

@@ -2,7 +2,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import React, { useEffect, useRef } from "react";
 import { Vector2, type Group, type Mesh } from "three";
 import { EffectComposer, OutlinePass, OutputPass, RenderPass } from "three/examples/jsm/Addons.js";
-import { COLOR_PALETTE, RAYCAST_CONTAINER_NAME } from "./constants";
+import { COLOR_PALETTE, RAYCAST_CONTAINER_NAME } from "../../constants";
 
 export default function Raycast(props: {
 	onClick: (m: Mesh) => void;

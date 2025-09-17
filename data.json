@@ -345,6 +345,16 @@
         "Code Quality",
         "Proferssionalism"
       ]
+    },
+    {
+      "title": "In the Beginning... Was the Command Line",
+      "author": "Neal Stephenson",
+      "description": "A compelling essay on the history and politics of the early days of operating sytems.",
+      "cover": "In The Beginning....png",
+      "tags": [
+        "Linux",
+        "Operating Systems"
+      ]
     }
   ],
   "entities": [
