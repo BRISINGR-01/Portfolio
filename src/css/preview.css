@@ -144,3 +144,12 @@ body {
 #tooltip-button {
 	cursor: pointer;
 }
+
+.daily-dev-card {
+	width: 100%;
+	border-radius: 20px;
+}
+
+.daily-dev-card:hover {
+	box-shadow: 0 0 8px 1px #fff;
+}

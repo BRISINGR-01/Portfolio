@@ -10,6 +10,8 @@ createRoot(document.getElementById("root")!).render(
 	<BrowserRouter>
 		<Routes>
 			<Route index element={import.meta.env.DEV ? <Portfolio3D /> : <Preview />} />
+			<Route index path="demo" element={<Portfolio3D />} />
+			<Route index path="preview" element={<Preview />} />
 			<Route path="em" element={<Emergency />} />
 			<Route path="plain" element={<PortfolioPlain />} />
 		</Routes>

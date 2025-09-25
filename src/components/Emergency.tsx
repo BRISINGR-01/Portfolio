@@ -12,7 +12,7 @@ export default function Emergency() {
 	];
 
 	return (
-		<div className="container">
+		<div className="contacts-container">
 			<h1>Emergency Contacts</h1>
 			<ul className="contact-list">
 				{contacts.map((contact, index) => (
