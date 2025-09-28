@@ -29,6 +29,8 @@
   "include": [
     "src",
     "vite.config.ts",
-    "public/linkdin.js"
+    "public/linkdin.js",
+    "public/dependencies/FilmShader.js",
+    "public/dependencies/BadTVShader.js"
   ]
 }

@@ -20,3 +20,6 @@ window.addEventListener("DOMContentLoaded", () => {
 	COLOR_PALETTE.SECONDARY = style.getPropertyValue("--secondary");
 	COLOR_PALETTE.TERTIARY = style.getPropertyValue("--tertiary");
 });
+
+export const DEFAULT_LAYER = 0;
+export const OCCLUSION_LAYER = 1;

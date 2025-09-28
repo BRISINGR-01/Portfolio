@@ -4,6 +4,8 @@ import Portfolio3D from "./components/3d/Portfolio3D";
 import Emergency from "./components/Emergency";
 import PortfolioPlain from "./components/PortforlioPlain";
 import Preview from "./components/Preview";
+
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/index.css";
 
 createRoot(document.getElementById("root")!).render(

@@ -1,4 +1,4 @@
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useControls } from "leva";
 import { Suspense } from "react";
@@ -11,6 +11,7 @@ import {
 	disposeBoundsTree,
 } from "three-mesh-bvh";
 import { BatchedMesh } from "three/webgpu";
+import Menu from "../Menu";
 import Loader from "./Loader";
 import Raycast from "./Raycast";
 import SVGObject, { type SVGObjectProps } from "./SVGObject";
@@ -27,45 +28,51 @@ BatchedMesh.prototype.raycast = acceleratedRaycast;
 export default function Portfolio3D() {
 	const svgs: SVGObjectProps[] = [
 		{
+			id: "latin-is-simple",
 			url: "/icons/other/latin-is-simple.svg",
 			scale: 0.0015,
-			position: [-0.38, 0.37, 0],
-			rotation: [0, 0.4, 0],
+			position: [-0.2, 0.4, -0.1],
+			rotation: [-0.2, 0.2, 0],
 			wide: true,
 		},
 		{
+			id: "SDG",
 			url: "/icons/other/SDG.svg",
 			scale: 0.002,
-			position: [-1.2, 0.63, 0.6],
-			rotation: [0.15, 0.5, 0],
+			position: [-0.8, 0.73, 0.55],
+			rotation: [0.4, 0.4, 0.4],
 			wide: false,
 		},
 		{
+			id: "2aeg",
 			url: "/icons/other/2aeg.svg",
 			scale: 0.005,
-			position: [-1.45, -0.31, 0.25],
-			rotation: [-1.54, 0, 0],
+			position: [-0.5, -0.3, 0.2],
+			rotation: [-1.5, 0, -0.5],
 			wide: true,
 		},
 		{
+			id: "ASML",
 			url: "/icons/other/ASML.svg",
 			scale: 0.002,
-			position: [0.21, 0.2, -0.36],
-			rotation: [-0.35, -0.18, 0.04],
+			position: [0.5, 0.19, -0.4],
+			rotation: [-0.4, -0.5, 0.2],
 			wide: true,
 		},
 		{
+			id: "ICC",
 			url: "/icons/other/ICClogo.svg",
 			scale: 0.001,
-			position: [-0.61, 0.33, 0.1],
-			rotation: [-0.53, -0.11, 0],
+			position: [1.9, 0.45, 0.65],
+			rotation: [-0.2, 0.2, 0],
 			wide: true,
 		},
 		{
+			id: "A1",
 			url: "/icons/other/A1.svg",
 			scale: 0.0015,
-			position: [1.97, 0.4, 0.27],
-			rotation: [-0.04, 0.19, 0],
+			position: [-1.4, 0.4, 0.4],
+			rotation: [-0.3, 0, 0],
 			wide: true,
 		},
 	];
@@ -91,22 +98,34 @@ export default function Portfolio3D() {
 
 		svg.position = [ctrl.position.x, ctrl.position.y, ctrl.position.z];
 		svg.rotation = [ctrl.rotation.x, ctrl.rotation.y, ctrl.rotation.z];
+		window[svg.id] = ctrl;
 	}
 
 	return (
-		<Canvas camera={{ position: [1, 1, 6], fov: 50 }} shadows gl={{ antialias: true }} frameloop="always">
-			<ambientLight intensity={0.7} />
-			<directionalLight intensity={1} position={[200, 100, 300]} castShadow={true} />
-			<OrbitControls />
+		<>
+			<Canvas shadows gl={{ antialias: true }} frameloop="always">
+				<PerspectiveCamera position={[-1.6, 1.4, 5.5]} fov={50} makeDefault />
+				<ambientLight intensity={0.7} />
+				<directionalLight intensity={1} position={[200, 100, 300]} castShadow={true} />
+				<OrbitControls />
 
-			<Suspense fallback={<Loader />}>
-				<Raycast onClick={(m: Mesh) => console.log(m.name)}>
-					{svgs.map((props, i) => (
-						<SVGObject key={i} {...props} />
-					))}
-				</Raycast>
-				<Table />
-			</Suspense>
-		</Canvas>
+				<Suspense fallback={<Loader />}>
+					<Raycast
+						onClick={(m: Mesh) =>
+							window.navigator.clipboard.writeText(`position: [${window[m.name].position.x}, ${
+								window[m.name].position.y
+							}, ${window[m.name].position.z}],
+								rotation: [${window[m.name].rotation.x}, ${window[m.name].rotation.y}, ${window[m.name].rotation.z}],`)
+						}
+					>
+						{svgs.slice(0, 1).map((props, i) => (
+							<SVGObject key={i} {...props} />
+						))}
+					</Raycast>
+					<Table text="Internships and Big Projects" />
+				</Suspense>
+			</Canvas>
+			<Menu />
+		</>
 	);
 }

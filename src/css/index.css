@@ -1,7 +1,20 @@
 :root {
-	--primary: #54baf5;
-	--secondary: #04152d;
-	--tertiary: #6ff1d5;
+	--primary: rgb(84, 186, 245);
+	--bs-primary: var(--primary);
+	--bs-primary-rgb: 84, 186, 245;
+	--secondary: rgb(4, 21, 45);
+	--bs-secondary: #04152d;
+	--bs-secondary-rgb: var(--secondary);
+	--tertiary: rgb(111, 241, 213);
+	--bs-tertiary: var(--tertiary);
+	--bs-tertiary-rgb: 111, 241, 213;
+
+	--hologram: rgb(110, 127, 188);
+	--hologram-light: rgb(175, 243, 248);
+
+	--holo-blue: rgba(82, 195, 255, 0.18);
+	--holo-cyan: rgba(0, 255, 230, 0.08);
+	--glow: rgba(64, 240, 255, 0.25);
 }
 
 * {
@@ -21,4 +34,159 @@ body,
 body {
 	position: fixed;
 	overflow: hidden;
+}
+
+.modal-backdrop {
+	background: rgba(0, 255, 255, 0);
+}
+
+.modal-content {
+	-webkit-backdrop-filter: blur(5px);
+	backdrop-filter: blur(5px);
+	background: rgba(109, 245, 255, 0.822);
+	border: 3px solid white;
+	border-radius: 10px;
+}
+
+.holo-wrapper {
+	--holo-blue: rgba(82, 195, 255, 0.18);
+	border: 1px solid rgba(80, 200, 255, 0.06);
+	padding: 12px;
+	position: relative;
+	overflow: hidden;
+}
+
+/* flicker & scanline animation */
+@keyframes holo-flicker {
+	0% {
+		opacity: 0.98;
+		transform: translateY(0);
+	}
+	50% {
+		opacity: 0.92;
+		transform: translateY(-0.5px);
+	}
+	100% {
+		opacity: 0.98;
+		transform: translateY(0);
+	}
+}
+
+@keyframes scanline {
+	0% {
+		background-position: 0 -200px;
+	}
+	100% {
+		background-position: 0 200px;
+	}
+}
+
+.holo-panel::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background-image: linear-gradient(180deg, rgba(80, 240, 255, 0.02), transparent 20%);
+	mix-blend-mode: screen;
+	animation: holo-flicker 3s infinite linear;
+}
+
+.holo-panel::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+	background-size: 100% 6px;
+	opacity: 0.6;
+	transform-origin: top left;
+	animation: scanline 6s linear infinite;
+	mix-blend-mode: overlay;
+}
+
+.holo-item {
+	color: #bfefff;
+	border-radius: 8px;
+	padding: 10px 12px;
+	margin: 4px 0;
+	transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02));
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.02) inset;
+	border: 1px solid rgba(0, 200, 255, 0.04);
+}
+.holo-item:hover {
+	transform: translateY(-4px) scale(1.005);
+	box-shadow: 0 8px 30px rgba(0, 200, 255, 0.06), 0 0 18px rgba(0, 200, 255, 0.06);
+	background: linear-gradient(180deg, rgba(82, 195, 255, 0.02), rgba(0, 255, 230, 0.01));
+}
+
+.holo-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 999px;
+	background: radial-gradient(
+		circle at 35% 30%,
+		rgba(255, 255, 255, 0.9),
+		rgba(82, 195, 255, 1) 40%,
+		rgba(0, 200, 255, 0.4) 70%
+	);
+	box-shadow: 0 0 8px rgba(0, 200, 255, 0.65), 0 0 20px rgba(82, 195, 255, 0.12) inset;
+}
+
+.holo-button {
+	width: 100%;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 8px 12px;
+	border-radius: 10px;
+	border: 1px solid rgba(0, 200, 255, 0.06);
+	background: linear-gradient(180deg, rgba(10, 20, 30, 0.18), rgba(0, 0, 0, 0.02));
+	box-shadow: 0 6px 24px rgba(0, 180, 220, 0.03);
+	color: #d7fbff;
+}
+
+.holo-button:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 12px 40px rgba(0, 200, 255, 0.08);
+}
+
+.holo-dropdown {
+	background: linear-gradient(180deg, rgba(8, 12, 18, 0.7), rgba(6, 10, 14, 0.45));
+	border: 1px solid rgba(80, 200, 255, 0.06);
+	box-shadow: 0 8px 28px rgba(0, 0, 0, 0.6);
+	color: #cfeef8;
+}
+
+/* outer holographic border lines (striped border) */
+.holo-wrapper::before {
+	content: "";
+	position: absolute;
+	inset: -1.6px;
+	border-radius: 20px;
+	background: linear-gradient(90deg, rgba(0, 200, 255, 0.06), rgba(82, 195, 255, 0.03));
+	-webkit-mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0) border-box;
+	mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0) border-box;
+	pointer-events: none;
+}
+
+/* subtle triangular base to simulate a projector */
+.holo-wrapper::after {
+	content: "";
+	position: absolute;
+	bottom: -26px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 140px;
+	height: 40px;
+	background: radial-gradient(ellipse at center, rgba(0, 200, 255, 0.06), rgba(0, 0, 0, 0));
+	filter: blur(12px);
+	pointer-events: none;
+}
+
+/* responsive tweaks */
+@media (max-width: 640px) {
+	.holo-wrapper {
+		padding: 12px;
+	}
 }

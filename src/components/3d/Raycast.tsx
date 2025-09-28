@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import { Vector2, type Group, type Mesh } from "three";
 import { EffectComposer, OutlinePass, OutputPass, RenderPass } from "three/examples/jsm/Addons.js";
 import { COLOR_PALETTE, RAYCAST_CONTAINER_NAME } from "../../constants";
+import HologramEffect from "./HologramEffect";
 
 export default function Raycast(props: {
 	onClick: (m: Mesh) => void;
@@ -13,7 +14,9 @@ export default function Raycast(props: {
 	const mouse = useRef(new Vector2());
 	const composer = useRef(new EffectComposer(gl));
 
-	useFrame(() => composer.current.render(), 0);
+	useFrame(() => {
+		// composer.current.render();
+	}, 0);
 
 	useEffect(() => {
 		raycaster.firstHitOnly = true;
@@ -38,7 +41,7 @@ export default function Raycast(props: {
 		}
 
 		const canvas = gl.domElement;
-		const rect = canvas.getBoundingClientRect();
+		let rect = canvas.getBoundingClientRect();
 		function onMove(e: PointerEvent) {
 			if (!groupRef.current) return;
 
@@ -67,11 +70,17 @@ export default function Raycast(props: {
 			if (hovered) props.onClick(hovered);
 		}
 
+		function onResize() {
+			rect = canvas.getBoundingClientRect();
+		}
+
 		canvas.addEventListener("click", onClick);
 		canvas.addEventListener("pointermove", onMove);
+		window.addEventListener("resize", onResize);
 		return () => {
 			canvas.removeEventListener("pointermove", onMove);
 			canvas.removeEventListener("click", onClick);
+			window.removeEventListener("resize", onResize);
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
@@ -79,6 +88,7 @@ export default function Raycast(props: {
 	return (
 		<group ref={groupRef} name={RAYCAST_CONTAINER_NAME}>
 			{props.children}
+			<HologramEffect composer={composer.current}>{props.children[0]}</HologramEffect>
 		</group>
 	);
 }
