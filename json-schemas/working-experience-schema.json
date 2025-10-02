@@ -1,0 +1,122 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "items": [
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "logo": {
+          "type": "string"
+        },
+        "timespan": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "context": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "technologies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "percentage": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "name",
+              "percentage"
+            ]
+          }
+        },
+        "3d-logo": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            },
+            "scale": {
+              "type": "number"
+            },
+            "position": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            },
+            "rotation": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "wide": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "id",
+            "url",
+            "scale",
+            "position",
+            "rotation",
+            "wide"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "type",
+        "logo",
+        "timespan",
+        "context",
+        "description",
+        "technologies",
+        "3d-logo"
+      ]
+    }
+  ]
+}

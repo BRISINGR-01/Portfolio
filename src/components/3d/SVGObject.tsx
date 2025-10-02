@@ -2,18 +2,9 @@ import { useLoader } from "@react-three/fiber";
 import { useMemo } from "react";
 import { Color, DoubleSide, ExtrudeGeometry, MeshPhongMaterial, Vector3 } from "three";
 import { SVGLoader } from "three/examples/jsm/Addons.js";
-import { calculateSVGPathRenderOffset, DEFAULT_SVG_ROTATION } from "../../constants";
+import { calculateSVGPathRenderOffset, DEFAULT_SVG_ROTATION, type Logo3DParams } from "../../constants";
 
-export type SVGObjectProps = {
-	id: string;
-	url: string;
-	position: Vector3 | [x: number, y: number, z: number];
-	rotation?: [x: number, y: number, z: number];
-	scale: number;
-	wide?: boolean;
-};
-
-export default function SVGObject(props: SVGObjectProps) {
+export default function SVGObject(props: Logo3DParams) {
 	const data = useLoader(SVGLoader, props.url);
 
 	const shapes = useMemo(() => {
@@ -21,6 +12,9 @@ export default function SVGObject(props: SVGObjectProps) {
 
 		return data.paths.flatMap((path) => {
 			const material = new MeshPhongMaterial({
+				// transparent: true,
+				// opacity: 0.5,
+				// color: new Color().setStyle(COLOR_PALETTE.PRIMARY),
 				color: new Color().setStyle(path.userData!.style.fill),
 				side: DoubleSide,
 				depthWrite: true,
@@ -35,6 +29,8 @@ export default function SVGObject(props: SVGObjectProps) {
 			// });
 			material.polygonOffset = true;
 			material.polygonOffsetFactor = 1;
+			// material.emissive = new Color(0x00aaff);
+			// material.emissiveIntensity = 1.5;
 
 			return SVGLoader.createShapes(path).map((shape) => {
 				const geometry = new ExtrudeGeometry(shape, {

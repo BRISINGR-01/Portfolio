@@ -1,14 +1,10 @@
 import { useGLTF } from "@react-three/drei";
 import { useEffect } from "react";
-import type { Scene } from "three";
 import { fixGLTFDepth } from "../../utils";
 import Text from "./Text";
 
-export default function Table({ text, scene: scene2 }: { text: string; scene: Scene }) {
+export default function Table({ text }: { text: string }) {
 	const { scene } = useGLTF("/3d/hologram-table.glb");
-	console.log(scene2);
-
-	if (scene2) scene2.add(scene);
 
 	useEffect(() => fixGLTFDepth(scene));
 

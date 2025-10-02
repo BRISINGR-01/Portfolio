@@ -1,0 +1,162 @@
+[
+  {
+    "name": "HTML",
+    "url": "icons/technologies/html.svg"
+  },
+  {
+    "name": "CSS",
+    "url": "icons/technologies/css.svg"
+  },
+  {
+    "name": "Node JS",
+    "url": "icons/technologies/node.svg"
+  },
+  {
+    "name": "Typescript",
+    "url": "icons/technologies/ts.svg"
+  },
+  {
+    "name": "Javascript",
+    "url": "icons/technologies/javascript.svg"
+  },
+  {
+    "name": "Dart",
+    "url": "icons/technologies/dart.svg"
+  },
+  {
+    "name": "Python",
+    "url": "icons/technologies/python.svg"
+  },
+  {
+    "name": "Lua",
+    "url": "icons/technologies/lua.svg"
+  },
+  {
+    "name": "C#",
+    "url": "icons/technologies/c-sharp.svg"
+  },
+  {
+    "name": "Rust",
+    "url": "icons/technologies/rust.svg"
+  },
+  {
+    "name": "C/C++",
+    "url": "icons/technologies/c.svg"
+  },
+  {
+    "name": "SQL",
+    "url": "icons/technologies/sql.svg"
+  },
+  {
+    "name": "Supabase",
+    "url": "icons/technologies/supabase.svg"
+  },
+  {
+    "name": "Cypher",
+    "url": "icons/technologies/cypher.svg"
+  },
+  {
+    "name": "Bash",
+    "url": "icons/technologies/bash.svg"
+  },
+  {
+    "name": "React",
+    "url": "icons/technologies/react.svg"
+  },
+  {
+    "name": "React-Native",
+    "url": "icons/technologies/react.svg"
+  },
+  {
+    "name": "Wireshark",
+    "url": "icons/technologies/wireshark.svg"
+  },
+  {
+    "name": "Jest",
+    "url": "icons/technologies/jest.svg"
+  },
+  {
+    "name": "Bootstrap",
+    "url": "icons/technologies/bootstrap.svg"
+  },
+  {
+    "name": "Express",
+    "url": "icons/technologies/express.svg"
+  },
+  {
+    "name": "GraphQl",
+    "url": "icons/technologies/graphQl.svg"
+  },
+  {
+    "name": "ThreeJS",
+    "url": "icons/technologies/threejs.svg"
+  },
+  {
+    "name": "MySQL",
+    "url": "icons/technologies/mysql.svg"
+  },
+  {
+    "name": ".NET",
+    "url": "icons/technologies/net.svg"
+  },
+  {
+    "name": "Flutter",
+    "url": "icons/technologies/flutter.svg"
+  },
+  {
+    "name": "Arduino",
+    "url": "icons/technologies/arduino.svg"
+  },
+  {
+    "name": "Docker",
+    "url": "icons/technologies/docker.svg"
+  },
+  {
+    "name": "Vercel",
+    "url": "icons/technologies/vercel.svg"
+  },
+  {
+    "name": "RazorPages",
+    "url": "icons/technologies/net.svg"
+  },
+  {
+    "name": "Next JS",
+    "url": "icons/technologies/nextjs.svg"
+  },
+  {
+    "name": "Neo4j",
+    "url": "icons/technologies/neo4j.svg"
+  },
+  {
+    "name": "GraphQl",
+    "url": "icons/technologies/graphql.svg"
+  },
+  {
+    "name": "SMT",
+    "url": "icons/technologies/smt.svg"
+  },
+  {
+    "name": "Hack the Box",
+    "url": "icons/technologies/hackthebox.svg"
+  },
+  {
+    "name": "Linux",
+    "url": "icons/technologies/linux.svg"
+  },
+  {
+    "name": "Windows",
+    "url": "icons/technologies/windows.svg"
+  },
+  {
+    "name": "Android",
+    "url": "icons/technologies/android.svg"
+  },
+  {
+    "name": "Firebase",
+    "url": "icons/technologies/firebase.svg"
+  },
+  {
+    "name": "Heroku",
+    "url": "icons/technologies/heroku.svg"
+  }
+]

@@ -3,10 +3,9 @@ import React, { useEffect, useRef } from "react";
 import { Vector2, type Group, type Mesh } from "three";
 import { EffectComposer, OutlinePass, OutputPass, RenderPass } from "three/examples/jsm/Addons.js";
 import { COLOR_PALETTE, RAYCAST_CONTAINER_NAME } from "../../constants";
-import HologramEffect from "./HologramEffect";
 
 export default function Raycast(props: {
-	onClick: (m: Mesh) => void;
+	onClick: (m: Mesh | null) => void;
 	children: React.JSX.Element | React.JSX.Element[];
 }) {
 	const groupRef = useRef<Group>(null);
@@ -15,7 +14,7 @@ export default function Raycast(props: {
 	const composer = useRef(new EffectComposer(gl));
 
 	useFrame(() => {
-		// composer.current.render();
+		composer.current.render();
 	}, 0);
 
 	useEffect(() => {
@@ -67,7 +66,7 @@ export default function Raycast(props: {
 		}
 
 		function onClick() {
-			if (hovered) props.onClick(hovered);
+			props.onClick(hovered);
 		}
 
 		function onResize() {
@@ -82,13 +81,13 @@ export default function Raycast(props: {
 			canvas.removeEventListener("click", onClick);
 			window.removeEventListener("resize", onResize);
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
+		//  eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
 		<group ref={groupRef} name={RAYCAST_CONTAINER_NAME}>
 			{props.children}
-			<HologramEffect composer={composer.current}>{props.children[0]}</HologramEffect>
+			{/* <HologramEffect composer={composer.current}>{props.children}</HologramEffect> */}
 		</group>
 	);
 }

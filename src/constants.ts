@@ -23,3 +23,34 @@ window.addEventListener("DOMContentLoaded", () => {
 
 export const DEFAULT_LAYER = 0;
 export const OCCLUSION_LAYER = 1;
+
+export type WorkingExperience = {
+	id: string;
+	title: string;
+	logo: string;
+	timespan: [string, string];
+	/** Short introduction on the company/setting */
+	context: string;
+	/** What I did there */
+	description: string;
+	technologies: { name: string; percentage: number }[];
+	languages?: { id: string; percentage: number };
+	"3d-logo": Logo3DParams;
+};
+
+export type Logo3DParams = {
+	id: string;
+	url: string;
+	position: Vector3 | [x: number, y: number, z: number];
+	rotation?: [x: number, y: number, z: number];
+	scale: number;
+	wide?: boolean;
+};
+
+export type Language = {
+	id: string;
+	name: string;
+	flag: string;
+};
+
+export const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];

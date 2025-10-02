@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import { FrontSide, Material, type Group, type Mesh, type Object3D } from "three";
-
+import { MONTHS } from "./constants";
 export function fixMaterialDepth(material: Material) {
 	material.depthWrite = true;
 	material.depthTest = true;
@@ -21,4 +22,24 @@ export function fixGLTFDepth(scene: Group) {
 
 		child.geometry.computeVertexNormals();
 	});
+}
+
+export function parseTimeSpan(str: string) {
+	const [m, y] = str.split("/").map(Number).slice(1);
+
+	return `${MONTHS[m]} ${y}`;
+}
+
+export function useIcon() {
+	const [icons, setIcons] = useState<{ name: string; url: string }[]>([]);
+
+	useEffect(() => {
+		if (icons.length) return;
+
+		fetch("/icons.json")
+			.then((res) => res.json())
+			.then((data) => setIcons(data));
+	}, []);
+
+	return icons;
 }

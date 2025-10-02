@@ -1,7 +1,7 @@
 // Refurbished from https://codepen.io/peterhry/pen/egzjGR
 
 import { useFrame, useThree } from "@react-three/fiber";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import {
 	EffectComposer,
@@ -14,7 +14,6 @@ import {
 import BadTVShader from "../../../public/dependencies/BadTVShader";
 import FilmShader from "../../../public/dependencies/FilmShader";
 import { COLOR_PALETTE, DEFAULT_LAYER, OCCLUSION_LAYER } from "../../constants";
-import Table from "./Table";
 
 function getImageTexture(image: HTMLImageElement, density = 1) {
 	const canvas = document.createElement("canvas") as HTMLCanvasElement;
@@ -80,22 +79,21 @@ function setupPostprocessing(renderer: THREE.WebGLRenderer, scene: THREE.Scene, 
 	occlusionComposer.addPass(vBlur);
 	occlusionComposer.addPass(hBlur);
 
-	// Main Composer
-	const renderTarget = new THREE.WebGLRenderTarget(width, height);
-	const composer = new EffectComposer(renderer, renderTarget);
-	composer.addPass(new RenderPass(scene, camera));
+	const hologramRenderTarget = new THREE.WebGLRenderTarget(width, height);
+	const hologramComposer = new EffectComposer(renderer, hologramRenderTarget);
+	hologramComposer.addPass(new RenderPass(scene, camera));
 
 	const badTVPass = new ShaderPass(BadTVShader);
 	badTVPass.uniforms.distortion.value = 1;
 	badTVPass.uniforms.distortion2.value = 1;
-	badTVPass.uniforms.speed.value = 0.1;
+	badTVPass.uniforms.speed.value = 0.2;
 	badTVPass.uniforms.rollSpeed.value = 0;
 	occlusionComposer.addPass(badTVPass);
-	composer.addPass(badTVPass); // distortion
+	hologramComposer.addPass(badTVPass); // distortion
 
 	const bloomPass = new UnrealBloomPass(new THREE.Vector2(width, height), 0.2, 0.8, 0.3);
-	bloomPass.strength = 1;
-	composer.addPass(bloomPass); // glow
+	bloomPass.strength = 0;
+	hologramComposer.addPass(bloomPass); // glow
 
 	// Film pass
 	const filmPass = new ShaderPass(FilmShader);
@@ -103,18 +101,19 @@ function setupPostprocessing(renderer: THREE.WebGLRenderer, scene: THREE.Scene, 
 	filmPass.uniforms.grayscale.value = false;
 	filmPass.uniforms.sIntensity.value = 2.5;
 	filmPass.uniforms.nIntensity.value = 0.2;
-	composer.addPass(filmPass); // lines
+	hologramComposer.addPass(filmPass); // lines
 
 	// Blend occRenderTarget into main render target
 	const blendPass = new ShaderPass(AdditiveBlendingShader);
 	blendPass.uniforms.tAdd.value = occRenderTarget.texture;
-	composer.addPass(blendPass); // blue tint
+	// hologramComposer.addPass(blendPass); // blue tint
 
 	return {
 		badTVPass,
 		occlusionComposer,
 		filmPass,
-		composer,
+		composer: hologramComposer,
+		hologramRenderTarget,
 	};
 }
 
@@ -126,41 +125,67 @@ export default function HologramEffect(props: {
 	const filmPass = useRef<ShaderPass>(null);
 	const badTVPass = useRef<ShaderPass>(null);
 	const occlusionComposer = useRef<EffectComposer>(null);
+	const hologramComposer = useRef<EffectComposer>(null);
 	const composer = useRef<EffectComposer>(null);
 
-	const occlusionScene = useMemo(() => new THREE.Scene(), []);
-
 	useFrame(() => {
+		// if (1 - 1 === 0) return;
 		if (filmPass.current) filmPass.current.uniforms.time.value += clock.getDelta();
 		if (badTVPass.current) badTVPass.current.uniforms.time.value += 0.01;
 
 		// order matters
 
-		camera.layers.set(DEFAULT_LAYER);
 		if (occlusionComposer.current) {
-			camera.layers.set(OCCLUSION_LAYER);
-			occlusionComposer.current.render();
+			// camera.layers.set(OCCLUSION_LAYER);
+			// occlusionComposer.current.render();
 		}
 
-		if (composer.current) {
-			camera.layers.set(DEFAULT_LAYER);
-			composer.current.render();
-		}
-		camera.layers.set(DEFAULT_LAYER);
-	}, 2);
+		// if (composer.current) {
+		// 	camera.layers.set(0);
+		// 	gl.autoClear = false;
+		// }
+
+		// if (hologramComposer.current) {
+		// 	camera.layers.set(1);
+		// 	gl.autoClear = false;
+		// 	hologramComposer.current.render();
+		// }
+
+		// camera.layers.enable(DEFAULT_LAYER); // normal
+		camera.layers.enable(OCCLUSION_LAYER); // hologram
+
+		// Render the single composer
+		hologramComposer.current.render();
+		// composer.current.render();
+	});
 
 	useEffect(() => {
 		camera.layers.enable(0);
-		camera.layers.enable(1);
-		const postprocessors = setupPostprocessing(gl, occlusionScene, camera);
+		camera.layers.enable(OCCLUSION_LAYER);
+
+		composer.current = new EffectComposer(gl);
+		composer.current.addPass(new RenderPass(scene, camera));
+
+		camera.layers.set(OCCLUSION_LAYER);
+		const postprocessors = setupPostprocessing(gl, scene, camera);
 
 		filmPass.current = postprocessors.filmPass;
 		badTVPass.current = postprocessors.badTVPass;
 		occlusionComposer.current = postprocessors.occlusionComposer;
-		composer.current = postprocessors.composer;
+		hologramComposer.current = postprocessors.composer;
+
+		camera.layers.set(DEFAULT_LAYER);
+
+		gl.autoClear = false; // keep normal scene
+		const blendPass = new ShaderPass(AdditiveBlendingShader);
+		blendPass.uniforms.tAdd.value = postprocessors.hologramRenderTarget.texture;
+		blendPass.renderToScreen = true;
+		hologramComposer.current.addPass(blendPass);
+		hologramComposer.current.render();
+		gl.autoClear = true;
 
 		const itemGeo = new THREE.PlaneGeometry(3, 2.1);
-		const itemMaterial = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.7 });
+		const itemMaterial = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.8 });
 
 		const img = new Image();
 		// img.src = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/13307/blaster.png";
@@ -181,29 +206,26 @@ export default function HologramEffect(props: {
 			itemMaterial.map = itemTexture;
 
 			const itemMesh = new THREE.Mesh(itemGeo, itemMaterial);
-			// occlusionScene.add(itemMesh);
+			// scene.add(itemMesh);
 
 			const occItemMaterial = new THREE.MeshBasicMaterial({ color: COLOR_PALETTE.PRIMARY });
 			occItemMaterial.map = itemTexture;
 			const occMesh = new THREE.Mesh(itemGeo, occItemMaterial);
-			occMesh.layers.set(OCCLUSION_LAYER);
-			// occlusionScene.add(occMesh);
+			occMesh.layers.enable(OCCLUSION_LAYER);
+			// scene.add(occMesh);
 		};
 	});
 
 	return (
 		<>
-			<primitive object={occlusionScene}>
-				{props.children}
-				<ambientLight intensity={1.7} />
-				<directionalLight intensity={1} position={[200, 100, 300]} castShadow={true} />
+			{props.children[0]}
+			<ambientLight layers={OCCLUSION_LAYER} intensity={1.7} />
+			<directionalLight intensity={1} position={[200, 100, 300]} castShadow={true} />
 
-				<mesh>
-					<sphereGeometry args={[0.5, 2, 1]} />
-					<meshBasicMaterial color="white" />
-				</mesh>
-			</primitive>
-			<Table scene={occlusionScene} text="Internships and Big Projects" />
+			{/* <mesh layers={OCCLUSION_LAYER}>
+				<sphereGeometry args={[0.5, 2, 1]} />
+				<meshBasicMaterial color="white" />
+			</mesh> */}
 		</>
 	);
 }

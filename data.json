@@ -159,6 +159,10 @@
     },
     {
       "value": "Fontys (Academic preperation)"
+    },
+    {
+      "value": "\"The Last Algorithms Course You'll Need\" by The Primeagen",
+      "image": "primeagen.webp"
     }
   ],
   "HTB": {
@@ -572,11 +576,6 @@
       "type": "other",
       "value": "Heroku",
       "image": "heroku"
-    },
-    {
-      "type": "course",
-      "value": "\"The Last Algorithms Course You'll Need\" by The Primeagen",
-      "image": "primeagen.webp"
     }
   ],
   "certificates": [
