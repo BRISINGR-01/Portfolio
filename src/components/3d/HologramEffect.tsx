@@ -140,16 +140,16 @@ export default function HologramEffect(props: {
 			// occlusionComposer.current.render();
 		}
 
-		// if (composer.current) {
-		// 	camera.layers.set(0);
-		// 	gl.autoClear = false;
-		// }
+		if (composer.current) {
+			camera.layers.set(0);
+			gl.autoClear = false;
+		}
 
-		// if (hologramComposer.current) {
-		// 	camera.layers.set(1);
-		// 	gl.autoClear = false;
-		// 	hologramComposer.current.render();
-		// }
+		if (hologramComposer.current) {
+			camera.layers.set(1);
+			gl.autoClear = false;
+			hologramComposer.current.render();
+		}
 
 		// camera.layers.enable(DEFAULT_LAYER); // normal
 		camera.layers.enable(OCCLUSION_LAYER); // hologram

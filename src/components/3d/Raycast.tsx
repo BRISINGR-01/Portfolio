@@ -87,7 +87,7 @@ export default function Raycast(props: {
 	return (
 		<group ref={groupRef} name={RAYCAST_CONTAINER_NAME}>
 			{props.children}
-			{/* <HologramEffect composer={composer.current}>{props.children}</HologramEffect> */}
 		</group>
 	);
+	// <HologramEffect composer={composer.current}>{props.children}</HologramEffect>
 }
