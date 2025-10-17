@@ -1,7 +1,7 @@
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect, useState } from "react";
-import { BufferGeometry, Mesh } from "three";
+import { BufferGeometry, Mesh, Scene } from "three";
 import {
 	acceleratedRaycast,
 	computeBatchedBoundsTree,
@@ -15,7 +15,6 @@ import Menu from "../Menu";
 import Loader from "./Loader";
 import Raycast from "./Raycast";
 import SVGObject from "./SVGObject";
-import Table from "./Table";
 import Room from "./room/Room";
 
 BufferGeometry.prototype.computeBoundsTree = computeBoundsTree;
@@ -33,7 +32,7 @@ export default function Portfolio3D() {
 	useEffect(() => {
 		fetch("/working-experience.json")
 			.then((response) => response.json())
-			.then((data) => setData(data));
+			.then((d) => setData(d));
 	}, []);
 
 	// for (const svg of data?.map()) {
@@ -63,47 +62,48 @@ export default function Portfolio3D() {
 	return (
 		<>
 			<Canvas shadows>
-				<color attach="background" args={["black"]} />
-				<PerspectiveCamera position={[-2, 1.4, 6]} fov={50} makeDefault />
+				{/* <color attach="background" args={["white"]} /> */}
+				{/* <color attach="background" args={["white"]} /> */}
+				<PerspectiveCamera position={[-20, 1.4, 6]} fov={50} makeDefault />
+
 				<ambientLight intensity={0.7} />
 				<directionalLight intensity={0.5} position={[200, 100, 300]} castShadow={true} />
-				<OrbitControls
-				// maxDistance={8.3}
-				/>
+				<OrbitControls maxDistance={8.3} />
+				<primitive object={new Scene()} />
 
 				<Room>
-					<Suspense fallback={<Loader />}>
-						<Raycast
-							onClick={(m: Mesh | null) => {
-								if (!m) {
-									setSelectedItem(null);
-									return;
-								}
-								// window.navigator.clipboard.writeText(`position: [${window[m.name].position.x}, ${
-								// 	window[m.name].position.y
-								// }, ${window[m.name].position.z}],
-								// 	rotation: [${window[m.name].rotation.x}, ${window[m.name].rotation.y}, ${window[m.name].rotation.z}],`)
+					<Raycast
+						onClick={(m: Mesh | null) => {
+							console.log(data);
 
-								const newSelected = data?.find((el) => el["3d-logo"].id === m.name) ?? null;
+							if (!m) {
+								setSelectedItem(null);
+								return;
+							}
+							// window.navigator.clipboard.writeText(`position: [${window[m.name].position.x}, ${
+							// 	window[m.name].position.y
+							// }, ${window[m.name].position.z}],
+							// 	rotation: [${window[m.name].rotation.x}, ${window[m.name].rotation.y}, ${window[m.name].rotation.z}],`)
 
-								if (newSelected && newSelected === selectedItem) {
-									setSelectedItem(null);
-								} else {
-									setSelectedItem(newSelected);
-								}
-							}}
-						>
-							{!data ? (
-								<></>
-							) : (
-								data
-									.map((el) => el["3d-logo"])
-									.slice(0, 1)
-									.map((props, i) => <SVGObject key={i} {...props} />)
-							)}
-						</Raycast>
-						<Table text="Internships and Big Projects" />
-					</Suspense>
+							const newSelected = data?.find((el) => el["3d-logo"].id === m.name) ?? null;
+							console.log(newSelected, m, data);
+							if (newSelected && newSelected === selectedItem) {
+								setSelectedItem(null);
+							} else {
+								setSelectedItem(newSelected);
+							}
+						}}
+					>
+						{!data ? (
+							<></>
+						) : (
+							data
+								.map((el) => el["3d-logo"])
+								.slice(0, 1)
+								.map((props, i) => <SVGObject key={i} {...props} />)
+						)}
+					</Raycast>
+					<Suspense fallback={<Loader />}>{/* <Table text="Internships and Big Projects" /> */}</Suspense>
 				</Room>
 			</Canvas>
 			{selectedItem && <Menu data={selectedItem} />}

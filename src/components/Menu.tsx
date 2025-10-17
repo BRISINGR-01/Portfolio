@@ -1,5 +1,5 @@
 import { PieChart } from "@mui/x-charts";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect } from "react";
 import { OverlayTrigger, Row, Tooltip } from "react-bootstrap";
 import type { WorkingExperience } from "../constants";
 import "../css/menu.css";
@@ -7,11 +7,12 @@ import { parseTimeSpan, useIcon } from "../utils";
 import Loader from "./3d/Loader";
 
 export default function Menu({ data }: { data: WorkingExperience | null }) {
-	const [show, setShow] = useState(true);
+	console.log(data);
+	// const [show, setShow] = useState(true);
 	const icons = useIcon();
 
 	useEffect(() => {
-		setShow(data !== null);
+		// setShow(data !== null);
 	}, [data]);
 
 	if (!data) return null;
@@ -63,7 +64,7 @@ export default function Menu({ data }: { data: WorkingExperience | null }) {
 				<Row className="align-items-center mx-1 gap-2">
 					{data.technologies
 						.map((t) => icons.find((icon) => icon.name === t.name))
-						.filter(Boolean)
+						.filter((i) => i != undefined)
 						.map((icon, i) => (
 							<OverlayTrigger key={i} placement="top" overlay={<Tooltip>{icon.name}</Tooltip>}>
 								<img

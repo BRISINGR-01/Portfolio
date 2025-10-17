@@ -26,6 +26,7 @@ export default function Raycast(props: {
 		outlinePass.edgeStrength = 5;
 		outlinePass.edgeGlow = 1;
 		outlinePass.visibleEdgeColor.set(COLOR_PALETTE.PRIMARY);
+		outlinePass.hiddenEdgeColor.set("#1abaff");
 		composer.current.addPass(outlinePass);
 
 		const outputPass = new OutputPass();
