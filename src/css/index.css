@@ -1,5 +1,5 @@
 :root {
-	--primary: rgb(84, 186, 245);
+	--primary: rgb(0, 170, 255);
 	--bs-primary: var(--primary);
 	--bs-primary-rgb: 84, 186, 245;
 	--secondary: rgb(4, 21, 45);

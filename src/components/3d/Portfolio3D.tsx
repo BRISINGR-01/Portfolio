@@ -12,13 +12,11 @@ import {
 import { BatchedMesh } from "three/webgpu";
 import { type WorkingExperience } from "../../constants";
 import Menu from "../Menu";
-import Ceiling from "./Ceiling";
-import CircuitPattern from "./CircuitPattern";
 import Loader from "./Loader";
 import Raycast from "./Raycast";
 import SVGObject from "./SVGObject";
 import Table from "./Table";
-import SciFiWall from "./Wall";
+import Room from "./room/Room";
 
 BufferGeometry.prototype.computeBoundsTree = computeBoundsTree;
 BufferGeometry.prototype.disposeBoundsTree = disposeBoundsTree;
@@ -66,52 +64,48 @@ export default function Portfolio3D() {
 	return (
 		<>
 			<Canvas shadows>
-				<color attach="background" args={["black"]} />
+				{/* <color attach="background" args={["black"]} /> */}
 				<PerspectiveCamera position={[-2, 1.4, 6]} fov={50} makeDefault />
 				<ambientLight intensity={0.7} />
-				<directionalLight intensity={1} position={[200, 100, 300]} castShadow={true} />
-				<OrbitControls maxDistance={10} />
+				<directionalLight intensity={0.5} position={[200, 100, 300]} castShadow={true} />
+				<OrbitControls
+				// maxDistance={8.3}
+				/>
 
-				<Suspense fallback={<Loader />}>
-					<Raycast
-						onClick={(m: Mesh | null) => {
-							if (!m) {
-								setSelectedItem(null);
-								return;
-							}
-							// window.navigator.clipboard.writeText(`position: [${window[m.name].position.x}, ${
-							// 	window[m.name].position.y
-							// }, ${window[m.name].position.z}],
-							// 	rotation: [${window[m.name].rotation.x}, ${window[m.name].rotation.y}, ${window[m.name].rotation.z}],`)
+				<Room>
+					<Suspense fallback={<Loader />}>
+						<Raycast
+							onClick={(m: Mesh | null) => {
+								if (!m) {
+									setSelectedItem(null);
+									return;
+								}
+								// window.navigator.clipboard.writeText(`position: [${window[m.name].position.x}, ${
+								// 	window[m.name].position.y
+								// }, ${window[m.name].position.z}],
+								// 	rotation: [${window[m.name].rotation.x}, ${window[m.name].rotation.y}, ${window[m.name].rotation.z}],`)
 
-							const newSelected = data?.find((el) => el["3d-logo"].id === m.name) ?? null;
+								const newSelected = data?.find((el) => el["3d-logo"].id === m.name) ?? null;
 
-							if (newSelected && newSelected === selectedItem) {
-								setSelectedItem(null);
-							} else {
-								setSelectedItem(newSelected);
-							}
-						}}
-					>
-						{!data ? (
-							<></>
-						) : (
-							data
-								.map((el) => el["3d-logo"])
-								.slice(0, 1)
-								.map((props, i) => <SVGObject key={i} {...props} />)
-						)}
-					</Raycast>
-					<Table text="Internships and Big Projects" />
-					<Suspense fallback={null}>
-						<CircuitPattern />
+								if (newSelected && newSelected === selectedItem) {
+									setSelectedItem(null);
+								} else {
+									setSelectedItem(newSelected);
+								}
+							}}
+						>
+							{!data ? (
+								<></>
+							) : (
+								data
+									.map((el) => el["3d-logo"])
+									// .slice(0, 1)
+									.map((props, i) => <SVGObject key={i} {...props} />)
+							)}
+						</Raycast>
+						<Table text="Internships and Big Projects" />
 					</Suspense>
-					<Ceiling />
-					<SciFiWall position={[0, 0, -1]} rotate={0} />
-					<SciFiWall position={[0, 0, 1]} rotate={Math.PI} />
-					<SciFiWall position={[1, 0, 0]} rotate={-Math.PI / 2} />
-					<SciFiWall position={[-1, 0, 0]} rotate={Math.PI / 2} />
-				</Suspense>
+				</Room>
 			</Canvas>
 			{selectedItem && <Menu data={selectedItem} />}
 		</>

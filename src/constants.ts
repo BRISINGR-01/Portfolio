@@ -13,6 +13,12 @@ export const COLOR_PALETTE = {
 	TERTIARY: "",
 };
 
+export const ROOM = {
+	HEIGHT: 7,
+	WIDTH: 15,
+	OFFSET: 0.01,
+};
+
 window.addEventListener("DOMContentLoaded", () => {
 	const style = window.getComputedStyle(document.documentElement);
 

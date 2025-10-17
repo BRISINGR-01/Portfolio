@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
+import { ROOM } from "../../../constants";
 
-export default function VideoPlane() {
+export default function CircuitPattern() {
 	const meshRef = useRef<THREE.Mesh>(null);
 
 	useEffect(() => {
@@ -27,7 +28,7 @@ export default function VideoPlane() {
 
 	return (
 		<mesh ref={meshRef} rotation={[-Math.PI / 2, 0, Math.PI / 2]} position={[0, -2, 0]}>
-			<planeGeometry args={[13.6, 13.6]} />
+			<planeGeometry args={[ROOM.WIDTH - ROOM.OFFSET, ROOM.WIDTH - ROOM.OFFSET]} />
 			<meshBasicMaterial />
 		</mesh>
 	);
