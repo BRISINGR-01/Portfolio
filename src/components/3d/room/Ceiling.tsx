@@ -1,11 +1,8 @@
-import { useMemo, useRef } from "react";
+import { useMemo } from "react";
 import * as THREE from "three";
 import { COLOR_PALETTE, ROOM } from "../../../constants";
 
 export default function Ceiling() {
-	const r = useRef(null);
-	// useHelper(r, THREE.DirectionalLightHelper, "red");
-
 	const planeGeometry = useMemo(() => {
 		const geom = new THREE.PlaneGeometry(ROOM.WIDTH, ROOM.WIDTH, 40, 40);
 
@@ -20,10 +17,10 @@ export default function Ceiling() {
 	}, []);
 
 	return (
-		<group position={[0, ROOM.HEIGHT - 3.5 + 2 * ROOM.OFFSET, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-			<mesh geometry={planeGeometry}>
+		<group position={[0, ROOM.HEIGHT + 0.05 + 2 * ROOM.OFFSET, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+			{/* <mesh geometry={planeGeometry}>
 				<meshPhysicalMaterial
-					side={THREE.DoubleSide} // show both faces
+					side={THREE.BackSide} // show both faces
 					flatShading // faceted normals per triangle
 					metalness={1} // fully metallic
 					roughness={0.05} // almost perfectly smooth
@@ -32,11 +29,10 @@ export default function Ceiling() {
 					clearcoatRoughness={0.05} // slight blur for realism
 					color="#5879b1" // base tint
 				/>
-			</mesh>
+			</mesh> */}
 			<mesh geometry={planeGeometry} position={[0, 0, -0.1]}>
 				<meshStandardMaterial color={COLOR_PALETTE.PRIMARY} wireframe />
 			</mesh>
-			<directionalLight ref={r} intensity={1} position={[10, -10, 10]} castShadow={true} />
 		</group>
 	);
 }

@@ -30,7 +30,6 @@ export default function Portfolio3D() {
 	const [data, setData] = useState<WorkingExperience[] | null>(null);
 	const [selectedItem, setSelectedItem] = useState<WorkingExperience | null>(null);
 
-	// 3. Create out useEffect function
 	useEffect(() => {
 		fetch("/working-experience.json")
 			.then((response) => response.json())
@@ -64,7 +63,7 @@ export default function Portfolio3D() {
 	return (
 		<>
 			<Canvas shadows>
-				{/* <color attach="background" args={["black"]} /> */}
+				<color attach="background" args={["black"]} />
 				<PerspectiveCamera position={[-2, 1.4, 6]} fov={50} makeDefault />
 				<ambientLight intensity={0.7} />
 				<directionalLight intensity={0.5} position={[200, 100, 300]} castShadow={true} />
@@ -99,7 +98,7 @@ export default function Portfolio3D() {
 							) : (
 								data
 									.map((el) => el["3d-logo"])
-									// .slice(0, 1)
+									.slice(0, 1)
 									.map((props, i) => <SVGObject key={i} {...props} />)
 							)}
 						</Raycast>

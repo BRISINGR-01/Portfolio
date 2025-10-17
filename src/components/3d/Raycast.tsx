@@ -13,9 +13,7 @@ export default function Raycast(props: {
 	const mouse = useRef(new Vector2());
 	const composer = useRef(new EffectComposer(gl));
 
-	useFrame(() => {
-		composer.current.render();
-	}, 0);
+	useFrame(() => composer.current.render(), 0);
 
 	useEffect(() => {
 		raycaster.firstHitOnly = true;
@@ -89,5 +87,4 @@ export default function Raycast(props: {
 			{props.children}
 		</group>
 	);
-	// <HologramEffect composer={composer.current}>{props.children}</HologramEffect>
 }
