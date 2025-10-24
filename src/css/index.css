@@ -2,8 +2,8 @@
 	--primary: rgb(0, 170, 255);
 	--bs-primary: var(--primary);
 	--bs-primary-rgb: 84, 186, 245;
-	--secondary: rgb(4, 21, 45);
-	--bs-secondary: #04152d;
+	--secondary: rgb(2, 10, 21);
+	--bs-secondary: #020a15;
 	--bs-secondary-rgb: var(--secondary);
 	--tertiary: rgb(111, 241, 213);
 	--bs-tertiary: var(--tertiary);
@@ -27,6 +27,16 @@
 	box-sizing: border-box;
 }
 
+.pointer > * {
+	cursor: url("/cursors/link_select.cur") 0 0, pointer;
+}
+.grab > * {
+	cursor: url("/cursors/link_select.cur") 0 0, grab;
+}
+.grabbing > * {
+	cursor: url("/cursors/link_grab.cur") 0 0, grabbing;
+}
+
 html,
 body,
 #root {
@@ -35,9 +45,15 @@ body,
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
+	background-color: var(--secondary);
 }
 
 body {
 	position: fixed;
 	overflow: hidden;
+	cursor: url("/cursors/normal_select.cur") 0 0, auto;
+}
+
+canvas {
+	background-color: var(--secondary);
 }

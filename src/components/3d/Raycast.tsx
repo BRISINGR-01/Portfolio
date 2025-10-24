@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import { Vector2, type Group, type Mesh } from "three";
 import { EffectComposer, OutlinePass, OutputPass, RenderPass } from "three/examples/jsm/Addons.js";
 import { COLOR_PALETTE, RAYCAST_CONTAINER_NAME } from "../../constants";
+import { setDefaultCursor, setPointerCursor } from "../../utils";
 
 export default function Raycast(props: {
 	onClick: (m: Mesh | null) => void;
@@ -35,6 +36,7 @@ export default function Raycast(props: {
 		function unselect() {
 			outlinePass.selectedObjects = [];
 			hovered = null;
+			setDefaultCursor();
 		}
 
 		const canvas = gl.domElement;
@@ -61,6 +63,7 @@ export default function Raycast(props: {
 
 			hovered = mesh;
 			outlinePass.selectedObjects = [mesh];
+			setPointerCursor();
 		}
 
 		function onClick() {

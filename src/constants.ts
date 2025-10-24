@@ -1,3 +1,4 @@
+import type { Easing } from "motion/react";
 import { Vector3 } from "three";
 
 export function calculateSVGPathRenderOffset(index: number, isWide?: boolean) {
@@ -14,9 +15,10 @@ export const COLOR_PALETTE = {
 };
 
 export const ROOM = {
-	HEIGHT: 7,
+	HEIGHT: 5,
 	WIDTH: 15,
 	OFFSET: 0.01,
+	CEILING_NOISE: 0.2,
 };
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -60,3 +62,12 @@ export type Language = {
 };
 
 export const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+export enum WallFace {
+	North,
+	West,
+	South,
+	East,
+}
+
+export const TRANSITION = { duration: 0.3, ease: "easeOut" as Easing };
