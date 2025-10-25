@@ -1,7 +1,7 @@
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useEffect, useState } from "react";
-import { BufferGeometry, Mesh, Scene } from "three";
+import { Suspense, useEffect, useRef, useState } from "react";
+import { BufferGeometry, Mesh } from "three";
 import {
 	acceleratedRaycast,
 	computeBatchedBoundsTree,
@@ -11,11 +11,15 @@ import {
 } from "three-mesh-bvh";
 import { BatchedMesh } from "three/webgpu";
 import { type WorkingExperience } from "../../constants";
-import Menu from "../Menu";
-import Loader from "./Loader";
 import Raycast from "./Raycast";
-import SVGObject from "./SVGObject";
 import Room from "./room/Room";
+import SVGObject from "./SVGObject";
+
+import { AnimatePresence } from "motion/react";
+import "../../css/floating-ui.css";
+import IntenshipsAndBigProjects from "../floating-ui/InternshipsAndBigProjects";
+import Menu from "../floating-ui/Menu.tsx";
+import Table from "./table/Table.tsx";
 
 BufferGeometry.prototype.computeBoundsTree = computeBoundsTree;
 BufferGeometry.prototype.disposeBoundsTree = disposeBoundsTree;
@@ -26,8 +30,9 @@ BatchedMesh.prototype.disposeBoundsTree = disposeBatchedBoundsTree;
 BatchedMesh.prototype.raycast = acceleratedRaycast;
 
 export default function Portfolio3D() {
-	const [data, setData] = useState<WorkingExperience[] | null>(null);
-	const [selectedItem, setSelectedItem] = useState<WorkingExperience | null>(null);
+	const [icons, setData] = useState<WorkingExperience[] | null>(null);
+	const [selectedIcon, setSelectedItem] = useState<WorkingExperience | null>(null);
+	const selectedId = useRef<string>(null);
 
 	useEffect(() => {
 		fetch("/working-experience.json")
@@ -35,78 +40,63 @@ export default function Portfolio3D() {
 			.then((d) => setData(d));
 	}, []);
 
-	// for (const svg of data?.map()) {
-	// 	if (!import.meta.env.DEV) continue;
-
-	// 	// eslint-disable-next-line react-hooks/rules-of-hooks
-	// 	const ctrl = useControls(svg.url.split("/").at(-1)!.replace(".svg", ""), {
-	// 		position: {
-	// 			x: svg.position[0],
-	// 			y: svg.position[1],
-	// 			z: svg.position[2],
-	// 		},
-	// 		rotation: {
-	// 			value: {
-	// 				x: svg.rotation ? svg.rotation[0] : 0,
-	// 				y: svg.rotation ? svg.rotation[1] : 0,
-	// 				z: svg.rotation ? svg.rotation[2] : 0,
-	// 			},
-	// 		},
-	// 	});
-
-	// 	svg.position = [ctrl.position.x, ctrl.position.y, ctrl.position.z];
-	// 	svg.rotation = [ctrl.rotation.x, ctrl.rotation.y, ctrl.rotation.z];
-	// 	window[svg.id] = ctrl;
-	// }
-
 	return (
 		<>
 			<Canvas shadows>
-				{/* <color attach="background" args={["white"]} /> */}
-				{/* <color attach="background" args={["white"]} /> */}
-				<PerspectiveCamera position={[-20, 1.4, 6]} fov={50} makeDefault />
+				<Suspense>
+					<PerspectiveCamera position={[-2, 1.4, 6]} fov={50} makeDefault />
+					<ambientLight intensity={0.7} />
+					<directionalLight intensity={0.5} position={[200, 100, 300]} castShadow={true} />
+					<OrbitControls />
 
-				<ambientLight intensity={0.7} />
-				<directionalLight intensity={0.5} position={[200, 100, 300]} castShadow={true} />
-				<OrbitControls maxDistance={8.3} />
-				<primitive object={new Scene()} />
+					<Room>
+						<Raycast
+							onClick={(m: Mesh | null) => {
+								function unselect() {
+									selectedId.current = null;
+									setSelectedItem(null);
+								}
 
-				<Room>
-					<Raycast
-						onClick={(m: Mesh | null) => {
-							console.log(data);
+								if (!m) return unselect();
+								// window.navigator.clipboard.writeText(`position: [${window[m.name].position.x}, ${
+								// 	window[m.name].position.y
+								// }, ${window[m.name].position.z}],
+								// 	rotation: [${window[m.name].rotation.x}, ${window[m.name].rotation.y}, ${window[m.name].rotation.z}],`)
 
-							if (!m) {
-								setSelectedItem(null);
-								return;
-							}
-							// window.navigator.clipboard.writeText(`position: [${window[m.name].position.x}, ${
-							// 	window[m.name].position.y
-							// }, ${window[m.name].position.z}],
-							// 	rotation: [${window[m.name].rotation.x}, ${window[m.name].rotation.y}, ${window[m.name].rotation.z}],`)
+								const newSelected = icons?.find((el) => el["3d-logo"].id === m.name) ?? null;
 
-							const newSelected = data?.find((el) => el["3d-logo"].id === m.name) ?? null;
-							console.log(newSelected, m, data);
-							if (newSelected && newSelected === selectedItem) {
-								setSelectedItem(null);
-							} else {
+								if (!newSelected) return unselect();
+								if (newSelected && newSelected.id === selectedId.current) return unselect();
+
+								selectedId.current = newSelected!.id;
 								setSelectedItem(newSelected);
-							}
-						}}
-					>
-						{!data ? (
-							<></>
-						) : (
-							data
-								.map((el) => el["3d-logo"])
-								.slice(0, 1)
-								.map((props, i) => <SVGObject key={i} {...props} />)
-						)}
-					</Raycast>
-					<Suspense fallback={<Loader />}>{/* <Table text="Internships and Big Projects" /> */}</Suspense>
-				</Room>
+							}}
+						>
+							{!icons ? (
+								<></>
+							) : (
+								icons
+									.map((el) => el["3d-logo"])
+									// .slice(0, 1)
+									.map((props, i) => <SVGObject key={i} {...props} />)
+							)}
+						</Raycast>
+						<Table text="Internships and Big Projects" />
+					</Room>
+				</Suspense>
 			</Canvas>
-			{selectedItem && <Menu data={selectedItem} />}
+			<AnimatePresence>
+				{selectedIcon ? (
+					<IntenshipsAndBigProjects data={selectedIcon} />
+				) : (
+					<Menu
+						key="menu"
+						onSelect={(id: string) => {
+							console.log(id);
+						}}
+					/>
+				)}
+			</AnimatePresence>
 		</>
 	);
 }

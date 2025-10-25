@@ -1,0 +1,52 @@
+/* Glassmorphism card effect */
+.g-card {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	backdrop-filter: blur(4px) saturate(200%);
+	-webkit-backdrop-filter: blur(4px) saturate(200%);
+	background-color: rgba(17, 105, 206, 0.35);
+	border-radius: 12px;
+	border: 1px solid rgba(209, 213, 219, 0.3);
+	box-shadow: 0 0 20px rgba(17, 105, 206, 0.6);
+
+	font-family: "Armstrong", sans-serif !important;
+}
+
+.g-card * {
+	color: var(--bs-light) !important;
+}
+
+.timespan {
+	/* font-family: "Toxigenesis", sans-serif !important; */
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+.hologram-row {
+	display: flex;
+	gap: 0.75rem;
+	justify-content: center;
+	align-items: center;
+}
+
+.icon {
+	width: auto;
+	border-radius: var(--bs-border-radius);
+	padding: 0.25rem;
+	box-shadow: var(--bs-box-shadow-sm);
+	object-fit: contain;
+	background: #335b8499;
+	transition: 0.2s;
+}
+
+.icon:hover {
+	transform: scale(1.15);
+	box-shadow: 0 0 5px rgba(255, 255, 255) !important;
+}
+
+.menu-icon:hover > img {
+	transition: 0.2s;
+	filter: invert(1);
+}

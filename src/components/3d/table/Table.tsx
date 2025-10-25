@@ -1,7 +1,7 @@
 import { useGLTF } from "@react-three/drei";
 import { useEffect } from "react";
-import { fixGLTFDepth } from "../../utils";
-import TableControls from "./table/TableControls.tsx";
+import { fixGLTFDepth } from "../../../utils";
+import TableControls from "./TableControls.tsx";
 
 export default function Table({ text }: { text: string }) {
 	const { scene } = useGLTF("/3d/hologram-table.glb");

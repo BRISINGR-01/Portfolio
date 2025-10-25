@@ -1,3 +1,4 @@
+import { useControls } from "leva";
 import { useEffect, useState } from "react";
 import { FrontSide, Material, type Group, type Mesh, type Object3D } from "three";
 import { MONTHS } from "./constants";
@@ -42,4 +43,20 @@ export function useIcon() {
 	}, []);
 
 	return icons;
+}
+
+export function useRot() {
+	return useControls("rot", { r: [0, 0, 0] }).r;
+}
+
+export function usePos() {
+	return useControls("pos", [0, 0, 0]);
+}
+
+export function setPointerCursor() {
+	document.body.style.cursor = 'url("/cursors/move.cur") 0 0, auto';
+}
+
+export function setDefaultCursor() {
+	document.body.style.cursor = 'url("/cursors/normal_select.cur") 0 0, auto';
 }
