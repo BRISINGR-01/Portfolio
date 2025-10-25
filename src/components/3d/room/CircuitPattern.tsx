@@ -7,14 +7,13 @@ export default function CircuitPattern() {
 
 	useEffect(() => {
 		const video = document.createElement("video");
-		video.src = "/circuit.mkv";
+		video.src = "/circuit.mp4";
 		video.crossOrigin = "anonymous";
 		video.loop = true;
 		video.muted = true;
 		video.playsInline = true;
 		video.onloadstart = (e) => {
 			const vid = (e.target as HTMLVideoElement)!;
-			vid.playbackRate = 1.5;
 		};
 
 		const texture = new THREE.VideoTexture(video);

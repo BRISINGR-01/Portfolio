@@ -1,4 +1,5 @@
 import { WallFace } from "../../../constants";
+import Delay from "../../Delay";
 import Ceiling from "./Ceiling";
 import CircuitPattern from "./CircuitPattern";
 import Wall from "./Wall";
@@ -11,10 +12,12 @@ export default function Room(props: { children: React.JSX.Element | React.JSX.El
 
 			{props.children}
 
-			<Wall wallFace={WallFace.North} />
-			<Wall wallFace={WallFace.West} />
-			<Wall wallFace={WallFace.South} />
-			<Wall wallFace={WallFace.East} />
+			<Delay time={1.5}>
+				<Wall wallFace={WallFace.North} />
+				<Wall wallFace={WallFace.West} />
+				<Wall wallFace={WallFace.South} />
+				<Wall wallFace={WallFace.East} />
+			</Delay>
 		</>
 	);
 }

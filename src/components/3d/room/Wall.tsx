@@ -112,15 +112,9 @@ export default function Wall({ wallFace }: { wallFace: WallFace }) {
 			if (t < 1.2) requestAnimationFrame(animate);
 		}
 
-		const t = setTimeout(() => {
-			animate();
-			setTimeout(() => {
-				// window.location.reload();
-			}, 2700);
-		}, 3000);
+		animate();
 
 		return () => {
-			clearTimeout(t);
 			for (const el of group.children) el.removeFromParent();
 		};
 	}, [wallFace]);

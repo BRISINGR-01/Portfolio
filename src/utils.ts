@@ -18,7 +18,9 @@ export function fixGLTFDepth(scene: Group) {
 		if (child.material instanceof Material) {
 			fixMaterialDepth(child.material);
 		} else {
-			child.material.forEach(fixMaterialDepth);
+			for (const material of child.material) {
+				fixMaterialDepth(material);
+			}
 		}
 
 		child.geometry.computeVertexNormals();
