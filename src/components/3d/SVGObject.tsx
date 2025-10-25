@@ -2,7 +2,9 @@ import { useLoader } from "@react-three/fiber";
 import { useMemo } from "react";
 import { Color, DoubleSide, ExtrudeGeometry, MeshPhongMaterial, Vector3 } from "three";
 import { SVGLoader } from "three/examples/jsm/Addons.js";
-import { calculateSVGPathRenderOffset, DEFAULT_SVG_ROTATION, type Logo3DParams } from "../../constants";
+import { DEFAULT_SVG_ROTATION } from "../../constants";
+import type { Logo3DParams } from "../../content";
+import { calculateSVGPathRenderOffset } from "../../utils";
 
 export default function SVGObject(props: Logo3DParams) {
 	const data = useLoader(SVGLoader, props.url);

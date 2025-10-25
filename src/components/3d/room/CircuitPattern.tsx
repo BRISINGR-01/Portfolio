@@ -12,9 +12,6 @@ export default function CircuitPattern() {
 		video.loop = true;
 		video.muted = true;
 		video.playsInline = true;
-		video.onloadstart = (e) => {
-			const vid = (e.target as HTMLVideoElement)!;
-		};
 
 		const texture = new THREE.VideoTexture(video);
 		texture.minFilter = THREE.LinearFilter;

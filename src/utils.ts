@@ -33,6 +33,10 @@ export function parseTimeSpan(str: string) {
 	return `${MONTHS[m]} ${y}`;
 }
 
+export function calculateSVGPathRenderOffset(index: number, isWide?: boolean) {
+	return index * -5 * (isWide ? 0.01 : 0.01);
+}
+
 export function useIcon() {
 	const [icons, setIcons] = useState<{ name: string; url: string }[]>([]);
 
@@ -52,7 +56,7 @@ export function useRot() {
 }
 
 export function usePos() {
-	return useControls("pos", [0, 0, 0]);
+	return useControls("pos", { p: [0, 0, 0] }).p;
 }
 
 export function setPointerCursor() {

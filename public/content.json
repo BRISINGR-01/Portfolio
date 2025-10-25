@@ -1,0 +1,501 @@
+{
+  "books": [
+    {
+      "title": "The Rust Programming Language",
+      "subTitle": "Covers Rust 2018",
+      "author": "Steve Klabnik and Carol Nichols",
+      "description": "The official book on the Rust programming language, written by the Rust development team at the Mozilla Foundation, fully updated for Rust 2018",
+      "cover": "The Rust Programming Language.jpg",
+      "tags": [
+        "Rust"
+      ]
+    },
+    {
+      "title": "C Programming Language",
+      "subTitle": "2nd Edition",
+      "author": "Brian Kernighan and Dennis Ritchie",
+      "description": "The complete guide to ANSI standard C language programming, written by the developers of C.",
+      "cover": "C Programming Language, 2nd Edition by Brian Kernighan.jpg",
+      "tags": [
+        "C/C++"
+      ]
+    },
+    {
+      "title": "The C++ Programming Language",
+      "subTitle": "4th Edition",
+      "description": "The C++ Programming Language, Fourth Edition, delivers meticulous, richly explained, and integrated coverage of the entire language—its facilities, abstraction mechanisms, standard libraries, and key design techniques. Throughout, Stroustrup presents concise, “pure C++11” examples, which have been carefully crafted to clarify both usage and program design. To promote deeper understanding, the author provides extensive cross-references, both within the book and to the ISO standard.",
+      "author": "Bjarne Stroustrup",
+      "cover": "The C++ Programming Language.jpg",
+      "tags": [
+        "C/C++"
+      ]
+    },
+    {
+      "title": "Clean Code",
+      "subTitle": "A Handbook of Agile Software Craftsmanship",
+      "description": "Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees. Every year, countless hours and significant resources are lost because of poorly written code. But it doesn't have to be that way.",
+      "author": "Robert C. Martin",
+      "cover": "Clean Code by Robert C. Martin.jpg",
+      "tags": [
+        "Java",
+        "Code Quality"
+      ]
+    },
+    {
+      "title": "Software Architecture Patterns",
+      "subTitle": "2nd Edition",
+      "author": "Mark Richards",
+      "description": "The success of any software application or system depends on the architecture style you use. This updated report presents several common architecture styles to guide designers and developers on how to design components and to help you determine the ways in which those components should interact.",
+      "cover": "Software Architecture Patterns.jpg",
+      "tags": [
+        "Software Architecture",
+        "Code Quality"
+      ]
+    },
+    {
+      "title": "System Design Interview",
+      "subTitle": "An insider's guide",
+      "author": "Alex Xu",
+      "cover": "system design interview.jpg",
+      "description": " This book provides a step-by-step framework for how to tackle a system design question. It includes many real-world examples to illustrate the systematic approach, with detailed steps that you can follow.",
+      "tags": [
+        "Software Architecture",
+        "Code Quality"
+      ]
+    },
+    {
+      "title": "Design Patterns",
+      "subTitle": "Elements of Reusable Object-Oriented Software",
+      "cover": "design patterns.jpg",
+      "author": " Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides",
+      "description": "Capturing a wealth of experience about the design of object-oriented software, four top-notch designers present a catalog of simple and succinct solutions to commonly occurring design problems. Previously undocumented, these 23 patterns allow designers to create more flexible, elegant, and ultimately reusable designs without having to rediscover the design solutions themselves.",
+      "tags": [
+        "Software Architecture",
+        "Code Quality",
+        "Design Patterns"
+      ]
+    },
+    {
+      "title": "Code",
+      "subTitle": "The Hidden Language of Computer Hardware and Software",
+      "author": "Charles Petzold",
+      "cover": "Code: The Hidden Language of Computer Hardware and Software.jpg",
+      "description": "Dives into the fundamental concepts of computer science, starting from basic electrical circuits to the intricate workings of modern computers. The book explores how simple ideas and technologies evolve into complex systems, making the world of computing accessible and engaging for both technical and non-technical readers.",
+      "tags": [
+        "Embedded Systems"
+      ]
+    },
+    {
+      "title": "Refactoring",
+      "subTitle": "Improving the Design of Existing Code",
+      "author": "Martin Fowler, with Kent Beck",
+      "description": "The guide to how to transform code with safe and rapid process, vital to keeping it cheap and easy to modify for future needs.",
+      "cover": "Refactoring.jpg",
+      "tags": [
+        "Code Quality",
+        "JavaScript"
+      ]
+    },
+    {
+      "title": "Clean Coder",
+      "subTitle": "A Code of Conduct for Professional Programmers",
+      "author": "Robert C. Martin",
+      "description": "Programmers who endure and succeed amidst swirling uncertainty and nonstop pressure share a common attribute: They care deeply about the practice of creating software. They treat it as a craft. They are professionals.",
+      "cover": "Clean Coder.jpg",
+      "tags": [
+        "Code Quality"
+      ]
+    },
+    {
+      "title": "Little Book Of Semaphores",
+      "subTitle": "The Ins and Outs of Concurrency Control and Common Mistakes",
+      "author": "Allen B. Downey",
+      "description": "The Little Book of Semaphores is a textbook that introduces the principles of synchronization for concurrent programming. In most computer science curricula, synchronization is a module in an Operating Systems class.",
+      "cover": "LittleBookOfSemaphores.webp",
+      "tags": [
+        "Code Quality",
+        "Concurrency"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "A1",
+      "title": "A1 Internship",
+      "type": "internship",
+      "logo": "/icons/other/A1.svg",
+      "timespan": [
+        "01/07/2021",
+        "30/09/2021"
+      ],
+      "context": " A1 Bulgaria (previously known as Mtel or Mobiltel) is a telecommunications company in Bulgaria owned by A1 Telekom Austria Group.",
+      "description": "My first internship was at one of the largest telecomunication companies in Bulgaria. It was a project lead by the Belgian branch with the help of a Bulgarian team, in which I took part. Its objective was mainly structured around selecting the content for TV programs. My tasks varied between working on the front- and backend.",
+      "technologies": [
+        {
+          "name": "React",
+          "percentage": 10
+        },
+        {
+          "name": "Express",
+          "percentage": 65
+        },
+        {
+          "name": "Docker",
+          "percentage": 5
+        },
+        {
+          "name": "GraphQl",
+          "percentage": 20
+        }
+      ],
+      "3d-logo": {
+        "id": "A1",
+        "url": "/icons/other/A1.svg",
+        "scale": 0.0015,
+        "position": [
+          -1.4,
+          0.4,
+          0.4
+        ],
+        "rotation": [
+          -0.3,
+          0,
+          0
+        ],
+        "wide": true
+      }
+    },
+    {
+      "id": "sdg-sabic",
+      "title": "SDG Challenge - Sabic",
+      "logo": "/icons/other/SDG.svg",
+      "timespan": [
+        "09/04/2024",
+        "05/07/2024"
+      ],
+      "context": "The SDG (Sustainable Developement Goals) are a set of goals defined by UN (United Nations) meant to make the world a better place. The challenge is organized a coulple of times a year in different countries. The aim is to work with large companies on one or a few SDGs in order to help the company lower their emissions, improve its employees' quality of life...",
+      "description": "My assigned establishment was Sabic. This is the second biggest plastic producer and a leading industry in agriculture, transportation, packaging, technology and more.",
+      "technologies": [
+        {
+          "name": "ThreeJS",
+          "percentage": 12
+        },
+        {
+          "name": "Typescript",
+          "percentage": 31
+        },
+        {
+          "name": "React",
+          "percentage": 20
+        },
+        {
+          "name": "Supabase + Vercel",
+          "percentage": 7
+        },
+        {
+          "name": "C/C++",
+          "percentage": 10
+        },
+        {
+          "name": "Arduino",
+          "percentage": 10
+        }
+      ],
+      "3d-logo": {
+        "id": "sdg",
+        "url": "/icons/other/SDG.svg",
+        "scale": 0.002,
+        "position": [
+          -0.8,
+          0.73,
+          0.55
+        ],
+        "rotation": [
+          0.4,
+          0.4,
+          0.4
+        ],
+        "wide": false
+      }
+    },
+    {
+      "id": "sdg-solarwatt",
+      "title": "SDG Challenge - Solarwatt",
+      "logo": "/icons/other/SDG.svg",
+      "timespan": [
+        "09/04/2025",
+        "05/07/2025"
+      ],
+      "context": "The SDG (Sustainable Developement Goals) are a set of goals defined by UN (United Nations) meant to make the world a better place.",
+      "description": "Colab with Paulo Vieira. Github: https://github.com/BRISINGR-01/solar-trace. The challenge is organized a coulple of times a year in different countries. The aim is to work with large companies on one or a few SDGs in order to help the company lower their emissions, improve its employees' quality of life... My assigned establishment was Solarwatt. This is a solar panel industry. We are proud to share that our team has made it to the finals of the SDG Challenge 2025, where we partnered with Solarwatt on a project called SolarTrace. SolarTrace is a platform that helps bring more transparency to the solar energy industry. It includes an interactive map that shows how solar panel materials move through Europe and Asia, giving users a clearer view of the supply chain. My main focus was on the course and certification module. I built a simple learning path that introduces Solarwatt, its mission, and products, and at the end, users get a professional, shareable certificate automatically...",
+      "technologies": [
+        {
+          "name": "Typescript",
+          "percentage": 30
+        },
+        {
+          "name": "React-Bootstrap",
+          "percentage": 52
+        },
+        {
+          "name": "Vercel",
+          "percentage": 8
+        }
+      ],
+      "3d-logo": {
+        "id": "sdg",
+        "url": "/icons/other/SDG.svg",
+        "scale": 0.002,
+        "position": [
+          -0.8,
+          0.73,
+          0.55
+        ],
+        "rotation": [
+          0.4,
+          0.4,
+          0.4
+        ],
+        "wide": false
+      }
+    },
+    {
+      "id": "latin-is-simple",
+      "title": "Latin is simple",
+      "type": "job",
+      "logo": "/icons/other/latin-is-simple.svg",
+      "timespan": [
+        "03/01/2022",
+        "02/09/2025"
+      ],
+      "context": "Owned by two Austrian graduates this language learning app has gained dozens of thousands of users over the years. It is primarily used by students learning Latin. It provides tools such as learning trainers, sentence analisys, and many more.",
+      "technologies": [
+        {
+          "name": "React",
+          "percentage": 22
+        },
+        {
+          "name": "Bootstrap",
+          "percentage": 22
+        },
+        {
+          "name": "Typescript",
+          "percentage": 55
+        },
+        {
+          "name": "Python",
+          "percentage": 1
+        }
+      ],
+      "3d-logo": {
+        "id": "latin-is-simple",
+        "url": "/icons/other/latin-is-simple.svg",
+        "scale": 0.0015,
+        "position": [
+          -0.2,
+          0.4,
+          -0.1
+        ],
+        "rotation": [
+          -0.2,
+          0.2,
+          0
+        ],
+        "wide": true
+      }
+    },
+    {
+      "id": "ablanitsa",
+      "title": "Information club “Digital Studio”",
+      "logo": "images/2aeg.png",
+      "type": "project",
+      "timespan": [
+        "01/10/2020",
+        "01/06/2021"
+      ],
+      "context": "Highschool project",
+      "description": "This is an ethnic diversity cooperation project with \"St. Paisiy Hilendarski\" School. I was offered to participate by my IT teacher at my highschool and I worked side by side with students from different grades.",
+      "technologies": [
+        {
+          "name": "HTML",
+          "percentage": 10
+        },
+        {
+          "name": "CSS",
+          "percentage": 15
+        },
+        {
+          "name": "Javascript",
+          "percentage": 45
+        },
+        {
+          "name": "ThreeJS",
+          "percentage": 20
+        },
+        {
+          "name": "Firebase",
+          "percentage": 10
+        }
+      ],
+      "3d-logo": {
+        "id": "2aeg",
+        "url": "/icons/other/2aeg.svg",
+        "scale": 0.005,
+        "position": [
+          -0.5,
+          -0.3,
+          0.2
+        ],
+        "rotation": [
+          -1.5,
+          0,
+          -0.5
+        ],
+        "wide": true
+      }
+    },
+    {
+      "id": "icc",
+      "title": "The International Cleaning Company",
+      "description": "Put poster. ICC offers top-notch home and office cleaning services. It was founded by Fontys students who offered other students to work alongside them as part of thei Open Learning semester.",
+      "logo": "/icons/other/ICClogo.svg",
+      "timespan": [
+        "05/02/2024",
+        "27/07/2024"
+      ],
+      "technologies": [
+        {
+          "name": "Next JS",
+          "percentage": 7
+        },
+        {
+          "name": "Typescript",
+          "percentage": 45
+        },
+        {
+          "name": "Supabase",
+          "percentage": 13
+        },
+        {
+          "name": "React",
+          "percentage": 35
+        }
+      ],
+      "3d-logo": {
+        "id": "ICC",
+        "url": "/icons/other/ICClogo.svg",
+        "scale": 0.001,
+        "position": [
+          1.9,
+          0.45,
+          0.65
+        ],
+        "rotation": [
+          -0.2,
+          0.2,
+          0
+        ],
+        "wide": true
+      }
+    },
+    {
+      "id": "asml",
+      "title": "ASML Internship",
+      "timespan": [
+        "09/09/2024",
+        "02/02/2025"
+      ],
+      "description": "I had the opportunity to work on a code analysis tool that generates an interactive report, helping to visualize and understand complex codebases. This project pushed me to grow technically while also giving me insight into how large companies operate.",
+      "logo": "/icons/other/ASML.svg",
+      "type": "internship",
+      "technologies": [
+        {
+          "name": "C/C++",
+          "percentage": 50
+        },
+        {
+          "name": "HTML",
+          "percentage": 10
+        },
+        {
+          "name": "CSS",
+          "percentage": 10
+        },
+        {
+          "name": "Javascript",
+          "percentage": 30
+        }
+      ],
+      "3d-logo": {
+        "id": "ASML",
+        "url": "/icons/other/ASML.svg",
+        "scale": 0.002,
+        "position": [
+          0.5,
+          0.19,
+          -0.4
+        ],
+        "rotation": [
+          -0.4,
+          -0.5,
+          0.2
+        ],
+        "wide": true
+      }
+    }
+  ],
+  "education": [
+    {
+      "value": "Intro to Theoretical Computer Science",
+      "url": "https://udacity.com/enrollment/cs313"
+    },
+    {
+      "value": "NodeJS - The Complete Guide (MVC, REST, APIs, GraphQl)"
+    },
+    {
+      "value": "Hack the Box"
+    },
+    {
+      "value": "Fontys (Academic preperation)",
+      "3d-logo": {
+        "id": "fontys",
+        "url": "/icons/other/fontys.svg",
+        "scale": 0.002,
+        "position": [
+          0.5,
+          0.19,
+          -0.4
+        ],
+        "rotation": [
+          -0.4,
+          -0.5,
+          0.2
+        ],
+        "wide": true
+      }
+    },
+    {
+      "value": "Tue (Embedded Systems Pre-master)",
+      "3d-logo": {
+        "id": "tue",
+        "url": "/icons/other/tue.svg",
+        "scale": 0.001,
+        "position": [
+          1.9,
+          0.45,
+          0.65
+        ],
+        "rotation": [
+          -0.2,
+          0.2,
+          0
+        ],
+        "wide": true
+      }
+    },
+    {
+      "value": "\"The Last Algorithms Course You'll Need\" by The Primeagen",
+      "image": "primeagen.webp"
+    }
+  ]
+}

@@ -1,16 +1,12 @@
 import { motion } from "motion/react";
 import { OverlayTrigger, Row, Tooltip } from "react-bootstrap";
 import { TRANSITION } from "../../constants";
+import type { ContentType } from "../../content.ts";
 import G_Card from "./Card.tsx";
 
-const icons = [
-	{ id: "projects", url: "icons/ui/projects.svg" },
-	{ id: "education", url: "icons/ui/education.svg" },
-	{ id: "certificates", url: "icons/ui/certificates.svg" },
-	{ id: "other", url: "icons/ui/other.svg" },
-];
+const icons: ContentType[] = ["projects", "education", "certificates", "books", "other"];
 
-export default function Menu(props: { onSelect: (id: string) => void }) {
+export default function Menu(props: { onSelect: (type: ContentType) => void; onUnselect: () => void }) {
 	return (
 		<motion.div
 			key="menu"
@@ -27,12 +23,12 @@ export default function Menu(props: { onSelect: (id: string) => void }) {
 							placement="bottom"
 							overlay={(p) => (
 								<Tooltip {...p} arrowProps={{}}>
-									{icon.id}
+									{icon}
 								</Tooltip>
 							)}
 						>
-							<div className="menu-icon mx-2 icon pointer" onClick={() => props.onSelect(icon.id)}>
-								<img src={icon.url} alt={icon.id} height={40} />
+							<div className="menu-icon mx-2 icon pointer" onClick={() => props.onSelect(icon)}>
+								<img src={`icons/ui/${icon}.svg`} alt={icon} height={40} />
 							</div>
 						</OverlayTrigger>
 					))}
