@@ -1,9 +1,9 @@
-import type { Logo3DParams } from "../../../content";
+import type { ContentData } from "../../../types";
 import Image from "./Image";
 import SVGObject from "./SVGObject";
 
-export default function Icon(props: Logo3DParams) {
-	if (props.url.endsWith(".svg")) return <SVGObject {...props} />;
+export default function Icon(props: ContentData) {
+	if (props.icon.endsWith(".svg")) return <SVGObject {...props} />;
 
 	return <Image {...props} />;
 }

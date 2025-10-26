@@ -3,11 +3,11 @@ import { useMemo } from "react";
 import { Color, DoubleSide, ExtrudeGeometry, MeshPhongMaterial, Vector3 } from "three";
 import { SVGLoader } from "three/examples/jsm/Addons.js";
 import { DEFAULT_SVG_ROTATION } from "../../../constants";
-import type { Logo3DParams } from "../../../content";
+import type { ContentData } from "../../../types";
 import { calculateSVGPathRenderOffset } from "../../../utils";
 
-export default function SVGObject(props: Logo3DParams) {
-	const data = useLoader(SVGLoader, props.url);
+export default function SVGObject(props: ContentData) {
+	const data = useLoader(SVGLoader, props.icon);
 
 	const shapes = useMemo(() => {
 		let renderOrder = 0;
@@ -45,7 +45,7 @@ export default function SVGObject(props: Logo3DParams) {
 
 				return (
 					<mesh
-						position={[0, 0, calculateSVGPathRenderOffset(renderOrder, props.wide)]}
+						position={[0, 0, calculateSVGPathRenderOffset(renderOrder, props.icon3D.wide)]}
 						geometry={geometry}
 						key={renderOrder}
 						material={material}
@@ -53,16 +53,16 @@ export default function SVGObject(props: Logo3DParams) {
 				);
 			});
 		});
-	}, [data, props.wide]);
+	}, [data, props.icon3D.wide]);
 
-	const r = props.rotation ?? [0, 0, 0];
+	const r = props.icon3D.rotation ?? [0, 0, 0];
 
 	return (
 		<mesh
 			name={props.id}
-			scale={new Vector3(0, 0, props.wide ? 0.01 : 0).addScalar(props.scale)}
+			scale={new Vector3(0, 0, props.icon3D.wide ? 0.01 : 0).addScalar(props.icon3D.scale)}
 			rotation={new Vector3(...r).add(DEFAULT_SVG_ROTATION).toArray()}
-			position={props.position}
+			position={props.icon3D.position}
 		>
 			{shapes}
 		</mesh>

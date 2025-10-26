@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { COLOR_PALETTE, ROOM, WallFace } from "../../../constants";
+import { COLOR_PALETTE, ROOM } from "../../../constants";
+import { WallFace } from "../../../types";
 
 function calcPos(dir: WallFace) {
 	let pos: [number, number, number];

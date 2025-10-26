@@ -1,4 +1,4 @@
-import { WallFace } from "../../../constants";
+import { WallFace } from "../../../types";
 import Delay from "../../Delay";
 import Ceiling from "./Ceiling";
 import CircuitPattern from "./CircuitPattern";

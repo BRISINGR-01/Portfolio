@@ -16,6 +16,7 @@ export const ROOM = {
 	OFFSET: 0.01,
 	CEILING_NOISE: 0.2,
 };
+export const IMAGE_DEPTH = 0.02;
 
 window.addEventListener("DOMContentLoaded", () => {
 	const style = window.getComputedStyle(document.documentElement);
@@ -25,18 +26,8 @@ window.addEventListener("DOMContentLoaded", () => {
 	COLOR_PALETTE.TERTIARY = style.getPropertyValue("--tertiary");
 });
 
-export const DEFAULT_LAYER = 0;
-export const OCCLUSION_LAYER = 1;
-
 export const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 export const TRANSITION = { duration: 0.3, ease: "easeOut" as Easing };
-
-export enum WallFace {
-	North,
-	West,
-	South,
-	East,
-}
 
 const IS_DEBUG = true;
 

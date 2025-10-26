@@ -3,21 +3,21 @@ import { motion } from "motion/react";
 import { PieChart } from "@mui/x-charts";
 import { OverlayTrigger, Row, Tooltip } from "react-bootstrap";
 import { TRANSITION } from "../../constants";
-import type { WorkingExperience } from "../../content.ts";
+import type { Experience } from "../../types.ts";
 import { parseTimeSpan, useIcon } from "../../utils";
 import G_Card from "./Card.tsx";
 import ChangeAnimation from "./ChangeAnimation.tsx";
 
-export default function ExperienceDisplay({ data }: { data: WorkingExperience | null }) {
+export default function ExperienceDisplay({ data }: { data: Experience | null }) {
 	const icons = useIcon();
 
 	if (!data) return null;
 
 	return (
 		<>
-			{/* Logo + title + time */}
+			{/* Icon + title + time */}
 			<motion.div
-				key="logo"
+				key="icon"
 				style={{ top: 0, left: 0, position: "absolute" }}
 				initial={{ transform: "translate(-100px,-100px)", opacity: 0 }}
 				animate={{ transform: "translate(0,0)", opacity: 1 }}
@@ -27,7 +27,7 @@ export default function ExperienceDisplay({ data }: { data: WorkingExperience | 
 				<G_Card style={{ top: 0, left: 0, width: "min-content" }} className="col-2 d-flex">
 					<ChangeAnimation id={data.id}>
 						<img
-							src={data.logo}
+							src={data.icon}
 							className="w-100 mb-3"
 							style={{ maxHeight: "20vh", maxWidth: "20vw", objectFit: "contain" }}
 						/>
