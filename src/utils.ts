@@ -34,7 +34,7 @@ export function parseTimeSpan(str: string) {
 }
 
 export function calculateSVGPathRenderOffset(index: number, isWide?: boolean) {
-	return index * -5 * (isWide ? 0.01 : 0.01);
+	return index * -5 * (isWide ? 0.01 : 0.001);
 }
 
 export function useIcon() {

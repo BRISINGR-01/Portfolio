@@ -19,6 +19,12 @@ export type Book = {
 	tags: string[];
 } & ContentData;
 
+export type Education = {
+	logo: string;
+	title: string;
+	description: string;
+} & ContentData;
+
 export type Logo3DParams = {
 	id: string;
 	url: string;
@@ -37,6 +43,7 @@ export type Language = {
 export type Content = {
 	projects: WorkingExperience[];
 	books: Book[];
+	education: Education[];
 };
 
 export type ContentData = {

@@ -577,6 +577,13 @@
   ],
   "certificates": [
     {
+      "id": "node",
+      "title": "NodeJS - The Complete Guide (MVC, REST, APIs, GraphQl)",
+      "3d-logo": {
+        "id": "node"
+      }
+    },
+    {
       "name": "Learning Linux Command Line",
       "tags": [
         "Linux",

@@ -2,9 +2,9 @@ import { useLoader } from "@react-three/fiber";
 import { useMemo } from "react";
 import { Color, DoubleSide, ExtrudeGeometry, MeshPhongMaterial, Vector3 } from "three";
 import { SVGLoader } from "three/examples/jsm/Addons.js";
-import { DEFAULT_SVG_ROTATION } from "../../constants";
-import type { Logo3DParams } from "../../content";
-import { calculateSVGPathRenderOffset } from "../../utils";
+import { DEFAULT_SVG_ROTATION } from "../../../constants";
+import type { Logo3DParams } from "../../../content";
+import { calculateSVGPathRenderOffset } from "../../../utils";
 
 export default function SVGObject(props: Logo3DParams) {
 	const data = useLoader(SVGLoader, props.url);
@@ -48,8 +48,6 @@ export default function SVGObject(props: Logo3DParams) {
 						position={[0, 0, calculateSVGPathRenderOffset(renderOrder, props.wide)]}
 						geometry={geometry}
 						key={renderOrder}
-						castShadow
-						receiveShadow
 						material={material}
 					/>
 				);
@@ -62,8 +60,6 @@ export default function SVGObject(props: Logo3DParams) {
 	return (
 		<mesh
 			name={props.id}
-			castShadow
-			receiveShadow
 			scale={new Vector3(0, 0, props.wide ? 0.01 : 0).addScalar(props.scale)}
 			rotation={new Vector3(...r).add(DEFAULT_SVG_ROTATION).toArray()}
 			position={props.position}

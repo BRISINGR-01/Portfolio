@@ -1,5 +1,5 @@
 import { useFrame, useThree } from "@react-three/fiber";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { Vector2, type Camera, type Group, type Mesh, type Scene, type WebGLRenderer } from "three";
 import { EffectComposer, OutlinePass, OutputPass, RenderPass } from "three/examples/jsm/Addons.js";
 import { COLOR_PALETTE, RAYCAST_CONTAINER_NAME } from "../../constants";
@@ -51,7 +51,6 @@ export default function Raycast({
 	const groupRef = useRef<Group>(null);
 	const { scene, camera, gl, raycaster } = useThree();
 	const mouse = useRef(new Vector2());
-	const [hoveredId, setHoveredId] = useState<string | null>(null);
 	const composer = useRef<EffectComposer>(null);
 	const outlinePass = useRef<OutlinePass>(null);
 	const persistentOutlinePass = useRef<OutlinePass>(null);
@@ -102,7 +101,6 @@ export default function Raycast({
 			if (hovered?.id === mesh.id) return;
 
 			hovered = mesh;
-			setHoveredId(mesh.name);
 			outlinePass.current!.selectedObjects = [mesh];
 			setPointerCursor();
 		}
@@ -132,7 +130,6 @@ export default function Raycast({
 	return (
 		<group ref={groupRef} name={RAYCAST_CONTAINER_NAME}>
 			{children}
-			{/* {children.map((el) => (el.key === hoveredId ? <MoveUtil key={el.key}>{el}</MoveUtil> : el))} */}
 		</group>
 	);
 }

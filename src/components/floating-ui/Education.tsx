@@ -2,13 +2,14 @@ import { motion } from "motion/react";
 
 import { PieChart } from "@mui/x-charts";
 import { OverlayTrigger, Row, Tooltip } from "react-bootstrap";
-import { TRANSITION } from "../../constants";
-import type { WorkingExperience } from "../../content.ts";
-import { parseTimeSpan, useIcon } from "../../utils";
+import { TRANSITION } from "../../constants.ts";
+import type { Education } from "../../content.ts";
+import { parseTimeSpan, useIcon } from "../../utils.ts";
 import G_Card from "./Card.tsx";
 import ChangeAnimation from "./ChangeAnimation.tsx";
 
-export default function ExperienceDisplay({ data }: { data: WorkingExperience | null }) {
+export default function EducationDisplay({ data }: { data: Education | null }) {
+	console.log(data);
 	const icons = useIcon();
 
 	if (!data) return null;
