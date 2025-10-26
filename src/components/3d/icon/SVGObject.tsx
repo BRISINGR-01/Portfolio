@@ -37,7 +37,7 @@ export default function SVGObject(props: Logo3DParams) {
 			return SVGLoader.createShapes(path).map((shape) => {
 				const geometry = new ExtrudeGeometry(shape, {
 					depth: 4,
-					bevelEnabled: true,
+					// bevelEnabled: true,
 				});
 				geometry.computeBoundsTree();
 

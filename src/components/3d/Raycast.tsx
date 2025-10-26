@@ -1,45 +1,9 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import React, { useEffect, useRef } from "react";
-import { Vector2, type Camera, type Group, type Mesh, type Scene, type WebGLRenderer } from "three";
+import { Vector2, type Group, type Mesh } from "three";
 import { EffectComposer, OutlinePass, OutputPass, RenderPass } from "three/examples/jsm/Addons.js";
 import { COLOR_PALETTE, RAYCAST_CONTAINER_NAME } from "../../constants";
 import { setDefaultCursor, setPointerCursor } from "../../utils";
-
-function createComposer(
-	composer: React.RefObject<EffectComposer | null>,
-	gl: WebGLRenderer,
-	scene: Scene,
-	camera: Camera,
-	persistentOutlinePass: React.RefObject<OutlinePass | null>,
-	outlinePass: React.RefObject<OutlinePass | null>,
-	groupRef: React.RefObject<Group | null>
-) {
-	if (composer.current) {
-		composer.current.dispose();
-		composer.current = null;
-	}
-
-	composer.current = new EffectComposer(gl);
-	composer.current.setSize(window.innerWidth, window.innerHeight);
-
-	composer.current.addPass(new RenderPass(scene, camera));
-
-	outlinePass.current = new OutlinePass(new Vector2(window.innerWidth, window.innerHeight), scene, camera);
-	outlinePass.current.edgeStrength = 5;
-	outlinePass.current.edgeGlow = 1;
-	outlinePass.current.visibleEdgeColor.set(COLOR_PALETTE.PRIMARY);
-	outlinePass.current.hiddenEdgeColor.set("#1abaff");
-	composer.current.addPass(outlinePass.current);
-
-	persistentOutlinePass.current = new OutlinePass(new Vector2(window.innerWidth, window.innerHeight), scene, camera);
-	persistentOutlinePass.current.edgeStrength = 1;
-	persistentOutlinePass.current.edgeGlow = 0;
-	persistentOutlinePass.current.visibleEdgeColor.set("#ffffff");
-	persistentOutlinePass.current.selectedObjects = groupRef.current!.children;
-	composer.current.addPass(persistentOutlinePass.current);
-
-	composer.current.addPass(new OutputPass());
-}
 
 export default function Raycast({
 	children,
@@ -52,28 +16,48 @@ export default function Raycast({
 	const { scene, camera, gl, raycaster } = useThree();
 	const mouse = useRef(new Vector2());
 	const composer = useRef<EffectComposer>(null);
-	const outlinePass = useRef<OutlinePass>(null);
 	const persistentOutlinePass = useRef<OutlinePass>(null);
 
-	useFrame(() => {
-		composer.current?.render();
-	}, 0);
+	useFrame(() => composer.current?.render());
 
 	useEffect(() => {
-		if (persistentOutlinePass.current) persistentOutlinePass.current.selectedObjects = groupRef.current!.children;
-	}, [children]);
+		if (!composer.current) return;
 
-	useEffect(() => createComposer(composer, gl, scene, camera, persistentOutlinePass, outlinePass, groupRef), [camera]);
+		for (const pass of composer.current.passes) {
+			if (pass instanceof OutlinePass && pass.selectedObjects.length > 1) {
+				pass.selectedObjects = groupRef.current!.children;
+			}
+		}
+	}, [children]);
 
 	useEffect(() => {
 		raycaster.firstHitOnly = true;
 		gl.autoClear = false;
 
-		createComposer(composer, gl, scene, camera, persistentOutlinePass, outlinePass, groupRef);
+		composer.current = new EffectComposer(gl);
+		composer.current.setSize(window.innerWidth, window.innerHeight);
+
+		composer.current.addPass(new RenderPass(scene, camera));
+
+		const outlinePass = new OutlinePass(new Vector2(window.innerWidth, window.innerHeight), scene, camera);
+		outlinePass.edgeStrength = 5;
+		outlinePass.edgeGlow = 1;
+		outlinePass.visibleEdgeColor.set(COLOR_PALETTE.PRIMARY);
+		outlinePass.hiddenEdgeColor.set("#1abaff");
+		composer.current.addPass(outlinePass);
+
+		persistentOutlinePass.current = new OutlinePass(new Vector2(window.innerWidth, window.innerHeight), scene, camera);
+		persistentOutlinePass.current.edgeStrength = 1;
+		persistentOutlinePass.current.edgeGlow = 0;
+		persistentOutlinePass.current.visibleEdgeColor.set("#ffffff");
+		persistentOutlinePass.current.selectedObjects = groupRef.current!.children;
+		composer.current.addPass(persistentOutlinePass.current);
+
+		composer.current.addPass(new OutputPass());
 
 		let hovered: Mesh | null = null;
 		function unselect() {
-			outlinePass.current!.selectedObjects = [];
+			outlinePass!.selectedObjects = [];
 			hovered = null;
 			setDefaultCursor();
 		}
@@ -101,7 +85,7 @@ export default function Raycast({
 			if (hovered?.id === mesh.id) return;
 
 			hovered = mesh;
-			outlinePass.current!.selectedObjects = [mesh];
+			outlinePass!.selectedObjects = [mesh];
 			setPointerCursor();
 		}
 

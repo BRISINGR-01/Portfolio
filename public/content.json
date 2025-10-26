@@ -446,43 +446,58 @@
   ],
   "education": [
     {
-      "value": "Intro to Theoretical Computer Science",
-      "url": "https://udacity.com/enrollment/cs313"
+      "id": "htb",
+      "title": "Hack the Box",
+      "logo": "/icons/other/htb.svg",
+      "3d-logo": {
+        "id": "htb",
+        "url": "/icons/other/htb.svg",
+        "scale": 0.03,
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "wide": false
+      }
     },
     {
-      "value": "NodeJS - The Complete Guide (MVC, REST, APIs, GraphQl)"
-    },
-    {
-      "value": "Hack the Box"
-    },
-    {
-      "value": "Fontys (Academic preperation)",
+      "id": "fontys",
+      "title": "Fontys (Academic preperation)",
+      "logo": "/icons/other/fontys.svg",
       "3d-logo": {
         "id": "fontys",
         "url": "/icons/other/fontys.svg",
-        "scale": 0.002,
+        "scale": 0.0004,
         "position": [
-          0.5,
-          0.19,
-          -0.4
+          1,
+          0.55,
+          -0.41
         ],
         "rotation": [
-          -0.4,
-          -0.5,
-          0.2
+          0,
+          0,
+          0
         ],
         "wide": true
       }
     },
     {
-      "value": "Tue (Embedded Systems Pre-master)",
+      "id": "tue",
+      "title": "Tue (Embedded Systems Pre-master)",
+      "logo": "/icons/other/tue.svg",
       "3d-logo": {
         "id": "tue",
         "url": "/icons/other/tue.svg",
-        "scale": 0.001,
+        "scale": 0.004,
         "position": [
           1.9,
-          0.45,
+          0.1,
           0.65
         ],
         "rotation": [
@@ -494,8 +509,19 @@
       }
     },
     {
-      "value": "\"The Last Algorithms Course You'll Need\" by The Primeagen",
-      "image": "primeagen.webp"
+      "id": "primagen",
+      "title": "\"The Last Algorithms Course You'll Need\" by The Primeagen",
+      "logo": "primeagen.webp",
+      "3d-logo": {
+        "id": "p",
+        "url": "/images/other/primagen-icon.webp",
+        "scale": 0.7,
+        "position": [
+          -1.9,
+          -0.1,
+          0.65
+        ]
+      }
     }
   ]
 }
