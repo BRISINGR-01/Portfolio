@@ -1,4 +1,4 @@
-import { Book, Education, Experience } from "./types";
+import { Book, Education, Experience, type Content } from "./types";
 
 const text = {
 	A1: {
@@ -65,8 +65,8 @@ const text = {
 const education = [
 	new Education("htb", "Hack the Box", "", "/icons/other/htb.svg", {
 		scale: 0.03,
-		position: [0, 0, 0],
-		rotation: [0, 0, 0],
+		position: [-1.7, 0.32, 0],
+		rotation: [0, 0.4, 0],
 	}),
 	new Education("fontys", "Fontys (Academic preperation)", "", "/icons/other/fontys.svg", {
 		scale: 0.0004,
@@ -82,7 +82,24 @@ const education = [
 	}),
 	new Education("primagen", "The Last Algorithms Course You'll Need", "", "/images/other/primeagen-icon.webp", {
 		scale: 0.7,
-		position: [-1.9, -0.1, 0.65],
+		position: [-1.9, -0.04, 0.65],
+	}),
+	new Education("books", "Books", "", "/3d/books.glb", {
+		scale: 1.5,
+		position: [-0.4, -0.36, 0.2],
+		rotation: [0, 1.5, 0],
+	}),
+	new Education("certificates", "Certificates", "", "/icons/ui/certificate-detail.svg", {
+		scale: 0.001,
+		position: [-0.97, -0.03, -0.4],
+		rotation: [-0.5, -0.5, 0.2],
+		wide: true,
+	}),
+	new Education("math", "Academic Preparation", "", "/3d/math.glb", {
+		scale: 1.5,
+		position: [2.8, 0.2, -0.6],
+		rotation: [0, -0.4, 0],
+		wide: true,
 	}),
 ];
 
@@ -220,7 +237,7 @@ const projects = [
 		text["sdg-solarwatt"].description,
 		[
 			{ name: "Typescript", percentage: 30 },
-			{ name: "React-Bootstrap", percentage: 52 },
+			{ name: "React", percentage: 52 },
 			{ name: "Vercel", percentage: 8 },
 		],
 		{ scale: 0.4, position: [-0.8, 1.13, 0.55], rotation: [0.4, 0.4, 0.4], wide: false }
@@ -287,5 +304,5 @@ const projects = [
 		{ scale: 0.002, position: [0.5, 0.19, -0.4], rotation: [-0.4, -0.5, 0.2], wide: true }
 	),
 ];
-const content = { education, projects };
+const content: Content = { education, projects };
 export default content;

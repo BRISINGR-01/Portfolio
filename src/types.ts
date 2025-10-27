@@ -49,7 +49,6 @@ export interface Language {
 
 export interface Content {
 	projects: Experience[];
-	books: Book[];
 	education: Education[];
 }
 

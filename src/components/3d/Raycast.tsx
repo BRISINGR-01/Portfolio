@@ -10,7 +10,7 @@ export default function Raycast({
 	onClick,
 }: {
 	onClick: (m: Mesh | null) => void;
-	children: React.JSX.Element[];
+	children: null | React.JSX.Element[];
 }) {
 	const groupRef = useRef<Group>(null);
 	const { scene, camera, gl, raycaster } = useThree();

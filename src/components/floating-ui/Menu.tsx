@@ -4,7 +4,7 @@ import { TRANSITION } from "../../constants";
 import type { ContentType } from "../../types.ts";
 import G_Card from "./Card.tsx";
 
-const icons: ContentType[] = ["projects", "education", "certificates", "books", "other"];
+const icons: ContentType[] = ["projects", "education", "other"];
 
 export default function Menu(props: { onSelect: (type: ContentType) => void }) {
 	return (
