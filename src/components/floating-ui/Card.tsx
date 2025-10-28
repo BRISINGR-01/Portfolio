@@ -3,7 +3,7 @@ export default function G_Card(props: React.DetailedHTMLProps<React.HTMLAttribut
 		<div
 			{...props}
 			style={{ ...props.style }}
-			className={`g-card text-light m-4 p-3 position-absolute align-self-center ${props.className}`}
+			className={`g-card text-light p-3 position-absolute align-self-center ${props.className}`}
 		>
 			{props.children}
 		</div>

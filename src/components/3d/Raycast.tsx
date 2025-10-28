@@ -91,6 +91,7 @@ export default function Raycast({
 
 		function onClickCb() {
 			onClick(hovered);
+			setDefaultCursor();
 		}
 
 		function onResize() {

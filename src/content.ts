@@ -84,26 +84,44 @@ const education = [
 		scale: 0.7,
 		position: [-1.9, -0.04, 0.65],
 	}),
+	new Education(
+		"fireship",
+		"Fireship",
+		"",
+		"/icons/other/fireship.svg",
+		{
+			scale: 0.0007,
+			position: [0.9, 0.4, 0.65],
+		},
+		"/icons/other/fireship-original.svg"
+	),
 	new Education("books", "Books", "", "/3d/books.glb", {
 		scale: 1.5,
 		position: [-0.4, -0.36, 0.2],
 		rotation: [0, 1.5, 0],
 	}),
-	new Education("certificates", "Certificates", "", "/icons/ui/certificate-detail.svg", {
+	new Education("certificates", "Certificates", "", "/icons/other/certificate-detail.svg", {
 		scale: 0.001,
 		position: [-0.97, -0.03, -0.4],
 		rotation: [-0.5, -0.5, 0.2],
 		wide: true,
 	}),
-	new Education("math", "Academic Preparation", "", "/3d/math.glb", {
-		scale: 1.5,
-		position: [2.8, 0.2, -0.6],
-		rotation: [0, -0.4, 0],
-		wide: true,
-	}),
+	new Education(
+		"math",
+		"Academic Preparation",
+		"",
+		"/3d/math.glb",
+		{
+			scale: 1.5,
+			position: [2.8, 0.2, -0.6],
+			rotation: [0, -0.4, 0],
+			wide: true,
+		},
+		"/images/other/math.webp"
+	),
 ];
 
-const books = [
+export const books = [
 	new Book(
 		"The Rust Programming Language",
 		"Covers Rust 2018",
@@ -193,7 +211,6 @@ const books = [
 		["Code Quality", "Concurrency"]
 	),
 ];
-books.length = 0;
 
 const projects = [
 	new Experience(
@@ -304,5 +321,6 @@ const projects = [
 		{ scale: 0.002, position: [0.5, 0.19, -0.4], rotation: [-0.4, -0.5, 0.2], wide: true }
 	),
 ];
+
 const content: Content = { education, projects };
 export default content;

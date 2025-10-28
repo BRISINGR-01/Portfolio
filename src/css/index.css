@@ -57,3 +57,23 @@ body {
 canvas {
 	background-color: var(--secondary);
 }
+
+/* scrollbar */
+/* width */
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px grey;
+	margin: 5px;
+	border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	box-shadow: inset 0 0 5px rgb(255, 255, 255);
+	background: rgba(17, 105, 206, 0.55);
+	border-radius: 10px;
+}

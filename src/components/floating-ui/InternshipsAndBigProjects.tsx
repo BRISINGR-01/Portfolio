@@ -24,7 +24,7 @@ export default function ExperienceDisplay({ data }: { data: Experience | null })
 				exit={{ transform: "translate(-100px,-100px)", opacity: 0 }}
 				transition={TRANSITION}
 			>
-				<G_Card style={{ top: 0, left: 0, width: "min-content" }} className="col-2 d-flex">
+				<G_Card style={{ top: 0, left: 0, width: "min-content" }} className="col-2 m-4">
 					<ChangeAnimation id={data.id}>
 						<img
 							src={data.icon}
@@ -48,7 +48,7 @@ export default function ExperienceDisplay({ data }: { data: Experience | null })
 				exit={{ transform: "translate(100px,-100px)", opacity: 0 }}
 				transition={TRANSITION}
 			>
-				<G_Card style={{ right: 0, top: 0 }} className="col-5">
+				<G_Card style={{ right: 0, top: 0 }} className="col-5 m-4">
 					<ChangeAnimation id={data.id}>
 						<span>{data.description}</span>
 					</ChangeAnimation>
@@ -63,7 +63,7 @@ export default function ExperienceDisplay({ data }: { data: Experience | null })
 				exit={{ transform: "translate(-100px,100px)", opacity: 0 }}
 				transition={TRANSITION}
 			>
-				<G_Card style={{ bottom: 0, left: 0 }}>
+				<G_Card style={{ bottom: 0, left: 0 }} className="m-4">
 					<PieChart
 						style={{
 							maxHeight: "200px",

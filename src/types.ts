@@ -9,7 +9,8 @@ export class Experience implements ContentData {
 		/** What I did there */
 		public description: string,
 		public technologies: { name: string; percentage: number }[],
-		public icon3D: Icon3DParams
+		public icon3D: Icon3DParams,
+		public altIcon?: string
 	) {}
 }
 
@@ -30,7 +31,8 @@ export class Education implements ContentData {
 		public title: string,
 		public description: string,
 		public icon: string,
-		public icon3D: Icon3DParams
+		public icon3D: Icon3DParams,
+		public altIcon?: string
 	) {}
 }
 
@@ -55,6 +57,7 @@ export interface Content {
 export interface ContentData {
 	id: string;
 	icon: string;
+	altIcon?: string;
 	icon3D: Icon3DParams;
 }
 

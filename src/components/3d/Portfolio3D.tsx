@@ -40,7 +40,8 @@ export default function Portfolio3D() {
 	const [selectedIcon, setSelectedItem] = useState<ContentData | null>(null);
 
 	useEffect(() => {
-		// setSelectedContent("education");
+		setSelectedContent("education");
+		// setSelectedItem(content.education[5]);
 	}, []);
 
 	// const p = usePos();
@@ -57,20 +58,18 @@ export default function Portfolio3D() {
 	useEffect(() => {
 		if (!selectedContent) return;
 		const icons = content[selectedContent];
-		setVisibleIcons([]); // reset
-		let i = 0;
 
-		const loadNext = () => {
-			if (i >= icons.length) return;
+		setVisibleIcons([]);
 
-			setVisibleIcons((prev) => [...prev, icons[i++]]); // the index must be updated in the cb
-
+		for (let i = 0; i < icons.length; i++) {
 			// let React and the browser breathe before next mesh mount
-			setTimeout(loadNext, 16); // ~1 frame delay (60fps)
-		};
+			setTimeout(() => {
+				if (i >= icons.length) return;
 
-		loadNext();
-	}, [selectedContent, content]);
+				setVisibleIcons((prev) => [...prev, icons[i]]);
+			}, (i + 1) * 20);
+		}
+	}, [selectedContent]);
 
 	return (
 		<>
@@ -88,7 +87,6 @@ export default function Portfolio3D() {
 
 							const newSelected =
 								(selectedContent ? content[selectedContent] : [])?.find((el) => el.id === m.name) ?? null;
-
 							if (!newSelected) return setSelectedItem(null);
 							if (newSelected && newSelected.id === selectedIcon?.id) return setSelectedItem(null);
 
@@ -109,7 +107,7 @@ export default function Portfolio3D() {
 			</Canvas>
 			<Delay time={MENU_DELAY}>
 				<AnimatePresence>
-					{content && (
+					{!selectedIcon && (
 						<Menu
 							key="menu"
 							onSelect={(c) => {
@@ -118,7 +116,7 @@ export default function Portfolio3D() {
 							}}
 						/>
 					)}
-					{selectedContent !== null && selectedIcon && <ContentDisplay data={selectedIcon} type={selectedContent} />}
+					{selectedContent && selectedIcon && <ContentDisplay data={selectedIcon} type={selectedContent} />}
 				</AnimatePresence>
 			</Delay>
 		</>

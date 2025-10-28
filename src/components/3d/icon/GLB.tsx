@@ -8,14 +8,12 @@ export default function GLB(props: ContentData) {
 	useEffect(() => fixGLTFDepth(scene));
 
 	return (
-		<group>
-			<primitive
-				object={scene}
-				name={props.id}
-				scale={props.icon3D.scale}
-				rotation={props.icon3D.rotation}
-				position={props.icon3D.position}
-			/>
-		</group>
+		<primitive
+			object={scene}
+			name={props.id}
+			scale={props.icon3D.scale}
+			rotation={props.icon3D.rotation}
+			position={props.icon3D.position}
+		/>
 	);
 }

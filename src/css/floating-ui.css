@@ -50,3 +50,40 @@
 	transition: 0.2s;
 	filter: invert(1);
 }
+
+.book-card-3d {
+	position: relative;
+	background: rgba(30, 60, 90, 0.6);
+	border: 1px solid rgba(255, 255, 255, 0.671);
+	border-radius: 1rem;
+	box-shadow: 0 0 15px rgba(0, 255, 255, 0.15);
+	transform-style: preserve-3d;
+	overflow: hidden;
+	transition: 0.2s all ease-out;
+}
+
+.book-card-3d:hover {
+	cursor: url("/cursors/link_select.cur") 0 0, pointer;
+
+	transition: 0.2s all ease-out;
+	transform: rotateX(6deg) rotateY(-6deg) scale(1.05);
+	box-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 0 60px rgba(79, 164, 250, 0.445);
+	background: rgba(40, 80, 120, 0.7);
+	border: 1px solid rgba(10, 104, 186, 0.671);
+
+	.book-3d {
+		transition: 0.2s;
+		scale: 1.05;
+		/* --book-thickness: 0px; */
+	}
+
+	.book-3d__inner::before {
+		transition: 0.2s;
+		width: 0;
+	}
+
+	.book-3d__inner {
+		transition: 0.2s;
+		transform: rotateY(0);
+	}
+}

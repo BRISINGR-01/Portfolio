@@ -5,9 +5,7 @@ import type { Education } from "../../types.ts";
 import G_Card from "./Card.tsx";
 import ChangeAnimation from "./ChangeAnimation.tsx";
 
-export default function EducationDisplay({ data }: { data: Education | null }) {
-	if (!data) return null;
-
+export default function EducationDisplay({ data }: { data: Education }) {
 	return (
 		<>
 			{/* Icon + title + time */}
@@ -19,10 +17,10 @@ export default function EducationDisplay({ data }: { data: Education | null }) {
 				exit={{ transform: "translate(-100px,-100px)", opacity: 0 }}
 				transition={TRANSITION}
 			>
-				<G_Card style={{ top: 0, left: 0, width: "min-content", minWidth: "20vw" }} className="col-2 d-flex">
+				<G_Card style={{ top: 0, left: 0, width: "min-content", minWidth: "20vw" }} className="m-4">
 					<ChangeAnimation id={data.id}>
 						<img
-							src={data.icon}
+							src={data.altIcon ?? data.icon}
 							className="w-100 mb-3"
 							style={{ maxHeight: "20vh", maxWidth: "20vw", objectFit: "contain" }}
 						/>
@@ -40,7 +38,7 @@ export default function EducationDisplay({ data }: { data: Education | null }) {
 				exit={{ transform: "translate(100px,-100px)", opacity: 0 }}
 				transition={TRANSITION}
 			>
-				<G_Card style={{ right: 0, top: 0 }} className="col-5">
+				<G_Card style={{ right: 0, top: 0 }} className="col-5 m-4">
 					<ChangeAnimation id={data.id}>
 						<span>{data.description}</span>
 					</ChangeAnimation>
