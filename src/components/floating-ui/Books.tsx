@@ -1,12 +1,13 @@
-import { motion } from "motion/react";
-import { Card, Row } from "react-bootstrap";
+import { AnimatePresence, motion } from "motion/react";
+import { useState } from "react";
 import { TRANSITION } from "../../constants";
-import { books } from "../../content";
-import Book3DEffect from "./Book3DEffect";
+import type { Book } from "../../types";
+import BookDetails from "./BookDetails";
+import BookList from "./BookList";
 import G_Card from "./Card";
 
 export default function Books() {
-	// const [selected, setSelected] = useState(null)
+	const [selected, setSelected] = useState<Book | null>(null);
 
 	return (
 		<motion.div
@@ -22,33 +23,25 @@ export default function Books() {
 					top: "50%",
 					left: "50%",
 					transform: "translate(-50%,-50%)",
+					height: selected ? "70vh" : "90vh",
 					maxHeight: "90vh",
-					width: "80vw",
+					width: selected ? "70vw" : "80vw",
 					overflow: "auto",
-					background: "rgba(51, 91, 132, 0.6)",
 					padding: "1rem",
 					borderRadius: "1rem",
+					transition: "0.1s",
+				}}
+				onClick={() => {
+					if (selected) setSelected(null);
 				}}
 			>
-				<Row className="g-3 justify-content-center">
-					{books.map((book, i) => (
-						<Card
-							key={i}
-							className="book-card-3d rounded-3 col-10 col-sm-5 col-md-3 col-lg-2 p-3"
-							style={{
-								background: "#335b8499",
-								display: "flex",
-								flexDirection: "column",
-								height: "260px",
-							}}
-						>
-							<Book3DEffect {...book} />
-							<Card.Body className="mt-1 d-flex flex-column justify-content-between">
-								<Card.Title className="fs-6 text-center mb-1">{book.title}</Card.Title>
-							</Card.Body>
-						</Card>
-					))}
-				</Row>
+				<AnimatePresence>
+					{selected ? (
+						<BookDetails book={selected} onClick={() => setSelected(null)} />
+					) : (
+						<BookList onSelect={(book) => setSelected(book)} />
+					)}
+				</AnimatePresence>
 			</G_Card>
 		</motion.div>
 	);

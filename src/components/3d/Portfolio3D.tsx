@@ -44,8 +44,8 @@ export default function Portfolio3D() {
 		// setSelectedItem(content.education[5]);
 	}, []);
 
-	// const p = usePos();
-	// const r = useRot();
+	// const p = usePos([2.8, 0.2, 0.2]);
+	// const r = useRot([0, -0.4, 0]);
 
 	// content.education.at(-1)!.icon3D.position = p;
 	// content.education.at(-1)!.icon3D.rotation = r;
@@ -75,7 +75,7 @@ export default function Portfolio3D() {
 		<>
 			<Canvas>
 				<PerspectiveCamera position={[-1, 0.3, 5]} fov={75} />
-				<ambientLight intensity={0.6} />
+				<ambientLight intensity={0.4} />
 				<directionalLight intensity={0.8} position={[200, 100, 300]} />
 				<OrbitControls />
 

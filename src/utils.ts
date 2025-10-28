@@ -51,12 +51,12 @@ export function useIcon() {
 	return icons;
 }
 
-export function useRot() {
-	return useControls("rot", { r: [0, 0, 0] }).r;
+export function useRot(r?: [number, number, number]) {
+	return useControls("rot", { r: r ?? [0, 0, 0] }).r;
 }
 
-export function usePos() {
-	return useControls("pos", { p: [0, 0, 0] }).p;
+export function usePos(p?: [number, number, number]) {
+	return useControls("pos", { p: p ?? [0, 0, 0] }).p;
 }
 
 export function setPointerCursor() {

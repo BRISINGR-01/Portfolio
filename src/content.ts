@@ -50,7 +50,7 @@ const text = {
 	"Software Architecture Patterns":
 		"The success of any software application or system depends on the architecture style you use. This updated report presents several common architecture styles to guide designers and developers on how to design components and to help you determine the ways in which those components should interact.",
 	"System Design Interview":
-		" This book provides a step-by-step framework for how to tackle a system design question. It includes many real-world examples to illustrate the systematic approach, with detailed steps that you can follow.",
+		"This book provides a step-by-step framework for how to tackle a system design question. It includes many real-world examples to illustrate the systematic approach, with detailed steps that you can follow.",
 	"Design Patterns":
 		"Capturing a wealth of experience about the design of object-oriented software, four top-notch designers present a catalog of simple and succinct solutions to commonly occurring design problems. Previously undocumented, these 23 patterns allow designers to create more flexible, elegant, and ultimately reusable designs without having to rediscover the design solutions themselves.",
 	Code: "Dives into the fundamental concepts of computer science, starting from basic electrical circuits to the intricate workings of modern computers. The book explores how simple ideas and technologies evolve into complex systems, making the world of computing accessible and engaging for both technical and non-technical readers.",
@@ -64,25 +64,27 @@ const text = {
 
 const education = [
 	new Education("htb", "Hack the Box", "", "/icons/other/htb.svg", {
-		scale: 0.03,
-		position: [-1.7, 0.32, 0],
-		rotation: [0, 0.4, 0],
+		scale: 0.003,
+		position: [-2, 0.2, -0.05],
+		rotation: [-0.6, 0.5, -0.4],
+		wide: true,
 	}),
 	new Education("fontys", "Fontys (Academic preperation)", "", "/icons/other/fontys.svg", {
 		scale: 0.0004,
-		position: [1, 0.55, -0.41],
-		rotation: [0, 0, 0],
+		position: [1.1, 0.5, -0.4],
+		rotation: [-0.15, -0.4, 0.05],
 		wide: true,
 	}),
 	new Education("tue", "Tue (Embedded Systems Pre-master)", "", "/icons/other/tue.svg", {
 		scale: 0.004,
-		position: [1.9, 0.1, 0.65],
-		rotation: [-0.2, 0.2, 0],
+		position: [0.4, 0.13, -0.2],
+		rotation: [0.25, 0.1, 0.05],
 		wide: true,
 	}),
 	new Education("primagen", "The Last Algorithms Course You'll Need", "", "/images/other/primeagen-icon.webp", {
 		scale: 0.7,
-		position: [-1.9, -0.04, 0.65],
+		position: [-2, -0.1, 0.07],
+		rotation: [-0.8, -0.6, -0.5],
 	}),
 	new Education(
 		"fireship",
@@ -91,7 +93,9 @@ const education = [
 		"/icons/other/fireship.svg",
 		{
 			scale: 0.0007,
-			position: [0.9, 0.4, 0.65],
+			position: [-1.53, 0.28, -0.3],
+			rotation: [-0.25, 0.1, 0.05],
+			wide: true,
 		},
 		"/icons/other/fireship-original.svg"
 	),
@@ -109,12 +113,23 @@ const education = [
 	new Education(
 		"math",
 		"Academic Preparation",
-		"",
+		"Graph Theory\
+		 Logic and Set Thoery\
+		 Applied Logic\
+		 Linear Algebra\
+		 Data Structures & Algorithms 1\
+		 Automata\
+		 Data Science\
+		 Statistics\
+		 Decision Theory\
+		 Functional Programming\
+		 Synchronisation\
+		 Data Structures & Algorithms 2",
 		"/3d/math.glb",
 		{
 			scale: 1.5,
-			position: [2.8, 0.2, -0.6],
-			rotation: [0, -0.4, 0],
+			position: [2.8, 0.2, 0.25],
+			rotation: [0, -1, 0],
 			wide: true,
 		},
 		"/images/other/math.webp"

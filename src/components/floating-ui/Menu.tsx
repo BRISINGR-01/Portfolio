@@ -4,7 +4,7 @@ import { TRANSITION } from "../../constants";
 import type { ContentType } from "../../types.ts";
 import G_Card from "./Card.tsx";
 
-const icons: ContentType[] = ["projects", "education", "other"];
+const icons: ContentType[] = ["projects", "education"];
 
 export default function Menu(props: { onSelect: (type: ContentType) => void }) {
 	return (
@@ -15,7 +15,7 @@ export default function Menu(props: { onSelect: (type: ContentType) => void }) {
 			transition={TRANSITION}
 			exit={{ transform: "translateY(100px)", opacity: 0 }}
 		>
-			<G_Card style={{ bottom: 0, left: "50%", transform: "translateX(-50%)", translate: "" }}>
+			<G_Card style={{ bottom: 0, left: "50%", transform: "translateX(-50%)" }} className="m-4">
 				<Row>
 					{icons.map((icon, i) => (
 						<OverlayTrigger
