@@ -2,11 +2,13 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Emergency from "./components/Emergency";
 import PortfolioPlain from "./components/PortforlioPlain";
-import Preview from "./components/Preview";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import { lazy } from "react";
 import Portfolio3D from "./components/3d/Portfolio3D";
 import "./css/index.css";
+
+const Preview = lazy(() => import("./components/Preview"));
 
 createRoot(document.getElementById("root")!).render(
 	<BrowserRouter>

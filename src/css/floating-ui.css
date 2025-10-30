@@ -9,13 +9,38 @@
 	background-color: rgba(15, 166, 236, 0.35);
 	border-radius: 12px;
 	border: 1px solid rgba(209, 213, 219, 0.3);
-	box-shadow: 0 0 20px rgba(17, 105, 206, 0.6);
+	box-shadow: inset 0px 0 10px 0px rgb(0 170 255 / 70%);
+	max-height: calc(100vh - 3rem);
+	overflow: auto;
 
 	font-family: "Armstrong", sans-serif !important;
 }
 
 .g-card * {
 	color: var(--bs-light);
+}
+
+.g-card {
+	.accordion-button::after {
+		filter: brightness(60);
+	}
+	.accordion-button:focus {
+		box-shadow: 0px -1.5px 6px -1px var(--bs-light);
+	}
+	.accordion * {
+		color: var(--bs-light);
+		background: transparent !important;
+		background-color: transparent !important;
+	}
+
+	.accordion {
+		border-radius: var(--bs-border-radius);
+		box-shadow: inset 0px 0 6px 2px var(--bs-light);
+	}
+
+	.accordion-button.collapsed {
+		color: #e2e2e299 !important;
+	}
 }
 
 .timespan {
@@ -53,13 +78,20 @@
 
 .book-card-3d {
 	position: relative;
-	background: rgba(30, 60, 90, 0.6);
-	border: 1px solid rgba(255, 255, 255, 0.671);
 	border-radius: 1rem;
-	box-shadow: 0 0 15px rgba(0, 255, 255, 0.15);
 	transform-style: preserve-3d;
 	overflow: hidden;
 	transition: 0.2s all ease-out;
+	display: flex;
+	flex-direction: column;
+	height: 260px;
+	background: transparent !important;
+	border: none;
+	box-shadow: none;
+
+	/* background: #335b8499; */
+	/* border: 1px solid rgba(255, 255, 255, 0.671); */
+	/* box-shadow: 0 0 15px rgba(0, 255, 255, 0.15), inset 0px 0 7px 0px var(--bs-light); */
 }
 
 .book-card-3d:hover {
@@ -67,9 +99,9 @@
 
 	transition: 0.2s all ease-out;
 	transform: rotateX(6deg) rotateY(-6deg) scale(1.05);
-	box-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 0 60px rgba(79, 164, 250, 0.445);
-	background: rgba(40, 80, 120, 0.7);
-	border: 1px solid rgba(10, 104, 186, 0.671);
+	/* box-shadow: inset 0px 0 4px 0px var(--bs-light), 0 0 60px rgba(79, 164, 250, 0.445); */
+	/* background: rgba(51, 93, 135, 0.7); */
+	/* border: 1px solid rgba(10, 104, 186, 0.671); */
 
 	.book-3d {
 		transition: 0.2s;
@@ -86,4 +118,14 @@
 		transition: 0.2s;
 		transform: rotateY(0);
 	}
+}
+
+.badges-icon {
+	transition: 0.15s;
+}
+
+.badges-icon:hover {
+	transition: 0.15s;
+	box-shadow: inset 0px 0 6px 2px var(--bs-light);
+	scale: 1.1;
 }

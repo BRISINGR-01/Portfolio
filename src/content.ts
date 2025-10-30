@@ -227,7 +227,315 @@ export const books = [
 	),
 ];
 
-const projects = [
+export const htbBadges = [
+	{
+		title: "Academician",
+		description: "Introduction to Academy module completed",
+	},
+	{
+		title: "Our favorite seabird",
+		description: "Linux Fundamentals module completed",
+	},
+	{
+		title: "Everything is connected",
+		description: "Introduction to Networking module completed",
+	},
+	{
+		title: "Your request is my demand",
+		description: "Web Requests module completed",
+	},
+	{
+		title: "Playing with the mess",
+		description: "JavaScript Deobfuscation module completed",
+	},
+	{
+		title: "Out of bounds",
+		description: "Stack-Based Buffer Overflows on Linux x86 module completed",
+	},
+	{
+		title: "Crawl, walk, run",
+		description: "Windows Fundamentals module completed",
+	},
+	{
+		title: "Developer",
+		description: "Introduction to Web Applications module completed",
+	},
+	{
+		title: "An apple a day...",
+		description: "MacOS Fundamentals module completed",
+	},
+	{
+		title: "First things first",
+		description: "Operating System Fundamentals path completed",
+	},
+	{
+		title: "Unwavering User",
+		description: "Awarded when you achieve your first weekly streak",
+	},
+	{
+		title: "The hunt is on",
+		description: "Cracking into Hack the Box path completed",
+	},
+	{
+		title: "Lurk in the packets",
+		description: "Intro to Network Traffic Analysis module completed",
+	},
+];
+
+export const certificates = [
+	{
+		name: "NodeJS - The Complete Guide (MVC, REST, APIs, GraphQl)",
+		tags: ["javaScript", "node", "react"],
+	},
+	{
+		name: "Learning Linux Command Line",
+		tags: ["Linux", "Linux System Administration", "CLI"],
+	},
+	{
+		name: "Linux: Files and Permissions",
+		tags: ["Linux"],
+	},
+	{
+		name: "Ubuntu Linux Professional Certificate by Canonical",
+		company: "Canonical",
+		subCertificates: ["Ubuntu Linux: Operating System Basics", "Ubuntu Linux: Storage Management"],
+		tags: ["Linux", "Linux System Administration", "Ubuntu", "User Management", "CLI"],
+	},
+	{
+		name: "Ubuntu Linux: User and Group Management",
+		tags: ["Linux System Administration", "Ubuntu", "Linux", "User Management"],
+	},
+	{
+		name: "Ubuntu Linux: Operating System Basics",
+		tags: ["Linux", "Linux System Administration", "Ubuntu"],
+	},
+	{
+		name: "Ubuntu Linux: Storage Management",
+		tags: ["Storage Management", "Linux System Administration", "Ubuntu", "Linux"],
+	},
+	{
+		name: "Getting Started with Linux",
+		tags: ["Linux", "Linux System Administration"],
+		subCertificates: ["Introduction to Linux", "Linux: Overview and Installation", "Linux: Files and Permissions"],
+	},
+	{
+		name: "Introduction to Linux",
+		tags: ["Linux"],
+	},
+	{
+		name: "IoT Foundations: Operating Systems Fundamentals",
+		tags: ["Internet of Things (IoT)"],
+	},
+	{
+		name: "Linux: Overview and Installation",
+		tags: ["Linux"],
+	},
+	{
+		name: "Prepare for the Red Hat Certified System Administrator (EX200) Exam",
+		tags: ["Red Hat", "Linux"],
+		subCertificates: [
+			"Red Hat Certified System Administrator (EX200) Cert Prep: 1 Deploy, Co nfigure, and Manage",
+			"Red Hat Certified System Administrator (EX200) Cert Prep: 2 File Access, Storage, and Security",
+		],
+	},
+	{
+		name: "Red Hat Certified System Administrator (EX200) Cert Prep: 1 Deploy, Configure, and Manage",
+		tags: ["System Administration", "Red Hat", "Linux"],
+	},
+	{
+		name: "Red Hat Certified System Administrator (EX200) Cert Prep: 2 File Access, Storage, and Security",
+		tags: ["Linux System Administration", "Red Hat", "Linux"],
+	},
+	{
+		name: "Linux: Network Configuration",
+		tags: ["Linux Network Administration", "Linux"],
+	},
+	{
+		name: "Go Essentials: Concurrency, Connectivity, and High-Performance Apps",
+		tags: ["Go (Programming Language)", "Code Quality"],
+	},
+	{
+		name: "Master C++",
+		tags: [
+			"C++",
+			"Concurrent Programming",
+			"Parallel Programming",
+			"Test-Driven Development",
+			"Data Structures",
+			"Software Design Patterns",
+			"Code Quality",
+		],
+		subCertificates: [
+			"Complete Guide to C++ Programming Foundations",
+			"Parallel and Concurrent Programming with C++ Part 1",
+			"Parallel and Concurrent Programming with C++ Part 2",
+			"Test-Driven Development in C++",
+			"C++ Design Patterns: Behavioral",
+			"C++ Design Patterns: Creational",
+			"C++ Development: Advanced Concepts, Lambda Expressions, and Best Practices",
+		],
+	},
+	{
+		name: "Complete Guide to C++ Programming Foundations",
+		tags: ["C++"],
+	},
+	{
+		name: "Parallel and Concurrent Programming with C++ Part 2",
+		tags: ["Concurrent Programming", "C++", "Parallel Programming"],
+	},
+	{
+		name: "Advanced Linux: The Linux Kernel (2020)",
+		tags: ["Linux Kernel", "Linux"],
+	},
+	{
+		name: "C++ Design Patterns: Behavioral",
+		tags: ["Software Design Patterns", "Data Structures", "C++"],
+	},
+	{
+		name: "C++ Design Patterns: Creational",
+		tags: ["Data Structures", "Software Design Patterns", "C++"],
+	},
+	{
+		name: "C++ Programming Professional Certificate by OpenEDG C++ Institute",
+		company: "OpenEDG",
+		subCertificates: [
+			"C++ Design Patterns: Structural",
+			"C++ Development: Advanced Concepts, Lambda Expressions, and Best Practices",
+			"C++ Essential Training",
+		],
+		tags: ["Data Structures", "C++"],
+	},
+	{
+		name: "C++ Design Patterns: Structural",
+		tags: ["Data Structures", "Software Design Patterns", "C++"],
+	},
+	{
+		name: "C++ Development: Advanced Concepts, Lambda Expressions, and Best Practices",
+		tags: ["C++"],
+	},
+	{
+		name: "C++ Essential Training",
+		tags: ["C++"],
+	},
+	{
+		name: "C++ Standard Template Library",
+		tags: ["C++"],
+	},
+	{
+		name: "Parallel and Concurrent Programming with C++ Part 1",
+		tags: ["Concurrent Programming", "Parallel Programming", "C++"],
+	},
+	{
+		name: "Test-Driven Development in C++",
+		tags: ["Test-Driven Development", "C++"],
+	},
+	{
+		name: "Docker Foundations Professional Certificate",
+		company: "Docker",
+		subCertificates: ["Learning Docker", "Docker: Your First Project", "Learning Docker Compose"],
+		tags: ["Containerization", "Docker"],
+	},
+	{
+		name: "Learning Docker",
+		tags: ["Docker"],
+	},
+	{
+		name: "Docker: Your First Project",
+		tags: ["Docker"],
+	},
+	{
+		name: "Learning Docker Compose",
+		tags: ["Docker"],
+	},
+	{
+		name: "JavaScript Foundations Professional Certificate by Mozilla",
+		tags: ["Web Development", "JavaScript", "Code Quality"],
+		company: "Mozilla",
+		subCertificates: ["JavaScript Essential Training", "Learning the JavaScript Language"],
+	},
+	{
+		name: "JavaScript Essential Training",
+		tags: ["JavaScript"],
+	},
+	{
+		name: "Learning the JavaScript Language",
+		tags: ["JavaScript"],
+	},
+	{
+		name: "Advanced TypeScript Concepts",
+		tags: ["Web Development", "Front-End Development", "TypeScript", "Code Quality"],
+	},
+	{
+		name: "Kubernetes: Native Tools (2018)",
+		tags: ["Kubernetes"],
+	},
+	{
+		name: "Learning Kubernetes",
+		tags: ["Kubernetes"],
+	},
+	{
+		name: "Kubernetes: Your First Project",
+		tags: ["Kubernetes"],
+	},
+	{
+		name: "Raspberry Pi Essential Training",
+		tags: ["Raspberry Pi", "Internet of Things (IoT)", "Embedded Systems"],
+	},
+	{
+		name: "IoT Foundations: Fundamentals",
+		tags: ["Internet of Things (IoT)", "Embedded Systems"],
+	},
+	{
+		name: "Hands-on JavaScript for Ethical Hacking",
+		ext: "png",
+		tags: ["Ethical Hacking", "Cybersecurity", "JavaScript"],
+	},
+	{
+		name: "Troubleshooting Slow Network with Wireshark",
+		ext: "png",
+		tags: ["Ethical Hacking", "Cybersecurity", "Network Security", "Wireshark"],
+	},
+	{
+		name: "Neo4j Certified Professional",
+		company: "Neo4j",
+		subCertificates: [
+			"Neo4j Fundamentals",
+			"Cypher Fundamentals",
+			"Intermediate Cypher Queries",
+			"Graph Data Modeling Fundamentals",
+			"Importing CSV data into Neo4j",
+			"Intermediate Cypher Queries",
+			"Building Neo4j Applications with Go",
+		],
+		tags: ["Databases", "Neo4j", "Cypher", "Go (Programming Language)", "Code Quality"],
+	},
+	{
+		name: "Neo4j Fundamentals",
+		tags: ["Databases", "Neo4j"],
+	},
+	{
+		name: "Cypher Fundamentals",
+		tags: ["Databases", "Cypher"],
+	},
+	{
+		name: "Intermediate Cypher Queries",
+		tags: ["Databases", "Cypher"],
+	},
+	{
+		name: "Graph Data Modeling Fundamentals",
+		tags: ["Databases", "Neo4j"],
+	},
+	{
+		name: "Importing CSV data into Neo4j",
+		tags: ["Databases", "Neo4j"],
+	},
+	{
+		name: "Building Neo4j Applications with Go",
+		tags: ["Databases", "Neo4j", "Go (Programming Language)"],
+	},
+];
+
+const experience = [
 	new Experience(
 		"A1",
 		"A1 Internship",
@@ -241,12 +549,12 @@ const projects = [
 			{ name: "Docker", percentage: 5 },
 			{ name: "GraphQl", percentage: 20 },
 		],
-		{ scale: 0.0015, position: [-1.4, 0.4, 0.4], rotation: [-0.3, 0, 0], wide: true }
+		{ scale: 0.0015, position: [-1.4, 0.39, 0.4], rotation: [-0.3, 0, 0.1], wide: true }
 	),
 	new Experience(
 		"sdg-sabic",
 		"SDG Challenge - Sabic",
-		"/images/SDG.png",
+		"/images/other/SDG.png",
 		["09/04/2024", "05/07/2024"],
 		text["sdg-sabic"].context,
 		text["sdg-sabic"].description,
@@ -258,12 +566,12 @@ const projects = [
 			{ name: "C/C++", percentage: 10 },
 			{ name: "Arduino", percentage: 10 },
 		],
-		{ scale: 0.4, position: [-0.8, 0.14, 0.55], rotation: [0.4, 0.4, 0.4], wide: false }
+		{ scale: 0.4, position: [-0.6, 0.04, 0.27], rotation: [0.8, 0.3, 0.3], wide: false }
 	),
 	new Experience(
 		"sdg-solarwatt",
 		"SDG Challenge - Solarwatt",
-		"/images/SDG.png",
+		"/images/other/SDG-logo-2.webp",
 		["09/04/2025", "05/07/2025"],
 		text["sdg-solarwatt"].context,
 		text["sdg-solarwatt"].description,
@@ -272,7 +580,7 @@ const projects = [
 			{ name: "React", percentage: 52 },
 			{ name: "Vercel", percentage: 8 },
 		],
-		{ scale: 0.4, position: [-0.8, 1.13, 0.55], rotation: [0.4, 0.4, 0.4], wide: false }
+		{ scale: 0.4, position: [-1.48, -0.1, 0.65], rotation: [-0.9, -1.1, 0.8], wide: false }
 	),
 	new Experience(
 		"latin-is-simple",
@@ -337,5 +645,5 @@ const projects = [
 	),
 ];
 
-const content: Content = { education, projects };
+const content: Content = { education, experience };
 export default content;

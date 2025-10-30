@@ -1,14 +1,20 @@
 import { motion } from "motion/react";
 
+import { useState } from "react";
 import { TRANSITION } from "../../constants.ts";
 import type { Education } from "../../types.ts";
-import G_Card from "./Card.tsx";
 import ChangeAnimation from "./ChangeAnimation.tsx";
+import G_Card from "./G_Card.tsx";
+import HTBBadges from "./HTBBadges.tsx";
 
 export default function EducationDisplay({ data }: { data: Education }) {
+	const [showBadges, setShowBadges] = useState(false);
+
+	if (showBadges) return <HTBBadges onClick={() => setShowBadges(false)} />;
+
 	return (
 		<>
-			{/* Icon + title + time */}
+			{/* Icon + title */}
 			<motion.div
 				key="icon"
 				style={{ top: 0, left: 0, position: "absolute" }}
@@ -24,10 +30,26 @@ export default function EducationDisplay({ data }: { data: Education }) {
 							className="w-100 mb-3"
 							style={{ maxHeight: "20vh", maxWidth: "20vw", objectFit: "contain" }}
 						/>
-						<span className="text-center fw-bold fs-5">{data.title}</span>
+						<div className="w-100 text-center fw-bold fs-5">{data.title}</div>
 					</ChangeAnimation>
 				</G_Card>
 			</motion.div>
+
+			{/* Badges for HTB */}
+			{data.id === "htb" && (
+				<motion.div
+					key="badges"
+					style={{ bottom: 0, left: 0, position: "absolute" }}
+					initial={{ transform: "translate(-100px, 100px)", opacity: 0 }}
+					animate={{ transform: "translate(0,0)", opacity: 1 }}
+					exit={{ transform: "translate(-100px, 100px)", opacity: 0 }}
+					transition={TRANSITION}
+				>
+					<G_Card style={{ bottom: 0, left: 0 }} className="m-4 badges-icon" onClick={() => setShowBadges(true)}>
+						<img src="/icons/ui/badge.svg" style={{ filter: "invert()", width: "7vw", objectFit: "contain" }} />
+					</G_Card>
+				</motion.div>
+			)}
 
 			{/* Description */}
 			<motion.div

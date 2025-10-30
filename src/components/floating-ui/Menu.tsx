@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import { OverlayTrigger, Row, Tooltip } from "react-bootstrap";
 import { TRANSITION } from "../../constants";
 import type { ContentType } from "../../types.ts";
-import G_Card from "./Card.tsx";
+import G_Card from "./G_Card.tsx";
 
 const icons: ContentType[] = ["projects", "education"];
 

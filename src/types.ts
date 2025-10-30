@@ -50,7 +50,7 @@ export interface Language {
 }
 
 export interface Content {
-	projects: Experience[];
+	experience: Experience[];
 	education: Education[];
 }
 

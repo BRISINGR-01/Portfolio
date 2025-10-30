@@ -1,35 +1,24 @@
-import { motion } from "motion/react";
-
-import { Col, Image, Row } from "react-bootstrap";
-import { TRANSITION } from "../../constants";
+import { Col, Container, Image, Row } from "react-bootstrap";
 import type { Book } from "../../types";
 
 export default function BookDetails(props: { book: Book; onClick: () => void }) {
 	return (
-		<motion.div
-			key="book-details"
-			className="m-3"
-			initial={{ opacity: 0, filter: "blur(3px)" }}
-			animate={{ opacity: 1, filter: "blur(0px)" }}
-			exit={{ opacity: 0 }}
-			transition={TRANSITION}
-		>
-			<Row className="w-100 h-100">
+		<Container fluid className="p-0 h-100 d-flex flex-column justify-content-between">
+			<Row className="p-1">
 				<Col xs={12} md={4}>
 					<Image
 						src={`/images/book-covers/${props.book.cover}`}
 						alt={props.book.title}
-						rounded
 						fluid
 						style={{
-							boxShadow: "0 0 5px rgba(255, 255, 255, .7), 0 0 30px rgba(79, 164, 250, 1)",
-							maxHeight: "260px",
-							objectFit: "cover",
+							boxShadow: "0px 0 10px 0px rgb(0 170 255 / 70%)",
+							borderRadius: "15px",
+							objectFit: "contain",
 						}}
 					/>
 				</Col>
 
-				<Col xs={12} md={8}>
+				<Col xs={12} md={8} className="pe-0 pt-1">
 					<h4 className="fw-semibold mb-0">{props.book.title}</h4>
 					<h6 className="mb-0" style={{ color: "#7db9bd" }}>
 						{props.book.subTitle}
@@ -42,6 +31,14 @@ export default function BookDetails(props: { book: Book; onClick: () => void }) 
 					<p className="mt-4">"{props.book.description}"</p>
 				</Col>
 			</Row>
-		</motion.div>
+			<Row className="w-100 align-items-center p-0">
+				<Image
+					src={`/icons/ui/click.svg`}
+					alt="click"
+					style={{ filter: "opacity(0.8) blur(0.3px)", width: "auto", height: "2em" }}
+				/>
+				Click anywhere to close
+			</Row>
+		</Container>
 	);
 }

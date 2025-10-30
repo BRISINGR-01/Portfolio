@@ -1,12 +1,12 @@
 import { motion } from "motion/react";
 
 import { PieChart } from "@mui/x-charts";
-import { OverlayTrigger, Row, Tooltip } from "react-bootstrap";
+import { Accordion, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
 import { TRANSITION } from "../../constants";
 import type { Experience } from "../../types.ts";
 import { parseTimeSpan, useIcon } from "../../utils";
-import G_Card from "./Card.tsx";
 import ChangeAnimation from "./ChangeAnimation.tsx";
+import G_Card from "./G_Card.tsx";
 
 export default function ExperienceDisplay({ data }: { data: Experience | null }) {
 	const icons = useIcon();
@@ -25,7 +25,7 @@ export default function ExperienceDisplay({ data }: { data: Experience | null })
 				transition={TRANSITION}
 			>
 				<G_Card style={{ top: 0, left: 0, width: "min-content" }} className="col-2 m-4">
-					<ChangeAnimation id={data.id}>
+					<ChangeAnimation id={data.id} className="d-flex flex-column">
 						<img
 							src={data.icon}
 							className="w-100 mb-3"
@@ -48,9 +48,18 @@ export default function ExperienceDisplay({ data }: { data: Experience | null })
 				exit={{ transform: "translate(100px,-100px)", opacity: 0 }}
 				transition={TRANSITION}
 			>
-				<G_Card style={{ right: 0, top: 0 }} className="col-5 m-4">
-					<ChangeAnimation id={data.id}>
-						<span>{data.description}</span>
+				<G_Card style={{ right: 0, top: 0 }} className="col-5 justify-content-start m-4">
+					<ChangeAnimation id={data.id} className="w-100">
+						<Accordion defaultActiveKey="1">
+							<Accordion.Item eventKey="0">
+								<Accordion.Header>Context</Accordion.Header>
+								<Accordion.Body>{data.context}</Accordion.Body>
+							</Accordion.Item>
+							<Accordion.Item eventKey="1">
+								<Accordion.Header>Description</Accordion.Header>
+								<Accordion.Body>{data.description}</Accordion.Body>
+							</Accordion.Item>
+						</Accordion>
 					</ChangeAnimation>
 				</G_Card>
 			</motion.div>

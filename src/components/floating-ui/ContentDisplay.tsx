@@ -5,7 +5,7 @@ import ExperienceDisplay from "./InternshipsAndBigProjects";
 
 export default function ContentDisplay({ data, type }: { data: ContentData; type: ContentType }) {
 	switch (type) {
-		case "projects":
+		case "experience":
 			return <ExperienceDisplay data={data as Experience} />;
 		case "education":
 			switch (data.id) {

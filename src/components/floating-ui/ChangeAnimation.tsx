@@ -1,14 +1,22 @@
 import { motion } from "motion/react";
+import type { CSSProperties } from "react";
 
-export default function ChangeAnimation(props: { id: string; children: React.JSX.Element | React.JSX.Element[] }) {
+export default function ChangeAnimation(props: {
+	id: string;
+	children: React.JSX.Element | React.JSX.Element[];
+	style?: CSSProperties;
+	className?: string;
+}) {
 	return (
-		<motion.span
+		<motion.div
 			key={props.id}
+			style={props.style}
+			className={props.className}
 			initial={{ opacity: 0, scale: 1.05, filter: "blur(4px)" }}
 			animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
 			exit={{ opacity: 0, scale: 0.95, filter: "blur(4px)" }}
 		>
 			{props.children}
-		</motion.span>
+		</motion.div>
 	);
 }
