@@ -36,6 +36,17 @@ export class Education implements ContentData {
 	) {}
 }
 
+export class Contact implements ContentData {
+	constructor(
+		public id: string,
+		public title: string,
+		public icon: string,
+		public address: string,
+		public url: string,
+		public icon3D: Icon3DParams
+	) {}
+}
+
 export interface Icon3DParams {
 	position: [x: number, y: number, z: number];
 	rotation?: [x: number, y: number, z: number];
@@ -49,23 +60,31 @@ export interface Language {
 	flag: string;
 }
 
-export interface Content {
-	experience: Experience[];
-	education: Education[];
-}
-
 export interface ContentData {
 	id: string;
+	title: string;
 	icon: string;
 	altIcon?: string;
 	icon3D: Icon3DParams;
 }
 
-export type ContentType = keyof Content;
+export enum Mode {
+	Experience,
+	Education,
+	Contact,
+	Info,
+	None,
+}
 
 export enum WallFace {
 	North,
 	West,
 	South,
 	East,
+}
+
+export enum Controls {
+	Escape = "escape",
+	Recenter = "recenter",
+	FullScreeen = "full-screen",
 }

@@ -4,7 +4,7 @@ import Ceiling from "./Ceiling";
 import CircuitPattern from "./CircuitPattern";
 import Wall from "./Wall";
 
-export default function Room(props: { children: React.JSX.Element | React.JSX.Element[] }) {
+export default function Room(props: { children: React.ReactNode }) {
 	return (
 		<>
 			<CircuitPattern />

@@ -27,14 +27,17 @@
 	box-sizing: border-box;
 }
 
+.pointer,
 .pointer > * {
-	cursor: url("/cursors/link_select.cur") 0 0, pointer;
+	cursor: url("/cursors/link_select.cur") 0 0, pointer !important;
 }
+.grab,
 .grab > * {
-	cursor: url("/cursors/link_select.cur") 0 0, grab;
+	cursor: url("/cursors/link_select.cur") 0 0, grab !important;
 }
+.grabbing,
 .grabbing > * {
-	cursor: url("/cursors/link_grab.cur") 0 0, grabbing;
+	cursor: url("/cursors/link_grab.cur") 0 0, grabbing !important;
 }
 
 html,

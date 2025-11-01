@@ -3,7 +3,7 @@ import type { CSSProperties } from "react";
 
 export default function ChangeAnimation(props: {
 	id: string;
-	children: React.JSX.Element | React.JSX.Element[];
+	children: React.ReactNode;
 	style?: CSSProperties;
 	className?: string;
 }) {

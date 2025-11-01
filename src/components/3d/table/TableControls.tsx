@@ -14,7 +14,7 @@ const sides = [
 	rotation: [number, number, number];
 }[];
 
-export default function TableControls({ text }: { text: string }) {
+export default function TableControls({ text }: { text: string | null }) {
 	return (
 		<group>
 			{sides.map((side, i) => (
@@ -24,9 +24,11 @@ export default function TableControls({ text }: { text: string }) {
 						<planeGeometry args={[5.48, 0.26]} />
 						<meshStandardMaterial color="black" />
 					</mesh>
-					<Text rotation={[0, 0, i === 1 ? Math.PI : 0]} position={[0, 0, 0]} isInverted={i === 1}>
-						{text}
-					</Text>
+					{text && (
+						<Text rotation={[0, 0, i === 1 ? Math.PI : 0]} position={[0, 0, 0]} isInverted={i === 1}>
+							{text}
+						</Text>
+					)}
 				</group>
 			))}
 		</group>

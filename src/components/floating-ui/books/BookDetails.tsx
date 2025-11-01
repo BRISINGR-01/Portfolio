@@ -1,5 +1,6 @@
 import { Col, Container, Image, Row } from "react-bootstrap";
-import type { Book } from "../../types";
+import type { Book } from "../../../types";
+import ClickToClose from "../components/ClickToClose";
 
 export default function BookDetails(props: { book: Book; onClick: () => void }) {
 	return (
@@ -31,14 +32,7 @@ export default function BookDetails(props: { book: Book; onClick: () => void }) 
 					<p className="mt-4">"{props.book.description}"</p>
 				</Col>
 			</Row>
-			<Row className="w-100 align-items-center p-0">
-				<Image
-					src={`/icons/ui/click.svg`}
-					alt="click"
-					style={{ filter: "opacity(0.8) blur(0.3px)", width: "auto", height: "2em" }}
-				/>
-				Click anywhere to close
-			</Row>
+			<ClickToClose />
 		</Container>
 	);
 }

@@ -1,4 +1,4 @@
-import "../../css/book3dEffect.css";
+import "../../../css/book3dEffect.css";
 
 export default function Book3DEffect(props: { cover: string; title: string }) {
 	return (

@@ -1,10 +1,10 @@
 import { motion } from "motion/react";
 import { Suspense } from "react";
 import { Card, Row } from "react-bootstrap";
-import { TRANSITION } from "../../constants";
-import { books } from "../../content";
-import type { Book } from "../../types";
-import Loader from "../3d/Loader";
+import { TRANSITION } from "../../../constants";
+import { books } from "../../../content";
+import type { Book } from "../../../types";
+import Loader from "../../3d/Loader";
 import Book3DEffect from "./Book3DEffect";
 
 export default function BookList(props: { onSelect: (book: Book) => void }) {

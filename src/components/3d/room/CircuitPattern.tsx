@@ -18,11 +18,15 @@ export default function CircuitPattern() {
 		texture.magFilter = THREE.LinearFilter;
 		texture.format = THREE.RGBFormat;
 
-		setTimeout(() => {
+		const t = setTimeout(() => {
 			video.play();
 			meshRef.current!.material = new THREE.MeshBasicMaterial({ map: texture });
 			meshRef.current!.material.needsUpdate = true;
-		}, 2000);
+		}, 4300);
+
+		return () => {
+			clearTimeout(t);
+		};
 	}, []);
 
 	return (

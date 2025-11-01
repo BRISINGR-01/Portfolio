@@ -118,7 +118,7 @@ function setupPostprocessing(renderer: THREE.WebGLRenderer, scene: THREE.Scene, 
 }
 
 export default function HologramEffect(props: {
-	children: React.JSX.Element | React.JSX.Element[];
+	children: React.ReactNode;
 	composer: EffectComposer;
 }) {
 	const { scene, camera, clock, gl } = useThree();

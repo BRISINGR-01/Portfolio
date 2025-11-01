@@ -68,12 +68,12 @@
 
 .icon:hover {
 	transform: scale(1.15);
-	box-shadow: 0 0 5px rgba(255, 255, 255) !important;
+	box-shadow: 0 0 10px rgba(255, 255, 255) !important;
 }
 
 .menu-icon:hover > img {
-	transition: 0.2s;
 	filter: invert(1);
+	transition: 0.2s;
 }
 
 .book-card-3d {
@@ -128,4 +128,22 @@
 	transition: 0.15s;
 	box-shadow: inset 0px 0 6px 2px var(--bs-light);
 	scale: 1.1;
+
+	img {
+		filter: invert(1);
+	}
+}
+
+.key-badge {
+	border-radius: var(--bs-border-radius);
+	border: 2px solid var(--primary);
+	width: min-content;
+	height: min-content;
+	padding: 4px 6px;
+}
+
+.key-badge > div {
+	height: 0.8rem;
+	font-size: 0.8rem;
+	color: var(--primary);
 }

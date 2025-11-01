@@ -2,6 +2,8 @@ import { useControls } from "leva";
 import { useEffect, useState } from "react";
 import { FrontSide, Material, type Group, type Mesh, type Object3D } from "three";
 import { MONTHS } from "./constants";
+import { Mode } from "./types";
+
 export function fixMaterialDepth(material: Material) {
 	material.depthWrite = true;
 	material.depthTest = true;
@@ -46,7 +48,7 @@ export function useIcon() {
 		fetch("/icons.json")
 			.then((res) => res.json())
 			.then((data) => setIcons(data));
-	}, []);
+	}, [icons.length]);
 
 	return icons;
 }
@@ -65,4 +67,19 @@ export function setPointerCursor() {
 
 export function setDefaultCursor() {
 	document.body.style.cursor = 'url("/cursors/normal_select.cur") 0 0, auto';
+}
+export function prettifyTitle(text: string | null | Mode) {
+	switch (text) {
+		case Mode.Experience:
+			return "Internships and Big Projects";
+		case Mode.Education:
+			return "Education and Knowledge Sources";
+		case Mode.Contact:
+			return "Contacts";
+		case Mode.Info:
+		case Mode.None:
+			return null;
+		default:
+			return !text ? null : text[0].toUpperCase() + text.slice(1);
+	}
 }

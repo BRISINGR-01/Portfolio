@@ -1,23 +1,24 @@
-import { Book, Education, Experience, type Content } from "./types";
+import { Book, Contact, Education, Experience } from "./types";
+
+const sdgContext =
+	"The SDG (Sustainable Developement Goals) are a set of goals defined by UN (United Nations) meant to make the world a better place. A challenge is organized a coulple of times a year in different countries. The aim is to work with large companies on one or a few SDGs in order to help the company lower their emissions, improve its employees' quality of life...";
 
 const text = {
 	A1: {
 		description:
-			"My first internship was at one of the largest telecomunication companies in Bulgaria. It was a project lead by the Belgian branch with the help of a Bulgarian team, in which I took part. Its objective was mainly structured around selecting the content for TV programs. My tasks varied between working on the front- and backend.",
+			"My first internship was at one of the largest telecom companies in Bulgaria. The project was led by the Belgian branch and supported by our Bulgarian team, which I was part of. We focused on selecting content for TV programs. My tasks varied between working on the front- and backend.",
 		context:
 			"A1 Bulgaria (previously known as Mtel or Mobiltel) is a telecommunications company in Bulgaria owned by A1 Telekom Austria Group.",
 	},
 	"sdg-sabic": {
 		description:
 			"My assigned establishment was Sabic. This is the second biggest plastic producer and a leading industry in agriculture, transportation, packaging, technology and more.",
-		context:
-			"The SDG (Sustainable Developement Goals) are a set of goals defined by UN (United Nations) meant to make the world a better place. The challenge is organized a coulple of times a year in different countries. The aim is to work with large companies on one or a few SDGs in order to help the company lower their emissions, improve its employees' quality of life...",
+		context: sdgContext,
 	},
 	"sdg-solarwatt": {
 		description:
 			"Colab with Paulo Vieira. Github: https://github.com/BRISINGR-01/solar-trace. The challenge is organized a coulple of times a year in different countries. The aim is to work with large companies on one or a few SDGs in order to help the company lower their emissions, improve its employees' quality of life... My assigned establishment was Solarwatt. This is a solar panel industry. We are proud to share that our team has made it to the finals of the SDG Challenge 2025, where we partnered with Solarwatt on a project called SolarTrace. SolarTrace is a platform that helps bring more transparency to the solar energy industry. It includes an interactive map that shows how solar panel materials move through Europe and Asia, giving users a clearer view of the supply chain. My main focus was on the course and certification module. I built a simple learning path that introduces Solarwatt, its mission, and products, and at the end, users get a professional, shareable certificate automatically...",
-		context:
-			"The SDG (Sustainable Developement Goals) are a set of goals defined by UN (United Nations) meant to make the world a better place.",
+		context: sdgContext,
 	},
 	"latin-is-simple": {
 		description:
@@ -39,27 +40,29 @@ const text = {
 			"I had the opportunity to work on a code analysis tool that generates an interactive report, helping to visualize and understand complex codebases. This project pushed me to grow technically while also giving me insight into how large companies operate.",
 		context: "",
 	},
-	"The Rust Programming Language":
-		"The official book on the Rust programming language, written by the Rust development team at the Mozilla Foundation, fully updated for Rust 2018",
-	"C Programming Language":
-		"The complete guide to ANSI standard C language programming, written by the developers of C.",
-	"The C++ Programming Language":
-		"The C++ Programming Language, Fourth Edition, delivers meticulous, richly explained, and integrated coverage of the entire language—its facilities, abstraction mechanisms, standard libraries, and key design techniques. Throughout, Stroustrup presents concise, “pure C++11” examples, which have been carefully crafted to clarify both usage and program design. To promote deeper understanding, the author provides extensive cross-references, both within the book and to the ISO standard.",
-	"Clean Code":
-		"Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees. Every year, countless hours and significant resources are lost because of poorly written code. But it doesn't have to be that way.",
-	"Software Architecture Patterns":
-		"The success of any software application or system depends on the architecture style you use. This updated report presents several common architecture styles to guide designers and developers on how to design components and to help you determine the ways in which those components should interact.",
-	"System Design Interview":
-		"This book provides a step-by-step framework for how to tackle a system design question. It includes many real-world examples to illustrate the systematic approach, with detailed steps that you can follow.",
-	"Design Patterns":
-		"Capturing a wealth of experience about the design of object-oriented software, four top-notch designers present a catalog of simple and succinct solutions to commonly occurring design problems. Previously undocumented, these 23 patterns allow designers to create more flexible, elegant, and ultimately reusable designs without having to rediscover the design solutions themselves.",
-	Code: "Dives into the fundamental concepts of computer science, starting from basic electrical circuits to the intricate workings of modern computers. The book explores how simple ideas and technologies evolve into complex systems, making the world of computing accessible and engaging for both technical and non-technical readers.",
-	Refactoring:
-		"The guide to how to transform code with safe and rapid process, vital to keeping it cheap and easy to modify for future needs.",
-	"Clean Coder":
-		"Programmers who endure and succeed amidst swirling uncertainty and nonstop pressure share a common attribute: They care deeply about the practice of creating software. They treat it as a craft. They are professionals.",
-	"Little Book Of Semaphores":
-		"The Little Book of Semaphores is a textbook that introduces the principles of synchronization for concurrent programming. In most computer science curricula, synchronization is a module in an Operating Systems class.",
+	books: {
+		"The Rust Programming Language":
+			"The official book on the Rust programming language, written by the Rust development team at the Mozilla Foundation, fully updated for Rust 2018",
+		"C Programming Language":
+			"The complete guide to ANSI standard C language programming, written by the developers of C.",
+		"The C++ Programming Language":
+			"The C++ Programming Language, Fourth Edition, delivers meticulous, richly explained, and integrated coverage of the entire language—its facilities, abstraction mechanisms, standard libraries, and key design techniques. Throughout, Stroustrup presents concise, “pure C++11” examples, which have been carefully crafted to clarify both usage and program design. To promote deeper understanding, the author provides extensive cross-references, both within the book and to the ISO standard.",
+		"Clean Code":
+			"Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees. Every year, countless hours and significant resources are lost because of poorly written code. But it doesn't have to be that way.",
+		"Software Architecture Patterns":
+			"The success of any software application or system depends on the architecture style you use. This updated report presents several common architecture styles to guide designers and developers on how to design components and to help you determine the ways in which those components should interact.",
+		"System Design Interview":
+			"This book provides a step-by-step framework for how to tackle a system design question. It includes many real-world examples to illustrate the systematic approach, with detailed steps that you can follow.",
+		"Design Patterns":
+			"Capturing a wealth of experience about the design of object-oriented software, four top-notch designers present a catalog of simple and succinct solutions to commonly occurring design problems. Previously undocumented, these 23 patterns allow designers to create more flexible, elegant, and ultimately reusable designs without having to rediscover the design solutions themselves.",
+		Code: "Dives into the fundamental concepts of computer science, starting from basic electrical circuits to the intricate workings of modern computers. The book explores how simple ideas and technologies evolve into complex systems, making the world of computing accessible and engaging for both technical and non-technical readers.",
+		Refactoring:
+			"The guide to how to transform code with safe and rapid process, vital to keeping it cheap and easy to modify for future needs.",
+		"Clean Coder":
+			"Programmers who endure and succeed amidst swirling uncertainty and nonstop pressure share a common attribute: They care deeply about the practice of creating software. They treat it as a craft. They are professionals.",
+		"Little Book Of Semaphores":
+			"The Little Book of Semaphores is a textbook that introduces the principles of synchronization for concurrent programming. In most computer science curricula, synchronization is a module in an Operating Systems class.",
+	},
 };
 
 const education = [
@@ -70,9 +73,9 @@ const education = [
 		wide: true,
 	}),
 	new Education("fontys", "Fontys (Academic preperation)", "", "/icons/other/fontys.svg", {
-		scale: 0.0004,
-		position: [1.1, 0.5, -0.4],
-		rotation: [-0.15, -0.4, 0.05],
+		scale: 0.006,
+		position: [1.52, 0.54, -0.5],
+		rotation: [-0.25, -0.6, 0.15],
 		wide: true,
 	}),
 	new Education("tue", "Tue (Embedded Systems Pre-master)", "", "/icons/other/tue.svg", {
@@ -134,6 +137,12 @@ const education = [
 		},
 		"/images/other/math.webp"
 	),
+	new Education("daily-dev", "Daily Dev", "", "/icons/other/daily-dev.svg", {
+		position: [-1.8, -0.2, 0.07],
+		rotation: [-1.35, 0.1, 0.05],
+		scale: 0.001,
+		wide: true,
+	}),
 ];
 
 export const books = [
@@ -141,7 +150,7 @@ export const books = [
 		"The Rust Programming Language",
 		"Covers Rust 2018",
 		"Steve Klabnik and Carol Nichols",
-		text["The Rust Programming Language"],
+		text.books["The Rust Programming Language"],
 		"The Rust Programming Language.jpg",
 		["Rust"]
 	),
@@ -149,7 +158,7 @@ export const books = [
 		"C Programming Language",
 		"2nd Edition",
 		"Brian Kernighan and Dennis Ritchie",
-		text["C Programming Language"],
+		text.books["C Programming Language"],
 		"C Programming Language, 2nd Edition by Brian Kernighan.jpg",
 		["C/C++"]
 	),
@@ -157,7 +166,7 @@ export const books = [
 		"The C++ Programming Language",
 		"4th Edition",
 		"Bjarne Stroustrup",
-		text["The C++ Programming Language"],
+		text.books["The C++ Programming Language"],
 		"The C++ Programming Language.jpg",
 		["C/C++"]
 	),
@@ -165,7 +174,7 @@ export const books = [
 		"Clean Code",
 		"A Handbook of Agile Software Craftsmanship",
 		"Robert C. Martin",
-		text["Clean Code"],
+		text.books["Clean Code"],
 		"Clean Code by Robert C. Martin.jpg",
 		["Java", "Code Quality"]
 	),
@@ -173,7 +182,7 @@ export const books = [
 		"Software Architecture Patterns",
 		"2nd Edition",
 		"Mark Richards",
-		text["Software Architecture Patterns"],
+		text.books["Software Architecture Patterns"],
 		"Software Architecture Patterns.jpg",
 		["Software Architecture", "Code Quality"]
 	),
@@ -181,7 +190,7 @@ export const books = [
 		"System Design Interview",
 		"An insider's guide",
 		"Alex Xu",
-		text["System Design Interview"],
+		text.books["System Design Interview"],
 		"system design interview.jpg",
 		["Software Architecture", "Code Quality"]
 	),
@@ -189,7 +198,7 @@ export const books = [
 		"Design Patterns",
 		"Elements of Reusable Object-Oriented Software",
 		" Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides",
-		text["Design Patterns"],
+		text.books["Design Patterns"],
 		"design patterns.jpg",
 		["Software Architecture", "Code Quality", "Design Patterns"]
 	),
@@ -197,7 +206,7 @@ export const books = [
 		"Code",
 		"The Hidden Language of Computer Hardware and Software",
 		"Charles Petzold",
-		text["Code"],
+		text.books["Code"],
 		"Code: The Hidden Language of Computer Hardware and Software.jpg",
 		["Embedded Systems"]
 	),
@@ -205,7 +214,7 @@ export const books = [
 		"Refactoring",
 		"Improving the Design of Existing Code",
 		"Martin Fowler, with Kent Beck",
-		text["Refactoring"],
+		text.books["Refactoring"],
 		"Refactoring.jpg",
 		["Code Quality", "JavaScript"]
 	),
@@ -213,7 +222,7 @@ export const books = [
 		"Clean Coder",
 		"A Code of Conduct for Professional Programmers",
 		"Robert C. Martin",
-		text["Clean Coder"],
+		text.books["Clean Coder"],
 		"Clean Coder.jpg",
 		["Code Quality"]
 	),
@@ -221,7 +230,7 @@ export const books = [
 		"Little Book Of Semaphores",
 		"The Ins and Outs of Concurrency Control and Common Mistakes",
 		"Allen B. Downey",
-		text["Little Book Of Semaphores"],
+		text.books["Little Book Of Semaphores"],
 		"LittleBookOfSemaphores.webp",
 		["Code Quality", "Concurrency"]
 	),
@@ -279,6 +288,15 @@ export const htbBadges = [
 	{
 		title: "Lurk in the packets",
 		description: "Intro to Network Traffic Analysis module completed",
+	},
+].map((el) => ({ ...el, image: `/images/hack-the-box/${el.title.replace(/\s/g, "-").toLowerCase()}.webp` }));
+
+export const dailyDevBadges = [
+	{ image: "images/daily-dev/February 2025 Top Reader in UNIX.png", title: "Top Reader in UNIX" },
+	{ image: "images/daily-dev/January 2025 Top Reader in Shell.png", title: "Top Reader in Shell" },
+	{
+		image: "images/daily-dev/October 2025 Top Reader in Embedded Systems.png",
+		title: "Top Reader in Embedded Systems",
 	},
 ];
 
@@ -645,5 +663,71 @@ const experience = [
 	),
 ];
 
-const content: Content = { education, experience };
+const contacts = [
+	new Contact(
+		"gmail",
+		"Gmail",
+		"icons/other/gmail.svg",
+		"alexander.popov233@gmail.com",
+		"mailto:alexander.popov233@gmail.com",
+		{
+			position: [0.49, 0.574, 0.2],
+			rotation: [0.1, 0, 0],
+			scale: 0.009,
+			wide: true,
+		}
+	),
+	new Contact("github", "Github", "icons/other/github.svg", "BRISINGR-01", "https://github.com/BRISINGR-01", {
+		position: [0, 0.25, 0.1],
+		rotation: [-0.15, 0, 0.05],
+		scale: 0.003,
+		wide: true,
+	}),
+	new Contact("gitlab", "Gitlab", "icons/other/gitlab.svg", "BRISINGR-01", "https://gitlab.com/BRISINGR-01", {
+		position: [0.319, -0.038, 0.159],
+		rotation: [-0.441, -0.208, -0.505],
+		scale: 0.005,
+		wide: true,
+	}),
+	new Contact(
+		"linkedin",
+		"LinkedIn",
+		"icons/other/linkedin.svg",
+		"alexander-popov-61126825a",
+		"https://www.linkedin.com/in/alexander-popov-61126825a/",
+		{
+			position: [-0.502, 0.172, 0.319],
+			rotation: [0.143, 0.408, 0.028],
+			scale: 0.004,
+			wide: true,
+		}
+	),
+	new Contact("x", "X", "icons/other/x.svg", "AlexPopov233", "https://twitter.com/AlexPopov233", {
+		position: [-1.61, -0.36, 0.7],
+		rotation: [-1.6, 0.0, -0.5],
+		scale: 0.0012,
+		wide: true,
+	}),
+	new Contact(
+		"instagram",
+		"Instagram",
+		"images/other/instagram.png",
+		"@alexan6451",
+		"https://www.instagram.com/alexan6451/",
+		{
+			position: [-0.712, -0.13, 0.304],
+			rotation: [2.14, 0.61, 4.33],
+			scale: 0.3,
+			wide: true,
+		}
+	),
+	new Contact("whatsapp", "Whatsapp", "icons/other/whatsapp.svg", "+31620429868", "tel:+31620429868", {
+		position: [1.682, 0.204, 0.064],
+		rotation: [0.4, -0.6, 0],
+		scale: 0.0016,
+		wide: true,
+	}),
+];
+
+const content = { experience, education, contacts };
 export default content;

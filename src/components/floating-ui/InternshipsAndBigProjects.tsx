@@ -5,8 +5,8 @@ import { Accordion, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
 import { TRANSITION } from "../../constants";
 import type { Experience } from "../../types.ts";
 import { parseTimeSpan, useIcon } from "../../utils";
-import ChangeAnimation from "./ChangeAnimation.tsx";
-import G_Card from "./G_Card.tsx";
+import ChangeAnimation from "./components/ChangeAnimation.tsx";
+import G_Card, { Position } from "./components/G_Card.tsx";
 
 export default function ExperienceDisplay({ data }: { data: Experience | null }) {
 	const icons = useIcon();
@@ -24,7 +24,7 @@ export default function ExperienceDisplay({ data }: { data: Experience | null })
 				exit={{ transform: "translate(-100px,-100px)", opacity: 0 }}
 				transition={TRANSITION}
 			>
-				<G_Card style={{ top: 0, left: 0, width: "min-content" }} className="col-2 m-4">
+				<G_Card position={Position.TopLeft} style={{ width: "min-content" }} className="col-2 m-4">
 					<ChangeAnimation id={data.id} className="d-flex flex-column">
 						<img
 							src={data.icon}
@@ -48,7 +48,7 @@ export default function ExperienceDisplay({ data }: { data: Experience | null })
 				exit={{ transform: "translate(100px,-100px)", opacity: 0 }}
 				transition={TRANSITION}
 			>
-				<G_Card style={{ right: 0, top: 0 }} className="col-5 justify-content-start m-4">
+				<G_Card position={Position.TopRight} className="col-5 justify-content-start m-4">
 					<ChangeAnimation id={data.id} className="w-100">
 						<Accordion defaultActiveKey="1">
 							<Accordion.Item eventKey="0">
@@ -72,7 +72,7 @@ export default function ExperienceDisplay({ data }: { data: Experience | null })
 				exit={{ transform: "translate(-100px,100px)", opacity: 0 }}
 				transition={TRANSITION}
 			>
-				<G_Card style={{ bottom: 0, left: 0 }} className="m-4">
+				<G_Card position={Position.BottomLeft} className="m-4">
 					<PieChart
 						style={{
 							maxHeight: "200px",

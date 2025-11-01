@@ -8,8 +8,10 @@ import { setDefaultCursor, setPointerCursor } from "../../utils";
 export default function Raycast({
 	children,
 	onClick,
+	onHover: onHover,
 }: {
 	onClick: (m: Mesh | null) => void;
+	onHover: (title: string | null) => void;
 	children: null | React.JSX.Element[];
 }) {
 	const groupRef = useRef<Group>(null);
@@ -59,6 +61,7 @@ export default function Raycast({
 		function unselect() {
 			outlinePass!.selectedObjects = [];
 			hovered = null;
+			onHover(null);
 			setDefaultCursor();
 		}
 
@@ -85,6 +88,7 @@ export default function Raycast({
 			if (hovered?.id === mesh.id) return;
 
 			hovered = mesh;
+			onHover(mesh.name);
 			outlinePass!.selectedObjects = [mesh];
 			setPointerCursor();
 		}

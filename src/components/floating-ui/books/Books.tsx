@@ -1,10 +1,10 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
-import { TRANSITION } from "../../constants";
-import type { Book } from "../../types";
+import { TRANSITION } from "../../../constants";
+import type { Book } from "../../../types";
+import G_Card from "../components/G_Card";
 import BookDetails from "./BookDetails";
 import BookList from "./BookList";
-import G_Card from "./G_Card";
 
 export default function Books() {
 	const [selected, setSelected] = useState<Book | null>(null);

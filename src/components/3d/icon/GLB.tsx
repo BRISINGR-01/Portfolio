@@ -5,7 +5,7 @@ import { fixGLTFDepth } from "../../../utils";
 
 export default function GLB(props: ContentData) {
 	const { scene } = useGLTF(props.icon);
-	useEffect(() => fixGLTFDepth(scene));
+	useEffect(() => fixGLTFDepth(scene), [scene]);
 
 	return (
 		<primitive

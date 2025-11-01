@@ -5,7 +5,7 @@ import type { ContentData } from "../../../types";
 
 export default function Image(props: ContentData) {
 	const texture = useLoader(TextureLoader, props.icon);
-	if (props.id.startsWith("sdg")) {
+	if (props.id.startsWith("sdg") || props.id === "instagram") {
 		return (
 			<mesh
 				name={props.id}

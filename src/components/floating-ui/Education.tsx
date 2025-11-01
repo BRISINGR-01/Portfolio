@@ -2,15 +2,23 @@ import { motion } from "motion/react";
 
 import { useState } from "react";
 import { TRANSITION } from "../../constants.ts";
+import { dailyDevBadges, htbBadges } from "../../content.ts";
 import type { Education } from "../../types.ts";
-import ChangeAnimation from "./ChangeAnimation.tsx";
-import G_Card from "./G_Card.tsx";
-import HTBBadges from "./HTBBadges.tsx";
+import Badges from "./components/Badges.tsx";
+import ChangeAnimation from "./components/ChangeAnimation.tsx";
+import G_Card, { Position } from "./components/G_Card.tsx";
 
 export default function EducationDisplay({ data }: { data: Education }) {
 	const [showBadges, setShowBadges] = useState(false);
 
-	if (showBadges) return <HTBBadges onClick={() => setShowBadges(false)} />;
+	if (showBadges)
+		return (
+			<Badges
+				title={data.id === "htb" ? "Hack The Box Academy Badges" : "Daily Dev Badges"}
+				badges={data.id === "htb" ? htbBadges : dailyDevBadges}
+				onClick={() => setShowBadges(false)}
+			/>
+		);
 
 	return (
 		<>
@@ -23,7 +31,7 @@ export default function EducationDisplay({ data }: { data: Education }) {
 				exit={{ transform: "translate(-100px,-100px)", opacity: 0 }}
 				transition={TRANSITION}
 			>
-				<G_Card style={{ top: 0, left: 0, width: "min-content", minWidth: "20vw" }} className="m-4">
+				<G_Card position={Position.TopLeft} style={{ width: "min-content", minWidth: "20vw" }} className="m-4">
 					<ChangeAnimation id={data.id}>
 						<img
 							src={data.altIcon ?? data.icon}
@@ -35,8 +43,8 @@ export default function EducationDisplay({ data }: { data: Education }) {
 				</G_Card>
 			</motion.div>
 
-			{/* Badges for HTB */}
-			{data.id === "htb" && (
+			{/* Badges for HTB and Daily Dev */}
+			{(data.id === "htb" || data.id === "daily-dev") && (
 				<motion.div
 					key="badges"
 					style={{ bottom: 0, left: 0, position: "absolute" }}
@@ -45,8 +53,8 @@ export default function EducationDisplay({ data }: { data: Education }) {
 					exit={{ transform: "translate(-100px, 100px)", opacity: 0 }}
 					transition={TRANSITION}
 				>
-					<G_Card style={{ bottom: 0, left: 0 }} className="m-4 badges-icon" onClick={() => setShowBadges(true)}>
-						<img src="/icons/ui/badge.svg" style={{ filter: "invert()", width: "7vw", objectFit: "contain" }} />
+					<G_Card position={Position.BottomLeft} className="m-4 badges-icon" onClick={() => setShowBadges(true)}>
+						<img src="/icons/ui/badge.svg" style={{ width: "7vw", objectFit: "contain" }} />
 					</G_Card>
 				</motion.div>
 			)}
@@ -60,7 +68,7 @@ export default function EducationDisplay({ data }: { data: Education }) {
 				exit={{ transform: "translate(100px,-100px)", opacity: 0 }}
 				transition={TRANSITION}
 			>
-				<G_Card style={{ right: 0, top: 0 }} className="col-5 m-4">
+				<G_Card position={Position.TopRight} className="col-5 m-4">
 					<ChangeAnimation id={data.id}>
 						<span>{data.description}</span>
 					</ChangeAnimation>
