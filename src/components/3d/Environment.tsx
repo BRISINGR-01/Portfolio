@@ -36,10 +36,13 @@ export default function Environment(props: { children: React.ReactNode }) {
 			}
 		);
 
-		const t = setTimeout(() => {
-			zoomIn();
-			cameraControlsRef.current!.enabled = true;
-		}, 4100);
+		const t = setTimeout(
+			() => {
+				zoomIn();
+				if (cameraControlsRef.current) cameraControlsRef.current!.enabled = true;
+			},
+			IS_DEBUG ? 0 : 4100
+		);
 
 		return () => {
 			clearTimeout(t);

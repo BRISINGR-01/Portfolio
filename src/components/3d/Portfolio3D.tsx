@@ -10,7 +10,6 @@ import {
 } from "three-mesh-bvh";
 import { BatchedMesh } from "three/webgpu";
 import { MENU_DELAY } from "../../constants";
-import Raycast from "./Raycast";
 
 import { AnimatePresence } from "motion/react";
 import content from "../../content.ts";
@@ -22,6 +21,7 @@ import ContentDisplay from "../floating-ui/ContentDisplay.tsx";
 import Menu from "../floating-ui/Menu.tsx";
 import Environment3D from "./Environment.tsx";
 import Icon from "./icon/Icon.tsx";
+import Raycast from "./Raycast.tsx";
 import Table from "./table/Table.tsx";
 
 BufferGeometry.prototype.computeBoundsTree = computeBoundsTree;
@@ -56,7 +56,7 @@ export default function Portfolio3D() {
 			setMode(Mode.Info);
 		}
 
-		// setMode(Mode.Contact);
+		setMode(Mode.Contact);
 		// setSelectedItem(content.education[5]);
 		return sub(
 			(state) => state.escape,
