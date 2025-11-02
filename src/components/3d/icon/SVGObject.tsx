@@ -35,8 +35,6 @@ export default function SVGObject(props: ContentData) {
 	const materialRefs = useRef<ShaderMaterial[]>([]);
 
 	useFrame((state) => {
-		// console.log(materialRefs.current.at(0)?.uniforms);
-		// console.log(state.clock.elapsedTime);
 		for (const material of materialRefs.current) {
 			material.uniforms.time.value = state.clock.getElapsedTime();
 		}
@@ -60,7 +58,6 @@ export default function SVGObject(props: ContentData) {
 				const geometry = new ExtrudeGeometry(shape, { depth: 4 });
 				geometry.computeBoundsTree();
 				fixUVs(geometry);
-				console.log(geometry);
 				// geometry.setDrawRange(0, 90);
 				renderOrder++;
 
@@ -70,7 +67,7 @@ export default function SVGObject(props: ContentData) {
 						geometry={geometry}
 						key={renderOrder}
 						material={material}
-					></mesh>
+					/>
 				);
 			});
 		});

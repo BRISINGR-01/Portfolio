@@ -88,7 +88,7 @@ export default function Raycast({
 			if (hovered?.id === mesh.id) return;
 
 			hovered = mesh;
-			onHover(mesh.name);
+			// onHover(mesh.name);
 			outlinePass!.selectedObjects = [mesh];
 			setPointerCursor();
 		}

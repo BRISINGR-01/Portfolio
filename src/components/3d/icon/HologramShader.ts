@@ -1,4 +1,4 @@
-const HologramShader = {
+const ImageHologramShader = {
 	uniforms: {
 		tDiffuse: { type: "t", value: null },
 		time: { type: "f", value: 0 },
@@ -39,4 +39,4 @@ const HologramShader = {
 `,
 };
 
-export default HologramShader;
+export default ImageHologramShader;

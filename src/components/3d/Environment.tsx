@@ -52,7 +52,7 @@ export default function Environment(props: { children: React.ReactNode }) {
 	}, [sub, cameraControlsRef]);
 
 	return (
-		<Canvas camera={{ position: initialCameraPos, fov: 75 }}>
+		<Canvas camera={{ position: initialCameraPos, fov: 75 }} gl={{ localClippingEnabled: true }}>
 			<CameraControls ref={cameraControlsRef} enabled={IS_DEBUG || false} />
 			<ambientLight intensity={0.6} />
 			<directionalLight intensity={0.9} position={[200, 100, 300]} />
