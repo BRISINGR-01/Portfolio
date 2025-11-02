@@ -56,7 +56,7 @@ export default function Portfolio3D() {
 			setMode(Mode.Info);
 		}
 
-		setMode(Mode.Contact);
+		setMode(Mode.Education);
 		// setSelectedItem(content.education[5]);
 		return sub(
 			(state) => state.escape,

@@ -1,31 +1,16 @@
 import { useFrame, useLoader } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
-import { DoubleSide, ShaderMaterial, TextureLoader, Vector3 } from "three";
+import { useMemo } from "react";
+import { Color, TextureLoader, Vector3 } from "three";
 import { COLOR_PALETTE, IMAGE_DEPTH } from "../../../constants";
 import type { ContentData } from "../../../types";
-import ImageHologramShader from "./HologramShader";
+import HologramMaterial from "./HologramMaterial";
 
 export default function Image(props: ContentData) {
 	const texture = useLoader(TextureLoader, props.icon);
-	const materialRef = useRef<ShaderMaterial>(null);
-
-	const hologramProps = useMemo(
-		() => ({
-			vertexShader: ImageHologramShader.vertexShader,
-			fragmentShader: ImageHologramShader.fragmentShader,
-			uniforms: {
-				time: { value: 0 },
-				texture: { value: texture },
-			},
-			transparent: true,
-			depthWrite: false,
-			side: DoubleSide,
-		}),
-		[texture]
-	);
+	const hologramProps = useMemo(() => new HologramMaterial(new Color(COLOR_PALETTE.PRIMARY), 15), []);
 
 	useFrame(({ clock }) => {
-		if (materialRef.current) materialRef.current.uniforms.time.value = clock.getElapsedTime();
+		hologramProps.uniforms.time.value = clock.getElapsedTime();
 	});
 
 	if (props.id.startsWith("sdg") || props.id === "instagram") {
@@ -41,8 +26,8 @@ export default function Image(props: ContentData) {
 
 				<meshBasicMaterial attach="material-0" color={COLOR_PALETTE.PRIMARY} />
 
-				<shaderMaterial attach="material-1" ref={materialRef} {...hologramProps} />
-				<shaderMaterial attach="material-2" ref={materialRef} {...hologramProps} />
+				<shaderMaterial attach="material-1" {...hologramProps} />
+				<shaderMaterial attach="material-2" {...hologramProps} />
 
 				{/* <meshBasicMaterial attach="material-1" transparent map={texture} /> */}
 				{/* <meshBasicMaterial attach="material-2" transparent map={texture} /> */}
@@ -59,8 +44,8 @@ export default function Image(props: ContentData) {
 			<meshBasicMaterial attach="material-2" color={COLOR_PALETTE.PRIMARY} />
 			<meshBasicMaterial attach="material-3" color={COLOR_PALETTE.PRIMARY} />
 
-			<shaderMaterial ref={materialRef} attach="material-4" {...hologramProps} />
-			<shaderMaterial ref={materialRef} attach="material-5" {...hologramProps} />
+			<shaderMaterial attach="material-4" {...hologramProps} />
+			<shaderMaterial attach="material-5" {...hologramProps} />
 
 			<meshBasicMaterial attach="material-6" color={COLOR_PALETTE.PRIMARY} />
 			<meshBasicMaterial attach="material-7" color={COLOR_PALETTE.PRIMARY} />

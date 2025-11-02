@@ -1,5 +1,5 @@
 import { Color, DoubleSide, ShaderMaterial } from "three";
-import ImageHologramShader from "./HologramShader";
+import HologramShader from "./HologramShader";
 
 function bluify(color: Color) {
 	// extract current lightness
@@ -27,10 +27,10 @@ export default class HologramMaterial extends ShaderMaterial {
 			side: DoubleSide,
 			depthWrite: true,
 			depthTest: true,
-			vertexShader: ImageHologramShader.vertexShader,
-			fragmentShader: ImageHologramShader.fragmentShader,
+			vertexShader: HologramShader.vertexShader,
+			fragmentShader: HologramShader.fragmentShader,
 			uniforms: {
-				...ImageHologramShader.uniforms,
+				...HologramShader.uniforms,
 				time: { value: 0 },
 				baseColor: { value: bluify(color) },
 				duration: { value: 6 },

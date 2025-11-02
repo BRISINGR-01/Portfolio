@@ -5,6 +5,7 @@ import {
 	Color,
 	DataTexture,
 	ExtrudeGeometry,
+	Plane,
 	RGBAFormat,
 	ShaderMaterial,
 	SRGBColorSpace,
@@ -34,9 +35,11 @@ export default function SVGObject(props: ContentData) {
 	const data = useLoader(SVGLoader, props.icon);
 	const materialRefs = useRef<ShaderMaterial[]>([]);
 
-	useFrame((state) => {
+	useFrame(({ clock }) => {
 		for (const material of materialRefs.current) {
-			material.uniforms.time.value = state.clock.getElapsedTime();
+			material.uniforms.time.value = clock.getElapsedTime();
+
+			material.clippingPlanes![0].constant = clock.getElapsedTime() / 1 - 2;
 		}
 	});
 
@@ -53,6 +56,8 @@ export default function SVGObject(props: ContentData) {
 
 			const material = new HologramMaterial(color, props.icon3D.scale * 5000);
 			materialRefs.current.push(material);
+			material.clipping = true;
+			material.clippingPlanes = [new Plane(new Vector3(0, 0.5, 0), 0.4)];
 
 			return SVGLoader.createShapes(path).map((shape) => {
 				const geometry = new ExtrudeGeometry(shape, { depth: 4 });
@@ -74,13 +79,15 @@ export default function SVGObject(props: ContentData) {
 	}, [data, props.icon3D.wide, props.icon3D.scale]);
 
 	return (
-		<mesh
-			name={props.id}
-			scale={new Vector3(0, 0, props.icon3D.wide ? 0.01 : 0).addScalar(props.icon3D.scale)}
-			rotation={new Vector3(...(props.icon3D.rotation ?? [])).add(DEFAULT_SVG_ROTATION).toArray()}
-			position={props.icon3D.position}
-		>
-			{shapes}
-		</mesh>
+		<group>
+			<mesh
+				name={props.id}
+				scale={new Vector3(0, 0, props.icon3D.wide ? 0.01 : 0).addScalar(props.icon3D.scale)}
+				rotation={new Vector3(...(props.icon3D.rotation ?? [])).add(DEFAULT_SVG_ROTATION).toArray()}
+				position={props.icon3D.position}
+			>
+				{shapes}
+			</mesh>
+		</group>
 	);
 }

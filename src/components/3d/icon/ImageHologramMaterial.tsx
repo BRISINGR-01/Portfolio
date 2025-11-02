@@ -1,5 +1,5 @@
 import { DoubleSide, ShaderMaterial, type Texture } from "three";
-import ImageHologramShader from "./HologramShader";
+import HologramShader from "./HologramShader";
 
 export default class ImageHologram extends ShaderMaterial {
 	constructor(texture: Texture) {
@@ -9,10 +9,10 @@ export default class ImageHologram extends ShaderMaterial {
 			side: DoubleSide,
 			depthWrite: true,
 			depthTest: true,
-			vertexShader: ImageHologramShader.vertexShader,
-			fragmentShader: ImageHologramShader.fragmentShader,
+			vertexShader: HologramShader.vertexShader,
+			fragmentShader: HologramShader.fragmentShader,
 			uniforms: {
-				...ImageHologramShader.uniforms,
+				...HologramShader.uniforms,
 				time: { value: 0 },
 				texture: { value: texture },
 			},
