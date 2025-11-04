@@ -9,7 +9,7 @@ import {
 	disposeBoundsTree,
 } from "three-mesh-bvh";
 import { BatchedMesh } from "three/webgpu";
-import { MENU_DELAY } from "../../constants";
+import { MENU_DELAY, TABLE_DELAY } from "../../constants";
 
 import { AnimatePresence } from "motion/react";
 import content from "../../content.ts";
@@ -90,37 +90,39 @@ export default function Portfolio3D() {
 				if (i >= selectedContent.length) return;
 
 				setVisibleIcons((prev) => [...prev, selectedContent[i]]);
-			}, (i + 1) * 20);
+			}, (i + 0) * 170);
 		}
 	}, [selectedContent]);
 
 	return (
 		<>
 			<Environment3D>
-				<Raycast
-					key={mode} // refreshes values in the callback
-					onClick={(m: Mesh | null) => {
-						if (!m || !selectedContent) return setSelectedIcon(null);
-						const newSelected = selectedContent.find((el) => el.id === m.name) ?? null;
+				<Delay time={TABLE_DELAY}>
+					<Raycast
+						key={mode} // refreshes values in the callback
+						onClick={(m: Mesh | null) => {
+							if (!m || !selectedContent) return setSelectedIcon(null);
+							const newSelected = selectedContent.find((el) => el.id === m.name) ?? null;
 
-						if (!newSelected || newSelected.id === selectedIcon?.id) return setSelectedIcon(null);
+							if (!newSelected || newSelected.id === selectedIcon?.id) return setSelectedIcon(null);
 
-						setSelectedIcon(newSelected);
-					}}
-					onHover={(id: string | null) => {
-						if (!id || !selectedContent) {
-							setHovered(null);
-						} else {
-							setHovered(selectedContent.find((data) => data.id === id)!);
-						}
-					}}
-				>
-					{visibleIcons.map((icon) => (
-						<Suspense key={icon.id} fallback={null}>
-							<Icon {...icon} />
-						</Suspense>
-					))}
-				</Raycast>
+							setSelectedIcon(newSelected);
+						}}
+						onHover={(id: string | null) => {
+							if (!id || !selectedContent) {
+								setHovered(null);
+							} else {
+								setHovered(selectedContent.find((data) => data.id === id)!);
+							}
+						}}
+					>
+						{visibleIcons.map((icon) => (
+							<Suspense key={icon.id} fallback={null}>
+								<Icon {...icon} />
+							</Suspense>
+						))}
+					</Raycast>
+				</Delay>
 				<Table text={prettifyTitle(hovered?.title ?? mode)} />
 			</Environment3D>
 

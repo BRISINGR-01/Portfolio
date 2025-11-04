@@ -52,7 +52,9 @@ export default function Raycast({
 		persistentOutlinePass.current.edgeStrength = 1;
 		persistentOutlinePass.current.edgeGlow = 0;
 		persistentOutlinePass.current.visibleEdgeColor.set("#ffffff");
-		persistentOutlinePass.current.selectedObjects = groupRef.current!.children;
+		setTimeout(() => {
+			persistentOutlinePass.current!.selectedObjects = groupRef.current!.children;
+		}, 3000);
 		composer.current.addPass(persistentOutlinePass.current);
 
 		composer.current.addPass(new OutputPass());
@@ -88,7 +90,7 @@ export default function Raycast({
 			if (hovered?.id === mesh.id) return;
 
 			hovered = mesh;
-			// onHover(mesh.name);
+			onHover(mesh.name);
 			outlinePass!.selectedObjects = [mesh];
 			setPointerCursor();
 		}

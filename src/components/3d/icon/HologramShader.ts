@@ -1,11 +1,9 @@
 const HologramShader = {
 	uniforms: {
-		tDiffuse: { type: "t", value: null },
 		time: { type: "f", value: 0 },
-		distortion: { type: "f", value: 0.2 },
-		distortion2: { type: "f", value: 1 },
 		speed: { type: "f", value: 0.02 },
-		rollSpeed: { type: "f", value: 0.1 },
+		animStart: { type: "f", value: 0 },
+		linesFreq: { type: "f", value: 20 },
 	},
 	vertexShader: `
 		varying vec2 vUv;
@@ -29,11 +27,12 @@ const HologramShader = {
   uniform vec3 baseColor;
   uniform float speed;
   uniform float linesFreq;
+  uniform float animStart;
+  uniform float size;
 
   float snoise(float x) {
     return sin(x * 10.0) * 0.5 + 0.5;
   }
-
 
   void main() {
       #include <clipping_planes_fragment>
@@ -47,11 +46,17 @@ const HologramShader = {
 
       vec3 color = baseColor - finalStripe * 0.2; // subtle lighter lines
 
+      float centeredY = y * 2.0 - 1.0;
+      float progress = time - animStart;
+      progress *= 2.4;
+      float dist = abs(centeredY);
 
-      gl_FragColor = vec4(color, 0.4);
+      float fade = smoothstep(progress, progress - 0.1, dist);
+      fade *= 0.4;
+
+
+      gl_FragColor = vec4(color, fade);
   }
-
-
 `,
 };
 

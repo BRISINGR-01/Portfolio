@@ -1,5 +1,5 @@
-import { useFrame, useLoader } from "@react-three/fiber";
-import { useMemo } from "react";
+import { useFrame, useLoader, useThree } from "@react-three/fiber";
+import { useEffect, useMemo } from "react";
 import { Color, TextureLoader, Vector3 } from "three";
 import { COLOR_PALETTE, IMAGE_DEPTH } from "../../../constants";
 import type { ContentData } from "../../../types";
@@ -7,11 +7,17 @@ import HologramMaterial from "./HologramMaterial";
 
 export default function Image(props: ContentData) {
 	const texture = useLoader(TextureLoader, props.icon);
+	const { get } = useThree();
+
 	const hologramProps = useMemo(() => new HologramMaterial(new Color(COLOR_PALETTE.PRIMARY), 15), []);
 
 	useFrame(({ clock }) => {
 		hologramProps.uniforms.time.value = clock.getElapsedTime();
 	});
+
+	useEffect(() => {
+		hologramProps.uniforms.animStart.value = get().clock.elapsedTime;
+	}, [texture]);
 
 	if (props.id.startsWith("sdg") || props.id === "instagram") {
 		return (

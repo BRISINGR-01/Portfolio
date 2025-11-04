@@ -1,5 +1,5 @@
 import { useGLTF } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import { Color, type Mesh, type ShaderMaterial } from "three";
 import { COLOR_PALETTE } from "../../../constants";
@@ -9,6 +9,7 @@ import HologramMaterial from "./HologramMaterial";
 
 export default function GLB(props: ContentData) {
 	const { scene } = useGLTF(props.icon);
+	const { get } = useThree();
 
 	useEffect(() => fixGLTFDepth(scene), [scene]);
 
@@ -16,23 +17,20 @@ export default function GLB(props: ContentData) {
 
 	// Traverse all meshes and replace their material
 	useEffect(() => {
+		const time = get().clock.elapsedTime;
+
 		scene.traverse((child) => {
 			if ((child as Mesh).isMesh) {
 				const mesh = child as Mesh;
 
 				const material = new HologramMaterial(new Color(COLOR_PALETTE.PRIMARY), props.icon3D.scale * 30);
 				mesh.material = material;
-				// material.clippingPlanes = [new Plane(new Vector3(0, 2.2, 0), 1)];
-				material.alphaToCoverage = true;
+				material.uniforms.animStart.value = time;
 				materialRefs.current.push(material);
-
-				if (mesh.material) {
-					// mesh.material.clippingPlanes = [new Plane(new Vector3(0, 1, 0), 1)];
-					mesh.material.alphaToCoverage = true;
-				}
 			}
 		});
-	}, [scene, props]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [scene]);
 
 	useFrame((state) => {
 		for (const material of materialRefs.current) {

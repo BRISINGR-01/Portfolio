@@ -20,7 +20,7 @@ function bluify(color: Color) {
 }
 
 export default class HologramMaterial extends ShaderMaterial {
-	constructor(color: Color, scale: number) {
+	constructor(color: Color, scale?: number) {
 		super({
 			transparent: true,
 			opacity: 1,
@@ -32,9 +32,9 @@ export default class HologramMaterial extends ShaderMaterial {
 			uniforms: {
 				...HologramShader.uniforms,
 				time: { value: 0 },
+				animStart: { value: 0 },
 				baseColor: { value: bluify(color) },
-				duration: { value: 6 },
-				linesFreq: { value: scale },
+				linesFreq: { value: scale ?? 20 },
 				speed: { value: 4 },
 			},
 		});
