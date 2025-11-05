@@ -1,7 +1,7 @@
 import { CameraControls, useKeyboardControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
-import { defaultCameraPos, initialCameraPos, IS_DEBUG } from "../../constants";
+import { DEFAULT_CAMERA_POS, INITIAL_CAMERA_POS, IS_DEBUG } from "../../constants";
 import type { Controls } from "../../types";
 import Room from "./room/Room";
 
@@ -13,7 +13,7 @@ export default function Environment(props: { children: React.ReactNode }) {
 	useEffect(() => {
 		const zoomIn = () => {
 			if (cameraControlsRef.current) {
-				cameraControlsRef.current.setLookAt(...defaultCameraPos, 0, 0, 0, true);
+				cameraControlsRef.current.setLookAt(...DEFAULT_CAMERA_POS, 0, 0, 0, true);
 			}
 		};
 
@@ -52,7 +52,7 @@ export default function Environment(props: { children: React.ReactNode }) {
 	}, [sub, cameraControlsRef]);
 
 	return (
-		<Canvas camera={{ position: initialCameraPos, fov: 75 }}>
+		<Canvas camera={{ position: INITIAL_CAMERA_POS, fov: 75 }}>
 			<CameraControls ref={cameraControlsRef} enabled={IS_DEBUG || false} />
 			<ambientLight intensity={0.6} />
 			<directionalLight intensity={0.9} position={[200, 100, 300]} />

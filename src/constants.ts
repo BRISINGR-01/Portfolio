@@ -41,5 +41,8 @@ export const IS_DEBUG = import.meta.env.DEV && true;
 
 export const MENU_DELAY = IS_DEBUG ? 0 : 4;
 export const TABLE_DELAY = IS_DEBUG ? 0 : 4.15;
-export const defaultCameraPos = [-1, 0.3, 5] as [number, number, number];
-export const initialCameraPos = IS_DEBUG ? defaultCameraPos : ([-4, 3, 7.5] as [number, number, number]);
+export const HOLOGRAM_SWITCH_TIME = 0;
+export const HOLOGRAM_ANIMATION_LENGTH = 0.4;
+export const OUTLINE_HARDCODED_DELAY = 1; // account for loading time of icons
+export const DEFAULT_CAMERA_POS = [-1, 0.3, 5] as [number, number, number];
+export const INITIAL_CAMERA_POS = IS_DEBUG ? DEFAULT_CAMERA_POS : ([-4, 3, 7.5] as [number, number, number]);

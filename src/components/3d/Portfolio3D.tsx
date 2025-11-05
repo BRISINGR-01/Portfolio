@@ -90,7 +90,7 @@ export default function Portfolio3D() {
 				if (i >= selectedContent.length) return;
 
 				setVisibleIcons((prev) => [...prev, selectedContent[i]]);
-			}, (i + 0) * 170);
+			}, (i + 0) * 120);
 		}
 	}, [selectedContent]);
 

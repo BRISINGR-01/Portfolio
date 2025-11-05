@@ -1,7 +1,7 @@
 import { useFrame, useLoader, useThree } from "@react-three/fiber";
-import { useEffect, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { Color, TextureLoader, Vector3 } from "three";
-import { COLOR_PALETTE, IMAGE_DEPTH } from "../../../constants";
+import { COLOR_PALETTE, HOLOGRAM_ANIMATION_LENGTH, HOLOGRAM_SWITCH_TIME, IMAGE_DEPTH } from "../../../constants";
 import type { ContentData } from "../../../types";
 import HologramMaterial from "./HologramMaterial";
 
@@ -9,15 +9,26 @@ export default function Image(props: ContentData) {
 	const texture = useLoader(TextureLoader, props.icon);
 	const { get } = useThree();
 
-	const hologramProps = useMemo(() => new HologramMaterial(new Color(COLOR_PALETTE.PRIMARY), 15), []);
+	const [hologramMaterial, setHologramMaterial] = useState<HologramMaterial | null>(
+		new HologramMaterial(new Color(COLOR_PALETTE.PRIMARY), 15)
+	);
 
 	useFrame(({ clock }) => {
-		hologramProps.uniforms.time.value = clock.getElapsedTime();
+		if (hologramMaterial) hologramMaterial.uniforms.time.value = clock.getElapsedTime();
 	});
 
 	useEffect(() => {
-		hologramProps.uniforms.animStart.value = get().clock.elapsedTime;
-	}, [texture]);
+		const mat = new HologramMaterial(new Color(COLOR_PALETTE.PRIMARY), 15);
+		mat.uniforms.animStart.value = get().clock.elapsedTime;
+
+		setHologramMaterial(mat);
+
+		const t = setTimeout(() => {
+			setHologramMaterial(null);
+		}, (HOLOGRAM_ANIMATION_LENGTH + HOLOGRAM_SWITCH_TIME) * 1000);
+
+		return () => clearTimeout(t);
+	}, [get, texture]);
 
 	if (props.id.startsWith("sdg") || props.id === "instagram") {
 		return (
@@ -29,14 +40,17 @@ export default function Image(props: ContentData) {
 					.toArray()}
 			>
 				<cylinderGeometry args={[props.icon3D.scale, props.icon3D.scale, IMAGE_DEPTH]} />
-
 				<meshBasicMaterial attach="material-0" color={COLOR_PALETTE.PRIMARY} />
-
-				<shaderMaterial attach="material-1" {...hologramProps} />
-				<shaderMaterial attach="material-2" {...hologramProps} />
-
-				{/* <meshBasicMaterial attach="material-1" transparent map={texture} /> */}
-				{/* <meshBasicMaterial attach="material-2" transparent map={texture} /> */}
+				{hologramMaterial ? (
+					<shaderMaterial attach="material-1" {...hologramMaterial} />
+				) : (
+					<meshBasicMaterial attach="material-1" map={texture} />
+				)}
+				{hologramMaterial ? (
+					<shaderMaterial attach="material-2" {...hologramMaterial} />
+				) : (
+					<meshBasicMaterial attach="material-2" map={texture} />
+				)}
 			</mesh>
 		);
 	}
@@ -44,25 +58,22 @@ export default function Image(props: ContentData) {
 	return (
 		<mesh name={props.id} position={props.icon3D.position} rotation={props.icon3D.rotation}>
 			<boxGeometry args={[props.icon3D.scale, props.icon3D.scale, IMAGE_DEPTH]} />
-
 			<meshBasicMaterial attach="material-0" color={COLOR_PALETTE.PRIMARY} />
 			<meshBasicMaterial attach="material-1" color={COLOR_PALETTE.PRIMARY} />
 			<meshBasicMaterial attach="material-2" color={COLOR_PALETTE.PRIMARY} />
 			<meshBasicMaterial attach="material-3" color={COLOR_PALETTE.PRIMARY} />
-
-			<shaderMaterial attach="material-4" {...hologramProps} />
-			<shaderMaterial attach="material-5" {...hologramProps} />
-
+			{hologramMaterial ? (
+				<shaderMaterial attach="material-4" {...hologramMaterial} />
+			) : (
+				<meshBasicMaterial attach="material-4" map={texture} />
+			)}
+			{hologramMaterial ? (
+				<shaderMaterial attach="material-5" {...hologramMaterial} />
+			) : (
+				<meshBasicMaterial attach="material-5" map={texture} />
+			)}
 			<meshBasicMaterial attach="material-6" color={COLOR_PALETTE.PRIMARY} />
 			<meshBasicMaterial attach="material-7" color={COLOR_PALETTE.PRIMARY} />
-			{/* <meshBasicMaterial attach="material-0" color={COLOR_PALETTE.PRIMARY} />
-			<meshBasicMaterial attach="material-1" color={COLOR_PALETTE.PRIMARY} />
-			<meshBasicMaterial attach="material-2" color={COLOR_PALETTE.PRIMARY} />
-			<meshBasicMaterial attach="material-3" color={COLOR_PALETTE.PRIMARY} />
-			<meshBasicMaterial attach="material-4" transparent map={texture} />
-			<meshBasicMaterial attach="material-5" transparent map={texture} />
-			<meshBasicMaterial attach="material-6" color={COLOR_PALETTE.PRIMARY} />
-			<meshBasicMaterial attach="material-7" color={COLOR_PALETTE.PRIMARY} /> */}
 		</mesh>
 	);
 }

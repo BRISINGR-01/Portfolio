@@ -2,7 +2,13 @@ import { useFrame, useThree } from "@react-three/fiber";
 import React, { useEffect, useRef } from "react";
 import { Vector2, type Group, type Mesh } from "three";
 import { EffectComposer, OutlinePass, OutputPass, RenderPass } from "three/examples/jsm/Addons.js";
-import { COLOR_PALETTE, RAYCAST_CONTAINER_NAME } from "../../constants";
+import {
+	COLOR_PALETTE,
+	HOLOGRAM_ANIMATION_LENGTH,
+	HOLOGRAM_SWITCH_TIME,
+	OUTLINE_HARDCODED_DELAY,
+	RAYCAST_CONTAINER_NAME,
+} from "../../constants";
 import { setDefaultCursor, setPointerCursor } from "../../utils";
 
 export default function Raycast({
@@ -25,11 +31,15 @@ export default function Raycast({
 	useEffect(() => {
 		if (!composer.current) return;
 
-		for (const pass of composer.current.passes) {
-			if (pass instanceof OutlinePass && pass.selectedObjects.length > 1) {
-				pass.selectedObjects = groupRef.current!.children;
-			}
-		}
+		const t = setTimeout(() => {
+			(
+				composer.current!.passes.find(
+					(pass) => pass instanceof OutlinePass && pass.selectedObjects.length > 0
+				) as OutlinePass
+			).selectedObjects = groupRef.current!.children;
+		}, (HOLOGRAM_ANIMATION_LENGTH + HOLOGRAM_SWITCH_TIME + OUTLINE_HARDCODED_DELAY) * 1000);
+
+		return () => clearTimeout(t);
 	}, [children]);
 
 	useEffect(() => {
@@ -52,9 +62,9 @@ export default function Raycast({
 		persistentOutlinePass.current.edgeStrength = 1;
 		persistentOutlinePass.current.edgeGlow = 0;
 		persistentOutlinePass.current.visibleEdgeColor.set("#ffffff");
-		setTimeout(() => {
+		const t = setTimeout(() => {
 			persistentOutlinePass.current!.selectedObjects = groupRef.current!.children;
-		}, 3000);
+		}, HOLOGRAM_ANIMATION_LENGTH * 1000);
 		composer.current.addPass(persistentOutlinePass.current);
 
 		composer.current.addPass(new OutputPass());
@@ -108,6 +118,7 @@ export default function Raycast({
 		canvas.addEventListener("pointermove", onMove);
 		window.addEventListener("resize", onResize);
 		return () => {
+			clearTimeout(t);
 			canvas.removeEventListener("pointermove", onMove);
 			canvas.removeEventListener("click", onClickCb);
 			window.removeEventListener("resize", onResize);

@@ -1,4 +1,5 @@
 import { Color, DoubleSide, ShaderMaterial } from "three";
+import { HOLOGRAM_ANIMATION_LENGTH } from "../../../constants";
 import HologramShader from "./HologramShader";
 
 function bluify(color: Color) {
@@ -36,6 +37,7 @@ export default class HologramMaterial extends ShaderMaterial {
 				baseColor: { value: bluify(color) },
 				linesFreq: { value: scale ?? 20 },
 				speed: { value: 4 },
+				duration: { value: HOLOGRAM_ANIMATION_LENGTH },
 			},
 		});
 	}
