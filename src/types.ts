@@ -71,6 +71,7 @@ export interface ContentData {
 export enum Mode {
 	Experience,
 	Education,
+	Interests,
 	Contact,
 	Info,
 	None,

@@ -1,3 +1,4 @@
+import { WALL_DELAY } from "../../../constants";
 import { WallFace } from "../../../types";
 import Delay from "../../Delay";
 import Ceiling from "./Ceiling";
@@ -12,7 +13,7 @@ export default function Room(props: { children: React.ReactNode }) {
 
 			{props.children}
 
-			<Delay time={1.5}>
+			<Delay time={WALL_DELAY}>
 				<Wall wallFace={WallFace.North} />
 				<Wall wallFace={WallFace.West} />
 				<Wall wallFace={WallFace.South} />

@@ -9,7 +9,7 @@ import {
 	disposeBoundsTree,
 } from "three-mesh-bvh";
 import { BatchedMesh } from "three/webgpu";
-import { MENU_DELAY, TABLE_DELAY } from "../../constants";
+import { ICON_DELAY, MENU_DELAY, TABLE_DELAY } from "../../constants";
 
 import { AnimatePresence } from "motion/react";
 import content from "../../content.ts";
@@ -39,6 +39,7 @@ export default function Portfolio3D() {
 	const [mode, setMode] = useState(Mode.None);
 	const [selectedIcon, setSelectedIcon] = useState<ContentData | null>(null);
 	const [hovered, setHovered] = useState<ContentData | null>(null);
+	const [visibleIcons, setVisibleIcons] = useState<ContentData[]>([]);
 	const [sub] = useKeyboardControls<Controls>();
 
 	const selectedContent =
@@ -49,6 +50,7 @@ export default function Portfolio3D() {
 			: mode === Mode.Contact
 			? content.contacts
 			: null;
+	// useEdit(content.education.at(-1)!);
 
 	useEffect(() => {
 		if (!window.localStorage.getItem("isFirstEntry")) {
@@ -71,22 +73,16 @@ export default function Portfolio3D() {
 		};
 	}, [sub]);
 
-	// useEdit(content.education.at(-1)!);
-
-	const [visibleIcons, setVisibleIcons] = useState<ContentData[]>([]);
-
 	useEffect(() => {
 		if (!selectedContent) return;
 
 		let t: number;
-
+		setSelectedIcon(null);
 		setVisibleIcons([]);
 
 		for (let i = 0; i < selectedContent.length; i++) {
 			// let React and the browser breathe before next mesh mount
-			t = setTimeout(() => {
-				setVisibleIcons((prev) => [...prev, selectedContent[i]]);
-			}, i * 120);
+			t = setTimeout(() => setVisibleIcons((prev) => [...prev, selectedContent[i]]), i * ICON_DELAY);
 		}
 
 		return () => clearTimeout(t);
@@ -126,18 +122,15 @@ export default function Portfolio3D() {
 
 			<Delay time={MENU_DELAY}>
 				<AnimatePresence>
-					{!selectedIcon && (
+					{selectedIcon ? (
+						<ContentDisplay data={selectedIcon} type={mode} />
+					) : (
 						<Menu
-							key="menu"
 							selected={mode}
-							onSelect={(c) => {
-								setMode(c);
-								setSelectedIcon(null);
-							}}
-							disabled={!!selectedContent && visibleIcons.length !== selectedContent?.length}
+							onSelect={setMode}
+							disabled={!!selectedContent && visibleIcons.length !== selectedContent.length}
 						/>
 					)}
-					{selectedIcon && <ContentDisplay data={selectedIcon} type={mode} />}
 				</AnimatePresence>
 			</Delay>
 		</>

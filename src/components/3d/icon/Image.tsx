@@ -1,7 +1,7 @@
 import { useFrame, useLoader, useThree } from "@react-three/fiber";
 import { useEffect, useState } from "react";
 import { Color, TextureLoader, Vector3 } from "three";
-import { COLOR_PALETTE, HOLOGRAM_ANIMATION_LENGTH, HOLOGRAM_SWITCH_TIME, IMAGE_DEPTH } from "../../../constants";
+import { COLOR_PALETTE, HOLOGRAM_TRANSITION, IMAGE_DEPTH } from "../../../constants";
 import type { ContentData } from "../../../types";
 import HologramMaterial from "./HologramMaterial";
 
@@ -18,12 +18,13 @@ export default function Image(props: ContentData) {
 	});
 
 	useEffect(() => {
-		const mat = new HologramMaterial(new Color(COLOR_PALETTE.PRIMARY), 15);
-		mat.uniforms.animStart.value = get().clock.elapsedTime;
+		setHologramMaterial((mat) => {
+			if (mat) mat.uniforms.animStart.value = get().clock.elapsedTime;
 
-		setHologramMaterial(mat);
+			return mat;
+		});
 
-		const t = setTimeout(() => setHologramMaterial(null), (HOLOGRAM_ANIMATION_LENGTH + HOLOGRAM_SWITCH_TIME) * 1000);
+		const t = setTimeout(() => setHologramMaterial(null), HOLOGRAM_TRANSITION);
 
 		return () => {
 			setHologramMaterial(null);

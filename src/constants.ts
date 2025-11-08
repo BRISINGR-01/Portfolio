@@ -12,6 +12,9 @@ export const COLOR_PALETTE = {
 	TERTIARY: "",
 };
 
+export const HOVER_OUTLINE_HIDDEN = "#1abaff";
+export const PERSISTENT_OUTLINE = "#ffffff";
+
 window.addEventListener("DOMContentLoaded", () => {
 	const style = window.getComputedStyle(document.documentElement);
 
@@ -40,8 +43,16 @@ export const IS_DEBUG = import.meta.env.DEV && false;
 
 export const MENU_DELAY = IS_DEBUG ? 0 : 4.2;
 export const TABLE_DELAY = IS_DEBUG ? 0 : 4;
-export const HOLOGRAM_SWITCH_TIME = 0;
-export const HOLOGRAM_ANIMATION_LENGTH = 0.4;
-export const OUTLINE_HARDCODED_DELAY = 1; // account for loading time of icons
+export const HOLOGRAM_SWITCH_TIME = IS_DEBUG ? 0 : 0;
+export const HOLOGRAM_ANIMATION_LENGTH = IS_DEBUG ? 0 : 0.4;
+export const HOLOGRAM_TRANSITION = (HOLOGRAM_ANIMATION_LENGTH + HOLOGRAM_SWITCH_TIME) * 1000;
+export const OUTLINE_HARDCODED_DELAY = IS_DEBUG ? 0 : 1000; // account for loading time of icons
+
 export const DEFAULT_CAMERA_POS = [-1, 0.3, 5] as [number, number, number];
 export const INITIAL_CAMERA_POS = IS_DEBUG ? DEFAULT_CAMERA_POS : ([-4, 3, 7.5] as [number, number, number]);
+export const ZOOM_IN_DELAY = IS_DEBUG ? 0 : 4100;
+
+export const CEILING_BUILD_UP_DURATION = IS_DEBUG ? 0.1 : 3;
+export const WALL_BUILD_UP_DURATION = IS_DEBUG ? 0.1 : 2;
+export const WALL_DELAY = IS_DEBUG ? 0 : 1.5;
+export const ICON_DELAY = IS_DEBUG ? 0 : 120;

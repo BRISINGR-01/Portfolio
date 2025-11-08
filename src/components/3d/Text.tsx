@@ -38,16 +38,18 @@ export default function Text({
 		return geometry;
 	}, [children, scale]);
 
-	return (
-		<mesh
-			geometry={geometry}
-			rotation={rotation}
-			position={[
+	const pos = useMemo(
+		() =>
+			[
 				position[0] - ((isInverted ? -1 : 1) * (geometry.boundingBox?.max.x ?? 0)) / 2,
 				position[1] + (isInverted ? -1 : 1) * -0.05,
 				position[2],
-			]}
-		>
+			] as [number, number, number],
+		[geometry.boundingBox?.max.x, isInverted, position]
+	);
+
+	return (
+		<mesh geometry={geometry} rotation={rotation} position={pos}>
 			<meshPhongMaterial specular={COLOR_PALETTE.PRIMARY} color={COLOR_PALETTE.PRIMARY} side={DoubleSide} depthWrite />
 		</mesh>
 	);

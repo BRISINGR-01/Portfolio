@@ -1,33 +1,7 @@
 import { useControls } from "leva";
 import { useEffect, useState } from "react";
-import { FrontSide, Material, type Group, type Mesh, type Object3D } from "three";
 import { MONTHS } from "./constants";
 import { Mode, type ContentData } from "./types";
-
-export function fixMaterialDepth(material: Material) {
-	material.depthWrite = true;
-	material.depthTest = true;
-	material.side = FrontSide;
-}
-
-export function fixGLTFDepth(scene: Group) {
-	scene.traverse((child: Object3D | Mesh) => {
-		if (!("isMesh" in child) || !child.isMesh) return;
-
-		const geometry = child.geometry;
-		geometry.computeBoundsTree();
-
-		if (child.material instanceof Material) {
-			fixMaterialDepth(child.material);
-		} else {
-			for (const material of child.material) {
-				fixMaterialDepth(material);
-			}
-		}
-
-		child.geometry.computeVertexNormals();
-	});
-}
 
 export function parseTimeSpan(str: string) {
 	const [m, y] = str.split("/").map(Number).slice(1);
@@ -81,6 +55,7 @@ export function setPointerCursor() {
 export function setDefaultCursor() {
 	document.body.style.cursor = 'url("/cursors/normal_select.cur") 0 0, auto';
 }
+
 export function prettifyTitle(text: string | null | Mode) {
 	switch (text) {
 		case Mode.Experience:
@@ -89,6 +64,8 @@ export function prettifyTitle(text: string | null | Mode) {
 			return "Education and Knowledge Sources";
 		case Mode.Contact:
 			return "Contacts";
+		case Mode.Interests:
+			return "Interests";
 		case Mode.Info:
 		case Mode.None:
 			return null;

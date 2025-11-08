@@ -70,28 +70,16 @@ const text = {
 };
 
 const education = [
-	new Education("htb", "Hack the Box", "", "/icons/other/htb.svg", {
-		scale: 0.003,
-		position: [-2, 0.2, -0.05],
-		rotation: [-0.6, 0.5, -0.4],
-		wide: true,
+	new Education("books", "Books", "", "/3d/books.glb", {
+		scale: 1.5,
+		position: [-0.4, -0.36, 0.2],
+		rotation: [0, 1.5, 0],
 	}),
-	new Education("fontys", "Fontys (Academic preperation)", "", "/icons/other/fontys.svg", {
-		scale: 0.006,
-		position: [1.52, 0.54, -0.5],
-		rotation: [-0.25, -0.6, 0.15],
+	new Education("certificates", "Certificates", "", "/icons/other/certificate-detail.svg", {
+		scale: 0.001,
+		position: [-0.97, -0.03, -0.4],
+		rotation: [-0.5, -0.5, 0.2],
 		wide: true,
-	}),
-	new Education("tue", "Tue (Embedded Systems Pre-master)", "", "/icons/other/tue.svg", {
-		scale: 0.004,
-		position: [0.4, 0.13, -0.2],
-		rotation: [0.25, 0.1, 0.05],
-		wide: true,
-	}),
-	new Education("primagen", "The Last Algorithms Course You'll Need", "", "/images/other/primeagen-icon.webp", {
-		scale: 0.7,
-		position: [-2, -0.1, 0.07],
-		rotation: [-0.8, -0.6, -0.5],
 	}),
 	new Education(
 		"fireship",
@@ -106,16 +94,28 @@ const education = [
 		},
 		"/icons/other/fireship-original.svg"
 	),
-	new Education("books", "Books", "", "/3d/books.glb", {
-		scale: 1.5,
-		position: [-0.4, -0.36, 0.2],
-		rotation: [0, 1.5, 0],
-	}),
-	new Education("certificates", "Certificates", "", "/icons/other/certificate-detail.svg", {
-		scale: 0.001,
-		position: [-0.97, -0.03, -0.4],
-		rotation: [-0.5, -0.5, 0.2],
+	new Education("tue", "Tue (Embedded Systems Pre-master)", "", "/icons/other/tue.svg", {
+		scale: 0.004,
+		position: [0.4, 0.13, -0.2],
+		rotation: [0.25, 0.1, 0.05],
 		wide: true,
+	}),
+	new Education("fontys", "Fontys (Academic preperation)", "", "/icons/other/fontys.svg", {
+		scale: 0.006,
+		position: [1.52, 0.54, -0.5],
+		rotation: [-0.25, -0.6, 0.15],
+		wide: true,
+	}),
+	new Education("htb", "Hack the Box", "", "/icons/other/htb.svg", {
+		scale: 0.003,
+		position: [-2, 0.2, -0.05],
+		rotation: [-0.6, 0.5, -0.4],
+		wide: true,
+	}),
+	new Education("primagen", "The Last Algorithms Course You'll Need", "", "/images/other/primeagen-icon.webp", {
+		scale: 0.7,
+		position: [-2, -0.1, 0.07],
+		rotation: [-0.8, -0.6, -0.5],
 	}),
 	new Education(
 		"math",

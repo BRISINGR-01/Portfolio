@@ -1,11 +1,10 @@
 import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
-import { Color, type Mesh, type ShaderMaterial } from "three";
-import { COLOR_PALETTE, HOLOGRAM_ANIMATION_LENGTH, HOLOGRAM_SWITCH_TIME } from "../../../constants";
+import { type ShaderMaterial } from "three";
+import { HOLOGRAM_TRANSITION } from "../../../constants";
 import type { ContentData } from "../../../types";
-import { fixGLTFDepth } from "../../../utils";
-import HologramMaterial from "./HologramMaterial";
+import { fixGLTFDepth, restoreMaterial, setHologramMaterial, updateMaterials } from "../utils";
 
 export default function GLB(props: ContentData) {
 	const { scene } = useGLTF(props.icon);
@@ -14,44 +13,17 @@ export default function GLB(props: ContentData) {
 
 	useEffect(() => {
 		fixGLTFDepth(scene);
-		const time = get().clock.elapsedTime;
+		setHologramMaterial(scene, materialRefs, get().clock.elapsedTime, 100);
 
-		scene.traverse((child) => {
-			if ((child as Mesh).isMesh) {
-				const mesh = child as Mesh;
-
-				mesh.userData = { originalMaterial: mesh.material };
-
-				const material = new HologramMaterial(new Color(COLOR_PALETTE.PRIMARY), props.icon3D.scale * 30);
-				mesh.material = material;
-				material.uniforms.animStart.value = time;
-				materialRefs.current.push(material);
-			}
-		});
-
-		function restore() {
-			materialRefs.current = [];
-			scene.traverse((child) => {
-				if ((child as Mesh).isMesh) {
-					const mesh = child as Mesh;
-					mesh.material = mesh.userData.originalMaterial;
-				}
-			});
-		}
-
-		const t = setTimeout(restore, (HOLOGRAM_ANIMATION_LENGTH + HOLOGRAM_SWITCH_TIME) * 1000);
+		const t = setTimeout(() => restoreMaterial(scene, materialRefs), HOLOGRAM_TRANSITION);
 
 		return () => {
-			restore();
+			restoreMaterial(scene, materialRefs);
 			clearTimeout(t);
 		};
 	}, [get, props.icon3D.scale, scene]);
 
-	useFrame(({ clock }) => {
-		for (const material of materialRefs.current) {
-			material.uniforms.time.value = clock.getElapsedTime();
-		}
-	});
+	useFrame(({ clock }) => updateMaterials(clock, materialRefs));
 
 	return (
 		<primitive

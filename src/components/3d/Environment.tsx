@@ -1,47 +1,44 @@
 import { CameraControls, useKeyboardControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
-import { DEFAULT_CAMERA_POS, INITIAL_CAMERA_POS, IS_DEBUG } from "../../constants";
+import { DEFAULT_CAMERA_POS, INITIAL_CAMERA_POS, IS_DEBUG, ZOOM_IN_DELAY } from "../../constants";
 import type { Controls } from "../../types";
 import Room from "./room/Room";
 
 export default function Environment(props: { children: React.ReactNode }) {
+	const [sub] = useKeyboardControls<Controls>();
 	const cameraControlsRef = useRef<CameraControls>(null);
 
-	const [sub] = useKeyboardControls<Controls>();
-
 	useEffect(() => {
-		const zoomIn = () => {
-			if (cameraControlsRef.current) {
-				cameraControlsRef.current.setLookAt(...DEFAULT_CAMERA_POS, 0, 0, 0, true);
-			}
-		};
+		const zoomIn = () =>
+			cameraControlsRef.current
+				? cameraControlsRef.current.setLookAt(...DEFAULT_CAMERA_POS, 0, 0, 0, true)
+				: Promise.reject();
 
 		const unsubRecenter = sub(
 			(state) => state.recenter,
-			(pressed) => {
-				if (pressed) zoomIn();
-			}
+			(pressed) => pressed && zoomIn()
 		);
+
 		const unsubFullScreen = sub(
 			(state) => state["full-screen"],
 			(pressed) => {
-				if (pressed) {
-					if (document.fullscreenElement) {
-						document.exitFullscreen();
-					} else {
-						document.documentElement.requestFullscreen();
-					}
+				if (!pressed) return;
+
+				if (document.fullscreenElement) {
+					document.exitFullscreen();
+				} else {
+					document.documentElement.requestFullscreen();
 				}
 			}
 		);
 
 		const t = setTimeout(
-			() => {
-				zoomIn();
-				if (cameraControlsRef.current) cameraControlsRef.current!.enabled = true;
-			},
-			IS_DEBUG ? 0 : 4100
+			() =>
+				zoomIn().then(() => {
+					cameraControlsRef.current!.enabled = true;
+				}),
+			ZOOM_IN_DELAY
 		);
 
 		return () => {

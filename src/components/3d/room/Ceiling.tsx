@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
-import { COLOR_PALETTE, ROOM } from "../../../constants";
+import { CEILING_BUILD_UP_DURATION, COLOR_PALETTE, ROOM } from "../../../constants";
 
 export default function Ceiling() {
 	const meshRef = useRef<THREE.Mesh>(null);
@@ -54,10 +54,9 @@ export default function Ceiling() {
 
 		const clock = new THREE.Clock();
 		const color = new THREE.Color(COLOR_PALETTE.PRIMARY);
-		const duration = 3;
 
 		function animate() {
-			const t = clock.getElapsedTime() / duration; // control speed
+			const t = clock.getElapsedTime() / CEILING_BUILD_UP_DURATION;
 
 			let isOver = true;
 

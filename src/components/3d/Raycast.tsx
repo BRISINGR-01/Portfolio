@@ -5,8 +5,10 @@ import { EffectComposer, OutlinePass, OutputPass, RenderPass } from "three/examp
 import {
 	COLOR_PALETTE,
 	HOLOGRAM_ANIMATION_LENGTH,
-	HOLOGRAM_SWITCH_TIME,
+	HOLOGRAM_TRANSITION,
+	HOVER_OUTLINE_HIDDEN,
 	OUTLINE_HARDCODED_DELAY,
+	PERSISTENT_OUTLINE,
 	RAYCAST_CONTAINER_NAME,
 } from "../../constants";
 import { setDefaultCursor, setPointerCursor } from "../../utils";
@@ -18,10 +20,11 @@ export default function Raycast({
 }: {
 	onClick: (m: Mesh | null) => void;
 	onHover: (title: string | null) => void;
+
 	children: null | React.JSX.Element[];
 }) {
-	const groupRef = useRef<Group>(null);
 	const { scene, camera, gl, raycaster } = useThree();
+	const groupRef = useRef<Group>(null);
 	const mouse = useRef(new Vector2());
 	const composer = useRef<EffectComposer>(null);
 	const persistentOutlinePass = useRef<OutlinePass>(null);
@@ -29,15 +32,9 @@ export default function Raycast({
 	useFrame(() => composer.current?.render());
 
 	useEffect(() => {
-		if (!composer.current) return;
-
 		const t = setTimeout(() => {
-			(
-				composer.current!.passes.find(
-					(pass) => pass instanceof OutlinePass && pass.selectedObjects.length > 0
-				) as OutlinePass
-			).selectedObjects = groupRef.current!.children;
-		}, (HOLOGRAM_ANIMATION_LENGTH + HOLOGRAM_SWITCH_TIME + OUTLINE_HARDCODED_DELAY) * 1000);
+			if (persistentOutlinePass.current) persistentOutlinePass.current.selectedObjects = groupRef.current!.children;
+		}, HOLOGRAM_TRANSITION + OUTLINE_HARDCODED_DELAY);
 
 		return () => clearTimeout(t);
 	}, [children]);
@@ -55,13 +52,13 @@ export default function Raycast({
 		outlinePass.edgeStrength = 5;
 		outlinePass.edgeGlow = 1;
 		outlinePass.visibleEdgeColor.set(COLOR_PALETTE.PRIMARY);
-		outlinePass.hiddenEdgeColor.set("#1abaff");
+		outlinePass.hiddenEdgeColor.set(HOVER_OUTLINE_HIDDEN);
 		composer.current.addPass(outlinePass);
 
 		persistentOutlinePass.current = new OutlinePass(new Vector2(window.innerWidth, window.innerHeight), scene, camera);
 		persistentOutlinePass.current.edgeStrength = 1;
 		persistentOutlinePass.current.edgeGlow = 0;
-		persistentOutlinePass.current.visibleEdgeColor.set("#ffffff");
+		persistentOutlinePass.current.visibleEdgeColor.set(PERSISTENT_OUTLINE);
 		const t = setTimeout(() => {
 			persistentOutlinePass.current!.selectedObjects = groupRef.current!.children;
 		}, HOLOGRAM_ANIMATION_LENGTH * 1000);

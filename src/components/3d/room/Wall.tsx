@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { COLOR_PALETTE, ROOM } from "../../../constants";
+import { COLOR_PALETTE, ROOM, WALL_BUILD_UP_DURATION } from "../../../constants";
 import { WallFace } from "../../../types";
 
 function calcPos(dir: WallFace) {
@@ -98,11 +98,10 @@ export default function Wall({ wallFace }: { wallFace: WallFace }) {
 
 		const phaseRange = maxPhase - minPhase;
 		const clock = new THREE.Clock();
-		const duration = 2;
 
 		function animate() {
 			const elapsed = clock.getElapsedTime();
-			const t = elapsed / duration;
+			const t = elapsed / WALL_BUILD_UP_DURATION;
 
 			for (const { line, phase } of lines) {
 				const normalized = (phase - minPhase) / phaseRange; // 0 → 1 along diagonal

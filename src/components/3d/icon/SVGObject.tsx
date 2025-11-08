@@ -1,5 +1,5 @@
 import { useFrame, useLoader, useThree } from "@react-three/fiber";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, type RefObject } from "react";
 import {
 	BufferAttribute,
 	Color,
@@ -10,15 +10,91 @@ import {
 	Vector3,
 	type BufferGeometry,
 	type Group,
-	type Mesh,
 } from "three";
-import { SVGLoader } from "three/examples/jsm/Addons.js";
-import { DEFAULT_SVG_ROTATION, HOLOGRAM_ANIMATION_LENGTH, HOLOGRAM_SWITCH_TIME } from "../../../constants";
+import { SVGLoader, type SVGResult } from "three/examples/jsm/Addons.js";
+import { DEFAULT_SVG_ROTATION, HOLOGRAM_TRANSITION } from "../../../constants";
 import type { ContentData } from "../../../types";
 import { calculateSVGPathRenderOffset } from "../../../utils";
+import { restoreMaterial, updateMaterials } from "../utils";
 import HologramMaterial from "./HologramMaterial";
 
-function fixUVs(geometry: BufferGeometry) {
+export default function SVGObject(props: ContentData) {
+	const svg = useLoader(SVGLoader, props.icon);
+	const groupRef = useRef<Group>(null);
+	const materialRefs = useRef<ShaderMaterial[]>([]);
+	const { get } = useThree();
+
+	const shapes = useMemo(() => createShapes(svg, materialRefs, props.icon3D.wide), [svg, props.icon3D.wide]);
+
+	useEffect(() => {
+		const time = get().clock.elapsedTime;
+
+		for (const material of materialRefs.current) {
+			material.uniforms.animStart.value = time;
+		}
+
+		const group = groupRef.current!;
+		const t = setTimeout(() => restoreMaterial(group, materialRefs), HOLOGRAM_TRANSITION);
+
+		return () => {
+			restoreMaterial(group, materialRefs);
+			clearTimeout(t);
+		};
+	}, [svg, get]);
+
+	useFrame(({ clock }) => updateMaterials(clock, materialRefs));
+
+	return (
+		<group
+			ref={groupRef}
+			name={props.id}
+			scale={new Vector3(0, 0, props.icon3D.wide ? 0.01 : 0).addScalar(props.icon3D.scale)}
+			rotation={new Vector3(...(props.icon3D.rotation ?? [])).add(DEFAULT_SVG_ROTATION).toArray()}
+			position={props.icon3D.position}
+		>
+			{shapes}
+		</group>
+	);
+}
+
+function createShapes(data: SVGResult, materialRefs: RefObject<ShaderMaterial[]>, wide?: boolean) {
+	let renderOrder = 0;
+	const phongMaterial = new MeshPhongMaterial({
+		color: new Color(),
+		side: DoubleSide,
+		depthWrite: true,
+	});
+
+	return data.paths.flatMap((path) => {
+		const color = new Color(path.userData!.style.fill);
+
+		const material = new HologramMaterial(color);
+		materialRefs.current.push(material);
+
+		const originalMaterial = phongMaterial.clone();
+		originalMaterial.color = new Color().setStyle(path.userData!.style.fill);
+
+		return SVGLoader.createShapes(path).map((shape) => {
+			const geometry = new ExtrudeGeometry(shape, { depth: 4 });
+			geometry.computeBoundsTree();
+			adjustUVs(geometry);
+
+			renderOrder++;
+
+			return (
+				<mesh
+					position={[0, 0, calculateSVGPathRenderOffset(renderOrder, wide)]}
+					geometry={geometry}
+					key={renderOrder}
+					material={material}
+					userData={{ originalMaterial }}
+				/>
+			);
+		});
+	});
+}
+
+function adjustUVs(geometry: BufferGeometry) {
 	const positions = geometry.attributes.position;
 	let minY = Infinity;
 	let maxY = -Infinity;
@@ -41,86 +117,4 @@ function fixUVs(geometry: BufferGeometry) {
 	}
 
 	geometry.setAttribute("uv", new BufferAttribute(uvs, 2));
-}
-
-export default function SVGObject(props: ContentData) {
-	const data = useLoader(SVGLoader, props.icon);
-	const groupRef = useRef<Group>(null);
-	const materialRefs = useRef<ShaderMaterial[]>([]);
-	const { get } = useThree();
-
-	useFrame(({ clock }) => {
-		for (const material of materialRefs.current) {
-			material.uniforms.time.value = clock.getElapsedTime();
-		}
-	});
-
-	useEffect(() => {
-		const {
-			clock: { elapsedTime },
-		} = get();
-
-		for (const material of materialRefs.current) {
-			material.uniforms.animStart.value = elapsedTime;
-		}
-
-		const t = setTimeout(() => {
-			groupRef.current?.traverse((mesh) => {
-				(mesh as Mesh).material = mesh.userData.originalMaterial;
-			});
-			materialRefs.current = [];
-		}, (HOLOGRAM_ANIMATION_LENGTH + HOLOGRAM_SWITCH_TIME) * 1000);
-
-		return () => {
-			materialRefs.current = [];
-			clearTimeout(t);
-		};
-	}, [data, get]);
-
-	const shapes = useMemo(() => {
-		let renderOrder = 0;
-
-		return data.paths.flatMap((path) => {
-			const color = new Color(path.userData!.style.fill);
-
-			const material = new HologramMaterial(color);
-			materialRefs.current.push(material);
-
-			const originalMaterial = new MeshPhongMaterial({
-				color: new Color().setStyle(path.userData!.style.fill),
-				side: DoubleSide,
-				depthWrite: true,
-			});
-
-			return SVGLoader.createShapes(path).map((shape) => {
-				const geometry = new ExtrudeGeometry(shape, { depth: 4 });
-				geometry.computeBoundsTree();
-				fixUVs(geometry);
-
-				renderOrder++;
-
-				return (
-					<mesh
-						position={[0, 0, calculateSVGPathRenderOffset(renderOrder, props.icon3D.wide)]}
-						geometry={geometry}
-						key={renderOrder}
-						material={material}
-						userData={{ originalMaterial }}
-					/>
-				);
-			});
-		});
-	}, [data, props.icon3D.wide]);
-
-	return (
-		<group
-			ref={groupRef}
-			name={props.id}
-			scale={new Vector3(0, 0, props.icon3D.wide ? 0.01 : 0).addScalar(props.icon3D.scale)}
-			rotation={new Vector3(...(props.icon3D.rotation ?? [])).add(DEFAULT_SVG_ROTATION).toArray()}
-			position={props.icon3D.position}
-		>
-			{shapes}
-		</group>
-	);
 }

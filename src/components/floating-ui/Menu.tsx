@@ -10,6 +10,7 @@ import InfoDisplay from "./InfoDisplay.tsx";
 const modes = [
 	{ mode: Mode.Experience, icon: "experience" },
 	{ mode: Mode.Education, icon: "education" },
+	{ mode: Mode.Interests, icon: "other" },
 	{ mode: Mode.Contact, icon: "contact" },
 	{ mode: Mode.Info, icon: "info" },
 ];

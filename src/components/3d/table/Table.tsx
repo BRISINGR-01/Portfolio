@@ -1,11 +1,10 @@
 import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
-import { Color, Mesh, type Object3D, type ShaderMaterial } from "three";
-import { COLOR_PALETTE, HOLOGRAM_ANIMATION_LENGTH, HOLOGRAM_SWITCH_TIME, TABLE_DELAY } from "../../../constants";
-import { fixGLTFDepth } from "../../../utils";
+import { useEffect, useRef, type RefObject } from "react";
+import { Mesh, type Object3D, type ShaderMaterial } from "three";
+import { HOLOGRAM_TRANSITION, TABLE_DELAY } from "../../../constants";
 import Delay from "../../Delay";
-import HologramMaterial from "../icon/HologramMaterial";
+import { fixGLTFDepth, setHologramMaterial, updateMaterials } from "../utils";
 import TableControls from "./TableControls";
 
 function toggleVisibility(obj: Object3D) {
@@ -14,16 +13,19 @@ function toggleVisibility(obj: Object3D) {
 	});
 }
 
+function restore(obj: Object3D, materialRefs: RefObject<ShaderMaterial[]>) {
+	materialRefs.current = [];
+	obj.traverse((mesh) => {
+		if (mesh instanceof Mesh) mesh.material = mesh.userData.originalMaterial;
+	});
+}
+
 export default function Table({ text }: { text: string | null }) {
 	const { scene } = useGLTF("/3d/table.glb");
 	const { get } = useThree();
 	const materialRefs = useRef<ShaderMaterial[]>([]);
 
-	useFrame(({ clock }) => {
-		for (const material of materialRefs.current) {
-			material.uniforms.time.value = clock.getElapsedTime();
-		}
-	});
+	useFrame(({ clock }) => updateMaterials(clock, materialRefs));
 
 	useEffect(() => {
 		toggleVisibility(scene);
@@ -31,33 +33,15 @@ export default function Table({ text }: { text: string | null }) {
 
 		let t: number;
 
-		function restore() {
-			materialRefs.current = [];
-			scene.traverse((mesh) => {
-				if (mesh instanceof Mesh) mesh.material = mesh.userData.originalMaterial;
-			});
-		}
-
 		t = setTimeout(() => {
 			toggleVisibility(scene);
+			setHologramMaterial(scene, materialRefs, get().clock.elapsedTime, 200);
 
-			const time = get().clock.elapsedTime;
-			scene.traverse((mesh) => {
-				if (!(mesh instanceof Mesh)) return;
-
-				mesh.userData.originalMaterial = mesh.material;
-
-				const material = new HologramMaterial(new Color(COLOR_PALETTE.PRIMARY), 200);
-				mesh.material = material;
-				material.uniforms.animStart.value = time;
-				materialRefs.current.push(material);
-
-				t = setTimeout(restore, (HOLOGRAM_ANIMATION_LENGTH + HOLOGRAM_SWITCH_TIME) * 1000);
-			});
+			t = setTimeout(() => restore(scene, materialRefs), HOLOGRAM_TRANSITION);
 		}, TABLE_DELAY * 1000);
 
 		return () => {
-			restore();
+			restore(scene, materialRefs);
 			clearTimeout(t);
 		};
 	}, [get, scene]);

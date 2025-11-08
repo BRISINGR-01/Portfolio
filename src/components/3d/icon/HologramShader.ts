@@ -1,8 +1,8 @@
 const HologramShader = {
 	uniforms: {
+		animStart: { type: "f", value: 0 },
 		time: { type: "f", value: 0 },
 		speed: { type: "f", value: 0.02 },
-		animStart: { type: "f", value: 0 },
 		linesFreq: { type: "f", value: 20 },
 		duration: { type: "f", value: 1 },
 	},
