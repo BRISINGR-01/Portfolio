@@ -40,6 +40,10 @@ const text = {
 			"I had the opportunity to work on a code analysis tool that generates an interactive report, helping to visualize and understand complex codebases. This project pushed me to grow technically while also giving me insight into how large companies operate.",
 		context: "",
 	},
+	glow: {
+		description: "",
+		context: "",
+	},
 	books: {
 		"The Rust Programming Language":
 			"The official book on the Rust programming language, written by the Rust development team at the Mozilla Foundation, fully updated for Rust 2018",
@@ -561,13 +565,13 @@ const experience = [
 		["01/07/2021", "30/09/2021"],
 		text.A1.context,
 		text.A1.description,
+		{ scale: 0.0015, position: [-1.7, 0.39, 0.4], rotation: [-0.3, 0, 0.1], wide: true },
 		[
 			{ name: "React", percentage: 10 },
 			{ name: "Express", percentage: 65 },
 			{ name: "Docker", percentage: 5 },
 			{ name: "GraphQl", percentage: 20 },
-		],
-		{ scale: 0.0015, position: [-1.4, 0.39, 0.4], rotation: [-0.3, 0, 0.1], wide: true }
+		]
 	),
 	new Experience(
 		"sdg-sabic",
@@ -576,6 +580,7 @@ const experience = [
 		["09/04/2024", "05/07/2024"],
 		text["sdg-sabic"].context,
 		text["sdg-sabic"].description,
+		{ scale: 0.4, position: [-0.9, 0.04, 0.27], rotation: [0.8, 0.3, 0.3], wide: false },
 		[
 			{ name: "ThreeJS", percentage: 12 },
 			{ name: "Typescript", percentage: 31 },
@@ -583,8 +588,7 @@ const experience = [
 			{ name: "Supabase + Vercel", percentage: 7 },
 			{ name: "C/C++", percentage: 10 },
 			{ name: "Arduino", percentage: 10 },
-		],
-		{ scale: 0.4, position: [-0.6, 0.04, 0.27], rotation: [0.8, 0.3, 0.3], wide: false }
+		]
 	),
 	new Experience(
 		"sdg-solarwatt",
@@ -593,12 +597,12 @@ const experience = [
 		["09/04/2025", "05/07/2025"],
 		text["sdg-solarwatt"].context,
 		text["sdg-solarwatt"].description,
+		{ scale: 0.4, position: [-1.78, -0.1, 0.65], rotation: [-0.9, -1.1, 0.8], wide: false },
 		[
 			{ name: "Typescript", percentage: 30 },
 			{ name: "React", percentage: 52 },
 			{ name: "Vercel", percentage: 8 },
-		],
-		{ scale: 0.4, position: [-1.48, -0.1, 0.65], rotation: [-0.9, -1.1, 0.8], wide: false }
+		]
 	),
 	new Experience(
 		"latin-is-simple",
@@ -607,13 +611,13 @@ const experience = [
 		["03/01/2022", "02/09/2025"],
 		text["latin-is-simple"].context,
 		text["latin-is-simple"].description,
+		{ scale: 0.0015, position: [-0.2, 0.4, -0.1], rotation: [-0.2, 0.2, 0], wide: true },
 		[
 			{ name: "React", percentage: 22 },
 			{ name: "Bootstrap", percentage: 22 },
 			{ name: "Typescript", percentage: 55 },
 			{ name: "Python", percentage: 1 },
-		],
-		{ scale: 0.0015, position: [-0.2, 0.4, -0.1], rotation: [-0.2, 0.2, 0], wide: true }
+		]
 	),
 	new Experience(
 		"ablanitsa",
@@ -622,14 +626,14 @@ const experience = [
 		["01/10/2020", "01/06/2021"],
 		text.ablanitsa.context,
 		text.ablanitsa.description,
+		{ scale: 0.005, position: [-0.5, -0.3, 0.2], rotation: [-1.5, 0, -0.5], wide: true },
 		[
 			{ name: "HTML", percentage: 10 },
 			{ name: "CSS", percentage: 15 },
 			{ name: "Javascript", percentage: 45 },
 			{ name: "ThreeJS", percentage: 20 },
 			{ name: "Firebase", percentage: 10 },
-		],
-		{ scale: 0.005, position: [-0.5, -0.3, 0.2], rotation: [-1.5, 0, -0.5], wide: true }
+		]
 	),
 	new Experience(
 		"icc",
@@ -638,13 +642,13 @@ const experience = [
 		["05/02/2024", "27/07/2024"],
 		text.icc.context,
 		text.icc.description,
+		{ scale: 0.001, position: [1.9, 0.45, 0.65], rotation: [-0.2, 0.2, 0], wide: true },
 		[
 			{ name: "Next JS", percentage: 7 },
 			{ name: "Typescript", percentage: 45 },
 			{ name: "Supabase", percentage: 13 },
 			{ name: "React", percentage: 35 },
-		],
-		{ scale: 0.001, position: [1.9, 0.45, 0.65], rotation: [-0.2, 0.2, 0], wide: true }
+		]
 	),
 	new Experience(
 		"asml",
@@ -653,13 +657,23 @@ const experience = [
 		["09/09/2024", "02/02/2025"],
 		text.asml.context,
 		text.asml.description,
+		{ scale: 0.002, position: [0.5, 0.19, -0.4], rotation: [-0.4, -0.5, 0.2], wide: true },
 		[
 			{ name: "C/C++", percentage: 50 },
 			{ name: "HTML", percentage: 10 },
 			{ name: "CSS", percentage: 10 },
 			{ name: "Javascript", percentage: 30 },
-		],
-		{ scale: 0.002, position: [0.5, 0.19, -0.4], rotation: [-0.4, -0.5, 0.2], wide: true }
+		]
+	),
+	new Experience(
+		"glow",
+		"Glow",
+		"/icons/other/glow.svg",
+		["02/02/2025", "01/07/2025"],
+		text.glow.context,
+		text.glow.description,
+
+		{ scale: 0.001, position: [-0.5, 0.3, -0.2], rotation: [-0.7, -0.2, 0.5], wide: true }
 	),
 ];
 

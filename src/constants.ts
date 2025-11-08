@@ -12,14 +12,6 @@ export const COLOR_PALETTE = {
 	TERTIARY: "",
 };
 
-export const ROOM = {
-	HEIGHT: 5,
-	WIDTH: 15,
-	OFFSET: 0.01,
-	CEILING_NOISE: 0.2,
-};
-export const IMAGE_DEPTH = 0.02;
-
 window.addEventListener("DOMContentLoaded", () => {
 	const style = window.getComputedStyle(document.documentElement);
 
@@ -34,13 +26,20 @@ export const controlsMap = [
 	{ name: Controls.FullScreeen, keys: ["f"] },
 ] as KeyboardControlsEntry<Controls>[];
 
+export const ROOM = {
+	HEIGHT: 5,
+	WIDTH: 15,
+	OFFSET: 0.01,
+	CEILING_NOISE: 0.2,
+};
+export const IMAGE_DEPTH = 0.02;
 export const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 export const TRANSITION = { duration: 0.3, ease: "easeOut" as Easing };
 
-export const IS_DEBUG = import.meta.env.DEV && true;
+export const IS_DEBUG = import.meta.env.DEV && false;
 
-export const MENU_DELAY = IS_DEBUG ? 0 : 4;
-export const TABLE_DELAY = IS_DEBUG ? 0 : 4.15;
+export const MENU_DELAY = IS_DEBUG ? 0 : 4.2;
+export const TABLE_DELAY = IS_DEBUG ? 0 : 4;
 export const HOLOGRAM_SWITCH_TIME = 0;
 export const HOLOGRAM_ANIMATION_LENGTH = 0.4;
 export const OUTLINE_HARDCODED_DELAY = 1; // account for loading time of icons

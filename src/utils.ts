@@ -2,7 +2,7 @@ import { useControls } from "leva";
 import { useEffect, useState } from "react";
 import { FrontSide, Material, type Group, type Mesh, type Object3D } from "three";
 import { MONTHS } from "./constants";
-import { Mode } from "./types";
+import { Mode, type ContentData } from "./types";
 
 export function fixMaterialDepth(material: Material) {
 	material.depthWrite = true;
@@ -59,6 +59,19 @@ export function useRot(r?: [number, number, number]) {
 
 export function usePos(p?: [number, number, number]) {
 	return useControls("pos", { p: p ?? [0, 0, 0] }).p;
+}
+
+export function useEdit(data: ContentData) {
+	const p = usePos([0, 0, 0]);
+	const r = useRot([0, 0, 0]);
+
+	data.icon3D.position = p;
+	data.icon3D.rotation = r;
+
+	console.log(
+		`position: [${p[0].toFixed(3)}, ${p[1].toFixed(3)}, ${p[2].toFixed(3)}],
+									rotation: [${r[0].toFixed(3)}, ${r[1].toFixed(3)}, ${r[2].toFixed(3)}],`
+	);
 }
 
 export function setPointerCursor() {

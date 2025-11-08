@@ -56,42 +56,40 @@ export default function Portfolio3D() {
 			setMode(Mode.Info);
 		}
 
-		setMode(Mode.Education);
-		// setSelectedItem(content.education[5]);
-		return sub(
+		const t = setTimeout(() => setMode(Mode.Experience), TABLE_DELAY);
+
+		const unsub = sub(
 			(state) => state.escape,
 			(pressed) => {
 				if (pressed) setSelectedIcon(null);
 			}
 		);
+
+		return () => {
+			unsub();
+			clearTimeout(t);
+		};
 	}, [sub]);
 
-	// const p = usePos([0, 0, 0]);
-	// const r = useRot([0, 0, 0]);
-
-	// content.contacts.at(-1)!.icon3D.position = p;
-	// content.contacts.at(-1)!.icon3D.rotation = r;
-
-	// console.log(
-	// 	`position: [${p[0].toFixed(3)}, ${p[1].toFixed(3)}, ${p[2].toFixed(3)}],
-	// 							rotation: [${r[0].toFixed(3)}, ${r[1].toFixed(3)}, ${r[2].toFixed(3)}],`
-	// );
+	// useEdit(content.education.at(-1)!);
 
 	const [visibleIcons, setVisibleIcons] = useState<ContentData[]>([]);
 
 	useEffect(() => {
 		if (!selectedContent) return;
 
+		let t: number;
+
 		setVisibleIcons([]);
 
 		for (let i = 0; i < selectedContent.length; i++) {
 			// let React and the browser breathe before next mesh mount
-			setTimeout(() => {
-				if (i >= selectedContent.length) return;
-
+			t = setTimeout(() => {
 				setVisibleIcons((prev) => [...prev, selectedContent[i]]);
-			}, (i + 0) * 120);
+			}, i * 120);
 		}
+
+		return () => clearTimeout(t);
 	}, [selectedContent]);
 
 	return (
@@ -136,6 +134,7 @@ export default function Portfolio3D() {
 								setMode(c);
 								setSelectedIcon(null);
 							}}
+							disabled={!!selectedContent && visibleIcons.length !== selectedContent?.length}
 						/>
 					)}
 					{selectedIcon && <ContentDisplay data={selectedIcon} type={mode} />}

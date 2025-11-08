@@ -10,7 +10,7 @@ export default function Image(props: ContentData) {
 	const { get } = useThree();
 
 	const [hologramMaterial, setHologramMaterial] = useState<HologramMaterial | null>(
-		new HologramMaterial(new Color(COLOR_PALETTE.PRIMARY), 15)
+		() => new HologramMaterial(new Color(COLOR_PALETTE.PRIMARY), 15)
 	);
 
 	useFrame(({ clock }) => {
@@ -23,11 +23,12 @@ export default function Image(props: ContentData) {
 
 		setHologramMaterial(mat);
 
-		const t = setTimeout(() => {
-			setHologramMaterial(null);
-		}, (HOLOGRAM_ANIMATION_LENGTH + HOLOGRAM_SWITCH_TIME) * 1000);
+		const t = setTimeout(() => setHologramMaterial(null), (HOLOGRAM_ANIMATION_LENGTH + HOLOGRAM_SWITCH_TIME) * 1000);
 
-		return () => clearTimeout(t);
+		return () => {
+			setHologramMaterial(null);
+			clearTimeout(t);
+		};
 	}, [get, texture]);
 
 	if (props.id.startsWith("sdg") || props.id === "instagram") {
@@ -40,16 +41,16 @@ export default function Image(props: ContentData) {
 					.toArray()}
 			>
 				<cylinderGeometry args={[props.icon3D.scale, props.icon3D.scale, IMAGE_DEPTH]} />
-				<meshBasicMaterial attach="material-0" color={COLOR_PALETTE.PRIMARY} />
+				<meshBasicMaterial transparent attach="material-0" color={COLOR_PALETTE.PRIMARY} />
 				{hologramMaterial ? (
 					<shaderMaterial attach="material-1" {...hologramMaterial} />
 				) : (
-					<meshBasicMaterial attach="material-1" map={texture} />
+					<meshBasicMaterial transparent attach="material-1" map={texture} />
 				)}
 				{hologramMaterial ? (
 					<shaderMaterial attach="material-2" {...hologramMaterial} />
 				) : (
-					<meshBasicMaterial attach="material-2" map={texture} />
+					<meshBasicMaterial transparent attach="material-2" map={texture} />
 				)}
 			</mesh>
 		);

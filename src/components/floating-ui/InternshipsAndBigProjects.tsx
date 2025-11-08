@@ -65,53 +65,55 @@ export default function ExperienceDisplay({ data }: { data: Experience | null })
 			</motion.div>
 
 			{/* Tech chart */}
-			<motion.div
-				key="chart"
-				initial={{ transform: "translate(-100px,100px)", opacity: 0 }}
-				animate={{ transform: "translate(0,0)", opacity: 1 }}
-				exit={{ transform: "translate(-100px,100px)", opacity: 0 }}
-				transition={TRANSITION}
-			>
-				<G_Card position={Position.BottomLeft} className="m-4">
-					<PieChart
-						style={{
-							maxHeight: "200px",
-							maxWidth: "200px",
-						}}
-						series={[
-							{
-								data: data.technologies.map((tech) => ({
-									id: tech.name,
-									value: tech.percentage,
-									label: tech.name,
-								})),
-								valueFormatter: (item) => `${item.value}%`,
+			{data.technologies && (
+				<motion.div
+					key="chart"
+					initial={{ transform: "translate(-100px,100px)", opacity: 0 }}
+					animate={{ transform: "translate(0,0)", opacity: 1 }}
+					exit={{ transform: "translate(-100px,100px)", opacity: 0 }}
+					transition={TRANSITION}
+				>
+					<G_Card position={Position.BottomLeft} className="m-4">
+						<PieChart
+							style={{
+								maxHeight: "200px",
+								maxWidth: "200px",
+							}}
+							series={[
+								{
+									data: data.technologies.map((tech) => ({
+										id: tech.name,
+										value: tech.percentage,
+										label: tech.name,
+									})),
+									valueFormatter: (item) => `${item.value}%`,
 
-								innerRadius: 20,
-								outerRadius: 50,
-								highlightScope: { fade: "global", highlight: "item" },
-								highlighted: { outerRadius: 55 },
-								faded: { innerRadius: 50, additionalRadius: -35, color: "gray" },
-								paddingAngle: 5,
-								cornerRadius: 5,
-							},
-						]}
-						hideLegend
-					/>
-					<ChangeAnimation id={data.id}>
-						<Row className="align-items-center mx-1 gap-2">
-							{data.technologies
-								.map((t) => icons.find((icon) => icon.name === t.name))
-								.filter((i) => i != undefined)
-								.map((icon, i) => (
-									<OverlayTrigger key={i} placement="top" overlay={<Tooltip>{icon.name}</Tooltip>}>
-										<img src={icon.url} alt={icon.name} height={40} className="icon" />
-									</OverlayTrigger>
-								))}
-						</Row>
-					</ChangeAnimation>
-				</G_Card>
-			</motion.div>
+									innerRadius: 20,
+									outerRadius: 50,
+									highlightScope: { fade: "global", highlight: "item" },
+									highlighted: { outerRadius: 55 },
+									faded: { innerRadius: 50, additionalRadius: -35, color: "gray" },
+									paddingAngle: 5,
+									cornerRadius: 5,
+								},
+							]}
+							hideLegend
+						/>
+						<ChangeAnimation id={data.id}>
+							<Row className="align-items-center mx-1 gap-2">
+								{data.technologies
+									.map((t) => icons.find((icon) => icon.name === t.name))
+									.filter((i) => i != undefined)
+									.map((icon, i) => (
+										<OverlayTrigger key={i} placement="top" overlay={<Tooltip>{icon.name}</Tooltip>}>
+											<img src={icon.url} alt={icon.name} height={40} className="icon" />
+										</OverlayTrigger>
+									))}
+							</Row>
+						</ChangeAnimation>
+					</G_Card>
+				</motion.div>
+			)}
 		</>
 	);
 }

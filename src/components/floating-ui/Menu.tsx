@@ -14,7 +14,7 @@ const modes = [
 	{ mode: Mode.Info, icon: "info" },
 ];
 
-export default function Menu(props: { selected: Mode; onSelect: (type: Mode) => void }) {
+export default function Menu(props: { selected: Mode; onSelect: (type: Mode) => void; disabled: boolean }) {
 	const [showInfo, setShowInfo] = useState(false);
 	const [sub] = useKeyboardControls<Controls>();
 
@@ -41,7 +41,10 @@ export default function Menu(props: { selected: Mode; onSelect: (type: Mode) => 
 					transition={TRANSITION}
 					exit={{ transform: "translateY(100px)", opacity: 0 }}
 				>
-					<G_Card style={{ bottom: 0, left: "50%", transform: "translateX(-50%)" }} className="m-4">
+					<G_Card
+						style={{ bottom: 0, left: "50%", transform: "translateX(-50%)", transition: TRANSITION.duration + "s" }}
+						className={`mb-${props.disabled ? 2 : 4} ${props.disabled && "opacity-50"}`}
+					>
 						<Row>
 							{modes.map(({ mode, icon }, i) => (
 								<OverlayTrigger
@@ -59,7 +62,15 @@ export default function Menu(props: { selected: Mode; onSelect: (type: Mode) => 
 											boxShadow: props.selected === mode ? "0 0 2px rgba(255, 255, 255)" : undefined,
 										}}
 										className="menu-icon mx-2 icon pointer"
-										onClick={() => (mode === Mode.Info ? setShowInfo(true) : props.onSelect(mode))}
+										onClick={() => {
+											if (props.disabled) return;
+
+											if (mode === Mode.Info) {
+												setShowInfo(true);
+											} else {
+												props.onSelect(mode);
+											}
+										}}
 									>
 										<img src={`icons/ui/${icon}.svg`} alt={icon} height={40} />
 									</div>

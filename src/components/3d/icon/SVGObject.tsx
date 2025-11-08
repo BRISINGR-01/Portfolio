@@ -71,7 +71,10 @@ export default function SVGObject(props: ContentData) {
 			materialRefs.current = [];
 		}, (HOLOGRAM_ANIMATION_LENGTH + HOLOGRAM_SWITCH_TIME) * 1000);
 
-		return () => clearTimeout(t);
+		return () => {
+			materialRefs.current = [];
+			clearTimeout(t);
+		};
 	}, [data, get]);
 
 	const shapes = useMemo(() => {
@@ -93,7 +96,7 @@ export default function SVGObject(props: ContentData) {
 				const geometry = new ExtrudeGeometry(shape, { depth: 4 });
 				geometry.computeBoundsTree();
 				fixUVs(geometry);
-				// geometry.setDrawRange(0, 90);
+
 				renderOrder++;
 
 				return (

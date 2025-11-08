@@ -8,8 +8,8 @@ export class Experience implements ContentData {
 		public context: string,
 		/** What I did there */
 		public description: string,
-		public technologies: { name: string; percentage: number }[],
 		public icon3D: Icon3DParams,
+		public technologies?: { name: string; percentage: number }[],
 		public altIcon?: string
 	) {}
 }

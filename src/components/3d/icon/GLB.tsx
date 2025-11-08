@@ -29,7 +29,7 @@ export default function GLB(props: ContentData) {
 			}
 		});
 
-		const t = setTimeout(() => {
+		function restore() {
 			materialRefs.current = [];
 			scene.traverse((child) => {
 				if ((child as Mesh).isMesh) {
@@ -37,14 +37,19 @@ export default function GLB(props: ContentData) {
 					mesh.material = mesh.userData.originalMaterial;
 				}
 			});
-		}, (HOLOGRAM_ANIMATION_LENGTH + HOLOGRAM_SWITCH_TIME) * 1000);
+		}
 
-		return () => clearTimeout(t);
+		const t = setTimeout(restore, (HOLOGRAM_ANIMATION_LENGTH + HOLOGRAM_SWITCH_TIME) * 1000);
+
+		return () => {
+			restore();
+			clearTimeout(t);
+		};
 	}, [get, props.icon3D.scale, scene]);
 
-	useFrame((state) => {
+	useFrame(({ clock }) => {
 		for (const material of materialRefs.current) {
-			material.uniforms.time.value = state.clock.getElapsedTime();
+			material.uniforms.time.value = clock.getElapsedTime();
 		}
 	});
 

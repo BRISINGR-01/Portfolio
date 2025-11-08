@@ -46,6 +46,7 @@ export default function InfoDisplay(props: { onClick: () => void }) {
 			animate={{ transform: "translateY(0)", opacity: 1 }}
 			exit={{ transform: "translateY(100px)", opacity: 0 }}
 			transition={TRANSITION}
+			onClick={() => props.onClick()}
 		>
 			<G_Card
 				position={Position.Center}
@@ -58,7 +59,6 @@ export default function InfoDisplay(props: { onClick: () => void }) {
 					transition: "0.15s",
 					lineHeight: "normal",
 				}}
-				onClick={() => props.onClick()}
 			>
 				<Container fluid className="mb-5">
 					<h3 className="text-center">Welcome to my portfolio!</h3>
