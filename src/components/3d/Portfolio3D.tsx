@@ -1,4 +1,4 @@
-import { useGLTF, useKeyboardControls } from "@react-three/drei";
+import { useKeyboardControls } from "@react-three/drei";
 import { Suspense, useEffect, useState } from "react";
 import { BufferGeometry, Mesh } from "three";
 import {
@@ -14,12 +14,13 @@ import { ICON_DELAY, MENU_DELAY, TABLE_DELAY } from "../../constants";
 import { AnimatePresence } from "motion/react";
 import content from "../../content.ts";
 import "../../css/floating-ui.css";
-import { Mode, type ContentData, type Controls } from "../../types.ts";
+import { Mode, type ContentData, type Controls, type Language } from "../../types.ts";
 import { prettifyTitle } from "../../utils.ts";
 import Delay from "../Delay.tsx";
 import ContentDisplay from "../floating-ui/ContentDisplay.tsx";
 import Menu from "../floating-ui/Menu.tsx";
 import Environment3D from "./Environment.tsx";
+import Globe from "./Globe.tsx";
 import Icon from "./icon/Icon.tsx";
 import Raycast from "./Raycast.tsx";
 import Table from "./table/Table.tsx";
@@ -32,9 +33,6 @@ BatchedMesh.prototype.computeBoundsTree = computeBatchedBoundsTree;
 BatchedMesh.prototype.disposeBoundsTree = disposeBatchedBoundsTree;
 BatchedMesh.prototype.raycast = acceleratedRaycast;
 
-useGLTF.preload("/3d/table.glb");
-fetch("/circuit.mp4");
-
 export default function Portfolio3D() {
 	const [mode, setMode] = useState(Mode.None);
 	const [selectedIcon, setSelectedIcon] = useState<ContentData | null>(null);
@@ -42,15 +40,8 @@ export default function Portfolio3D() {
 	const [visibleIcons, setVisibleIcons] = useState<ContentData[]>([]);
 	const [sub] = useKeyboardControls<Controls>();
 
-	const selectedContent =
-		mode === Mode.Experience
-			? content.experience
-			: mode === Mode.Education
-			? content.education
-			: mode === Mode.Contact
-			? content.contacts
-			: null;
-	// useEdit(content.education.at(-1)!);
+	const selectedContent = content[mode];
+	// useEdit(selectedContent?.at(-1));
 
 	useEffect(() => {
 		if (!window.localStorage.getItem("isFirstEntry")) {
@@ -58,7 +49,7 @@ export default function Portfolio3D() {
 			setMode(Mode.Info);
 		}
 
-		const t = setTimeout(() => setMode(Mode.Experience), TABLE_DELAY);
+		const t = setTimeout(() => setMode(Mode.Languages), TABLE_DELAY);
 
 		const unsub = sub(
 			(state) => state.escape,
@@ -118,6 +109,7 @@ export default function Portfolio3D() {
 					</Raycast>
 				</Delay>
 				<Table text={prettifyTitle(hovered?.title ?? mode)} />
+				{mode === Mode.Languages && <Globe langauge={(selectedIcon || hovered) as Language} />}
 			</Environment3D>
 
 			<Delay time={MENU_DELAY}>

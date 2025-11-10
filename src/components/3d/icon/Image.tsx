@@ -14,7 +14,7 @@ export default function Image(props: ContentData) {
 	);
 
 	useFrame(({ clock }) => {
-		if (hologramMaterial) hologramMaterial.uniforms.time.value = clock.getElapsedTime();
+		if (hologramMaterial) hologramMaterial.update(clock);
 	});
 
 	useEffect(() => {

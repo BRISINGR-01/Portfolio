@@ -1,80 +1,67 @@
-export class Experience implements ContentData {
-	constructor(
-		public id: string,
-		public title: string,
-		public icon: string,
-		public timespan: [string, string],
-		/** Short introduction on the company/setting */
-		public context: string,
-		/** What I did there */
-		public description: string,
-		public icon3D: Icon3DParams,
-		public technologies?: { name: string; percentage: number }[],
-		public altIcon?: string
-	) {}
-}
-
-export class Book {
-	constructor(
-		public title: string,
-		public subTitle: string,
-		public author: string,
-		public description: string,
-		public cover: string,
-		public tags: string[]
-	) {}
-}
-
-export class Education implements ContentData {
-	constructor(
-		public id: string,
-		public title: string,
-		public description: string,
-		public icon: string,
-		public icon3D: Icon3DParams,
-		public altIcon?: string
-	) {}
-}
-
-export class Contact implements ContentData {
-	constructor(
-		public id: string,
-		public title: string,
-		public icon: string,
-		public address: string,
-		public url: string,
-		public icon3D: Icon3DParams
-	) {}
-}
-
-export interface Icon3DParams {
+export type Icon3DParams = {
 	position: [x: number, y: number, z: number];
 	rotation?: [x: number, y: number, z: number];
 	scale: number;
 	wide?: boolean;
-}
+};
 
-export interface Language {
-	id: string;
-	name: string;
-	flag: string;
-}
-
-export interface ContentData {
+export type ContentData = {
 	id: string;
 	title: string;
 	icon: string;
 	altIcon?: string;
 	icon3D: Icon3DParams;
-}
+};
+
+export type Experience = ContentData & {
+	timespan: [string, string];
+	context: string /** Short introduction on the company/setting */;
+	description: string /** What I did there */;
+	technologies?: { name: string; percentage: number }[];
+	github?: string;
+};
+
+export type Education = ContentData & {
+	description: string;
+};
+
+export type Book = {
+	title: string;
+	subTitle: string;
+	author: string;
+	description: string;
+	cover: string;
+	tags: string[];
+};
+
+export type HTBBadge = {
+	title: string;
+	description: string;
+	image: string;
+};
+
+export type DailyDevBadge = {
+	title: string;
+	image: string;
+};
+
+export type Contact = ContentData & {
+	address: string;
+	url: string;
+};
+
+export type Language = ContentData & {
+	iso: string;
+};
 
 export enum Mode {
-	Experience,
-	Education,
-	Interests,
-	Contact,
-	Info,
-	None,
+	Experience = "experience",
+	Education = "education",
+	Interests = "interests",
+	Languages = "languages",
+	Contact = "contacts",
+	Info = "info",
+	None = "none",
 }
 
 export enum WallFace {
@@ -89,3 +76,22 @@ export enum Controls {
 	Recenter = "recenter",
 	FullScreeen = "full-screen",
 }
+
+export type Countries = {
+	[key: string]: {
+		name: {
+			common: string;
+			official: string;
+		};
+		languages: {
+			[key: string]: string;
+		};
+		population: {
+			count: number;
+			worldPercentage: number;
+		};
+		geo: {
+			area: number;
+		};
+	};
+};

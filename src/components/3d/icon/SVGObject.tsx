@@ -6,7 +6,6 @@ import {
 	DoubleSide,
 	ExtrudeGeometry,
 	MeshPhongMaterial,
-	ShaderMaterial,
 	Vector3,
 	type BufferGeometry,
 	type Group,
@@ -21,7 +20,7 @@ import HologramMaterial from "./HologramMaterial";
 export default function SVGObject(props: ContentData) {
 	const svg = useLoader(SVGLoader, props.icon);
 	const groupRef = useRef<Group>(null);
-	const materialRefs = useRef<ShaderMaterial[]>([]);
+	const materialRefs = useRef<HologramMaterial[]>([]);
 	const { get } = useThree();
 
 	const shapes = useMemo(() => createShapes(svg, materialRefs, props.icon3D.wide), [svg, props.icon3D.wide]);
@@ -57,7 +56,7 @@ export default function SVGObject(props: ContentData) {
 	);
 }
 
-function createShapes(data: SVGResult, materialRefs: RefObject<ShaderMaterial[]>, wide?: boolean) {
+function createShapes(data: SVGResult, materialRefs: RefObject<HologramMaterial[]>, wide?: boolean) {
 	let renderOrder = 0;
 	const phongMaterial = new MeshPhongMaterial({
 		color: new Color(),

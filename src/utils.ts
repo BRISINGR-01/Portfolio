@@ -35,10 +35,11 @@ export function usePos(p?: [number, number, number]) {
 	return useControls("pos", { p: p ?? [0, 0, 0] }).p;
 }
 
-export function useEdit(data: ContentData) {
+export function useEdit(data?: ContentData) {
 	const p = usePos([0, 0, 0]);
 	const r = useRot([0, 0, 0]);
 
+	if (!data) return;
 	data.icon3D.position = p;
 	data.icon3D.rotation = r;
 

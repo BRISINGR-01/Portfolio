@@ -1,10 +1,11 @@
 import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import { useEffect, useRef, type RefObject } from "react";
-import { Mesh, type Object3D, type ShaderMaterial } from "three";
+import { useEffect, useRef } from "react";
+import { Mesh, type Object3D } from "three";
 import { HOLOGRAM_TRANSITION, TABLE_DELAY } from "../../../constants";
 import Delay from "../../Delay";
-import { fixGLTFDepth, setHologramMaterial, updateMaterials } from "../utils";
+import type HologramMaterial from "../icon/HologramMaterial";
+import { fixGLTFDepth, restoreMaterial, setHologramMaterial } from "../utils";
 import TableControls from "./TableControls";
 
 function toggleVisibility(obj: Object3D) {
@@ -13,19 +14,12 @@ function toggleVisibility(obj: Object3D) {
 	});
 }
 
-function restore(obj: Object3D, materialRefs: RefObject<ShaderMaterial[]>) {
-	materialRefs.current = [];
-	obj.traverse((mesh) => {
-		if (mesh instanceof Mesh) mesh.material = mesh.userData.originalMaterial;
-	});
-}
-
 export default function Table({ text }: { text: string | null }) {
 	const { scene } = useGLTF("/3d/table.glb");
-	const { get } = useThree();
-	const materialRefs = useRef<ShaderMaterial[]>([]);
+	const { clock } = useThree();
+	const materialRef = useRef<HologramMaterial>(null);
 
-	useFrame(({ clock }) => updateMaterials(clock, materialRefs));
+	useFrame(({ clock }) => materialRef.current?.update(clock));
 
 	useEffect(() => {
 		toggleVisibility(scene);
@@ -35,16 +29,16 @@ export default function Table({ text }: { text: string | null }) {
 
 		t = setTimeout(() => {
 			toggleVisibility(scene);
-			setHologramMaterial(scene, materialRefs, get().clock.elapsedTime, 200);
+			materialRef.current = setHologramMaterial(scene, clock, 200);
 
-			t = setTimeout(() => restore(scene, materialRefs), HOLOGRAM_TRANSITION);
+			t = setTimeout(() => restoreMaterial(scene), HOLOGRAM_TRANSITION);
 		}, TABLE_DELAY * 1000);
 
 		return () => {
-			restore(scene, materialRefs);
+			restoreMaterial(scene);
 			clearTimeout(t);
 		};
-	}, [get, scene]);
+	}, [clock, scene]);
 
 	return (
 		<group>

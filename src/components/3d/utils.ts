@@ -1,37 +1,33 @@
 import { type RefObject } from "react";
-import { Color, FrontSide, Material, Mesh, type Clock, type Group, type Object3D, type ShaderMaterial } from "three";
+import { Color, FrontSide, Material, Mesh, type Clock, type Group, type Object3D } from "three";
 import { COLOR_PALETTE } from "../../constants";
 import HologramMaterial from "./icon/HologramMaterial";
 
-export function updateMaterials(clock: Clock, materialRefs: RefObject<ShaderMaterial[]>) {
+export function updateMaterials(clock: Clock, materialRefs: RefObject<HologramMaterial[]>) {
 	for (const material of materialRefs.current) {
-		material.uniforms.time.value = clock.getElapsedTime();
+		material.update(clock);
 	}
 }
 
-export function restoreMaterial(obj: Object3D, materialRefs: RefObject<ShaderMaterial[]>) {
-	materialRefs.current = [];
+export function restoreMaterial(obj: Object3D) {
 	obj.traverse((mesh) => {
 		if (mesh instanceof Mesh) mesh.material = mesh.userData.originalMaterial;
 	});
 }
 
-export function setHologramMaterial(
-	obj: Object3D,
-	materialRefs: RefObject<ShaderMaterial[]>,
-	time: number,
-	scale: number
-) {
+export function setHologramMaterial(obj: Object3D, clock: Clock, scale: number) {
+	const material = new HologramMaterial(new Color(COLOR_PALETTE.PRIMARY), scale);
+	material.start(clock);
+
 	obj.traverse((mesh) => {
 		if (!(mesh instanceof Mesh)) return;
 
 		mesh.userData.originalMaterial = mesh.material;
 
-		const material = new HologramMaterial(new Color(COLOR_PALETTE.PRIMARY), scale);
 		mesh.material = material;
-		material.uniforms.animStart.value = time;
-		materialRefs.current.push(material);
 	});
+
+	return material;
 }
 
 export function fixGLTFDepth(scene: Group) {

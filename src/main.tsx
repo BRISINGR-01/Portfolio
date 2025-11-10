@@ -1,7 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Emergency from "./components/Emergency";
-import PortfolioPlain from "./components/PortforlioPlain";
 
 import { KeyboardControls } from "@react-three/drei";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -38,7 +37,6 @@ createRoot(document.getElementById("root")!).render(
 			/>
 			<Route index path="preview" element={<Preview />} />
 			<Route path="em" element={<Emergency />} />
-			<Route path="plain" element={<PortfolioPlain />} />
 		</Routes>
 	</BrowserRouter>
 );

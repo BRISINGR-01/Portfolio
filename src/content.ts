@@ -1,23 +1,24 @@
-import { Book, Contact, Education, Experience } from "./types";
+import type { Book, Contact, DailyDevBadge, Education, Experience, HTBBadge, Language } from "./types";
+import { prettifyTitle } from "./utils";
 
 const sdgContext =
-	"The SDG (Sustainable Developement Goals) are a set of goals defined by UN (United Nations) meant to make the world a better place. A challenge is organized a coulple of times a year in different countries. The aim is to work with large companies on one or a few SDGs in order to help the company lower their emissions, improve its employees' quality of life...";
+	"The SDG (Sustainable Developement Goals) are a set of goals defined by UN (United Nations) meant to make the world a better place. A challenge is regularly organized where groups of students work with companies on lowering their emissions, improve its employees' quality of life...";
 
 const text = {
 	A1: {
 		description:
-			"My first internship was at one of the largest telecom companies in Bulgaria. The project was led by the Belgian branch and supported by our Bulgarian team, which I was part of. We focused on selecting content for TV programs. My tasks varied between working on the front- and backend.",
+			"My first internship introduced me to professional web development. I worked on a marketing console - a tool for organizing TV channels and their content. ",
 		context:
-			"A1 Bulgaria (previously known as Mtel or Mobiltel) is a telecommunications company in Bulgaria owned by A1 Telekom Austria Group.",
+			"A1 Bulgaria (previously known as Mtel or Mobiltel) is one of the biggest telecommunications company in Bulgaria owned by A1 Telekom Austria Group.",
 	},
 	"sdg-sabic": {
 		description:
-			"My assigned establishment was Sabic. This is the second biggest plastic producer and a leading industry in agriculture, transportation, packaging, technology and more.",
+			"For my first SDG Challenge I worked on a gamified recycling initiative for Sabic, the second largest plastic producer and a leading industry in packaging, technology and more.",
 		context: sdgContext,
 	},
 	"sdg-solarwatt": {
 		description:
-			"Colab with Paulo Vieira. Github: https://github.com/BRISINGR-01/solar-trace. The challenge is organized a coulple of times a year in different countries. The aim is to work with large companies on one or a few SDGs in order to help the company lower their emissions, improve its employees' quality of life... My assigned establishment was Solarwatt. This is a solar panel industry. We are proud to share that our team has made it to the finals of the SDG Challenge 2025, where we partnered with Solarwatt on a project called SolarTrace. SolarTrace is a platform that helps bring more transparency to the solar energy industry. It includes an interactive map that shows how solar panel materials move through Europe and Asia, giving users a clearer view of the supply chain. My main focus was on the course and certification module. I built a simple learning path that introduces Solarwatt, its mission, and products, and at the end, users get a professional, shareable certificate automatically...",
+			"For my second SDG Challenge I colaborated with Paulo Vieira on creating a transparency platform. My responsibilities resolved mainly around deployment and a virtual course (think of LinkdIn learning or Udemy). We are proud to share that our team has made it to the finals of the SDG Challenge 2025, where we partnered with Solarwatt on a project called SolarTrace. SolarTrace is a platform that helps bring more transparency to the solar energy industry. It includes an interactive map that shows how solar panel materials move through Europe and Asia, giving users a clearer view of the supply chain. My main focus was on the course and certification module. I built a simple learning path that introduces Solarwatt, its mission, and products, and at the end, users get a professional, shareable certificate automatically...",
 		context: sdgContext,
 	},
 	"latin-is-simple": {
@@ -69,58 +70,95 @@ const text = {
 	},
 };
 
-const education = [
-	new Education("books", "Books", "", "/3d/books.glb", {
-		scale: 1.5,
-		position: [-0.4, -0.36, 0.2],
-		rotation: [0, 1.5, 0],
-	}),
-	new Education("certificates", "Certificates", "", "/icons/other/certificate-detail.svg", {
-		scale: 0.001,
-		position: [-0.97, -0.03, -0.4],
-		rotation: [-0.5, -0.5, 0.2],
-		wide: true,
-	}),
-	new Education(
-		"fireship",
-		"Fireship",
-		"",
-		"/icons/other/fireship.svg",
-		{
+const education: Education[] = [
+	{
+		id: "books",
+		title: "Books",
+		description: "",
+		icon: "/3d/books.glb",
+		icon3D: {
+			scale: 1.5,
+			position: [-0.4, -0.36, 0.2],
+			rotation: [0, 1.5, 0],
+		},
+	},
+	{
+		id: "certificates",
+		title: "Certificates",
+		description: "",
+		icon: "/icons/other/certificate-detail.svg",
+		icon3D: {
+			scale: 0.001,
+			position: [-0.97, -0.03, -0.4],
+			rotation: [-0.5, -0.5, 0.2],
+			wide: true,
+		},
+	},
+	{
+		id: "fireship",
+		title: "Fireship",
+		description: "",
+		icon: "/icons/other/fireship.svg",
+		icon3D: {
 			scale: 0.0007,
 			position: [-1.53, 0.28, -0.3],
 			rotation: [-0.25, 0.1, 0.05],
 			wide: true,
 		},
-		"/icons/other/fireship-original.svg"
-	),
-	new Education("tue", "Tue (Embedded Systems Pre-master)", "", "/icons/other/tue.svg", {
-		scale: 0.004,
-		position: [0.4, 0.13, -0.2],
-		rotation: [0.25, 0.1, 0.05],
-		wide: true,
-	}),
-	new Education("fontys", "Fontys (Academic preperation)", "", "/icons/other/fontys.svg", {
-		scale: 0.006,
-		position: [1.52, 0.54, -0.5],
-		rotation: [-0.25, -0.6, 0.15],
-		wide: true,
-	}),
-	new Education("htb", "Hack the Box", "", "/icons/other/htb.svg", {
-		scale: 0.003,
-		position: [-2, 0.2, -0.05],
-		rotation: [-0.6, 0.5, -0.4],
-		wide: true,
-	}),
-	new Education("primagen", "The Last Algorithms Course You'll Need", "", "/images/other/primeagen-icon.webp", {
-		scale: 0.7,
-		position: [-2, -0.1, 0.07],
-		rotation: [-0.8, -0.6, -0.5],
-	}),
-	new Education(
-		"math",
-		"Academic Preparation",
-		"Graph Theory\
+		altIcon: "/icons/other/fireship-original.svg",
+	},
+	{
+		id: "tue",
+		title: "Tue (Embedded Systems Pre-master)",
+		description: "",
+		icon: "/icons/other/tue.svg",
+		icon3D: {
+			scale: 0.004,
+			position: [0.4, 0.13, -0.2],
+			rotation: [0.25, 0.1, 0.05],
+			wide: true,
+		},
+	},
+	{
+		id: "fontys",
+		title: "Fontys (Academic preperation)",
+		description: "",
+		icon: "/icons/other/fontys.svg",
+		icon3D: {
+			scale: 0.006,
+			position: [1.52, 0.54, -0.5],
+			rotation: [-0.25, -0.6, 0.15],
+			wide: true,
+		},
+	},
+	{
+		id: "htb",
+		title: "Hack the Box",
+		description: "",
+		icon: "/icons/other/htb.svg",
+		icon3D: {
+			scale: 0.003,
+			position: [-2, 0.2, -0.05],
+			rotation: [-0.6, 0.5, -0.4],
+			wide: true,
+		},
+	},
+	{
+		id: "primagen",
+		title: "The Last Algorithms Course You'll Need",
+		description: "",
+		icon: "/images/other/primeagen-icon.webp",
+		icon3D: {
+			scale: 0.7,
+			position: [-2, -0.1, 0.07],
+			rotation: [-0.8, -0.6, -0.5],
+		},
+	},
+	{
+		id: "math",
+		title: "Academic Preparation",
+		description:
+			"Graph Theory\
 		 Logic and Set Thoery\
 		 Applied Logic\
 		 Linear Algebra\
@@ -132,115 +170,121 @@ const education = [
 		 Functional Programming\
 		 Synchronisation\
 		 Data Structures & Algorithms 2",
-		"/3d/math.glb",
-		{
+		icon: "/3d/math.glb",
+		icon3D: {
 			scale: 1.5,
 			position: [2.8, 0.2, 0.25],
 			rotation: [0, -1, 0],
 			wide: true,
 		},
-		"/images/other/math.webp"
-	),
-	new Education("daily-dev", "Daily Dev", "", "/icons/other/daily-dev.svg", {
-		position: [-1.8, -0.2, 0.07],
-		rotation: [-1.35, 0.1, 0.05],
-		scale: 0.001,
-		wide: true,
-	}),
+		altIcon: "/images/other/math.webp",
+	},
+	{
+		id: "daily-dev",
+		title: "Daily Dev",
+		description: "",
+		icon: "/icons/other/daily-dev.svg",
+		icon3D: {
+			position: [-1.8, -0.2, 0.07],
+			rotation: [-1.35, 0.1, 0.05],
+			scale: 0.001,
+			wide: true,
+		},
+	},
 ];
 
-export const books = [
-	new Book(
-		"The Rust Programming Language",
-		"Covers Rust 2018",
-		"Steve Klabnik and Carol Nichols",
-		text.books["The Rust Programming Language"],
-		"The Rust Programming Language.jpg",
-		["Rust"]
-	),
-	new Book(
-		"C Programming Language",
-		"2nd Edition",
-		"Brian Kernighan and Dennis Ritchie",
-		text.books["C Programming Language"],
-		"C Programming Language, 2nd Edition by Brian Kernighan.jpg",
-		["C/C++"]
-	),
-	new Book(
-		"The C++ Programming Language",
-		"4th Edition",
-		"Bjarne Stroustrup",
-		text.books["The C++ Programming Language"],
-		"The C++ Programming Language.jpg",
-		["C/C++"]
-	),
-	new Book(
-		"Clean Code",
-		"A Handbook of Agile Software Craftsmanship",
-		"Robert C. Martin",
-		text.books["Clean Code"],
-		"Clean Code by Robert C. Martin.jpg",
-		["Java", "Code Quality"]
-	),
-	new Book(
-		"Software Architecture Patterns",
-		"2nd Edition",
-		"Mark Richards",
-		text.books["Software Architecture Patterns"],
-		"Software Architecture Patterns.jpg",
-		["Software Architecture", "Code Quality"]
-	),
-	new Book(
-		"System Design Interview",
-		"An insider's guide",
-		"Alex Xu",
-		text.books["System Design Interview"],
-		"system design interview.jpg",
-		["Software Architecture", "Code Quality"]
-	),
-	new Book(
-		"Design Patterns",
-		"Elements of Reusable Object-Oriented Software",
-		" Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides",
-		text.books["Design Patterns"],
-		"design patterns.jpg",
-		["Software Architecture", "Code Quality", "Design Patterns"]
-	),
-	new Book(
-		"Code",
-		"The Hidden Language of Computer Hardware and Software",
-		"Charles Petzold",
-		text.books["Code"],
-		"Code: The Hidden Language of Computer Hardware and Software.jpg",
-		["Embedded Systems"]
-	),
-	new Book(
-		"Refactoring",
-		"Improving the Design of Existing Code",
-		"Martin Fowler, with Kent Beck",
-		text.books["Refactoring"],
-		"Refactoring.jpg",
-		["Code Quality", "JavaScript"]
-	),
-	new Book(
-		"Clean Coder",
-		"A Code of Conduct for Professional Programmers",
-		"Robert C. Martin",
-		text.books["Clean Coder"],
-		"Clean Coder.jpg",
-		["Code Quality"]
-	),
-	new Book(
-		"Little Book Of Semaphores",
-		"The Ins and Outs of Concurrency Control and Common Mistakes",
-		"Allen B. Downey",
-		text.books["Little Book Of Semaphores"],
-		"LittleBookOfSemaphores.webp",
-		["Code Quality", "Concurrency"]
-	),
+export const books: Book[] = [
+	{
+		title: "The Rust Programming Language",
+		subTitle: "Covers Rust 2018",
+		author: "Steve Klabnik and Carol Nichols",
+		description: text.books["The Rust Programming Language"],
+		cover: "The Rust Programming Language.jpg",
+		tags: ["Rust"],
+	},
+	{
+		title: "C Programming Language",
+		subTitle: "2nd Edition",
+		author: "Brian Kernighan and Dennis Ritchie",
+		description: text.books["C Programming Language"],
+		cover: "C Programming Language, 2nd Edition by Brian Kernighan.jpg",
+		tags: ["C/C++"],
+	},
+	{
+		title: "The C++ Programming Language",
+		subTitle: "4th Edition",
+		author: "Bjarne Stroustrup",
+		description: text.books["The C++ Programming Language"],
+		cover: "The C++ Programming Language.jpg",
+		tags: ["C/C++"],
+	},
+	{
+		title: "Clean Code",
+		subTitle: "A Handbook of Agile Software Craftsmanship",
+		author: "Robert C. Martin",
+		description: text.books["Clean Code"],
+		cover: "Clean Code by Robert C. Martin.jpg",
+		tags: ["Java", "Code Quality"],
+	},
+	{
+		title: "Software Architecture Patterns",
+		subTitle: "2nd Edition",
+		author: "Mark Richards",
+		description: text.books["Software Architecture Patterns"],
+		cover: "Software Architecture Patterns.jpg",
+		tags: ["Software Architecture", "Code Quality"],
+	},
+	{
+		title: "System Design Interview",
+		subTitle: "An insider's guide",
+		author: "Alex Xu",
+		description: text.books["System Design Interview"],
+		cover: "system design interview.jpg",
+		tags: ["Software Architecture", "Code Quality"],
+	},
+	{
+		title: "Design Patterns",
+		subTitle: "Elements of Reusable Object-Oriented Software",
+		author: " Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides",
+		description: text.books["Design Patterns"],
+		cover: "design patterns.jpg",
+		tags: ["Software Architecture", "Code Quality", "Design Patterns"],
+	},
+	{
+		title: "Code",
+		subTitle: "The Hidden Language of Computer Hardware and Software",
+		author: "Charles Petzold",
+		description: text.books["Code"],
+		cover: "Code: The Hidden Language of Computer Hardware and Software.jpg",
+		tags: ["Embedded Systems"],
+	},
+	{
+		title: "Refactoring",
+		subTitle: "Improving the Design of Existing Code",
+		author: "Martin Fowler, with Kent Beck",
+		description: text.books["Refactoring"],
+		cover: "Refactoring.jpg",
+		tags: ["Code Quality", "JavaScript"],
+	},
+	{
+		title: "Clean Coder",
+		subTitle: "A Code of Conduct for Professional Programmers",
+		author: "Robert C. Martin",
+		description: text.books["Clean Coder"],
+		cover: "Clean Coder.jpg",
+		tags: ["Code Quality"],
+	},
+	{
+		title: "Little Book Of Semaphores",
+		subTitle: "The Ins and Outs of Concurrency Control and Common Mistakes",
+		author: "Allen B. Downey",
+		description: text.books["Little Book Of Semaphores"],
+		cover: "LittleBookOfSemaphores.webp",
+		tags: ["Code Quality", "Concurrency"],
+	},
 ];
 
-export const htbBadges = [
+export const htbBadges: HTBBadge[] = [
 	{
 		title: "Academician",
 		description: "Introduction to Academy module completed",
@@ -295,7 +339,7 @@ export const htbBadges = [
 	},
 ].map((el) => ({ ...el, image: `/images/hack-the-box/${el.title.replace(/\s/g, "-").toLowerCase()}.webp` }));
 
-export const dailyDevBadges = [
+export const dailyDevBadges: DailyDevBadge[] = [
 	{ image: "images/daily-dev/February 2025 Top Reader in UNIX.png", title: "Top Reader in UNIX" },
 	{ image: "images/daily-dev/January 2025 Top Reader in Shell.png", title: "Top Reader in Shell" },
 	{
@@ -557,191 +601,250 @@ export const certificates = [
 	},
 ];
 
-const experience = [
-	new Experience(
-		"A1",
-		"A1 Internship",
-		"/icons/other/A1.svg",
-		["01/07/2021", "30/09/2021"],
-		text.A1.context,
-		text.A1.description,
-		{ scale: 0.0015, position: [-1.7, 0.39, 0.4], rotation: [-0.3, 0, 0.1], wide: true },
-		[
+const experience: Experience[] = [
+	{
+		id: "A1",
+		title: "A1 Internship",
+		icon: "/icons/other/A1.svg",
+		timespan: ["01/07/2021", "30/09/2021"],
+		context: text.A1.context,
+		description: text.A1.description,
+		icon3D: { scale: 0.0015, position: [-1.7, 0.39, 0.4], rotation: [-0.3, 0, 0.1], wide: true },
+		technologies: [
 			{ name: "React", percentage: 10 },
 			{ name: "Express", percentage: 65 },
 			{ name: "Docker", percentage: 5 },
 			{ name: "GraphQl", percentage: 20 },
-		]
-	),
-	new Experience(
-		"sdg-sabic",
-		"SDG Challenge - Sabic",
-		"/images/other/SDG.png",
-		["09/04/2024", "05/07/2024"],
-		text["sdg-sabic"].context,
-		text["sdg-sabic"].description,
-		{ scale: 0.4, position: [-0.9, 0.04, 0.27], rotation: [0.8, 0.3, 0.3], wide: false },
-		[
+		],
+	},
+	{
+		id: "sdg-sabic",
+		title: "SDG Challenge - Sabic",
+		icon: "/images/other/SDG.png",
+		timespan: ["09/04/2024", "05/07/2024"],
+		context: text["sdg-sabic"].context,
+		description: text["sdg-sabic"].description,
+		icon3D: { scale: 0.4, position: [-0.9, 0.04, 0.27], rotation: [0.8, 0.3, 0.3], wide: false },
+		technologies: [
 			{ name: "ThreeJS", percentage: 12 },
 			{ name: "Typescript", percentage: 31 },
 			{ name: "React", percentage: 20 },
 			{ name: "Supabase + Vercel", percentage: 7 },
 			{ name: "C/C++", percentage: 10 },
 			{ name: "Arduino", percentage: 10 },
-		]
-	),
-	new Experience(
-		"sdg-solarwatt",
-		"SDG Challenge - Solarwatt",
-		"/images/other/SDG-logo-2.webp",
-		["09/04/2025", "05/07/2025"],
-		text["sdg-solarwatt"].context,
-		text["sdg-solarwatt"].description,
-		{ scale: 0.4, position: [-1.78, -0.1, 0.65], rotation: [-0.9, -1.1, 0.8], wide: false },
-		[
+		],
+	},
+	{
+		id: "sdg-solarwatt",
+		title: "SDG Challenge - Solarwatt",
+		icon: "/images/other/SDG-logo-2.webp",
+		timespan: ["09/04/2025", "05/07/2025"],
+		context: text["sdg-solarwatt"].context,
+		description: text["sdg-solarwatt"].description,
+		icon3D: { scale: 0.4, position: [-1.78, -0.1, 0.65], rotation: [-0.9, -1.1, 0.8], wide: false },
+		technologies: [
 			{ name: "Typescript", percentage: 30 },
 			{ name: "React", percentage: 52 },
 			{ name: "Vercel", percentage: 8 },
-		]
-	),
-	new Experience(
-		"latin-is-simple",
-		"Latin is simple",
-		"/icons/other/latin-is-simple.svg",
-		["03/01/2022", "02/09/2025"],
-		text["latin-is-simple"].context,
-		text["latin-is-simple"].description,
-		{ scale: 0.0015, position: [-0.2, 0.4, -0.1], rotation: [-0.2, 0.2, 0], wide: true },
-		[
+		],
+	},
+	{
+		id: "latin-is-simple",
+		title: "Latin is simple",
+		icon: "/icons/other/latin-is-simple.svg",
+		timespan: ["03/01/2022", "02/09/2025"],
+		context: text["latin-is-simple"].context,
+		description: text["latin-is-simple"].description,
+		icon3D: { scale: 0.0015, position: [-0.2, 0.4, -0.1], rotation: [-0.2, 0.2, 0], wide: true },
+		technologies: [
 			{ name: "React", percentage: 22 },
 			{ name: "Bootstrap", percentage: 22 },
 			{ name: "Typescript", percentage: 55 },
 			{ name: "Python", percentage: 1 },
-		]
-	),
-	new Experience(
-		"ablanitsa",
-		"Information club “Digital Studio”",
-		"/icons/other/2aeg.svg",
-		["01/10/2020", "01/06/2021"],
-		text.ablanitsa.context,
-		text.ablanitsa.description,
-		{ scale: 0.005, position: [-0.5, -0.3, 0.2], rotation: [-1.5, 0, -0.5], wide: true },
-		[
+		],
+	},
+	{
+		id: "ablanitsa",
+		title: "Information club “Digital Studio”",
+		icon: "/icons/other/2aeg.svg",
+		timespan: ["01/10/2020", "01/06/2021"],
+		context: text.ablanitsa.context,
+		description: text.ablanitsa.description,
+		icon3D: { scale: 0.005, position: [-0.5, -0.3, 0.2], rotation: [-1.5, 0, -0.5], wide: true },
+		technologies: [
 			{ name: "HTML", percentage: 10 },
 			{ name: "CSS", percentage: 15 },
 			{ name: "Javascript", percentage: 45 },
 			{ name: "ThreeJS", percentage: 20 },
 			{ name: "Firebase", percentage: 10 },
-		]
-	),
-	new Experience(
-		"icc",
-		"The International Cleaning Company",
-		"/icons/other/ICClogo.svg",
-		["05/02/2024", "27/07/2024"],
-		text.icc.context,
-		text.icc.description,
-		{ scale: 0.001, position: [1.9, 0.45, 0.65], rotation: [-0.2, 0.2, 0], wide: true },
-		[
+		],
+	},
+	{
+		id: "icc",
+		title: "The International Cleaning Company",
+		icon: "/icons/other/ICClogo.svg",
+		timespan: ["05/02/2024", "27/07/2024"],
+		context: text.icc.context,
+		description: text.icc.description,
+		icon3D: { scale: 0.001, position: [1.9, 0.45, 0.65], rotation: [-0.2, 0.2, 0], wide: true },
+		technologies: [
 			{ name: "Next JS", percentage: 7 },
 			{ name: "Typescript", percentage: 45 },
 			{ name: "Supabase", percentage: 13 },
 			{ name: "React", percentage: 35 },
-		]
-	),
-	new Experience(
-		"asml",
-		"ASML Internship",
-		"/icons/other/ASML.svg",
-		["09/09/2024", "02/02/2025"],
-		text.asml.context,
-		text.asml.description,
-		{ scale: 0.002, position: [0.5, 0.19, -0.4], rotation: [-0.4, -0.5, 0.2], wide: true },
-		[
+		],
+	},
+	{
+		id: "asml",
+		title: "ASML Internship",
+		icon: "/icons/other/ASML.svg",
+		timespan: ["09/09/2024", "02/02/2025"],
+		context: text.asml.context,
+		description: text.asml.description,
+		icon3D: { scale: 0.002, position: [0.5, 0.19, -0.4], rotation: [-0.4, -0.5, 0.2], wide: true },
+		technologies: [
 			{ name: "C/C++", percentage: 50 },
 			{ name: "HTML", percentage: 10 },
 			{ name: "CSS", percentage: 10 },
 			{ name: "Javascript", percentage: 30 },
-		]
-	),
-	new Experience(
-		"glow",
-		"Glow",
-		"/icons/other/glow.svg",
-		["02/02/2025", "01/07/2025"],
-		text.glow.context,
-		text.glow.description,
-
-		{ scale: 0.001, position: [-0.5, 0.3, -0.2], rotation: [-0.7, -0.2, 0.5], wide: true }
-	),
+		],
+	},
+	{
+		id: "glow",
+		title: "Glow",
+		icon: "/icons/other/glow.svg",
+		timespan: ["02/02/2025", "01/07/2025"],
+		context: text.glow.context,
+		description: text.glow.description,
+		icon3D: { scale: 0.001, position: [-0.5, 0.3, -0.2], rotation: [-0.7, -0.2, 0.5], wide: true },
+	},
 ];
 
-const contacts = [
-	new Contact(
-		"gmail",
-		"Gmail",
-		"icons/other/gmail.svg",
-		"alexander.popov233@gmail.com",
-		"mailto:alexander.popov233@gmail.com",
-		{
+const contacts: Contact[] = [
+	{
+		id: "gmail",
+		title: "Gmail",
+		icon: "icons/other/gmail.svg",
+		address: "alexander.popov233@gmail.com",
+		url: "mailto:alexander.popov233@gmail.com",
+		icon3D: {
 			position: [0.49, 0.574, 0.2],
 			rotation: [0.1, 0, 0],
 			scale: 0.009,
 			wide: true,
-		}
-	),
-	new Contact("github", "Github", "icons/other/github.svg", "BRISINGR-01", "https://github.com/BRISINGR-01", {
-		position: [0, 0.25, 0.1],
-		rotation: [-0.15, 0, 0.05],
-		scale: 0.003,
-		wide: true,
-	}),
-	new Contact("gitlab", "Gitlab", "icons/other/gitlab.svg", "BRISINGR-01", "https://gitlab.com/BRISINGR-01", {
-		position: [0.319, -0.038, 0.159],
-		rotation: [-0.441, -0.208, -0.505],
-		scale: 0.005,
-		wide: true,
-	}),
-	new Contact(
-		"linkedin",
-		"LinkedIn",
-		"icons/other/linkedin.svg",
-		"alexander-popov-61126825a",
-		"https://www.linkedin.com/in/alexander-popov-61126825a/",
-		{
+		},
+	},
+	{
+		id: "github",
+		title: "Github",
+		icon: "icons/other/github.svg",
+		address: "BRISINGR-01",
+		url: "https://github.com/BRISINGR-01",
+		icon3D: {
+			position: [0, 0.25, 0.1],
+			rotation: [-0.15, 0, 0.05],
+			scale: 0.003,
+			wide: true,
+		},
+	},
+	{
+		id: "gitlab",
+		title: "Gitlab",
+		icon: "icons/other/gitlab.svg",
+		address: "BRISINGR-01",
+		url: "https://gitlab.com/BRISINGR-01",
+		icon3D: {
+			position: [0.319, -0.038, 0.159],
+			rotation: [-0.441, -0.208, -0.505],
+			scale: 0.005,
+			wide: true,
+		},
+	},
+	{
+		id: "linkedin",
+		title: "LinkedIn",
+		icon: "icons/other/linkedin.svg",
+		address: "alexander-popov-61126825a",
+		url: "https://www.linkedin.com/in/alexander-popov-61126825a/",
+		icon3D: {
 			position: [-0.502, 0.172, 0.319],
 			rotation: [0.143, 0.408, 0.028],
 			scale: 0.004,
 			wide: true,
-		}
-	),
-	new Contact("x", "X", "icons/other/x.svg", "AlexPopov233", "https://twitter.com/AlexPopov233", {
-		position: [-1.61, -0.36, 0.7],
-		rotation: [-1.6, 0.0, -0.5],
-		scale: 0.0012,
-		wide: true,
-	}),
-	new Contact(
-		"instagram",
-		"Instagram",
-		"images/other/instagram.png",
-		"@alexan6451",
-		"https://www.instagram.com/alexan6451/",
-		{
+		},
+	},
+	{
+		id: "x",
+		title: "X",
+		icon: "icons/other/x.svg",
+		address: "AlexPopov233",
+		url: "https://twitter.com/AlexPopov233",
+		icon3D: {
+			position: [-1.61, -0.36, 0.7],
+			rotation: [-1.6, 0.0, -0.5],
+			scale: 0.0012,
+			wide: true,
+		},
+	},
+	{
+		id: "instagram",
+		title: "Instagram",
+		icon: "images/other/instagram.png",
+		address: "@alexan6451",
+		url: "https://www.instagram.com/alexan6451/",
+		icon3D: {
 			position: [-0.712, -0.13, 0.304],
 			rotation: [2.14, 0.61, 4.33],
 			scale: 0.3,
 			wide: true,
-		}
-	),
-	new Contact("whatsapp", "Whatsapp", "icons/other/whatsapp.svg", "+31620429868", "tel:+31620429868", {
-		position: [1.682, 0.204, 0.064],
-		rotation: [0.4, -0.6, 0],
-		scale: 0.0016,
-		wide: true,
-	}),
+		},
+	},
+	{
+		id: "whatsapp",
+		title: "Whatsapp",
+		icon: "icons/other/whatsapp.svg",
+		address: "+31620429868",
+		url: "tel:+31620429868",
+		icon3D: {
+			position: [1.682, 0.204, 0.064],
+			rotation: [0.4, -0.6, 0],
+			scale: 0.0016,
+			wide: true,
+		},
+	},
 ];
 
-const content = { experience, education, contacts };
+const languagesCount = 7;
+function calcLangParams(i: number) {
+	i -= languagesCount / 2;
+
+	return {
+		position: [i * 0.7 - 0.3, 0, 0.6] as [number, number, number],
+		rotation: [-Math.PI / 3, 0, 0] as [number, number, number],
+	};
+}
+
+const languages: Language[] = [
+	{ id: "bulgarian", iso: "bul" },
+	{ id: "dutch", iso: "nld" },
+	{ id: "english", iso: "eng" },
+	{ id: "french", iso: "fra" },
+	{ id: "german", iso: "deu" },
+	{ id: "italian", iso: "ita" },
+	{ id: "portuguese", iso: "por" },
+	{ id: "spanish", iso: "spa" },
+	// {id: "russian", iso: "rus"},
+].map(({ id, iso }, i) => ({
+	id,
+	title: prettifyTitle(id)!,
+	icon: `/icons/languages/${id}.svg`,
+	iso,
+	icon3D: {
+		...calcLangParams(i),
+		scale: 0.015,
+		wide: true,
+	},
+}));
+
+const content = { experience, education, contacts, languages };
 export default content;

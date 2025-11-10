@@ -1,4 +1,4 @@
-import { Color, DoubleSide, ShaderMaterial } from "three";
+import { Color, DoubleSide, ShaderMaterial, type Clock } from "three";
 import { HOLOGRAM_ANIMATION_LENGTH } from "../../../constants";
 import HologramShader from "./HologramShader";
 
@@ -40,5 +40,13 @@ export default class HologramMaterial extends ShaderMaterial {
 				duration: { value: HOLOGRAM_ANIMATION_LENGTH },
 			},
 		});
+	}
+
+	update(clock: Clock) {
+		this.uniforms.time.value = clock.elapsedTime;
+	}
+
+	start(clock: Clock) {
+		this.uniforms.animStart.value = clock.elapsedTime;
 	}
 }

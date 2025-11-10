@@ -12,6 +12,7 @@ const modes = [
 	{ mode: Mode.Education, icon: "education" },
 	{ mode: Mode.Interests, icon: "other" },
 	{ mode: Mode.Contact, icon: "contact" },
+	{ mode: Mode.Languages, icon: "languages" },
 	{ mode: Mode.Info, icon: "info" },
 ];
 

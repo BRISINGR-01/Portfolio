@@ -12,6 +12,8 @@ export const COLOR_PALETTE = {
 	TERTIARY: "",
 };
 
+export const GLOBE_SIDE_COLOR = "#1abaff1c";
+export const GLOBE_HIGHLIGHT_COLOR = "#192d8fff";
 export const HOVER_OUTLINE_HIDDEN = "#1abaff";
 export const PERSISTENT_OUTLINE = "#ffffff";
 
@@ -39,7 +41,7 @@ export const IMAGE_DEPTH = 0.02;
 export const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 export const TRANSITION = { duration: 0.3, ease: "easeOut" as Easing };
 
-export const IS_DEBUG = import.meta.env.DEV && false;
+export const IS_DEBUG = import.meta.env.DEV && true;
 
 export const MENU_DELAY = IS_DEBUG ? 0 : 4.2;
 export const TABLE_DELAY = IS_DEBUG ? 0 : 4;
