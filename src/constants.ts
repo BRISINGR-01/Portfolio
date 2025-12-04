@@ -13,8 +13,8 @@ export const COLOR_PALETTE = {
 };
 
 export const GLOBE_SIDE_COLOR = "#1abaff1c";
-export const GLOBE_HIGHLIGHT_COLOR = "#192d8fff";
-export const HOVER_OUTLINE_HIDDEN = "#1abaff";
+export const GLOBE_HIGHLIGHT_COLOR = "#0019bbff";
+export const HOVER_OUTLINE_HIDDEN = "#1abaff".charAt;
 export const PERSISTENT_OUTLINE = "#ffffff";
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -41,20 +41,20 @@ export const IMAGE_DEPTH = 0.02;
 export const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 export const TRANSITION = { duration: 0.3, ease: "easeOut" as Easing };
 
-export const IS_DEBUG = import.meta.env.DEV && true;
+export const SKIP_ANIMATIONS = import.meta.env.DEV && true;
 
-export const MENU_DELAY = IS_DEBUG ? 0 : 4.2;
-export const TABLE_DELAY = IS_DEBUG ? 0 : 4;
-export const HOLOGRAM_SWITCH_TIME = IS_DEBUG ? 0 : 0;
-export const HOLOGRAM_ANIMATION_LENGTH = IS_DEBUG ? 0 : 0.4;
+export const MENU_DELAY = SKIP_ANIMATIONS ? 0 : 4.2;
+export const TABLE_DELAY = SKIP_ANIMATIONS ? 0 : 4;
+export const HOLOGRAM_SWITCH_TIME = SKIP_ANIMATIONS ? 0 : 0;
+export const HOLOGRAM_ANIMATION_LENGTH = SKIP_ANIMATIONS ? 0 : 0.4;
 export const HOLOGRAM_TRANSITION = (HOLOGRAM_ANIMATION_LENGTH + HOLOGRAM_SWITCH_TIME) * 1000;
-export const OUTLINE_HARDCODED_DELAY = IS_DEBUG ? 0 : 1000; // account for loading time of icons
+export const OUTLINE_HARDCODED_DELAY = SKIP_ANIMATIONS ? 0 : 1000; // account for loading time of icons
 
-export const DEFAULT_CAMERA_POS = [-1, 0.3, 5] as [number, number, number];
-export const INITIAL_CAMERA_POS = IS_DEBUG ? DEFAULT_CAMERA_POS : ([-4, 3, 7.5] as [number, number, number]);
-export const ZOOM_IN_DELAY = IS_DEBUG ? 0 : 4100;
+export const DEFAULT_CAMERA_POS = [-1, 0.7, 5] as [number, number, number];
+export const INITIAL_CAMERA_POS = SKIP_ANIMATIONS ? DEFAULT_CAMERA_POS : ([-4, 3, 7.5] as [number, number, number]);
+export const ZOOM_IN_DELAY = SKIP_ANIMATIONS ? 0 : 4100;
 
-export const CEILING_BUILD_UP_DURATION = IS_DEBUG ? 0.1 : 3;
-export const WALL_BUILD_UP_DURATION = IS_DEBUG ? 0.1 : 2;
-export const WALL_DELAY = IS_DEBUG ? 0 : 1.5;
-export const ICON_DELAY = IS_DEBUG ? 0 : 120;
+export const CEILING_BUILD_UP_DURATION = SKIP_ANIMATIONS ? 0.1 : 3;
+export const WALL_BUILD_UP_DURATION = SKIP_ANIMATIONS ? 0.1 : 2;
+export const WALL_DELAY = SKIP_ANIMATIONS ? 0 : 1.5;
+export const ICON_DELAY = SKIP_ANIMATIONS ? 0 : 120;

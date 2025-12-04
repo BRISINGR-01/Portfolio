@@ -1,5 +1,6 @@
 import { useControls } from "leva";
 import { useEffect, useState } from "react";
+import { Color } from "three";
 import { MONTHS } from "./constants";
 import { Mode, type ContentData } from "./types";
 
@@ -69,8 +70,26 @@ export function prettifyTitle(text: string | null | Mode) {
 			return "Interests";
 		case Mode.Info:
 		case Mode.None:
-			return null;
+			return "";
 		default:
-			return !text ? null : text[0].toUpperCase() + text.slice(1);
+			return !text ? "" : text[0].toUpperCase() + text.slice(1);
 	}
+}
+
+export function bluify(color: Color) {
+	// extract current lightness
+	const hsl = { h: 0, s: 0, l: 0 };
+	color.getHSL(hsl);
+
+	// get target hue/saturation from your blue reference color
+	const target = new Color("#72cbfc");
+	const targetHSL = { h: 0, s: 0, l: 0 };
+	target.getHSL(targetHSL);
+
+	// lift very dark tones so they aren't pure black
+	const minL = 0.2;
+	const adjustedL = Math.max(hsl.l, minL);
+
+	// keep brightness (l) from original, but use blue hue and saturation
+	return new Color().setHSL(targetHSL.h, targetHSL.s, adjustedL);
 }

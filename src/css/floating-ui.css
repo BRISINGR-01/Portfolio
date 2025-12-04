@@ -4,9 +4,6 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	backdrop-filter: blur(4px) saturate(200%);
-	-webkit-backdrop-filter: blur(4px) saturate(200%);
-	background-color: rgba(15, 166, 236, 0.35);
 	border-radius: 12px;
 	border: 1px solid rgba(209, 213, 219, 0.3);
 	box-shadow: inset 0px 0 10px 0px rgb(0 170 255 / 70%);
@@ -16,8 +13,78 @@
 	font-family: "Armstrong", sans-serif !important;
 }
 
-.g-card * {
+.glass-morpihic {
+	backdrop-filter: blur(16px) saturate(200%);
+	-webkit-backdrop-filter: blur(16px) saturate(200%);
+	background-color: rgba(15, 166, 236, 0.35);
 	color: var(--bs-light);
+}
+
+.hologram-bg {
+	animation: holoFlicker 6s infinite linear;
+}
+
+@keyframes holoFlicker {
+	0%,
+	100% {
+		opacity: 0.98;
+	}
+	5% {
+		opacity: 0.9;
+	}
+	10% {
+		opacity: 0.97;
+	}
+	15% {
+		opacity: 0.92;
+	}
+	20% {
+		opacity: 0.99;
+	}
+	25% {
+		opacity: 0.95;
+	}
+	30% {
+		opacity: 0.98;
+	}
+	70% {
+		opacity: 0.96;
+	}
+}
+
+.hologram-bg::before {
+	--color1: rgba(15, 166, 236, 0.35);
+	--color2: rgba(15, 166, 236, 0.144);
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	pointer-events: none;
+	background: repeating-linear-gradient(
+		0,
+		var(--color1) 1px,
+		var(--color2) 2px,
+		var(--color2) 11px,
+		var(--color1) 12px,
+		var(--color1) 20px
+	);
+	mix-blend-mode: screen;
+	animation: holoScan 0.6s infinite linear;
+}
+
+@keyframes holoScan {
+	from {
+		transform: translateY(0);
+	}
+	to {
+		transform: translateY(20px);
+	}
+}
+
+.glow-text {
+	font-family: "Armstrong";
+	color: #c4e8ff;
+	text-shadow: 0 0 2.5px #37c8ff, 0 0 4px rgba(21, 180, 255, 0.4);
 }
 
 .g-card {
@@ -39,7 +106,7 @@
 	}
 
 	.accordion-button.collapsed {
-		color: #e2e2e299 !important;
+		color: #e2e2e2e7 !important;
 	}
 }
 

@@ -2,48 +2,53 @@ import type { Book, Contact, DailyDevBadge, Education, Experience, HTBBadge, Lan
 import { prettifyTitle } from "./utils";
 
 const sdgContext =
-	"The SDG (Sustainable Developement Goals) are a set of goals defined by UN (United Nations) meant to make the world a better place. A challenge is regularly organized where groups of students work with companies on lowering their emissions, improve its employees' quality of life...";
+	"The SDG (Sustainable Developement Goals) are a set of goals defined by UN meant to make the world a better place. A challenge is regularly organized where groups of students work with companies on lowering their emissions, improving their employees' quality of life...";
 
 const text = {
 	A1: {
-		description:
-			"My first internship introduced me to professional web development. I worked on a marketing console - a tool for organizing TV channels and their content. ",
 		context:
 			"A1 Bulgaria (previously known as Mtel or Mobiltel) is one of the biggest telecommunications company in Bulgaria owned by A1 Telekom Austria Group.",
+		description:
+			"My first internship introduced me to professional web development. I learnt to navigate large scale codebases and fixed various issues on both the front- and backend. The project was a marketing console - a tool for organizing TV channels and their content.",
 	},
 	"sdg-sabic": {
-		description:
-			"For my first SDG Challenge I worked on a gamified recycling initiative for Sabic, the second largest plastic producer and a leading industry in packaging, technology and more.",
 		context: sdgContext,
+		description:
+			"Sabic is the second largest plastic producer and a leading industry in packaging, technology and more. For my first SDG Challenge I worked on a gamified recycling initiative for their new office in Amsterdam.",
 	},
 	"sdg-solarwatt": {
-		description:
-			"For my second SDG Challenge I colaborated with Paulo Vieira on creating a transparency platform. My responsibilities resolved mainly around deployment and a virtual course (think of LinkdIn learning or Udemy). We are proud to share that our team has made it to the finals of the SDG Challenge 2025, where we partnered with Solarwatt on a project called SolarTrace. SolarTrace is a platform that helps bring more transparency to the solar energy industry. It includes an interactive map that shows how solar panel materials move through Europe and Asia, giving users a clearer view of the supply chain. My main focus was on the course and certification module. I built a simple learning path that introduces Solarwatt, its mission, and products, and at the end, users get a professional, shareable certificate automatically...",
 		context: sdgContext,
+		description:
+			"For my second SDG Challenge I colaborated with Paulo Vieira on creating a transparency platform for Solarwatt - a lead in solar panels, energy storage and more in Germany and the Netherlands. I created the virtual course (think of LinkdIn learning or Udemy) of our platform. We were nominated for the finals of the SDG Challenge 2025.",
 	},
 	"latin-is-simple": {
+		context:
+			"Created by two Austrian graduates this language learning app has gained dozens of thousands of users over the years. It is arguably the most advanced Latin-learning platform. It provides tools such as trainers, sentence analisys, and many more. URL: https://www.latin-is-simple.com/",
 		description:
-			"Owned by two Austrian graduates this language learning app has gained dozens of thousands of users over the years. It is primarily used by students learning Latin. It provides tools such as learning trainers, sentence analisys, and many more.",
-		context: "",
+			'My task was to redevelop the training section. There, students can practice translation, grammar and refresh their memory in any of the five trainers: "Translation", "Advenced", "Quiz", "Cards" and "Forms". The trainers contain rigorously tested complex question generation, pattern matching to accept various answers and a scoreboard system',
 	},
 	ablanitsa: {
+		context:
+			'This is an ethnic diversity cooperation project between my highschool II English Language Highschool "Thomas Jefferson" and "St. Paisiy Hilendarski" School.',
 		description:
-			'This is an ethnic diversity cooperation project with "St. Paisiy Hilendarski" School. I was offered to participate by my IT teacher at my highschool and I worked side by side with students from different grades.',
-		context: "Highschool project",
+			"My IT teacher offered me to participate in this extracurricular project, which was my first real rpogramming endeavor. I created and deployed a website portraying the customs and displaying in 3d cultural clothings of different ethnicities in Bulgaria.",
 	},
 	icc: {
+		context:
+			"ICC offers top-notch home and office cleaning services. It was founded by Fontys students who allowed other students to work alongside them as a semester project, which I joined for my 3rd semester.",
 		description:
-			"poster. ICC offers top-notch home and office cleaning services. It was founded by Fontys students who offered other students to work alongside them as part of thei Open Learning semester.",
-		context: "",
+			"I worked closely with one of the founders of the company to create interactive statistics and display of bookings as well as refactor the booking form. As it was a start-up it allowed me to contribute more than I could to big companies like A1 and ASML.",
 	},
 	asml: {
+		context:
+			"ASML is a global leader in lithography technology, enabling chipmakers to create microchips that are more powerful, faster and energy efficient. They create the machines used by companies like Intel to produce high-quality chips.",
 		description:
-			"I had the opportunity to work on a code analysis tool that generates an interactive report, helping to visualize and understand complex codebases. This project pushed me to grow technically while also giving me insight into how large companies operate.",
-		context: "",
+			"I had the opportunity to work on a code analysis tool that generates an interactive report, helping to visualize and understand complex codebases. This project pushed me to grow technically while also giving me insight into how global-scale companies operate.",
 	},
 	glow: {
-		description: "",
-		context: "",
+		context:
+			"Glow is a light festival in Eindhoven, which gathers around 800,000 visitors once a year to illuminate the sky and buildings, showcase professional and student-made attractions and push the limits of creativity",
+		description: "Ever since the first time I visited Glow I wanted to ",
 	},
 	books: {
 		"The Rust Programming Language":
@@ -74,7 +79,7 @@ const education: Education[] = [
 	{
 		id: "books",
 		title: "Books",
-		description: "",
+		description: "Books that I have read",
 		icon: "/3d/books.glb",
 		icon3D: {
 			scale: 1.5,
@@ -609,6 +614,7 @@ const experience: Experience[] = [
 		timespan: ["01/07/2021", "30/09/2021"],
 		context: text.A1.context,
 		description: text.A1.description,
+		links: { Website: "https://www.a1.bg/" },
 		icon3D: { scale: 0.0015, position: [-1.7, 0.39, 0.4], rotation: [-0.3, 0, 0.1], wide: true },
 		technologies: [
 			{ name: "React", percentage: 10 },
@@ -623,6 +629,7 @@ const experience: Experience[] = [
 		icon: "/images/other/SDG.png",
 		timespan: ["09/04/2024", "05/07/2024"],
 		context: text["sdg-sabic"].context,
+		links: { Github: "https://github.com/BRISINGR-01/SDG-Challenge-Game-SABIC", Website: "https://www.sabic.com/" },
 		description: text["sdg-sabic"].description,
 		icon3D: { scale: 0.4, position: [-0.9, 0.04, 0.27], rotation: [0.8, 0.3, 0.3], wide: false },
 		technologies: [
@@ -638,6 +645,7 @@ const experience: Experience[] = [
 		id: "sdg-solarwatt",
 		title: "SDG Challenge - Solarwatt",
 		icon: "/images/other/SDG-logo-2.webp",
+		links: { Github: "https://github.com/BRISINGR-01/solar-trace", Website: "https://www.solarwatt.com/" },
 		timespan: ["09/04/2025", "05/07/2025"],
 		context: text["sdg-solarwatt"].context,
 		description: text["sdg-solarwatt"].description,
@@ -655,6 +663,7 @@ const experience: Experience[] = [
 		timespan: ["03/01/2022", "02/09/2025"],
 		context: text["latin-is-simple"].context,
 		description: text["latin-is-simple"].description,
+		links: { Website: "https://www.latin-is-simple.com/" },
 		icon3D: { scale: 0.0015, position: [-0.2, 0.4, -0.1], rotation: [-0.2, 0.2, 0], wide: true },
 		technologies: [
 			{ name: "React", percentage: 22 },
@@ -666,6 +675,7 @@ const experience: Experience[] = [
 	{
 		id: "ablanitsa",
 		title: "Information club “Digital Studio”",
+		links: { Github: "https://github.com/BRISINGR-01/Ablanitsa" },
 		icon: "/icons/other/2aeg.svg",
 		timespan: ["01/10/2020", "01/06/2021"],
 		context: text.ablanitsa.context,
@@ -686,6 +696,10 @@ const experience: Experience[] = [
 		timespan: ["05/02/2024", "27/07/2024"],
 		context: text.icc.context,
 		description: text.icc.description,
+		links: {
+			LinkdIn: "https://www.linkedin.com/company/icc-the-international-cleaning-company/about/",
+			Website: "http://theinternationalcleaningcompany.com/",
+		},
 		icon3D: { scale: 0.001, position: [1.9, 0.45, 0.65], rotation: [-0.2, 0.2, 0], wide: true },
 		technologies: [
 			{ name: "Next JS", percentage: 7 },
@@ -701,6 +715,7 @@ const experience: Experience[] = [
 		timespan: ["09/09/2024", "02/02/2025"],
 		context: text.asml.context,
 		description: text.asml.description,
+		links: { Website: "https://www.asml.com/en" },
 		icon3D: { scale: 0.002, position: [0.5, 0.19, -0.4], rotation: [-0.4, -0.5, 0.2], wide: true },
 		technologies: [
 			{ name: "C/C++", percentage: 50 },
@@ -714,6 +729,10 @@ const experience: Experience[] = [
 		title: "Glow",
 		icon: "/icons/other/glow.svg",
 		timespan: ["02/02/2025", "01/07/2025"],
+		links: {
+			"Github - Brainstorm": "https://github.com/BRISINGR-01/Fontys-projects/tree/master/Brainstorm",
+			"Github - Hand Drawing": "https://github.com/GLOW-Delta-2025/hand-drawing-prototype",
+		},
 		context: text.glow.context,
 		description: text.glow.description,
 		icon3D: { scale: 0.001, position: [-0.5, 0.3, -0.2], rotation: [-0.7, -0.2, 0.5], wide: true },
@@ -814,16 +833,6 @@ const contacts: Contact[] = [
 	},
 ];
 
-const languagesCount = 7;
-function calcLangParams(i: number) {
-	i -= languagesCount / 2;
-
-	return {
-		position: [i * 0.7 - 0.3, 0, 0.6] as [number, number, number],
-		rotation: [-Math.PI / 3, 0, 0] as [number, number, number],
-	};
-}
-
 const languages: Language[] = [
 	{ id: "bulgarian", iso: "bul" },
 	{ id: "dutch", iso: "nld" },
@@ -834,17 +843,22 @@ const languages: Language[] = [
 	{ id: "portuguese", iso: "por" },
 	{ id: "spanish", iso: "spa" },
 	// {id: "russian", iso: "rus"},
-].map(({ id, iso }, i) => ({
-	id,
-	title: prettifyTitle(id)!,
-	icon: `/icons/languages/${id}.svg`,
-	iso,
-	icon3D: {
-		...calcLangParams(i),
-		scale: 0.015,
-		wide: true,
-	},
-}));
+].map(({ id, iso }, i, total) => {
+	i -= (total.length - 1) / 2;
+
+	return {
+		id,
+		title: prettifyTitle(id),
+		icon: `/icons/languages/${id}.svg`,
+		iso,
+		icon3D: {
+			position: [i * 0.7 - 0.3, 0, 0.6] as [number, number, number],
+			rotation: [-Math.PI / 5, 0, 0] as [number, number, number],
+			scale: 0.015,
+			wide: true,
+		},
+	};
+});
 
 const content = { experience, education, contacts, languages };
 export default content;

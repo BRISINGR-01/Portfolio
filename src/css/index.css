@@ -5,7 +5,7 @@
 	--secondary: rgb(2, 10, 21);
 	--bs-secondary: #020a15;
 	--bs-secondary-rgb: var(--secondary);
-	--tertiary: rgb(111, 241, 213);
+	--tertiary: #01fefe;
 	--bs-tertiary: var(--tertiary);
 	--bs-tertiary-rgb: 111, 241, 213;
 
@@ -27,6 +27,8 @@
 	box-sizing: border-box;
 }
 
+a,
+button,
 .pointer,
 .pointer > * {
 	cursor: url("/cursors/link_select.cur") 0 0, pointer !important;

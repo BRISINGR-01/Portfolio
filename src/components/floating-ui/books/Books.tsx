@@ -1,12 +1,12 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { TRANSITION } from "../../../constants";
-import type { Book } from "../../../types";
+import type { Book, fn } from "../../../types";
 import G_Card from "../components/G_Card";
 import BookDetails from "./BookDetails";
 import BookList from "./BookList";
 
-export default function Books() {
+export default function Books({ close }: { close: fn }) {
 	const [selected, setSelected] = useState<Book | null>(null);
 
 	return (
@@ -38,7 +38,7 @@ export default function Books() {
 					{selected ? (
 						<BookDetails book={selected} onClick={() => setSelected(null)} />
 					) : (
-						<BookList onSelect={(book) => setSelected(book)} />
+						<BookList onSelect={(book) => setSelected(book)} onClick={close} />
 					)}
 				</AnimatePresence>
 			</G_Card>

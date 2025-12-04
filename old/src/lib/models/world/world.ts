@@ -68,7 +68,7 @@ export default class World {
     this.camera.updateProjectionMatrix();
   }
 
-  onRender(cb: () => void) {
+  onRender(cb: fn) {
     this.renderCallbacks.push(cb);
   }
 

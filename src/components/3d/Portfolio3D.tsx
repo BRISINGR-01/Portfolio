@@ -11,7 +11,6 @@ import {
 import { BatchedMesh } from "three/webgpu";
 import { ICON_DELAY, MENU_DELAY, TABLE_DELAY } from "../../constants";
 
-import { AnimatePresence } from "motion/react";
 import content from "../../content.ts";
 import "../../css/floating-ui.css";
 import { Mode, type ContentData, type Controls, type Language } from "../../types.ts";
@@ -49,7 +48,9 @@ export default function Portfolio3D() {
 			setMode(Mode.Info);
 		}
 
-		const t = setTimeout(() => setMode(Mode.Languages), TABLE_DELAY);
+		const t = setTimeout(() => {
+			if (mode === Mode.None) setMode(Mode.Experience);
+		}, TABLE_DELAY);
 
 		const unsub = sub(
 			(state) => state.escape,
@@ -62,6 +63,7 @@ export default function Portfolio3D() {
 			unsub();
 			clearTimeout(t);
 		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [sub]);
 
 	useEffect(() => {
@@ -108,22 +110,18 @@ export default function Portfolio3D() {
 						))}
 					</Raycast>
 				</Delay>
-				<Table text={prettifyTitle(hovered?.title ?? mode)} />
-				{mode === Mode.Languages && <Globe langauge={(selectedIcon || hovered) as Language} />}
+				<Table text={prettifyTitle(selectedIcon?.title ?? hovered?.title ?? mode)} />
+				{mode === Mode.Languages && <Globe langauge={(selectedIcon ?? hovered) as Language} />}
 			</Environment3D>
 
 			<Delay time={MENU_DELAY}>
-				<AnimatePresence>
-					{selectedIcon ? (
-						<ContentDisplay data={selectedIcon} type={mode} />
-					) : (
-						<Menu
-							selected={mode}
-							onSelect={setMode}
-							disabled={!!selectedContent && visibleIcons.length !== selectedContent.length}
-						/>
-					)}
-				</AnimatePresence>
+				<ContentDisplay  close={() => setSelectedIcon(null)} data={selectedIcon} type={mode} />
+				<Menu
+					show={!selectedIcon}
+					selected={mode}
+					onSelect={setMode}
+					disabled={!!selectedContent && visibleIcons.length !== selectedContent.length}
+				/>
 			</Delay>
 		</>
 	);

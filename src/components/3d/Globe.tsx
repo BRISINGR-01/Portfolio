@@ -7,6 +7,8 @@ import { COLOR_PALETTE, GLOBE_HIGHLIGHT_COLOR, GLOBE_SIDE_COLOR } from "../../co
 import type { Countries, Language } from "../../types";
 import HologramMaterial from "./icon/HologramMaterial";
 
+const countryColor = opacity(COLOR_PALETTE.PRIMARY, 0.8);
+
 export default function Globe(props: { langauge?: Language }) {
 	const { scene, clock } = useThree();
 	const materialRef = useRef<HologramMaterial>(null);
@@ -32,7 +34,7 @@ export default function Globe(props: { langauge?: Language }) {
 			.then((countries) => {
 				console.log(countries);
 				g.polygonsData(countries.features)
-					.polygonCapColor(() => COLOR_PALETTE.PRIMARY)
+					.polygonCapColor(() => countryColor)
 					.polygonSideColor(() => GLOBE_SIDE_COLOR);
 
 				// g.polygonAltitude((feat) => Math.max(0.1, Math.sqrt(+feat.properties.POP_EST) * 4e-5));
@@ -49,7 +51,7 @@ export default function Globe(props: { langauge?: Language }) {
 		if (!globeRef.current) return;
 
 		if (!props.langauge) {
-			globeRef.current.polygonCapColor(() => COLOR_PALETTE.PRIMARY).polygonSideColor(() => GLOBE_SIDE_COLOR);
+			globeRef.current.polygonCapColor(() => countryColor).polygonSideColor(() => GLOBE_SIDE_COLOR);
 			globeRef.current.polygonAltitude(() => Math.random() * 0.2 + 0.2);
 
 			return;
@@ -65,12 +67,19 @@ export default function Globe(props: { langauge?: Language }) {
 		globeRef.current.polygonCapColor((feat) =>
 			highlightedCountries.includes((feat as { properties: { NAME: string } }).properties.NAME)
 				? GLOBE_HIGHLIGHT_COLOR
-				: COLOR_PALETTE.PRIMARY
+				: opacity(COLOR_PALETTE.PRIMARY, 0.4)
 		);
+
 		globeRef.current.polygonAltitude((feat) =>
-			highlightedCountries.includes((feat as { properties: { NAME: string } }).properties.NAME) ? 0.2 : 0.1
+			highlightedCountries.includes((feat as { properties: { NAME: string } }).properties.NAME)
+				? 0.3
+				: 0.1 + Math.random() * 0.1
 		);
 	}, [props.langauge]);
 
 	return null;
+}
+
+function opacity(color: string, opacity: number) {
+	return color.toString().replace(/\)/, `, ${opacity})`).replace(/rgb/, "rgba");
 }

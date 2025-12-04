@@ -17,13 +17,10 @@ createRoot(document.getElementById("root")!).render(
 			<Route
 				index
 				element={
-					import.meta.env.DEV ? (
-						<KeyboardControls map={controlsMap}>
-							<Portfolio3D />
-						</KeyboardControls>
-					) : (
-						<Preview />
-					)
+					<KeyboardControls map={controlsMap}>
+						<Portfolio3D />
+						{/* <ContentDisplay close={() => {}} data={content.experience[1]} type={Mode.Experience}></ContentDisplay> */}
+					</KeyboardControls>
 				}
 			/>
 			<Route

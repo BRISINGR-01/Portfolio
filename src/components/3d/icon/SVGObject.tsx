@@ -26,17 +26,17 @@ export default function SVGObject(props: ContentData) {
 	const shapes = useMemo(() => createShapes(svg, materialRefs, props.icon3D.wide), [svg, props.icon3D.wide]);
 
 	useEffect(() => {
-		const time = get().clock.elapsedTime;
+		const time = get().clock;
 
 		for (const material of materialRefs.current) {
-			material.uniforms.animStart.value = time;
+			material.start(time);
 		}
 
 		const group = groupRef.current!;
-		const t = setTimeout(() => restoreMaterial(group, materialRefs), HOLOGRAM_TRANSITION);
+		const t = setTimeout(() => restoreMaterial(group), HOLOGRAM_TRANSITION);
 
 		return () => {
-			restoreMaterial(group, materialRefs);
+			restoreMaterial(group);
 			clearTimeout(t);
 		};
 	}, [svg, get]);
@@ -79,10 +79,11 @@ function createShapes(data: SVGResult, materialRefs: RefObject<HologramMaterial[
 			adjustUVs(geometry);
 
 			renderOrder++;
+			const offset = calculateSVGPathRenderOffset(renderOrder, wide);
 
 			return (
 				<mesh
-					position={[0, 0, calculateSVGPathRenderOffset(renderOrder, wide)]}
+					position={[offset, offset, offset]}
 					geometry={geometry}
 					key={renderOrder}
 					material={material}

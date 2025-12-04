@@ -7,7 +7,7 @@ import G_Card, { Position } from "./G_Card";
 export default function Badges(props: {
 	title: string;
 	badges: { image: string; title: string; description?: string }[];
-	onClick: () => void;
+	onClick: fn;
 }) {
 	return (
 		<motion.div

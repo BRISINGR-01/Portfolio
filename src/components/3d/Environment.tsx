@@ -1,7 +1,7 @@
 import { CameraControls, useKeyboardControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
-import { DEFAULT_CAMERA_POS, INITIAL_CAMERA_POS, IS_DEBUG, ZOOM_IN_DELAY } from "../../constants";
+import { DEFAULT_CAMERA_POS, INITIAL_CAMERA_POS, SKIP_ANIMATIONS, ZOOM_IN_DELAY } from "../../constants";
 import type { Controls } from "../../types";
 import Room from "./room/Room";
 
@@ -52,7 +52,7 @@ export default function Environment(props: { children: React.ReactNode }) {
 
 	return (
 		<Canvas camera={{ position: INITIAL_CAMERA_POS, fov: 75, near: 0.001 }}>
-			<CameraControls ref={cameraControlsRef} enabled={IS_DEBUG || false} />
+			<CameraControls ref={cameraControlsRef} enabled={SKIP_ANIMATIONS || false} />
 			<ambientLight intensity={0.6} />
 			<directionalLight intensity={0.9} position={[200, 100, 300]} />
 

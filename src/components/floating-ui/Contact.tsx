@@ -19,7 +19,7 @@ export default function Contacts({ data }: { data: Contact }) {
 					<img src={data.icon} className="w-100 mb-3" style={{ height: "10vh", objectFit: "contain" }} />
 					<div className="w-100 text-center fw-bold fs-5">{data.title}</div>
 					<a href={data.url} className="pointer w-100 text-center fw-bold fs-5">
-						{data.address}
+						{data.address} <img src="icons/ui/open-link.svg" alt="" style={{ height: "1em" }} />
 					</a>
 				</ChangeAnimation>
 			</G_Card>

@@ -1,3 +1,5 @@
+export type fn = () => void;
+
 export type Icon3DParams = {
 	position: [x: number, y: number, z: number];
 	rotation?: [x: number, y: number, z: number];
@@ -13,12 +15,19 @@ export type ContentData = {
 	icon3D: Icon3DParams;
 };
 
+export type Icon = {
+	_3d: string;
+	flat: string;
+	isCircle: boolean;
+};
+
 export type Experience = ContentData & {
 	timespan: [string, string];
 	context: string /** Short introduction on the company/setting */;
 	description: string /** What I did there */;
+	links?: { [key: string]: string };
 	technologies?: { name: string; percentage: number }[];
-	github?: string;
+	images: [];
 };
 
 export type Education = ContentData & {

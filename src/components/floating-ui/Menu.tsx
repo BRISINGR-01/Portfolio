@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { OverlayTrigger, Row, Tooltip } from "react-bootstrap";
 import { TRANSITION } from "../../constants";
-import { Mode, type Controls } from "../../types.ts";
+import { Mode, type Controls, type fn } from "../../types.ts";
 import G_Card from "./components/G_Card.tsx";
 import InfoDisplay from "./InfoDisplay.tsx";
 
@@ -16,7 +16,12 @@ const modes = [
 	{ mode: Mode.Info, icon: "info" },
 ];
 
-export default function Menu(props: { selected: Mode; onSelect: (type: Mode) => void; disabled: boolean }) {
+export default function Menu(props: {
+	show: boolean;
+	selected: Mode;
+	onSelect: (type: Mode) => void;
+	disabled: boolean;
+}) {
 	const [showInfo, setShowInfo] = useState(false);
 	const [sub] = useKeyboardControls<Controls>();
 
@@ -33,7 +38,7 @@ export default function Menu(props: { selected: Mode; onSelect: (type: Mode) => 
 
 	return (
 		<AnimatePresence>
-			{showInfo ? (
+			{!props.show ? null : showInfo ? (
 				<InfoDisplay onClick={() => setShowInfo(false)} />
 			) : (
 				<motion.div
@@ -47,41 +52,47 @@ export default function Menu(props: { selected: Mode; onSelect: (type: Mode) => 
 						style={{ bottom: 0, left: "50%", transform: "translateX(-50%)", transition: TRANSITION.duration + "s" }}
 						className={`mb-${props.disabled ? 2 : 4} ${props.disabled && "opacity-50"}`}
 					>
-						<Row>
-							{modes.map(({ mode, icon }, i) => (
-								<OverlayTrigger
-									key={i}
-									placement="bottom"
-									overlay={(p) => (
-										<Tooltip {...p} arrowProps={{}}>
-											{icon}
-										</Tooltip>
-									)}
-								>
-									<div
-										style={{
-											background: props.selected === mode ? "#447db69c" : undefined,
-											boxShadow: props.selected === mode ? "0 0 2px rgba(255, 255, 255)" : undefined,
-										}}
-										className="menu-icon mx-2 icon pointer"
-										onClick={() => {
-											if (props.disabled) return;
-
-											if (mode === Mode.Info) {
-												setShowInfo(true);
-											} else {
-												props.onSelect(mode);
-											}
-										}}
-									>
-										<img src={`icons/ui/${icon}.svg`} alt={icon} height={40} />
-									</div>
-								</OverlayTrigger>
-							))}
-						</Row>
+						<MenuButtons {...props} show={() => setShowInfo(true)} />
 					</G_Card>
 				</motion.div>
 			)}
 		</AnimatePresence>
+	);
+}
+
+export function MenuButtons(props: { selected: Mode; onSelect: (type: Mode) => void; disabled: boolean; show: fn }) {
+	return (
+		<Row>
+			{modes.map(({ mode, icon }, i) => (
+				<OverlayTrigger
+					key={i}
+					placement="bottom"
+					overlay={(p) => (
+						<Tooltip {...p} arrowProps={{}}>
+							{icon}
+						</Tooltip>
+					)}
+				>
+					<div
+						style={{
+							background: props.selected === mode ? "#5b90c59c" : undefined,
+							boxShadow: props.selected === mode ? "rgb(255, 255, 255) 0px 0px 5px" : undefined,
+						}}
+						className="menu-icon mx-2 icon pointer"
+						onClick={() => {
+							if (props.disabled) return;
+
+							if (mode === Mode.Info) {
+								props.show();
+							} else {
+								props.onSelect(mode);
+							}
+						}}
+					>
+						<img src={`icons/ui/${icon}.svg`} alt={icon} height={40} />
+					</div>
+				</OverlayTrigger>
+			))}
+		</Row>
 	);
 }

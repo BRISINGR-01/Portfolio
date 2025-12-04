@@ -2,7 +2,7 @@ import { Col, Container, Image, Row } from "react-bootstrap";
 import type { Book } from "../../../types";
 import ClickToClose from "../components/ClickToClose";
 
-export default function BookDetails(props: { book: Book; onClick: () => void }) {
+export default function BookDetails(props: { book: Book; onClick: fn }) {
 	return (
 		<Container fluid className="p-0 h-100 d-flex flex-column justify-content-between">
 			<Row className="p-1">

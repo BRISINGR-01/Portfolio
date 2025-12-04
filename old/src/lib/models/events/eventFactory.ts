@@ -18,7 +18,7 @@ export default class EventFactory {
     this.handler = eventHandler;
   }
 
-  onPress(cb: () => void) {
+  onPress(cb: fn) {
     this.handler.addEvent(
       new KeyEvent(this.key, this.mustBeCtrl, EventType.Press, cb)
     );
@@ -26,7 +26,7 @@ export default class EventFactory {
     return this;
   }
 
-  onRelease(cb: () => void) {
+  onRelease(cb: fn) {
     this.handler.addEvent(
       new KeyEvent(this.key, this.mustBeCtrl, EventType.Release, cb)
     );
@@ -34,7 +34,7 @@ export default class EventFactory {
     return this;
   }
 
-  onHold(cb: () => void) {
+  onHold(cb: fn) {
     this.handler.addEvent(
       new HoldEvent(this.key, this.mustBeCtrl, EventType.Hold, cb)
     );

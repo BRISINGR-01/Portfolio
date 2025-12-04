@@ -1,3 +1,5 @@
+import React from "react";
+
 export enum Position {
 	TopLeft,
 	TopRight,
@@ -27,12 +29,14 @@ export default function G_Card(
 	props: { position?: Position } & React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 ) {
 	return (
-		<div
-			{...props}
-			style={{ ...getStyle(props.position), ...props.style }}
-			className={`g-card text-light p-3 position-absolute align-self-center ${props.className}`}
-		>
-			{props.children}
-		</div>
+		<>
+			<div
+				{...props}
+				style={{ ...getStyle(props.position), ...props.style }}
+				className={`g-card glass-morpihic text-light p-3 position-absolute align-self-center ${props.className}`}
+			>
+				{props.children}
+			</div>
+		</>
 	);
 }

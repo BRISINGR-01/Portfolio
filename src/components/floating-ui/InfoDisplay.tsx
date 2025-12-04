@@ -2,8 +2,10 @@ import { motion } from "motion/react";
 import React from "react";
 import { Container } from "react-bootstrap";
 import { TRANSITION } from "../../constants";
+import { Mode, type fn } from "../../types.ts";
 import ClickToClose from "./components/ClickToClose.tsx";
 import G_Card, { Position } from "./components/G_Card.tsx";
+import { MenuButtons } from "./Menu.tsx";
 
 const keyboardShortcuts = [
 	{ key: "esc", description: "Close window" },
@@ -37,7 +39,7 @@ function Grid(props: { children: React.ReactElement[] }) {
 	);
 }
 
-export default function InfoDisplay(props: { onClick: () => void }) {
+export default function InfoDisplay(props: { onClick: fn }) {
 	return (
 		<motion.div
 			key="info"
@@ -60,7 +62,7 @@ export default function InfoDisplay(props: { onClick: () => void }) {
 					lineHeight: "normal",
 				}}
 			>
-				<Container fluid className="mb-5">
+				<Container fluid className="mb-5 gap-3 d-flex flex-column">
 					<h3 className="text-center">Welcome to my portfolio!</h3>
 					<Grid>
 						{keyboardShortcuts.map(({ key, description }, i) => (
@@ -72,7 +74,29 @@ export default function InfoDisplay(props: { onClick: () => void }) {
 							</React.Fragment>
 						))}
 					</Grid>
-					<span className="mt-4 mb-2 fs-4 gap-2 d-flex">
+					<div>
+						<p className="fs-5">Use the menu to navigate</p>
+						<div
+							className="rounded p-2 px-3"
+							style={{
+								transform: "scale(.8)",
+								width: "fit-content",
+								boxShadow: `0 0 14px 2px white`,
+								background: "#c4ebff5e",
+							}}
+						>
+							<MenuButtons onSelect={() => {}} show={() => {}} selected={Mode.Education} disabled={false} />
+						</div>
+					</div>
+					<div>
+						<p className="fs-5">Click on the icons to reveal more information</p>
+						<img
+							src="images/other/icon-example.png"
+							alt="example-icon"
+							style={{ height: "6em", width: "fit-content", boxShadow: `0 0 5px 1px white`, borderRadius: "10px" }}
+						/>
+					</div>
+					<span className="fs-4 gap-2 d-flex">
 						Mouse
 						<img src="/icons/ui/mouse.svg" alt="mouse" style={{ height: "1.2rem" }} />
 					</span>
@@ -84,7 +108,7 @@ export default function InfoDisplay(props: { onClick: () => void }) {
 							</React.Fragment>
 						))}
 					</Grid>
-					<span className="mt-4 mb-2 fs-4 gap-2 d-flex">
+					<span className="fs-4 gap-2 d-flex">
 						Touch
 						<img src="/icons/ui/touch.svg" alt="mouse" style={{ height: "1.5rem" }} />
 					</span>
