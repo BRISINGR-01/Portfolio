@@ -631,6 +631,13 @@ const experience: Experience[] = [
 		context: text["sdg-sabic"].context,
 		links: { Github: "https://github.com/BRISINGR-01/SDG-Challenge-Game-SABIC", Website: "https://www.sabic.com/" },
 		description: text["sdg-sabic"].description,
+		images: [
+			"images/gallery/sabic/demo.png",
+			"images/gallery/sabic/hardware.png",
+			"images/gallery/sabic/ui-2.png",
+			"images/gallery/sabic/ui-3.png",
+			"images/gallery/sabic/ui.png",
+		],
 		icon3D: { scale: 0.4, position: [-0.9, 0.04, 0.27], rotation: [0.8, 0.3, 0.3], wide: false },
 		technologies: [
 			{ name: "ThreeJS", percentage: 12 },

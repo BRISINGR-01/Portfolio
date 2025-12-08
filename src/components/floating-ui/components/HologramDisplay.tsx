@@ -1,49 +1,63 @@
 import { motion } from "framer-motion";
-import React, { useCallback, useRef, useState, type JSX } from "react";
+import React, { useCallback, useEffect, useRef, useState, type JSX } from "react";
 import type { fn } from "../../../types";
 
-const childrenRectId = "children-rect";
 const clipPathId = "inner-frame-clip";
+
+function ContentContainer(props: { box: DOMRect | null; children: React.ReactNode; onClick: fn }) {
+	return (
+		props.box && (
+			<motion.div
+				transition={{ delay: 0.5, duration: 0.3 }}
+				exit={{ opacity: 0, transition: { delay: 0 } }}
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				style={{
+					position: "absolute",
+					zIndex: 1,
+					height: props.box?.height,
+					width: props.box?.width,
+					top: props.box?.top,
+					left: props.box?.left,
+					overflow: "auto",
+				}}
+				className="glow-text"
+				onClick={props.onClick}
+			>
+				{props.children}
+			</motion.div>
+		)
+	);
+}
 
 export default function HologramDisplay(props: { children: React.ReactNode; onClick: fn }) {
 	const [box, setBox] = useState<DOMRect | null>(null);
-	const innerFrame = useRef<SVGSVGElement | null>(null);
+	const innerFrame = useRef<SVGRectElement | null>(null);
 
-	const rectCb = useCallback((node: SVGSVGElement | null) => {
-		if (!node) return;
+	function updateRect() {
+		if (innerFrame.current) setBox(innerFrame.current.getBoundingClientRect().toJSON());
+	}
 
-		innerFrame.current = node.getElementById(childrenRectId) as SVGSVGElement;
-		setBox(innerFrame.current.getBoundingClientRect().toJSON());
+	useEffect(() => {
+		if (!innerFrame.current) return;
+
+		window.addEventListener("resize", updateRect);
+		return () => window.removeEventListener("resize", updateRect);
+	});
+
+	const rectCB = useCallback((node: SVGRectElement | null) => {
+		innerFrame.current = node;
+		console.log(node);
+		updateRect();
 	}, []);
 
 	return (
 		<>
-			{box && (
-				<motion.div
-					transition={{ delay: 0.5, duration: 0.3 }}
-					exit={{ opacity: 0, transition: { delay: 0 } }}
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					style={{
-						position: "absolute",
-						zIndex: 1,
-						height: box?.height,
-						width: box?.width,
-						top: box?.top,
-						left: box?.left,
-						overflow: "auto",
-					}}
-					className="glow-text"
-					onClick={props.onClick}
-				>
-					{props.children}
-				</motion.div>
-			)}
+			<ContentContainer box={box} {...props} />
 
 			<AnimatedSVG>
 				<svg
 					onClick={props.onClick}
-					ref={rectCb}
 					style={{
 						zIndex: 0,
 						position: "absolute",
@@ -59,6 +73,8 @@ export default function HologramDisplay(props: { children: React.ReactNode; onCl
 					xmlns="http://www.w3.org/2000/svg"
 				>
 					{svg}
+					<rect ref={rectCB} x="227.15" y="305.77" width="3931" height="1684" />
+
 					<defs>
 						<clipPath id={clipPathId}>
 							<path
@@ -90,10 +106,78 @@ export default function HologramDisplay(props: { children: React.ReactNode; onCl
 	);
 }
 
+function animateChildren(node: JSX.Element) {
+	if (!node) return null;
+
+	// text nodes, unknown nodes
+	if (typeof node !== "object") return node;
+
+	const isDrawable =
+		node.type === "path" ||
+		node.type === "line" ||
+		node.type === "polyline" ||
+		node.type === "polygon" ||
+		node.type === "circle" ||
+		node.type === "ellipse";
+
+	const MotionTag = isDrawable ? motion[node.type] : node.type;
+
+	return isDrawable ? (
+		<MotionTag
+			key={node.key}
+			{...node.props}
+			variants={{
+				hidden: {
+					opacity: 0,
+					y: 10,
+				},
+				show: {
+					opacity: 1,
+					y: 0,
+					transition: {
+						opacity: { duration: 0.4, ease: "easeOut" },
+						y: { duration: 0.4, ease: "easeOut" },
+					},
+				},
+			}}
+		>
+			{React.Children.map(node.props?.children, animateChildren)}
+		</MotionTag>
+	) : (
+		<MotionTag key={node.key} {...node.props}>
+			{React.Children.map(node.props?.children, animateChildren)}
+		</MotionTag>
+	);
+}
+
+function AnimatedSVG({ children }: { children: JSX.Element }) {
+	return (
+		<motion.svg
+			initial="hidden"
+			animate="show"
+			exit="exit"
+			variants={{
+				hidden: {
+					opacity: 1,
+				},
+				exit: {
+					opacity: 0,
+				},
+				show: {
+					transition: {
+						staggerChildren: 0.004, // delay between elements
+					},
+				},
+			}}
+			{...children.props}
+		>
+			{React.Children.map(children.props.children, animateChildren)}
+		</motion.svg>
+	);
+}
+
 const svg = (
 	<>
-		<rect id="children-rect" x="227.15" y="305.77" width="3931" height="1684" />
-
 		<path
 			d="M1897.87 224.04H3250.87L3251.13 223.81L3257.88 218.03L3385.74 108.41H4320.92V93.9501H3380.35L3245.52 209.59H1901.34L1729.68 122.86H1160.18L1037.59 36.1401H808.48V50.5901H1032.99L1155.58 137.32H1726.24L1897.87 224.04Z"
 			fill="#2981E2"
@@ -238,73 +322,3 @@ const svg = (
 		/>
 	</>
 );
-
-function animateChildren(node: JSX.Element) {
-	if (!node) return null;
-
-	// text nodes, unknown nodes
-	if (typeof node !== "object") return node;
-
-	const isDrawable =
-		node.type === "path" ||
-		node.type === "line" ||
-		node.type === "polyline" ||
-		node.type === "polygon" ||
-		node.type === "circle" ||
-		node.type === "ellipse";
-
-	const MotionTag = isDrawable ? motion[node.type] : node.type;
-
-	return isDrawable ? (
-		<MotionTag
-			key={node.key}
-			{...node.props}
-			variants={{
-				hidden: {
-					opacity: 0,
-					y: 10,
-				},
-				show: {
-					opacity: 1,
-					y: 0,
-					transition: {
-						opacity: { duration: 0.4, ease: "easeOut" },
-						y: { duration: 0.4, ease: "easeOut" },
-					},
-				},
-			}}
-		>
-			{React.Children.map(node.props?.children, animateChildren)}
-		</MotionTag>
-	) : (
-		<MotionTag key={node.key} {...node.props}>
-			{React.Children.map(node.props?.children, animateChildren)}
-		</MotionTag>
-	);
-}
-
-function AnimatedSVG({ children }: { children: JSX.Element }) {
-	return (
-		<motion.svg
-			initial="hidden"
-			animate="show"
-			exit="exit"
-			variants={{
-				hidden: {
-					opacity: 1,
-				},
-				exit: {
-					opacity: 0,
-				},
-				show: {
-					transition: {
-						staggerChildren: 0.004, // delay between elements
-					},
-				},
-			}}
-			{...children.props}
-		>
-			{React.Children.map(children.props.children, animateChildren)}
-		</motion.svg>
-	);
-}

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { type CSSProperties } from "react";
+import { BLUE_FILTER } from "../../constants";
 
 type Props = { img: string };
 
@@ -22,21 +23,25 @@ export default function IconFrame(props: Props & { id: string }) {
 	return (
 		<div className="position-relative w-100">
 			<motion.img
+				initial={{ opacity: 0 }}
+				animate={{ transition: { delay: 0.5 }, opacity: 1 }}
+				exit={{ opacity: 0 }}
+				transition={{ duration: 0.4 }}
 				style={{
 					...middleStyle,
 					width: "60%",
 					maxHeight: "60%",
 					zIndex: 2,
-					filter: "sepia(100%) hue-rotate(157deg) saturate(500%)",
+					filter: BLUE_FILTER,
 				}}
 				src={props.img}
 				alt=""
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1 }}
-				exit={{ opacity: 0 }}
-				transition={{ duration: 0.4 }}
 			/>
-			<img
+			<motion.img
+				initial={{ scale: 0.7 }}
+				animate={{ transition: { delay: 0.5 }, scale: 1 }}
+				exit={{ scale: 0 }}
+				transition={{ duration: 0.4 }}
 				src={`/images/ui/${frame}-frame.png`}
 				alt=""
 				style={{
@@ -46,7 +51,11 @@ export default function IconFrame(props: Props & { id: string }) {
 				}}
 			/>
 			{frame === "square" && (
-				<div
+				<motion.div
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					exit={{ opacity: 0 }}
+					transition={{ delay: 0.7, duration: 0.4 }}
 					style={{
 						...middleStyle,
 						boxShadow: "rgba(255, 255, 255, 0.3) 0px 0px 40px 13px inset",
@@ -58,7 +67,11 @@ export default function IconFrame(props: Props & { id: string }) {
 			)}
 			{frame === "circle" && (
 				<>
-					<div
+					<motion.div
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						transition={{ delay: 0.7, duration: 0.4 }}
 						style={{
 							...middleStyle,
 							borderRadius: "100%",
