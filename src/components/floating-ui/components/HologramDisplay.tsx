@@ -1,36 +1,84 @@
 import { motion } from "framer-motion";
 import React, { useCallback, useEffect, useRef, useState, type JSX } from "react";
+import { COLOR_PALETTE } from "../../../constants";
 import type { fn } from "../../../types";
+import ClickToClose from "./ClickToClose";
 
 const clipPathId = "inner-frame-clip";
 
-function ContentContainer(props: { box: DOMRect | null; children: React.ReactNode; onClick: fn }) {
+function ContentContainer(props: {
+	box: DOMRect | null;
+	children: React.ReactNode;
+	onClick: fn;
+	onSelect?: (i: number) => void;
+	nrOfPages?: number;
+	currentPage?: number;
+}) {
+	if (!props.box) return null;
 	return (
-		props.box && (
-			<motion.div
-				transition={{ delay: 0.5, duration: 0.3 }}
-				exit={{ opacity: 0, transition: { delay: 0 } }}
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1 }}
-				style={{
-					position: "absolute",
-					zIndex: 1,
-					height: props.box?.height,
-					width: props.box?.width,
-					top: props.box?.top,
-					left: props.box?.left,
-					overflow: "auto",
-				}}
-				className="glow-text"
-				onClick={props.onClick}
-			>
-				{props.children}
-			</motion.div>
-		)
+		<motion.div
+			exit={{ opacity: 0 }}
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1, transition: { delay: 0.5, duration: 0.3 } }}
+			style={{
+				position: "absolute",
+				zIndex: 1,
+				height: props.box?.height,
+				width: props.box?.width,
+				top: props.box?.top,
+				left: props.box?.left,
+				overflow: "auto",
+			}}
+			className="glow-text"
+			onClick={props.onClick}
+		>
+			{props.children}
+			<ClickToClose />
+			{props.onSelect && props.nrOfPages && props.currentPage != undefined && (
+				<GalleryNav
+					top={props.box.bottom}
+					onSelect={props.onSelect}
+					nrOfPages={props.nrOfPages}
+					currentPage={props.currentPage}
+				/>
+			)}
+		</motion.div>
 	);
 }
 
-export default function HologramDisplay(props: { children: React.ReactNode; onClick: fn }) {
+function CloseBtn(props: { onClick: fn; box: DOMRect | null }) {
+	if (!props.box) return null;
+
+	return (
+		<motion.div
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1, transition: { delay: 0.5 } }}
+			exit={{ opacity: 0 }}
+			onClick={props.onClick}
+			style={{
+				position: "absolute",
+				zIndex: 10,
+				top: props.box?.top,
+				left: props.box?.left + props.box?.width,
+				transform: "translate(-100%,-100%)",
+				filter: `drop-shadow(0 0 6px ${COLOR_PALETTE.PRIMARY}) 
+             drop-shadow(0 0 12px ${COLOR_PALETTE.PRIMARY})`,
+			}}
+		>
+			<svg width="1.2em" height="1.2em" viewBox="0 0 24 24">
+				<path d="M18 6L6 18M6 6l12 12" stroke={COLOR_PALETTE.PRIMARY} strokeWidth="2" strokeLinecap="round" />
+			</svg>
+		</motion.div>
+	);
+}
+
+export default function HologramDisplay(props: {
+	children: React.ReactNode;
+	onClick: fn;
+	onSelect?: (i: number) => void;
+	nrOfPages?: number;
+	currentPage?: number;
+}) {
 	const [box, setBox] = useState<DOMRect | null>(null);
 	const innerFrame = useRef<SVGRectElement | null>(null);
 
@@ -47,14 +95,13 @@ export default function HologramDisplay(props: { children: React.ReactNode; onCl
 
 	const rectCB = useCallback((node: SVGRectElement | null) => {
 		innerFrame.current = node;
-		console.log(node);
 		updateRect();
 	}, []);
 
 	return (
 		<>
 			<ContentContainer box={box} {...props} />
-
+			<CloseBtn onClick={props.onClick} box={box} />
 			<AnimatedSVG>
 				<svg
 					onClick={props.onClick}
@@ -162,10 +209,13 @@ function AnimatedSVG({ children }: { children: JSX.Element }) {
 				},
 				exit: {
 					opacity: 0,
+					transition: {
+						delay: 0.1,
+					},
 				},
 				show: {
 					transition: {
-						staggerChildren: 0.004, // delay between elements
+						staggerChildren: 0.01, // delay between elements
 					},
 				},
 			}}
@@ -322,3 +372,78 @@ const svg = (
 		/>
 	</>
 );
+
+const arrowStyle: React.CSSProperties = {
+	all: "unset",
+	cursor: "pointer",
+	fontSize: 24,
+	padding: "4px 6px 0 6px",
+	opacity: 0.8,
+};
+
+function GalleryNav({
+	onSelect,
+	nrOfPages,
+	currentPage,
+	top,
+}: {
+	onSelect: (i: number) => void;
+	nrOfPages: number;
+	currentPage: number;
+	top: number;
+}) {
+	return (
+		<div
+			onClick={(e) => {
+				e.preventDefault();
+				e.stopPropagation();
+			}}
+			style={{
+				position: "fixed",
+				transform: "translateY(-100%)",
+				left: 0,
+				top: top,
+				display: "flex",
+				alignItems: "center",
+				padding: "0 10px",
+				justifyContent: "center",
+				width: "100%",
+				gap: 12,
+			}}
+		>
+			<div onClick={() => onSelect(currentPage === 0 ? nrOfPages - 1 : currentPage - 1)} style={arrowStyle}>
+				‹
+			</div>
+
+			<div className="d-flex">
+				{Array.from({ length: nrOfPages }).map((_, i) => (
+					<div
+						key={i}
+						onClick={() => onSelect(i)}
+						className="pointer"
+						style={{
+							padding: "0 8px",
+						}}
+					>
+						<div
+							style={{
+								filter: `drop-shadow(0 0 6px ${COLOR_PALETTE.PRIMARY}) 
+								drop-shadow(0 0 12px ${COLOR_PALETTE.PRIMARY})`,
+								opacity: i === currentPage ? 0.7 : 0.4,
+								transform: i === currentPage ? "scale(1.2)" : "scale(1)",
+								width: 8,
+								height: 8,
+								borderRadius: "50%",
+								background: COLOR_PALETTE.PRIMARY,
+							}}
+						/>
+					</div>
+				))}
+			</div>
+
+			<div onClick={() => onSelect(currentPage === nrOfPages - 1 ? 0 : currentPage + 1)} style={arrowStyle}>
+				›
+			</div>
+		</div>
+	);
+}

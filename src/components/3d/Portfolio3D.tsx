@@ -34,12 +34,13 @@ BatchedMesh.prototype.raycast = acceleratedRaycast;
 
 export default function Portfolio3D() {
 	const [mode, setMode] = useState(Mode.None);
-	const [selectedIcon, setSelectedIcon] = useState<ContentData | null>(null);
+	const [contentIndex, setContentIndex] = useState<number>(-1);
 	const [hovered, setHovered] = useState<ContentData | null>(null);
 	const [visibleIcons, setVisibleIcons] = useState<ContentData[]>([]);
 	const [sub] = useKeyboardControls<Controls>();
 
-	const selectedContent = content[mode];
+	const selectedContent = content[mode] as ContentData[];
+	const selectedIcon: ContentData | null = contentIndex === -1 ? null : selectedContent[contentIndex];
 	// useEdit(selectedContent?.at(-1));
 
 	useEffect(() => {
@@ -55,7 +56,7 @@ export default function Portfolio3D() {
 		const unsub = sub(
 			(state) => state.escape,
 			(pressed) => {
-				if (pressed) setSelectedIcon(null);
+				if (pressed) setContentIndex(-1);
 			}
 		);
 
@@ -70,7 +71,7 @@ export default function Portfolio3D() {
 		if (!selectedContent) return;
 
 		let t: number;
-		setSelectedIcon(null);
+		setContentIndex(-1);
 		setVisibleIcons([]);
 
 		for (let i = 0; i < selectedContent.length; i++) {
@@ -88,12 +89,12 @@ export default function Portfolio3D() {
 					<Raycast
 						key={mode} // refreshes values in the callback
 						onClick={(m: Mesh | null) => {
-							if (!m || !selectedContent) return setSelectedIcon(null);
+							if (!m || !selectedContent) return setContentIndex(-1);
 							const newSelected = selectedContent.find((el) => el.id === m.name) ?? null;
 
-							if (!newSelected || newSelected.id === selectedIcon?.id) return setSelectedIcon(null);
+							if (!newSelected || newSelected.id === selectedIcon?.id) return setContentIndex(-1);
 
-							setSelectedIcon(newSelected);
+							setContentIndex(selectedContent.findIndex(({ id }) => id === newSelected.id));
 						}}
 						onHover={(id: string | null) => {
 							if (!id || !selectedContent) {
@@ -115,7 +116,16 @@ export default function Portfolio3D() {
 			</Environment3D>
 
 			<Delay time={MENU_DELAY}>
-				<ContentDisplay  close={() => setSelectedIcon(null)} data={selectedIcon} type={mode} />
+				{selectedContent && (
+					<ContentDisplay
+						close={() => setContentIndex(-1)}
+						data={selectedIcon}
+						type={mode}
+						nrOfPages={selectedContent.length}
+						onSelect={(i) => setContentIndex(i)}
+						currentPage={contentIndex}
+					/>
+				)}
 				<Menu
 					show={!selectedIcon}
 					selected={mode}

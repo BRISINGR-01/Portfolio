@@ -24,7 +24,7 @@ export default function IconFrame(props: Props & { id: string }) {
 		<div className="position-relative w-100">
 			<motion.img
 				initial={{ opacity: 0 }}
-				animate={{ transition: { delay: 0.5 }, opacity: 1 }}
+				animate={{ transition: { delay: 0.8 }, opacity: 1 }}
 				exit={{ opacity: 0 }}
 				transition={{ duration: 0.4 }}
 				style={{
@@ -39,7 +39,7 @@ export default function IconFrame(props: Props & { id: string }) {
 			/>
 			<motion.img
 				initial={{ scale: 0.7 }}
-				animate={{ transition: { delay: 0.5 }, scale: 1 }}
+				animate={{ transition: { delay: 0.8 }, scale: 1 }}
 				exit={{ scale: 0 }}
 				transition={{ duration: 0.4 }}
 				src={`/images/ui/${frame}-frame.png`}
@@ -69,9 +69,9 @@ export default function IconFrame(props: Props & { id: string }) {
 				<>
 					<motion.div
 						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
+						animate={{ opacity: 1, transition: { delay: 0.7 } }}
 						exit={{ opacity: 0 }}
-						transition={{ delay: 0.7, duration: 0.4 }}
+						transition={{ duration: 0.4 }}
 						style={{
 							...middleStyle,
 							borderRadius: "100%",

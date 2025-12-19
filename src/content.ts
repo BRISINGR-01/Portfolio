@@ -12,14 +12,16 @@ const text = {
 			"My first internship introduced me to professional web development. I learnt to navigate large scale codebases and fixed various issues on both the front- and backend. The project was a marketing console - a tool for organizing TV channels and their content.",
 	},
 	"sdg-sabic": {
-		context: sdgContext,
-		description:
+		context:
 			"Sabic is the second largest plastic producer and a leading industry in packaging, technology and more. For my first SDG Challenge I worked on a gamified recycling initiative for their new office in Amsterdam.",
+		description:
+			"My proposal was to make a game out of recycling and let employees compete for prizes by winning points while using custom made plastic disposal systems",
 	},
 	"sdg-solarwatt": {
-		context: sdgContext,
+		context:
+			"For my second SDG Challenge I colaborated with Paulo Vieira on creating a transparency platform for Solarwatt - a lead in solar panels, energy storage and more in Germany and the Netherlands.",
 		description:
-			"For my second SDG Challenge I colaborated with Paulo Vieira on creating a transparency platform for Solarwatt - a lead in solar panels, energy storage and more in Germany and the Netherlands. I created the virtual course (think of LinkdIn learning or Udemy) of our platform. We were nominated for the finals of the SDG Challenge 2025.",
+			"I created a virtual course (imagine LinkdIn learning or Udemy) of our platform, which provides a certificate of completion upon finishing all lectures and questions. We were nominated for the finals of the SDG Challenge 2025.",
 	},
 	"latin-is-simple": {
 		context:
@@ -198,6 +200,14 @@ const education: Education[] = [
 	},
 ];
 
+export const fontys = {
+	semesters: [
+		{
+			github: "https://github.com/BRISINGR-01/Fontys-projects/tree/master/Greenhouse",
+		},
+	],
+};
+
 export const books: Book[] = [
 	{
 		title: "The Rust Programming Language",
@@ -341,6 +351,10 @@ export const htbBadges: HTBBadge[] = [
 	{
 		title: "Lurk in the packets",
 		description: "Intro to Network Traffic Analysis module completed",
+	},
+	{
+		title: "Philomath",
+		description: "Learning Process module completed",
 	},
 ].map((el) => ({ ...el, image: `/images/hack-the-box/${el.title.replace(/\s/g, "-").toLowerCase()}.webp` }));
 
@@ -632,11 +646,34 @@ const experience: Experience[] = [
 		links: { Github: "https://github.com/BRISINGR-01/SDG-Challenge-Game-SABIC", Website: "https://www.sabic.com/" },
 		description: text["sdg-sabic"].description,
 		images: [
-			"images/gallery/sabic/demo.png",
-			"images/gallery/sabic/hardware.png",
-			"images/gallery/sabic/ui-2.png",
-			"images/gallery/sabic/ui-3.png",
-			"images/gallery/sabic/ui.png",
+			{
+				title: "The final product",
+				src: "images/gallery/sabic/demo.mp4",
+				description:
+					"With a laser-cutter and borrowed hardware I made a box with a card scanner and my phone as a screen to serve as a prototype for the disposal system.",
+			},
+			{
+				title: "Plain hardware",
+				src: "images/gallery/sabic/hardware.png",
+				description:
+					"This is what the hardware looks like under the hood - an ESP32 connected to an RFID/NFC reader. It can scan cards and chips (such as those on the picture) as well as the NFC of mobile phones. The scanned ID is then sent to a server which updates the screen.",
+			},
+			{
+				title: "Login",
+				src: "images/gallery/sabic/ui-2.png",
+				description: "Login is possible either via credentials or QR code",
+			},
+			{
+				title: "Progress screen",
+				src: "images/gallery/sabic/ui-3.png",
+				description:
+					"You can view metrics about saved water/electricity..., encouraging statistics and your position in the scoreboard.",
+			},
+			{
+				title: "3D display",
+				src: "images/gallery/sabic/ui.png",
+				description: "To make it more interesting you can read valuable tips in a 3D explorable area, using ThreeJS",
+			},
 		],
 		icon3D: { scale: 0.4, position: [-0.9, 0.04, 0.27], rotation: [0.8, 0.3, 0.3], wide: false },
 		technologies: [
@@ -652,11 +689,45 @@ const experience: Experience[] = [
 		id: "sdg-solarwatt",
 		title: "SDG Challenge - Solarwatt",
 		icon: "/images/other/SDG-logo-2.webp",
-		links: { Github: "https://github.com/BRISINGR-01/solar-trace", Website: "https://www.solarwatt.com/" },
+		links: {
+			Github: "https://github.com/BRISINGR-01/solar-trace",
+			Website: "https://www.solarwatt.com/",
+			Solartrace: "https://solar-trace.vercel.app/",
+		},
 		timespan: ["09/04/2025", "05/07/2025"],
 		context: text["sdg-solarwatt"].context,
 		description: text["sdg-solarwatt"].description,
 		icon3D: { scale: 0.4, position: [-1.78, -0.1, 0.65], rotation: [-0.9, -1.1, 0.8], wide: false },
+		images: [
+			{
+				src: "images/gallery/solarwatt/qr-code.png",
+				title: "The QR code designed to access the platform",
+				description: "",
+			},
+			{
+				src: "images/gallery/solarwatt/video.png",
+				title: "Video Lectures",
+				description:
+					"Example video lecture. It has most of the modern features + saving progress, but it is required to wathch the whole video to unlock the next section.",
+			},
+			{
+				src: "images/gallery/solarwatt/text.png",
+				title: "Paragraph Lectures",
+				description: "Additionally there are text + pictures style lectures.",
+			},
+			{
+				src: "images/gallery/solarwatt/quiz.png",
+				title: "Quizes",
+				description:
+					"After every couple of lectures there are obligatory questions testing the knowledge of the reader.",
+			},
+			{
+				src: "images/gallery/solarwatt/certificate.png",
+				title: "Certificate",
+				description:
+					"The idea behind the certificate is for companies to show that they are concious about their choices and for emplyees that they are aware of the hidden issues in the solar panel industry.",
+			},
+		],
 		technologies: [
 			{ name: "Typescript", percentage: 30 },
 			{ name: "React", percentage: 52 },

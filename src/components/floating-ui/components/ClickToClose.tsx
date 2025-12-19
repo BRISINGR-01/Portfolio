@@ -1,8 +1,8 @@
 import { Image, Row } from "react-bootstrap";
 
-export default function ClickToClose() {
+export default function ClickToClose(props: { style?: React.CSSProperties }) {
 	return (
-		<Row className="w-100 align-items-center p-0">
+		<Row className="w-100 glow-text align-items-center p-0" style={props.style}>
 			<Image
 				src={`/icons/ui/click.svg`}
 				alt="click"

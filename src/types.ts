@@ -27,7 +27,7 @@ export type Experience = ContentData & {
 	description: string /** What I did there */;
 	links?: { [key: string]: string };
 	technologies?: { name: string; percentage: number }[];
-	images?: string[];
+	images?: { title: string; src: string; description: string }[];
 };
 
 export type Education = ContentData & {

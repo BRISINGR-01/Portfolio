@@ -32,7 +32,6 @@ export default function Globe(props: { langauge?: Language }) {
 		fetch("/dependencies/geodata.json")
 			.then((res) => res.json())
 			.then((countries) => {
-				console.log(countries);
 				g.polygonsData(countries.features)
 					.polygonCapColor(() => countryColor)
 					.polygonSideColor(() => GLOBE_SIDE_COLOR);

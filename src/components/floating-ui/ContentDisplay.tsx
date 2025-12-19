@@ -3,21 +3,32 @@ import type { JSX } from "react/jsx-runtime";
 import { Mode, type Contact, type ContentData, type Education, type Experience, type fn } from "../../types";
 import { parseTimeSpan } from "../../utils";
 import Books from "./books/Books";
+import HologramDisplay from "./components/HologramDisplay";
 import Contacts from "./Contact";
 import EducationDisplay from "./Education";
-import Template from "./Template";
+import Projects from "./Projects";
 
-export default function ContentDisplay({ data, type, close }: { data: ContentData | null; type: Mode; close: fn }) {
+export default function ContentDisplay({
+	data,
+	close,
+	...props
+}: {
+	data: ContentData | null;
+	type: Mode;
+	close: fn;
+	onSelect: (number) => void;
+	nrOfPages: number;
+	currentPage: number;
+}) {
 	let child: JSX.Element | null = null;
 
 	if (!data) return <AnimatePresence />;
 
-	switch (type) {
-		case Mode.Experience:
-			// child = <ExperienceDisplay data={data as Experience} />;
+	switch (props.type) {
+		case Mode.Experience: {
 			const expData = data as Experience;
 			child = (
-				<Template
+				<Projects
 					close={close}
 					data={expData}
 					imageCaption={
@@ -31,6 +42,7 @@ export default function ContentDisplay({ data, type, close }: { data: ContentDat
 				/>
 			);
 			break;
+		}
 		case Mode.Education:
 			switch (data.id) {
 				case "books":
@@ -46,5 +58,11 @@ export default function ContentDisplay({ data, type, close }: { data: ContentDat
 			break;
 	}
 
-	return <AnimatePresence>{child}</AnimatePresence>;
+	return (
+		<AnimatePresence>
+			<HologramDisplay {...props} onClick={close}>
+				{child}
+			</HologramDisplay>
+		</AnimatePresence>
+	);
 }

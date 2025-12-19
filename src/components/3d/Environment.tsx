@@ -51,7 +51,7 @@ export default function Environment(props: { children: React.ReactNode }) {
 	}, [sub, cameraControlsRef]);
 
 	return (
-		<Canvas camera={{ position: INITIAL_CAMERA_POS, fov: 75, near: 0.001 }}>
+		<Canvas frameloop="demand" camera={{ position: INITIAL_CAMERA_POS, fov: 75, near: 0.001 }}>
 			<CameraControls ref={cameraControlsRef} enabled={SKIP_ANIMATIONS || false} />
 			<ambientLight intensity={0.6} />
 			<directionalLight intensity={0.9} position={[200, 100, 300]} />

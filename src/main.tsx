@@ -4,7 +4,7 @@ import Emergency from "./components/Emergency";
 
 import { KeyboardControls } from "@react-three/drei";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { lazy } from "react";
+import { lazy, useState } from "react";
 import Portfolio3D from "./components/3d/Portfolio3D";
 import ContentDisplay from "./components/floating-ui/ContentDisplay";
 import { controlsMap } from "./constants";
@@ -21,8 +21,8 @@ createRoot(document.getElementById("root")!).render(
 				index
 				element={
 					<KeyboardControls map={controlsMap}>
-						{/* <Portfolio3D /> */}
-						<ContentDisplay close={() => {}} data={content.experience[1]} type={Mode.Experience}></ContentDisplay>
+						<Portfolio3D />
+						{/* <Debug /> */}
 					</KeyboardControls>
 				}
 			/>
@@ -40,3 +40,18 @@ createRoot(document.getElementById("root")!).render(
 		</Routes>
 	</BrowserRouter>
 );
+
+function Debug() {
+	const [i, setI] = useState(0);
+
+	return (
+		<ContentDisplay
+			currentPage={i}
+			nrOfPages={content.experience.length}
+			onSelect={setI}
+			close={() => {}}
+			data={content.experience[i]}
+			type={Mode.Experience}
+		></ContentDisplay>
+	);
+}

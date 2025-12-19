@@ -82,3 +82,8 @@ canvas {
 	background: rgba(17, 105, 206, 0.55);
 	border-radius: 10px;
 }
+
+.hover:hover {
+	transform: scale(1.2);
+	box-shadow: 0 0 20px rgba(252, 253, 253, 0.3);
+}

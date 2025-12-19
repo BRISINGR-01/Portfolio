@@ -19,6 +19,7 @@
 	animation: hgBorderGlow 2s infinite alternate;
 	display: flex;
 	flex-direction: column;
+	z-index: 100;
 }
 
 .hg-header {
