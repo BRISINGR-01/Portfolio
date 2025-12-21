@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Stack } from "react-bootstrap";
 import { Mode, type fn } from "../../types.ts";
 import ClickToClose from "./components/ClickToClose.tsx";
 import HologramDisplay from "./components/HologramDisplay.tsx";
@@ -40,7 +40,7 @@ function Grid(props: { children: React.ReactElement[] }) {
 export default function InfoDisplay(props: { onClick: fn }) {
 	return (
 		<HologramDisplay onClick={props.onClick}>
-			<Container fluid className="mb-5 mt-3 gap-3 d-flex flex-column">
+			<Stack className="mb-5 mt-3" gap={3}>
 				<h3 className="text-center">Welcome to my portfolio!</h3>
 				<Grid>
 					{keyboardShortcuts.map(({ key, description }, i) => (
@@ -106,7 +106,7 @@ export default function InfoDisplay(props: { onClick: fn }) {
 						</React.Fragment>
 					))}
 				</Grid>
-			</Container>
+			</Stack>
 			<ClickToClose />{" "}
 		</HologramDisplay>
 	);

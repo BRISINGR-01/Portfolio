@@ -25,9 +25,10 @@ export type Experience = ContentData & {
 	timespan: [string, string];
 	context: string /** Short introduction on the company/setting */;
 	description: string /** What I did there */;
-	links?: { [key: string]: string };
+	links?: { src: string; title?: string; img?: string }[];
 	technologies?: { name: string; percentage: number }[];
 	images?: { title: string; src: string; description: string }[];
+	companyLogo?: string;
 };
 
 export type Education = ContentData & {

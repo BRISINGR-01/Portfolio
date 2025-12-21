@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { type CSSProperties } from "react";
 import { BLUE_FILTER } from "../../constants";
+import FadeAnim from "./components/FadeAnim";
 
 type Props = { img: string };
 
@@ -51,10 +52,7 @@ export default function IconFrame(props: Props & { id: string }) {
 				}}
 			/>
 			{frame === "square" && (
-				<motion.div
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					exit={{ opacity: 0 }}
+				<FadeAnim
 					transition={{ delay: 0.7, duration: 0.4 }}
 					style={{
 						...middleStyle,
@@ -67,10 +65,8 @@ export default function IconFrame(props: Props & { id: string }) {
 			)}
 			{frame === "circle" && (
 				<>
-					<motion.div
-						initial={{ opacity: 0 }}
+					<FadeAnim
 						animate={{ opacity: 1, transition: { delay: 0.7 } }}
-						exit={{ opacity: 0 }}
 						transition={{ duration: 0.4 }}
 						style={{
 							...middleStyle,

@@ -1,7 +1,7 @@
 import type { Book, Contact, DailyDevBadge, Education, Experience, HTBBadge, Language } from "./types";
 import { prettifyTitle } from "./utils";
 
-const sdgContext =
+export const sdgContext =
 	"The SDG (Sustainable Developement Goals) are a set of goals defined by UN meant to make the world a better place. A challenge is regularly organized where groups of students work with companies on lowering their emissions, improving their employees' quality of life...";
 
 const text = {
@@ -21,7 +21,7 @@ const text = {
 		context:
 			"For my second SDG Challenge I colaborated with Paulo Vieira on creating a transparency platform for Solarwatt - a lead in solar panels, energy storage and more in Germany and the Netherlands.",
 		description:
-			"I created a virtual course (imagine LinkdIn learning or Udemy) of our platform, which provides a certificate of completion upon finishing all lectures and questions. We were nominated for the finals of the SDG Challenge 2025.",
+			"Together with Paulo Vieira we created a virtual educational platform called Solartrace. I made a course (similar to LinkdIn learning or Udemy) of our platform, which provides a certificate of completion upon finishing all lectures and questions. We were nominated for the finals of the SDG Challenge 2025.",
 	},
 	"latin-is-simple": {
 		context:
@@ -33,7 +33,7 @@ const text = {
 		context:
 			'This is an ethnic diversity cooperation project between my highschool II English Language Highschool "Thomas Jefferson" and "St. Paisiy Hilendarski" School.',
 		description:
-			"My IT teacher offered me to participate in this extracurricular project, which was my first real rpogramming endeavor. I created and deployed a website portraying the customs and displaying in 3d cultural clothings of different ethnicities in Bulgaria.",
+			"My IT teacher offered me to participate in this extracurricular project, which was my first real programming endeavor. I created and deployed a website portraying the customs and displaying in 3d cultural clothings of different ethnicities in Bulgaria.",
 	},
 	icc: {
 		context:
@@ -49,8 +49,9 @@ const text = {
 	},
 	glow: {
 		context:
-			"Glow is a light festival in Eindhoven, which gathers around 800,000 visitors once a year to illuminate the sky and buildings, showcase professional and student-made attractions and push the limits of creativity",
-		description: "Ever since the first time I visited Glow I wanted to ",
+			'Glow is a light festival in Eindhoven, which gathers around 800,000 visitors once a year to illuminate the sky and buildings, showcase professional and student-made attractions and push the limits of creativity. Ever since the first time I visited Glow I wanted to take part of it, just as people dreamingly say "I want to work at Netflix".',
+		description:
+			"I contributed to two Fontys teams for Glow: Delta (Eindhoven) and Phoenix (Venlo). Fisrt I was part of the Delta team and helped with the ideation, brainstrorming and prototyping. Then I helped the Venlo team with construction and lightning.",
 	},
 	books: {
 		"The Rust Programming Language":
@@ -628,7 +629,7 @@ const experience: Experience[] = [
 		timespan: ["01/07/2021", "30/09/2021"],
 		context: text.A1.context,
 		description: text.A1.description,
-		links: { Website: "https://www.a1.bg/" },
+		links: [{ title: "A1", src: "https://www.a1.bg/", img: "icons/other/A1.svg" }],
 		icon3D: { scale: 0.0015, position: [-1.7, 0.39, 0.4], rotation: [-0.3, 0, 0.1], wide: true },
 		technologies: [
 			{ name: "React", percentage: 10 },
@@ -643,7 +644,14 @@ const experience: Experience[] = [
 		icon: "/images/other/SDG.png",
 		timespan: ["09/04/2024", "05/07/2024"],
 		context: text["sdg-sabic"].context,
-		links: { Github: "https://github.com/BRISINGR-01/SDG-Challenge-Game-SABIC", Website: "https://www.sabic.com/" },
+		links: [
+			{ title: "Sabic", src: "https://www.sabic.com/", img: "images/gallery/sabic/logo.svg" },
+			{
+				title: "Github",
+				src: "https://github.com/BRISINGR-01/SDG-Challenge-Game-SABIC",
+				img: "icons/other/github.svg",
+			},
+		],
 		description: text["sdg-sabic"].description,
 		images: [
 			{
@@ -689,11 +697,11 @@ const experience: Experience[] = [
 		id: "sdg-solarwatt",
 		title: "SDG Challenge - Solarwatt",
 		icon: "/images/other/SDG-logo-2.webp",
-		links: {
-			Github: "https://github.com/BRISINGR-01/solar-trace",
-			Website: "https://www.solarwatt.com/",
-			Solartrace: "https://solar-trace.vercel.app/",
-		},
+		links: [
+			{ title: "Solarwatt", src: "https://www.solarwatt.com/", img: "images/gallery/solarwatt/icon.png" },
+			{ title: "Github", src: "https://github.com/BRISINGR-01/solar-trace", img: "icons/other/github.svg" },
+			{ title: "Solartrace", src: "https://solar-trace.vercel.app/", img: "images/gallery/solarwatt/solartrace.png" },
+		],
 		timespan: ["09/04/2025", "05/07/2025"],
 		context: text["sdg-solarwatt"].context,
 		description: text["sdg-solarwatt"].description,
@@ -701,7 +709,8 @@ const experience: Experience[] = [
 		images: [
 			{
 				src: "images/gallery/solarwatt/qr-code.png",
-				title: "The QR code designed to access the platform",
+				title:
+					"The QR code designed to access the platform. The idea is to print it on the solar panels, share on social media...",
 				description: "",
 			},
 			{
@@ -741,7 +750,9 @@ const experience: Experience[] = [
 		timespan: ["03/01/2022", "02/09/2025"],
 		context: text["latin-is-simple"].context,
 		description: text["latin-is-simple"].description,
-		links: { Website: "https://www.latin-is-simple.com/" },
+		links: [
+			{ title: "Latin is Simple", src: "https://www.latin-is-simple.com/", img: "icons/other/latin-is-simple.svg" },
+		],
 		icon3D: { scale: 0.0015, position: [-0.2, 0.4, -0.1], rotation: [-0.2, 0.2, 0], wide: true },
 		technologies: [
 			{ name: "React", percentage: 22 },
@@ -753,7 +764,7 @@ const experience: Experience[] = [
 	{
 		id: "ablanitsa",
 		title: "Information club “Digital Studio”",
-		links: { Github: "https://github.com/BRISINGR-01/Ablanitsa" },
+		links: [{ title: "Github", src: "https://github.com/BRISINGR-01/Ablanitsa", img: "icons/other/github.svg" }],
 		icon: "/icons/other/2aeg.svg",
 		timespan: ["01/10/2020", "01/06/2021"],
 		context: text.ablanitsa.context,
@@ -774,10 +785,14 @@ const experience: Experience[] = [
 		timespan: ["05/02/2024", "27/07/2024"],
 		context: text.icc.context,
 		description: text.icc.description,
-		links: {
-			LinkdIn: "https://www.linkedin.com/company/icc-the-international-cleaning-company/about/",
-			Website: "http://theinternationalcleaningcompany.com/",
-		},
+		links: [
+			{ title: "ICC", src: "http://theinternationalcleaningcompany.com/", img: "icons/other/ICClogo.svg" },
+			{
+				title: "LinkdIn",
+				src: "https://www.linkedin.com/company/icc-the-international-cleaning-company/about/",
+				img: "icons/other/linkedin.svg",
+			},
+		],
 		icon3D: { scale: 0.001, position: [1.9, 0.45, 0.65], rotation: [-0.2, 0.2, 0], wide: true },
 		technologies: [
 			{ name: "Next JS", percentage: 7 },
@@ -793,7 +808,7 @@ const experience: Experience[] = [
 		timespan: ["09/09/2024", "02/02/2025"],
 		context: text.asml.context,
 		description: text.asml.description,
-		links: { Website: "https://www.asml.com/en" },
+		links: [{ title: "ASML", src: "https://www.asml.com/en", img: "icons/other/ASML.svg" }],
 		icon3D: { scale: 0.002, position: [0.5, 0.19, -0.4], rotation: [-0.4, -0.5, 0.2], wide: true },
 		technologies: [
 			{ name: "C/C++", percentage: 50 },
@@ -807,10 +822,70 @@ const experience: Experience[] = [
 		title: "Glow",
 		icon: "/icons/other/glow.svg",
 		timespan: ["02/02/2025", "01/07/2025"],
-		links: {
-			"Github - Brainstorm": "https://github.com/BRISINGR-01/Fontys-projects/tree/master/Brainstorm",
-			"Github - Hand Drawing": "https://github.com/GLOW-Delta-2025/hand-drawing-prototype",
-		},
+		links: [
+			{
+				title: "Glow",
+				src: "https://gloweindhoven.nl/en/",
+				img: "images/gallery/glow/logo.ico",
+			},
+			{
+				title: "Hand Drawing",
+				src: "https://github.com/GLOW-Delta-2025/hand-drawing-prototype",
+				img: "icons/other/github.svg",
+			},
+			{
+				title: "Brainstorm",
+				src: "https://github.com/BRISINGR-01/Fontys-projects/tree/master/Brainstorm",
+				img: "icons/other/github.svg",
+			},
+		],
+		technologies: [
+			{ name: "Python", percentage: 20 },
+			{ name: "Spotlights", percentage: 40 },
+			{ name: "Ideation", percentage: 40 },
+		],
+		images: [
+			{
+				title: "Hand drawing",
+				src: "images/gallery/glow/Glow-demo.png",
+				description:
+					"With the Deltas we went through a few rounds of prototypes. In the first one Bram (another Delta) and I made a quick gesture controlled drawing animation with python, OpenCV and Cursor. The amount of fingers change the colour and certain gestures stop/start/change the brush.",
+			},
+			{
+				title: "Brainstorm",
+				description:
+					"Here is another prototype, this time for the final concept: The audience powers up the contraption with their ideas (clapping/shouting) which transfers the enrgy to the core and then explodes in light, hence the name - Brainstorm. This is a prototype of the conversion of sound to light.",
+				src: "images/gallery/glow/brainstorm.mp4",
+			},
+			{
+				title: "Diagram",
+				description:
+					"As you can see on the schematic, an Arduino UNO board uses a KY-038 microphone (which I had to tediously adjust with the potentiometer) as input and powers the LED strip directly. I didn't use a separate power source, because only 3-4 LEDs are powered at a time.",
+				src: "images/gallery/glow/diagram.png",
+			},
+			{
+				title: "Physical prototype",
+				description:
+					"At the end of the semester the whole team built a 1:10 scale prototype of the final contraption - it is made of a center piece, top section and 5 arms, full with LEDs as a Glow project should be.",
+				src: "images/gallery/glow/prototype.jpeg",
+			},
+			{
+				title: "Spotlights",
+				description: "As for the Phoenix, I volunteered to program and install the spotlights lightning up the scene.",
+				src: "../public/images/gallery/glow/spotlights.jpeg",
+			},
+			{
+				title: "Console",
+				description:
+					"What you see here is a Freekie console which I used to program the light sequence - bright yellow, gradually fading to red to die into blackness, to be reborn anew - depicting the lifecycle of a phoenix. The hardware limitations required me to be creative to create smooth animations.",
+				src: "images/gallery/glow/console.jpg",
+			},
+			{
+				title: "Phoenix",
+				description: "The final outcome. (Click to enlarge)",
+				src: "images/gallery/glow/phoenix.jpg",
+			},
+		],
 		context: text.glow.context,
 		description: text.glow.description,
 		icon3D: { scale: 0.001, position: [-0.5, 0.3, -0.2], rotation: [-0.7, -0.2, 0.5], wide: true },

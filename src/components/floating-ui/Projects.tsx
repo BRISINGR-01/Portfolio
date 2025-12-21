@@ -1,98 +1,136 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Nav, OverlayTrigger, Stack, Tab, Tooltip } from "react-bootstrap";
 import { BLUE_FILTER, COLOR_PALETTE } from "../../constants";
 import type { Experience, fn } from "../../types";
 import { useIcon } from "../../utils";
-import HoloGallery from "./FloatingImage";
 import IconFrame from "./IconFrame";
 import ChangeAnimation from "./components/ChangeAnimation";
+import FadeAnim from "./components/FadeAnim";
 
 export default function Projects({ data }: { data: Experience; imageCaption?: React.JSX.Element; close: fn }) {
-	const [galleryOpen, setGalleryOpen] = useState(false);
+	return (
+		<Stack className="p-4" gap={4}>
+			<Stack className="flex-lg-row" gap={4}>
+				<div className="d-flex gap-4">
+					{/* Logo + timespan */}
+					<Stack className="align-items-center" gap={3}>
+						<IconFrame id={data.id} img={data.altIcon ?? data.icon} />
+
+						<ChangeAnimation id={"img-meta-" + data.id}>
+							<Stack
+								className="align-items-center text-center px-3 py-2 rounded-3"
+								style={{
+									background: "#00000040",
+									backdropFilter: "blur(1.2px)",
+									boxShadow: "0 0 9px 3px #2b8ab994",
+								}}
+							>
+								<span className="fw-bold">{data.timespan[0]}</span>
+								<div
+									style={{
+										height: "2px",
+										width: "30px",
+										background: "linear-gradient(90deg,#68e4ff,#008cff)",
+									}}
+								/>
+								<span className="fw-bold mt-1">{data.timespan[1]}</span>
+							</Stack>
+						</ChangeAnimation>
+					</Stack>
+
+					{/* Text */}
+					<Stack className="flex-grow-1 desc-context" gap={3}>
+						<ChangeAnimation id={"content-" + data.id}>
+							<h2 className="text-center m-0">{data.title}</h2>
+
+							<Tab.Container defaultActiveKey="description">
+								<Stack>
+									<Tab.Content>
+										<Tab.Pane eventKey="description">{data.description}</Tab.Pane>
+										<Tab.Pane eventKey="context">{data.context}</Tab.Pane>
+									</Tab.Content>
+									<Nav variant="pills" className="mt-4">
+										<Nav.Item>
+											<Nav.Link eventKey="description" className="text-light fs-6">
+												Description
+											</Nav.Link>
+										</Nav.Item>
+										<Nav.Item>
+											<Nav.Link eventKey="context" className="text-light fs-6">
+												Context
+											</Nav.Link>
+										</Nav.Item>
+									</Nav>
+								</Stack>
+							</Tab.Container>
+						</ChangeAnimation>
+						<Links data={data} />
+					</Stack>
+				</div>
+
+				<div>{data.technologies && <TechBarGraph id={data.id} data={data.technologies} />}</div>
+			</Stack>
+
+			<Images data={data} />
+		</Stack>
+	);
+}
+
+function Links({ data }: { data: Experience }) {
+	return (
+		data.links && (
+			<div className="d-flex flex-wrap gap-3 mt-3">
+				{data.links.map(({ src, img, title }, i) => (
+					<OverlayTrigger key={i} placement="bottom" overlay={<Tooltip>{title}</Tooltip>}>
+						<a
+							key={src}
+							href={src}
+							target="_blank"
+							rel="noreferrer"
+							className="hover px-3 py-2 rounded-3 d-flex align-items-center gap-2 text-decoration-none"
+							style={{
+								background: "linear-gradient(135deg, rgba(0,162,255,0.6), rgba(8, 9, 9, 0.6))",
+								boxShadow: "0 0 12px rgba(0,180,255,0.18) inset",
+								border: "1px solid rgba(0,200,255,0.18)",
+								color: "#9fe6ff",
+								fontSize: "0.9rem",
+								transition: "transform .15s ease, box-shadow .15s ease",
+							}}
+							onClick={(e) => e.stopPropagation()}
+						>
+							{img ? (
+								<img
+									src={img}
+									style={{
+										height: "1.6em",
+										filter: "drop-shadow(0 0 10px rgba(233, 238, 240, 0.58))",
+									}}
+								/>
+							) : (
+								title
+							)}
+						</a>
+					</OverlayTrigger>
+				))}
+			</div>
+		)
+	);
+}
+
+function Images({ data }: { data: Experience }) {
+	const imgStyle = {
+		height: "10em",
+		border: `1px solid ${COLOR_PALETTE.PRIMARY}`,
+		borderRadius: 10,
+		boxShadow: `0 0 20px ${COLOR_PALETTE.PRIMARY}`,
+	}; // can't be in global scope bc COLOR_PALETTE.PRIMARY loads during runtime
+
+	const [showBigSrc, setShowBig] = useState<string | null>(null);
 
 	return (
-		<div className="d-flex p-4 gap-4 flex-column">
-			<div className="d-flex gap-4">
-				<div className="d-flex flex-column align-items-center gap-3">
-					<IconFrame id={data.id} img={data.altIcon ?? data.icon} />
-
-					<ChangeAnimation id={"img-meta-" + data.id}>
-						<div
-							className="d-flex flex-column align-items-center text-center px-3 py-2 rounded-3"
-							style={{
-								background: "#60caff52",
-								backdropFilter: "blur(1.2px)",
-								boxShadow: "0 0 9px 3px #2b8ab994",
-							}}
-						>
-							<span className="fw-bold">{data.timespan[0]}</span>
-							<div
-								style={{
-									height: "2px",
-									width: "30px",
-									background: "linear-gradient(90deg,#68e4ff,#008cff)",
-								}}
-							/>
-							<span className="fw-bold mt-1">{data.timespan[1]}</span>
-						</div>
-					</ChangeAnimation>
-
-					{/* Context short line */}
-					{/* <small className="opacity-75 text-center">{data.context}</small> */}
-				</div>
-
-				<div className="flex-grow-1 d-flex flex-column gap-3">
-					<ChangeAnimation id={"content-" + data.id}>
-						<h2 className="text-center m-0">{data.title}</h2>
-
-						<p className="m-0 opacity-90">{data.description}</p>
-					</ChangeAnimation>
-
-					{data.links && (
-						<div className="d-flex flex-wrap gap-3 mt-3">
-							{Object.entries(data.links).map(([title, link]) => (
-								<a
-									key={link}
-									href={link}
-									target="_blank"
-									rel="noreferrer"
-									className="hover px-3 py-2 rounded-3 d-flex align-items-center gap-2 text-decoration-none"
-									style={{
-										background: "linear-gradient(135deg, rgba(0,162,255,0.12), rgba(0,200,255,0.06))",
-										boxShadow: "0 0 12px rgba(0,180,255,0.18) inset",
-										border: "1px solid rgba(0,200,255,0.18)",
-										color: "#9fe6ff",
-										fontSize: "0.9rem",
-										transition: "transform .15s ease, box-shadow .15s ease",
-									}}
-									onClick={(e) => {
-										e.stopPropagation();
-									}}
-								>
-									{(title === "Website" && (data.icon ?? data.altIcon)) || title === "Github" ? (
-										<img
-											src={title === "Website" ? data.icon ?? data.altIcon! : "/icons/other/github.svg"}
-											style={{
-												height: "1.6em",
-												filter: "drop-shadow(0 0 4px rgba(0,200,255,0.8))",
-											}}
-										/>
-									) : (
-										title
-									)}
-								</a>
-							))}
-							{data.images && (
-								<HoloGallery open={galleryOpen} toggle={() => setGalleryOpen(!galleryOpen)} images={data.images} />
-							)}
-						</div>
-					)}
-				</div>
-			</div>
-			<div>{data.technologies && <TechBarGraph id={data.id} data={data.technologies} />}</div>
-
-			<div className="d-flex gap-5 flex-column">
+		<>
+			<Stack gap={5}>
 				{data.images &&
 					data.images.map(({ src, title, description }, i) => (
 						<div
@@ -105,24 +143,50 @@ export default function Projects({ data }: { data: Experience; imageCaption?: Re
 								<h5>{title}</h5>
 								<span>{description}</span>
 							</div>
-							{src.endsWith(".mp4") ? (
-								<video src={src} controls style={imgStyle} />
-							) : (
-								<img src={src} alt="title" style={imgStyle} />
-							)}
+							<div onClick={() => setShowBig(src)} className="hover">
+								{src.endsWith(".mp4") ? (
+									<video src={src} controls style={imgStyle} />
+								) : (
+									<img src={src} alt="title" style={imgStyle} />
+								)}
+							</div>
 						</div>
 					))}
-			</div>
-		</div>
+			</Stack>
+			<AnimatePresence>
+				{showBigSrc && (
+					<FadeAnim
+						onClick={() => setShowBig(null)}
+						style={{
+							position: "fixed",
+							inset: 0,
+							background: "rgba(2,8,15,0.45)",
+							backdropFilter: "blur(2px)",
+							zIndex: 1040,
+							display: "flex",
+							justifyContent: "center",
+							alignItems: "center",
+						}}
+					>
+						{showBigSrc.endsWith(".mp4") ? (
+							<video
+								src={showBigSrc}
+								controls
+								style={{ ...imgStyle, height: "auto", maxHeight: "80vh", maxWidth: "80vw" }}
+							/>
+						) : (
+							<img
+								src={showBigSrc}
+								alt="title"
+								style={{ ...imgStyle, height: "auto", maxHeight: "80vh", maxWidth: "80vw" }}
+							/>
+						)}
+					</FadeAnim>
+				)}
+			</AnimatePresence>
+		</>
 	);
 }
-
-const imgStyle = {
-	height: "10em",
-	border: `1px solid ${COLOR_PALETTE.PRIMARY}`,
-	borderRadius: 10,
-	boxShadow: `0 0 20px ${COLOR_PALETTE.PRIMARY}`,
-};
 
 function TechBarGraph({
 	data,
@@ -138,13 +202,13 @@ function TechBarGraph({
 	const icons = useIcon();
 
 	return (
-		<div className="d-flex flex-column p-2 gap-2" style={{ width: "min-content", height: "min-content" }}>
+		<Stack className="p-2" gap={2} style={{ width: "min-content", height: "min-content" }}>
 			{data.map((t) => {
 				const pct = Math.max(0, Math.min(100, Math.round(t.percentage)));
 				const icon = icons.find((i) => i.name === t.name);
 
 				// number of strips = proportional to pct
-				const totalStrips = Math.min(15, 100 / Math.min(...data.map((d) => d.percentage)));
+				const totalStrips = Math.min(10, 100 / Math.min(...data.map((d) => d.percentage)));
 				const max = Math.max(...data.map((d) => d.percentage));
 				const filled = Math.max(1, Math.round((pct / max) * totalStrips));
 
@@ -181,7 +245,7 @@ function TechBarGraph({
 					</div>
 				);
 			})}
-		</div>
+		</Stack>
 	);
 }
 
@@ -190,7 +254,7 @@ function Strip({ count, value }: { count: number; value: number }) {
 		<div
 			className="position-relative d-flex justify-content-start align-items-stretch"
 			style={{
-				width: 260,
+				width: 200,
 				height: 14,
 			}}
 		>
@@ -207,7 +271,7 @@ function Strip({ count, value }: { count: number; value: number }) {
 						}}
 						transition={{
 							duration: 0.2,
-							delay: i * 0.03 + 1,
+							delay: i * 0.03,
 						}}
 						style={{
 							height: "100%",

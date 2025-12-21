@@ -1,12 +1,12 @@
-import { Col, Container, Image, Row } from "react-bootstrap";
-import type { Book } from "../../../types";
-import ClickToClose from "../components/ClickToClose";
+import { Image, Stack } from "react-bootstrap";
+import type { Book, fn } from "../../../types";
+import FadeAnim from "../components/FadeAnim";
 
 export default function BookDetails(props: { book: Book; onClick: fn }) {
 	return (
-		<Container fluid className="p-0 h-100 d-flex flex-column justify-content-between">
-			<Row className="p-1">
-				<Col xs={12} md={4}>
+		<FadeAnim>
+			<Stack onClick={props.onClick} direction="horizontal" gap={4} className="align-items-start">
+				<div className="col-3 col-md-2">
 					<Image
 						src={`/images/book-covers/${props.book.cover}`}
 						alt={props.book.title}
@@ -17,9 +17,9 @@ export default function BookDetails(props: { book: Book; onClick: fn }) {
 							objectFit: "contain",
 						}}
 					/>
-				</Col>
+				</div>
 
-				<Col xs={12} md={8} className="pe-0 pt-1">
+				<div className="col-8 col-xs-12 pe-0 pt-1">
 					<h4 className="fw-semibold mb-0">{props.book.title}</h4>
 					<h6 className="mb-0" style={{ color: "#7db9bd" }}>
 						{props.book.subTitle}
@@ -30,9 +30,8 @@ export default function BookDetails(props: { book: Book; onClick: fn }) {
 					</h6>
 
 					<p className="mt-4">"{props.book.description}"</p>
-				</Col>
-			</Row>
-			<ClickToClose />
-		</Container>
+				</div>
+			</Stack>
+		</FadeAnim>
 	);
 }

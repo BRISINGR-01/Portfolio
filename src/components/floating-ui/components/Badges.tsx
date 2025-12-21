@@ -1,7 +1,8 @@
-import { motion } from "motion/react";
 import { Card, Container, Image, Row } from "react-bootstrap";
 import { TRANSITION } from "../../../constants";
+import type { fn } from "../../../types";
 import ClickToClose from "./ClickToClose";
+import FadeAnim from "./FadeAnim";
 import G_Card, { Position } from "./G_Card";
 
 export default function Badges(props: {
@@ -10,12 +11,9 @@ export default function Badges(props: {
 	onClick: fn;
 }) {
 	return (
-		<motion.div
+		<FadeAnim
 			style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)" }}
 			key="badges-list"
-			initial={{ opacity: 0 }}
-			animate={{ opacity: 1 }}
-			exit={{ opacity: 0 }}
 			transition={TRANSITION}
 			onClick={props.onClick}
 		>
@@ -63,6 +61,6 @@ export default function Badges(props: {
 				</div>
 				<ClickToClose />
 			</G_Card>
-		</motion.div>
+		</FadeAnim>
 	);
 }

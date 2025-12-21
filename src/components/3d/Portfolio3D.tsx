@@ -84,7 +84,7 @@ export default function Portfolio3D() {
 
 	return (
 		<>
-			<Environment3D>
+			<Environment3D pause={!!selectedIcon}>
 				<Delay time={TABLE_DELAY}>
 					<Raycast
 						key={mode} // refreshes values in the callback

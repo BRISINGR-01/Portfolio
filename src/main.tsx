@@ -47,11 +47,11 @@ function Debug() {
 	return (
 		<ContentDisplay
 			currentPage={i}
-			nrOfPages={content.experience.length}
+			nrOfPages={content.education.length}
 			onSelect={setI}
 			close={() => {}}
-			data={content.experience[i]}
-			type={Mode.Experience}
+			data={content.education[i]}
+			type={Mode.Education}
 		></ContentDisplay>
 	);
 }

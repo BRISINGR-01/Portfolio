@@ -16,7 +16,7 @@ export default function ContentDisplay({
 	data: ContentData | null;
 	type: Mode;
 	close: fn;
-	onSelect: (number) => void;
+	onSelect: (_: number) => void;
 	nrOfPages: number;
 	currentPage: number;
 }) {

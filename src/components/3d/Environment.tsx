@@ -5,9 +5,10 @@ import { DEFAULT_CAMERA_POS, INITIAL_CAMERA_POS, SKIP_ANIMATIONS, ZOOM_IN_DELAY 
 import type { Controls } from "../../types";
 import Room from "./room/Room";
 
-export default function Environment(props: { children: React.ReactNode }) {
+export default function Environment(props: { pause: boolean; children: React.ReactNode }) {
 	const [sub] = useKeyboardControls<Controls>();
 	const cameraControlsRef = useRef<CameraControls>(null);
+	const canvasRef = useRef<>(null);
 
 	useEffect(() => {
 		const zoomIn = () =>
@@ -51,7 +52,10 @@ export default function Environment(props: { children: React.ReactNode }) {
 	}, [sub, cameraControlsRef]);
 
 	return (
-		<Canvas frameloop="demand" camera={{ position: INITIAL_CAMERA_POS, fov: 75, near: 0.001 }}>
+		<Canvas
+			frameloop={props.pause ? "demand" : "always"}
+			camera={{ position: INITIAL_CAMERA_POS, fov: 75, near: 0.001 }}
+		>
 			<CameraControls ref={cameraControlsRef} enabled={SKIP_ANIMATIONS || false} />
 			<ambientLight intensity={0.6} />
 			<directionalLight intensity={0.9} position={[200, 100, 300]} />

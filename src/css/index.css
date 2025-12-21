@@ -83,7 +83,10 @@ canvas {
 	border-radius: 10px;
 }
 
+.hover {
+	transition: 0.3s;
+}
 .hover:hover {
-	transform: scale(1.2);
-	box-shadow: 0 0 20px rgba(252, 253, 253, 0.3);
+	transform: scale(1.1);
+	transition: 0.3s;
 }
