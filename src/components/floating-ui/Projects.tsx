@@ -8,7 +8,7 @@ import IconFrame from "./IconFrame";
 import ChangeAnimation from "./components/ChangeAnimation";
 import FadeAnim from "./components/FadeAnim";
 
-export default function Projects({ data }: { data: Experience; imageCaption?: React.JSX.Element; close: fn }) {
+export default function Projects({ data }: { data: Experience; close: fn }) {
 	return (
 		<Stack className="p-4" gap={4}>
 			<Stack className="flex-lg-row" gap={4}>

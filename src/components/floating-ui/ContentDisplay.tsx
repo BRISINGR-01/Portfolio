@@ -1,68 +1,49 @@
 import { AnimatePresence } from "motion/react";
-import type { JSX } from "react/jsx-runtime";
 import { Mode, type Contact, type ContentData, type Education, type Experience, type fn } from "../../types";
-import { parseTimeSpan } from "../../utils";
 import Books from "./books/Books";
 import HologramDisplay from "./components/HologramDisplay";
 import Contacts from "./Contact";
 import EducationDisplay from "./Education";
+import InfoDisplay from "./InfoDisplay";
 import Projects from "./Projects";
 
-export default function ContentDisplay({
-	data,
-	close,
-	...props
-}: {
+type Props = {
 	data: ContentData | null;
 	type: Mode;
 	close: fn;
 	onSelect: (_: number) => void;
 	nrOfPages: number;
 	currentPage: number;
-}) {
-	let child: JSX.Element | null = null;
+};
 
-	if (!data) return <AnimatePresence />;
+export default function ContentDisplay(props: Props) {
+	return (
+		<AnimatePresence>
+			{props.type === Mode.Info ? (
+				<InfoDisplay onClick={props.close} />
+			) : props.data ? (
+				<HologramDisplay {...props}>
+					<Content {...props} data={props.data} />
+				</HologramDisplay>
+			) : null}
+		</AnimatePresence>
+	);
+}
 
+function Content({ data, ...props }: Props & { data: ContentData }) {
 	switch (props.type) {
 		case Mode.Experience: {
 			const expData = data as Experience;
-			child = (
-				<Projects
-					close={close}
-					data={expData}
-					imageCaption={
-						<>
-							<span className="text-center fw-bold fs-5">{expData.title}</span>
-							<span className="text-nowrap fw-bold fs-6">
-								{parseTimeSpan(expData.timespan[0])} - {parseTimeSpan(expData.timespan[1])}
-							</span>
-						</>
-					}
-				/>
-			);
-			break;
+			return <Projects close={close} data={expData} />;
 		}
 		case Mode.Education:
 			switch (data.id) {
 				case "books":
-					child = <Books close={close} />;
-					break;
+					return <Books close={props.close} />;
 				default:
-					child = <EducationDisplay data={data as Education} />;
-					break;
+					return <EducationDisplay data={data as Education} />;
 			}
-			break;
 		case Mode.Contact:
-			child = <Contacts data={data as Contact} />;
-			break;
+			return <Contacts data={data as Contact} />;
 	}
-
-	return (
-		<AnimatePresence>
-			<HologramDisplay {...props} onClick={close}>
-				{child}
-			</HologramDisplay>
-		</AnimatePresence>
-	);
 }

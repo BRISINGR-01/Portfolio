@@ -1,56 +1,52 @@
 import { motion } from "framer-motion";
 import React, { useCallback, useEffect, useRef, useState, type JSX } from "react";
-import { Stack } from "react-bootstrap";
+import { Image, Stack } from "react-bootstrap";
 import { COLOR_PALETTE } from "../../../constants";
 import type { fn } from "../../../types";
-import ClickToClose from "./ClickToClose";
 import FadeAnim from "./FadeAnim";
-
-const clipPathId = "inner-frame-clip";
 
 function ContentContainer(props: {
 	box: DOMRect | null;
 	children: React.ReactNode;
-	onClick: fn;
+	close: fn;
 	onSelect?: (i: number) => void;
 	nrOfPages?: number;
 	currentPage?: number;
 }) {
-	const scale = 100 / window.innerWidth;
-
 	return (
-		<div
+		<FadeAnim
 			style={{
-				position: "absolute",
-				zIndex: 2,
-				width: "95%",
-				height: "95%",
-				paddingTop: 6, // instead of top,left bc of the clipPath (Firefox is problematic with clipPath)
-				paddingLeft: 4,
-				clipPath: `url(#${clipPathId})`,
+				zIndex: 1,
+				top: props.box?.top,
+				left: props.box?.left,
+				width: props.box?.width,
+				height: props.box?.height,
 			}}
+			transition={{ delay: 0.5 }}
+			className="glow-text position-absolute clip pe-5 glass-morpihic hologram-bg"
+			onClick={props.close}
 		>
-			<FadeAnim
+			<div
+				className="overflow-auto w-100 my-5 ps-5 pb-5"
 				style={{
+					position: "relative",
 					zIndex: 2,
-					transform: `scale(${scale})`,
-					overflow: "auto",
-					transformOrigin: "0 0",
-					width: `calc( 100% / ${scale})`,
-					height: `calc( 100% / ${scale})`,
+					height: "-webkit-fill-available",
 				}}
-				transition={{ delay: 0.5 }}
-				className="glow-text p-4"
-				onClick={props.onClick}
 			>
-				<Stack className="justify-content-between">
+				<Stack className="justify-content-between h-100 mt-3">
 					<div>{props.children}</div>
-					<div className="ps-4 mb-3">
-						<ClickToClose />
-					</div>
+					<Stack direction="horizontal" className="ps-4 pb-4">
+						<Image
+							src={`/icons/ui/click.svg`}
+							alt="click"
+							style={{ filter: "opacity(0.8) blur(0.3px)", width: "auto", height: "2em" }}
+						/>
+						Click anywhere to close
+					</Stack>
 				</Stack>
-			</FadeAnim>
-		</div>
+			</div>
+		</FadeAnim>
 	);
 }
 
@@ -79,13 +75,13 @@ function CloseBtn(props: { onClick: fn; box: DOMRect | null }) {
 
 export default function HologramDisplay(props: {
 	children: React.ReactNode;
-	onClick: fn;
+	close: fn;
 	onSelect?: (i: number) => void;
 	nrOfPages?: number;
 	currentPage?: number;
 }) {
 	const [box, setBox] = useState<DOMRect | null>(null);
-	const innerFrame = useRef<SVGRectElement | null>(null);
+	const innerFrame = useRef<SVGSVGElement | null>(null);
 
 	function updateRect() {
 		if (innerFrame.current) setBox(innerFrame.current.getBoundingClientRect().toJSON());
@@ -98,7 +94,7 @@ export default function HologramDisplay(props: {
 		return () => window.removeEventListener("resize", updateRect);
 	});
 
-	const rectCB = useCallback((node: SVGRectElement | null) => {
+	const rectCB = useCallback((node: SVGSVGElement | null) => {
 		innerFrame.current = node;
 		updateRect();
 	}, []);
@@ -108,58 +104,15 @@ export default function HologramDisplay(props: {
 			{props.onSelect && props.nrOfPages && props.currentPage != undefined && (
 				<GalleryNav onSelect={props.onSelect} nrOfPages={props.nrOfPages} currentPage={props.currentPage} />
 			)}
-			<AnimatedSVG>
-				<svg
-					onClick={props.onClick}
-					style={{
-						zIndex: 0,
-						position: "absolute",
-						top: "50%",
-						left: "50%",
-						transform: "translate(-50%,-50%)",
-						width: "inherit",
-						maxWidth: "calc(100vw - 2em)",
-						maxHeight: "calc(100vh - 2em)",
-					}}
-					viewBox="0 0 100 52"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					{svg}
-					<rect ref={rectCB} x="7" y="8" width="87" height="41" />
-					<defs>
-						<clipPath id={clipPathId}>
-							<path
-								d="M78.1234 49.8165H76.8265L74.0308 47.843H69.3184L69.7587 47.5139H60.9984L57.0844 45.5404H47.0873L47.5275 45.8692H33.112L33.5523 45.5404H25.2867L24.8951 45.8751H22.9895L21.4283 47.4311H16.8153L15.7418 48.5009H4.66613L4.63694 48.4483C4.46545 48.1399 4.239 47.8707 3.9642 47.6484L3.92634 47.6179V32.3196L4.81437 31.4346V25.1744L3.92634 24.2893V19.4801L3.77446 19.6392V18.6647L4.0764 18.3632L4.29145 18.5227V12.1184L4.2894 12.0654V9.17908L7.7813 5.88886L8.9122 5.8884L11.0203 3.78724H12.5815L13.1836 3.18736H15.3302L15.7706 2.52945H22.0376L21.8727 2.36492H23.1697L25.9653 4.33864H30.6775L30.2372 4.66748H38.9977L42.9117 6.64121H52.9088L52.4686 6.31214H66.8839L66.4436 6.64121H74.7092L75.1001 6.30691H77.0066L78.5678 4.751H83.1808L84.255 3.68074H95.1428L95.1729 3.72944C95.3868 4.07785 95.6807 4.38074 96.023 4.60513L96.0691 4.6354V19.8624L95.182 20.7467V27.0081L96.0691 27.8918V32.7015L96.2217 32.5418V33.5169L95.9195 33.8184L95.7047 33.6591V40.0639L95.706 40.1165V43.0025L92.2139 46.293H91.0844L88.9758 48.3941H87.4146L86.8125 48.9942H84.6659L84.2255 49.6522H77.9583L78.1234 49.8165Z"
-								fill="#29ABE2"
-							/>
-						</clipPath>
-					</defs>
 
-					<foreignObject id="clip" width="100%" height="100%" clipPath={`url(#${clipPathId})`}>
-						<div
-							style={{
-								position: "absolute",
-								width: "100%",
-								height: "100%",
-								zIndex: 1,
-								clipPath: `url(#${clipPathId})`,
-							}}
-						>
-							<ContentContainer box={box} {...props} />
-						</div>
-						<CloseBtn onClick={props.onClick} box={box} />
+			<ContentContainer box={box} {...props} />
 
-						<motion.div
-							transition={{ delay: 0.3, duration: 0.3 }}
-							initial={{ height: 0 }}
-							exit={{ height: 0, transition: { delay: 0 } }}
-							animate={{ height: "100%" }}
-							className="glass-morpihic hologram-bg"
-							style={{ clipPath: `url(#${clipPathId})` }}
-						/>
-					</foreignObject>
-				</svg>
+			<AnimatedSVG onClick={props.close}>
+				{svg}
+
+				<foreignObject ref={rectCB} width="100%" height="100%">
+					<CloseBtn onClick={props.close} box={box} />
+				</foreignObject>
 			</AnimatedSVG>
 		</>
 	);
@@ -199,9 +152,10 @@ function animateChildren(node: JSX.Element) {
 	);
 }
 
-function AnimatedSVG({ children }: { children: JSX.Element }) {
+function AnimatedSVG(props: { children: JSX.Element[]; onClick: fn }) {
 	return (
 		<motion.svg
+			onClick={props.onClick}
 			initial="hidden"
 			animate="show"
 			exit="exit"
@@ -210,21 +164,24 @@ function AnimatedSVG({ children }: { children: JSX.Element }) {
 				exit: { opacity: 0, transition: { delay: 0.1 } },
 				show: { transition: { staggerChildren: 0.01 /* delay between elements*/ } },
 			}}
-			{...children.props}
+			style={{
+				zIndex: 0,
+				position: "absolute",
+				top: "50%",
+				left: "50%",
+				transform: "translate(-50%,-50%)",
+				width: "inherit",
+				maxWidth: "calc(100vw - 2em)",
+				maxHeight: "calc(100vh - 2em)",
+			}}
+			viewBox="0 0 100 52"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
 		>
-			{React.Children.map(children.props.children, animateChildren)}
+			{React.Children.map(props.children, animateChildren)}
 		</motion.svg>
 	);
 }
-
-const arrowStyle: React.CSSProperties = {
-	all: "unset",
-	cursor: "pointer",
-	fontSize: 24,
-	padding: "4px 6px 0 6px",
-	opacity: 0.8,
-	color: "white",
-};
 
 function GalleryNav({
 	onSelect,
@@ -264,9 +221,9 @@ function GalleryNav({
 				}}
 			>
 				<div
-					className="pointer"
+					className="pointer navArrow"
 					onClick={() => onSelect(currentPage === 0 ? nrOfPages - 1 : currentPage - 1)}
-					style={{ ...arrowStyle, color: COLOR_PALETTE.PRIMARY }}
+					style={{ color: COLOR_PALETTE.PRIMARY }}
 				>
 					‹
 				</div>
@@ -298,9 +255,9 @@ function GalleryNav({
 				</div>
 
 				<div
-					className="pointer"
+					className="pointer navArrow"
 					onClick={() => onSelect(currentPage === nrOfPages - 1 ? 0 : currentPage + 1)}
-					style={{ ...arrowStyle, color: COLOR_PALETTE.PRIMARY }}
+					style={{ color: COLOR_PALETTE.PRIMARY }}
 				>
 					›
 				</div>

@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Row } from "react-bootstrap";
+import { Row, Stack } from "react-bootstrap";
 import { books } from "../../../content";
 import type { Book, fn } from "../../../types";
 import Loader from "../../3d/Loader";

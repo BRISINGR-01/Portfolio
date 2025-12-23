@@ -9,7 +9,7 @@ import {
 	disposeBoundsTree,
 } from "three-mesh-bvh";
 import { BatchedMesh } from "three/webgpu";
-import { ICON_DELAY, MENU_DELAY, TABLE_DELAY } from "../../constants";
+import { ICON_DELAY, MENU_DELAY, SKIP_ANIMATIONS, TABLE_DELAY } from "../../constants";
 
 import content from "../../content.ts";
 import "../../css/floating-ui.css";
@@ -33,7 +33,7 @@ BatchedMesh.prototype.disposeBoundsTree = disposeBatchedBoundsTree;
 BatchedMesh.prototype.raycast = acceleratedRaycast;
 
 export default function Portfolio3D() {
-	const [mode, setMode] = useState(Mode.None);
+	const [mode, setMode] = useState(Mode.Experience);
 	const [contentIndex, setContentIndex] = useState<number>(-1);
 	const [hovered, setHovered] = useState<ContentData | null>(null);
 	const [visibleIcons, setVisibleIcons] = useState<ContentData[]>([]);
@@ -44,27 +44,26 @@ export default function Portfolio3D() {
 	// useEdit(selectedContent?.at(-1));
 
 	useEffect(() => {
-		if (!window.localStorage.getItem("isFirstEntry")) {
-			window.localStorage.setItem("isFirstEntry", "true");
-			setMode(Mode.Info);
-		}
-
 		const t = setTimeout(() => {
-			if (mode === Mode.None) setMode(Mode.Experience);
+			if (SKIP_ANIMATIONS) return;
+
+			if (!window.localStorage.getItem("isFirstEntry")) {
+				window.localStorage.setItem("isFirstEntry", "true");
+				setMode(Mode.Info);
+			} else {
+				setMode(Mode.Experience);
+			}
 		}, TABLE_DELAY);
 
 		const unsub = sub(
 			(state) => state.escape,
-			(pressed) => {
-				if (pressed) setContentIndex(-1);
-			}
+			(pressed) => pressed && setContentIndex(-1)
 		);
 
 		return () => {
 			unsub();
 			clearTimeout(t);
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [sub]);
 
 	useEffect(() => {

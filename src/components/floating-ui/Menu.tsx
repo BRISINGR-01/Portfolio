@@ -62,7 +62,7 @@ export default function Menu(props: {
 
 export function MenuButtons(props: { selected: Mode; onSelect: (type: Mode) => void; disabled: boolean; show: fn }) {
 	return (
-		<Row>
+		<Row className="gap-3 px-3 justify-content-center">
 			{modes.map(({ mode, icon }, i) => (
 				<OverlayTrigger
 					key={i}
@@ -78,7 +78,7 @@ export function MenuButtons(props: { selected: Mode; onSelect: (type: Mode) => v
 							background: props.selected === mode ? "#5b90c59c" : undefined,
 							boxShadow: props.selected === mode ? "rgb(255, 255, 255) 0px 0px 5px" : undefined,
 						}}
-						className="menu-icon mx-2 icon pointer"
+						className="menu-icon icon pointer"
 						onClick={() => {
 							if (props.disabled) return;
 

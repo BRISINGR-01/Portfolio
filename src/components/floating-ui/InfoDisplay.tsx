@@ -1,7 +1,6 @@
 import React from "react";
 import { Stack } from "react-bootstrap";
 import { Mode, type fn } from "../../types.ts";
-import ClickToClose from "./components/ClickToClose.tsx";
 import HologramDisplay from "./components/HologramDisplay.tsx";
 import { MenuButtons } from "./Menu.tsx";
 
@@ -39,7 +38,7 @@ function Grid(props: { children: React.ReactElement[] }) {
 
 export default function InfoDisplay(props: { onClick: fn }) {
 	return (
-		<HologramDisplay onClick={props.onClick}>
+		<HologramDisplay close={props.onClick}>
 			<Stack className="mb-5 mt-3" gap={3}>
 				<h3 className="text-center">Welcome to my portfolio!</h3>
 				<Grid>
@@ -107,7 +106,6 @@ export default function InfoDisplay(props: { onClick: fn }) {
 					))}
 				</Grid>
 			</Stack>
-			<ClickToClose />{" "}
 		</HologramDisplay>
 	);
 }
