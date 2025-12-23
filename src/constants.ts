@@ -14,7 +14,7 @@ export const COLOR_PALETTE = {
 
 export const GLOBE_SIDE_COLOR = "#1abaff1c";
 export const GLOBE_HIGHLIGHT_COLOR = "#0019bbff";
-export const HOVER_OUTLINE_HIDDEN = "#1abaff".charAt;
+export const HOVER_OUTLINE_HIDDEN = "#1abaff";
 export const PERSISTENT_OUTLINE = "#ffffff";
 
 window.addEventListener("DOMContentLoaded", () => {

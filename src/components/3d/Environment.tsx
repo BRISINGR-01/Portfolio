@@ -8,7 +8,6 @@ import Room from "./room/Room";
 export default function Environment(props: { pause: boolean; children: React.ReactNode }) {
 	const [sub] = useKeyboardControls<Controls>();
 	const cameraControlsRef = useRef<CameraControls>(null);
-	const canvasRef = useRef<>(null);
 
 	useEffect(() => {
 		const zoomIn = () =>
