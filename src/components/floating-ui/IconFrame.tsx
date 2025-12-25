@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { type CSSProperties } from "react";
 import { BLUE_FILTER } from "../../constants";
+import ChangeAnimation from "./components/ChangeAnimation";
 import FadeAnim from "./components/FadeAnim";
 
 type Props = { img: string };
@@ -22,77 +22,67 @@ export default function IconFrame(props: Props & { id: string }) {
 	}
 
 	return (
-		<div className="position-relative w-100">
-			<motion.img
+		<div
+			className="position-relative"
+			style={{
+				width: props.id === "asml" ? "12em" : "100%",
+			}}
+		>
+			<motion.div
+				className="w-100 h-100 position-absolute top-0 left-0 z-2"
 				initial={{ opacity: 0 }}
 				animate={{ transition: { delay: 0.8 }, opacity: 1 }}
-				exit={{ opacity: 0 }}
 				transition={{ duration: 0.4 }}
-				style={{
-					...middleStyle,
-					width: "60%",
-					maxHeight: "60%",
-					zIndex: 2,
-					filter: BLUE_FILTER,
-				}}
-				src={props.img}
-				alt=""
-			/>
-			<motion.img
+			>
+				<ChangeAnimation id={props.id + "logo"} className="w-100 h-100">
+					<img
+						src={props.img}
+						alt="logo"
+						className="centered"
+						style={{
+							width: "60%",
+							maxHeight: "60%",
+							zIndex: 2,
+							filter: BLUE_FILTER,
+						}}
+					/>
+				</ChangeAnimation>
+			</motion.div>
+			<motion.div
 				initial={{ scale: 0.7 }}
 				animate={{ transition: { delay: 0.8 }, scale: 1 }}
-				exit={{ scale: 0 }}
 				transition={{ duration: 0.4 }}
-				src={`/images/ui/${frame}-frame.png`}
-				alt=""
 				style={{
 					zIndex: 1,
 					position: "relative",
 					width: "100%",
 				}}
-			/>
-			{frame === "square" && (
-				<FadeAnim
-					transition={{ delay: 0.7, duration: 0.4 }}
-					style={{
-						...middleStyle,
-						boxShadow: "rgba(255, 255, 255, 0.3) 0px 0px 40px 13px inset",
-						height: "71%",
-						width: "71%",
-						zIndex: 1,
-					}}
-				/>
-			)}
-			{frame === "circle" && (
-				<>
-					<FadeAnim
-						animate={{ opacity: 1, transition: { delay: 0.7 } }}
-						transition={{ duration: 0.4 }}
-						style={{
-							...middleStyle,
-							borderRadius: "100%",
-							boxShadow: "rgba(255, 255, 255, 0.3) 0px 0px 40px 13px inset",
-							height: "52%",
-							width: "52%",
-							zIndex: 1,
-						}}
-					/>
+			>
+				<ChangeAnimation id={props.id + "frame"} className="w-100 h-100">
+					<img src={`/images/ui/${frame}-frame.png`} alt="frame" width="100%" />
+				</ChangeAnimation>
+			</motion.div>
+			<FadeAnim
+				transition={{ delay: 0.7, duration: 0.4 }}
+				noExit
+				className="centered"
+				style={{
+					height: "71%",
+					width: "71%",
+					zIndex: 1,
+				}}
+			>
+				<ChangeAnimation id={props.id + "shadow"} className="w-100 h-100">
 					<div
+						className="w-100 h-100"
 						style={{
-							boxShadow: "#11202ccf 0px 0px 20px 20px",
-							...middleStyle,
-							zIndex: 0,
+							background: "var(--dark)",
+							borderRadius: frame !== "circle" ? 0 : "100%",
+							display: frame === "long" ? "none" : undefined,
 						}}
 					/>
-				</>
-			)}
+				</ChangeAnimation>
+			</FadeAnim>
 		</div>
 	);
 }
-
-const middleStyle: CSSProperties = {
-	position: "absolute",
-	top: "50%",
-	left: "50%",
-	transform: "translate(-50%,-50%)",
-};

@@ -1,14 +1,14 @@
 import { Suspense } from "react";
 import { Row, Stack } from "react-bootstrap";
 import { books } from "../../../content";
-import type { Book, fn } from "../../../types";
+import type { Book } from "../../../types";
 import Loader from "../../3d/Loader";
 import FadeAnim from "../components/FadeAnim";
 import Book3DEffect from "./Book3DEffect";
 
-export default function BookList(props: { onSelect: (book: Book) => void; onClick: fn }) {
+export default function BookList(props: { onSelect: (book: Book) => void }) {
 	return (
-		<FadeAnim key="book-list" onClick={props.onClick}>
+		<FadeAnim key="book-list">
 			<h4 className="text-center mt-2">Technical books that I have read</h4>
 			<Row className="m-2 justify-content-center">
 				{books.map((book, i) => (

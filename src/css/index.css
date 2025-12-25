@@ -8,6 +8,7 @@
 	--tertiary: #01fefe;
 	--bs-tertiary: var(--tertiary);
 	--bs-tertiary-rgb: 111, 241, 213;
+	--dark: #00000040;
 
 	--hologram: rgb(110, 127, 188);
 	--hologram-light: rgb(175, 243, 248);
@@ -89,4 +90,11 @@ canvas {
 .hover:hover {
 	transform: scale(1.1);
 	transition: 0.3s;
+}
+
+.centered {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }

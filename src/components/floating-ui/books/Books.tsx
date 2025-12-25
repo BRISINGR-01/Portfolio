@@ -1,12 +1,12 @@
 import { AnimatePresence } from "motion/react";
 import { useState } from "react";
 import { TRANSITION } from "../../../constants";
-import type { Book, fn } from "../../../types";
+import type { Book } from "../../../types";
 import FadeAnim from "../components/FadeAnim";
 import BookDetails from "./BookDetails";
 import BookList from "./BookList";
 
-export default function Books({ close }: { close: fn }) {
+export default function Books() {
 	const [selected, setSelected] = useState<Book | null>(null);
 
 	return (
@@ -15,7 +15,7 @@ export default function Books({ close }: { close: fn }) {
 				{selected ? (
 					<BookDetails book={selected} onClick={() => setSelected(null)} />
 				) : (
-					<BookList onSelect={(book) => setSelected(book)} onClick={close} />
+					<BookList onSelect={(book) => setSelected(book)} />
 				)}
 			</AnimatePresence>
 		</FadeAnim>

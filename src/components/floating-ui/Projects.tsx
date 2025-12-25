@@ -1,18 +1,18 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
-import { Nav, OverlayTrigger, Stack, Tab, Tooltip } from "react-bootstrap";
-import { BLUE_FILTER, COLOR_PALETTE } from "../../constants";
+import { Modal, Nav, OverlayTrigger, Stack, Tab, Tooltip } from "react-bootstrap";
+import { BLUE_FILTER } from "../../constants";
 import type { Experience, fn } from "../../types";
 import { useIcon } from "../../utils";
 import IconFrame from "./IconFrame";
 import ChangeAnimation from "./components/ChangeAnimation";
-import FadeAnim from "./components/FadeAnim";
+import Frame from "./components/Frame";
 
 export default function Projects({ data }: { data: Experience; close: fn }) {
 	return (
 		<Stack className="p-4" gap={4}>
 			<Stack className="flex-lg-row" gap={4}>
-				<div className="d-flex gap-4">
+				<Stack direction="horizontal" gap={4}>
 					{/* Logo + timespan */}
 					<Stack className="align-items-center" gap={3}>
 						<IconFrame id={data.id} img={data.altIcon ?? data.icon} />
@@ -21,9 +21,9 @@ export default function Projects({ data }: { data: Experience; close: fn }) {
 							<Stack
 								className="align-items-center text-center px-3 py-2 rounded-3"
 								style={{
-									background: "#00000040",
+									background: "#00000030",
 									backdropFilter: "blur(1.2px)",
-									boxShadow: "0 0 9px 3px #2b8ab994",
+									boxShadow: "#0dcaf08c 0px 0px 4px 2px",
 								}}
 							>
 								<span className="fw-bold">{data.timespan[0]}</span>
@@ -67,7 +67,7 @@ export default function Projects({ data }: { data: Experience; close: fn }) {
 						</ChangeAnimation>
 						<Links data={data} />
 					</Stack>
-				</div>
+				</Stack>
 
 				<div>{data.technologies && <TechBarGraph id={data.id} data={data.technologies} />}</div>
 			</Stack>
@@ -119,13 +119,6 @@ function Links({ data }: { data: Experience }) {
 }
 
 function Images({ data }: { data: Experience }) {
-	const imgStyle = {
-		height: "10em",
-		border: `1px solid ${COLOR_PALETTE.PRIMARY}`,
-		borderRadius: 10,
-		boxShadow: `0 0 20px ${COLOR_PALETTE.PRIMARY}`,
-	}; // can't be in global scope bc COLOR_PALETTE.PRIMARY loads during runtime
-
 	const [showBigSrc, setShowBig] = useState<string | null>(null);
 
 	return (
@@ -144,46 +137,29 @@ function Images({ data }: { data: Experience }) {
 								<span>{description}</span>
 							</div>
 							<div onClick={() => setShowBig(src)} className="hover">
-								{src.endsWith(".mp4") ? (
-									<video src={src} controls style={imgStyle} />
-								) : (
-									<img src={src} alt="title" style={imgStyle} />
-								)}
+								<Frame size={4}>
+									{src.endsWith(".mp4") ? (
+										<video src={src} controls className="show-image-small" />
+									) : (
+										<img src={src} alt="title" className="show-image-small" />
+									)}
+								</Frame>
 							</div>
 						</div>
 					))}
 			</Stack>
-			<AnimatePresence>
-				{showBigSrc && (
-					<FadeAnim
-						onClick={() => setShowBig(null)}
-						style={{
-							position: "fixed",
-							inset: 0,
-							background: "rgba(2,8,15,0.45)",
-							backdropFilter: "blur(2px)",
-							zIndex: 1040,
-							display: "flex",
-							justifyContent: "center",
-							alignItems: "center",
-						}}
-					>
-						{showBigSrc.endsWith(".mp4") ? (
-							<video
-								src={showBigSrc}
-								controls
-								style={{ ...imgStyle, height: "auto", maxHeight: "80vh", maxWidth: "80vw" }}
-							/>
-						) : (
-							<img
-								src={showBigSrc}
-								alt="title"
-								style={{ ...imgStyle, height: "auto", maxHeight: "80vh", maxWidth: "80vw" }}
-							/>
-						)}
-					</FadeAnim>
-				)}
-			</AnimatePresence>
+			<Modal show={!!showBigSrc} dialogClassName="show-image-backdrop" onHide={() => setShowBig(null)}>
+				<Modal.Body className="p-0">
+					<Frame size={8}>
+						{showBigSrc &&
+							(showBigSrc.endsWith(".mp4") ? (
+								<video src={showBigSrc} controls className="show-image-small show-image-extended" />
+							) : (
+								<img src={showBigSrc} className="show-image-small show-image-extended" alt="title" />
+							))}
+					</Frame>
+				</Modal.Body>
+			</Modal>
 		</>
 	);
 }

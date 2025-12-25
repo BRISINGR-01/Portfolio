@@ -6,6 +6,7 @@ import { KeyboardControls } from "@react-three/drei";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { lazy } from "react";
 import Portfolio3D from "./components/3d/Portfolio3D";
+import Frame from "./components/floating-ui/components/Frame";
 import { controlsMap } from "./constants";
 import "./css/index.css";
 
@@ -38,17 +39,10 @@ createRoot(document.getElementById("root")!).render(
 	</BrowserRouter>
 );
 
-// function Debug() {
-// 	const [i, setI] = useState(0);
-
-// 	return (
-// 		<ContentDisplay
-// 			currentPage={i}
-// 			nrOfPages={content.education.length}
-// 			onSelect={setI}
-// 			close={() => {}}
-// 			data={content.education[i]}
-// 			type={Mode.Education}
-// 		></ContentDisplay>
-// 	);
-// }
+function Debug() {
+	return (
+		<Frame size={5}>
+			<img src="images/gallery/glow/Glow-demo.png" height="200px" />
+		</Frame>
+	);
+}

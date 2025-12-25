@@ -39,7 +39,7 @@ function Content({ data, ...props }: Props & { data: ContentData }) {
 		case Mode.Education:
 			switch (data.id) {
 				case "books":
-					return <Books close={props.close} />;
+					return <Books />;
 				default:
 					return <EducationDisplay data={data as Education} />;
 			}
