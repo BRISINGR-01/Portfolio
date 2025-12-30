@@ -9,6 +9,14 @@ import BookList from "./BookList";
 export default function Books() {
 	const [selected, setSelected] = useState<Book | null>(null);
 
+	// useEffect(() => {
+	// if (selected) {
+	// 	setCb(() => () => setSelected(null));
+	// } else {
+	// setCb(null);
+	// }
+	// }, [setCb, selected]);
+
 	return (
 		<FadeAnim key="books" transition={TRANSITION}>
 			<AnimatePresence>

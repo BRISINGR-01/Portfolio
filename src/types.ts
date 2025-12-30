@@ -22,13 +22,19 @@ export type Icon = {
 };
 
 export type Experience = ContentData & {
-	timespan: [string, string];
 	context: string /** Short introduction on the company/setting */;
-	description: string /** What I did there */;
-	links?: { src: string; title?: string; img?: string }[];
-	technologies?: { name: string; percentage: number }[];
-	images?: { title: string; src: string; description: string }[];
 	companyLogo?: string;
+	project: Project;
+};
+
+export type Project = {
+	title: string;
+	description: React.JSX.Element | string;
+	icon: string;
+	timespan: string[];
+	technologies?: { name: string; percentage: number }[];
+	github?: string;
+	content?: { description: React.JSX.Element | string; img: string }[];
 };
 
 export type Education = ContentData & {
@@ -104,4 +110,9 @@ export type Countries = {
 			area: number;
 		};
 	};
+};
+
+export type Semester = {
+	description: string;
+	projects: Project[];
 };

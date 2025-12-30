@@ -1,13 +1,10 @@
 :root {
 	--primary: rgb(0, 170, 255);
 	--bs-primary: var(--primary);
-	--bs-primary-rgb: 84, 186, 245;
 	--secondary: rgb(2, 10, 21);
-	--bs-secondary: #020a15;
-	--bs-secondary-rgb: var(--secondary);
-	--tertiary: #01fefe;
+	--bs-secondary: var(var(--bs-secondary));
+	--tertiary: #339ffe;
 	--bs-tertiary: var(--tertiary);
-	--bs-tertiary-rgb: 111, 241, 213;
 	--dark: #00000040;
 
 	--hologram: rgb(110, 127, 188);

@@ -1,58 +1,7 @@
-import type { Book, Contact, DailyDevBadge, Education, Experience, HTBBadge, Language } from "./types";
-import { prettifyTitle } from "./utils";
-
-export const sdgContext =
-	"The SDG (Sustainable Developement Goals) are a set of goals defined by UN meant to make the world a better place. A challenge is regularly organized where groups of students work with companies on lowering their emissions, improving their employees' quality of life...";
+import projects from "./content/projects";
+import type { Book, DailyDevBadge, HTBBadge, Semester } from "./types";
 
 const text = {
-	A1: {
-		context:
-			"A1 Bulgaria (previously known as Mtel or Mobiltel) is one of the biggest telecommunications company in Bulgaria owned by A1 Telekom Austria Group.",
-		description:
-			"My first internship introduced me to professional web development. I learnt to navigate large scale codebases and fixed various issues on both the front- and backend. The project was a marketing console - a tool for organizing TV channels and their content.",
-	},
-	"sdg-sabic": {
-		context:
-			"Sabic is the second largest plastic producer and a leading industry in packaging, technology and more. For my first SDG Challenge I worked on a gamified recycling initiative for their new office in Amsterdam.",
-		description:
-			"My proposal was to make a game out of recycling and let employees compete for prizes by winning points while using custom made plastic disposal systems",
-	},
-	"sdg-solarwatt": {
-		context:
-			"For my second SDG Challenge I colaborated with Paulo Vieira on creating a transparency platform for Solarwatt - a lead in solar panels, energy storage and more in Germany and the Netherlands.",
-		description:
-			"Together with Paulo Vieira we created a virtual educational platform called Solartrace. I made a course (similar to LinkdIn learning or Udemy) of our platform, which provides a certificate of completion upon finishing all lectures and questions. We were nominated for the finals of the SDG Challenge 2025.",
-	},
-	"latin-is-simple": {
-		context:
-			"Created by two Austrian graduates this language learning app has gained dozens of thousands of users over the years. It is arguably the most advanced Latin-learning platform. It provides tools such as trainers, sentence analisys, and many more. URL: https://www.latin-is-simple.com/",
-		description:
-			'My task was to redevelop the training section. There, students can practice translation, grammar and refresh their memory in any of the five trainers: "Translation", "Advenced", "Quiz", "Cards" and "Forms". The trainers contain rigorously tested complex question generation, pattern matching to accept various answers and a scoreboard system',
-	},
-	ablanitsa: {
-		context:
-			'This is an ethnic diversity cooperation project between my highschool II English Language Highschool "Thomas Jefferson" and "St. Paisiy Hilendarski" School.',
-		description:
-			"My IT teacher offered me to participate in this extracurricular project, which was my first real programming endeavor. I created and deployed a website portraying the customs and displaying in 3d cultural clothings of different ethnicities in Bulgaria.",
-	},
-	icc: {
-		context:
-			"ICC offers top-notch home and office cleaning services. It was founded by Fontys students who allowed other students to work alongside them as a semester project, which I joined for my 3rd semester.",
-		description:
-			"I worked closely with one of the founders of the company to create interactive statistics and display of bookings as well as refactor the booking form. As it was a start-up it allowed me to contribute more than I could to big companies like A1 and ASML.",
-	},
-	asml: {
-		context:
-			"ASML is a global leader in lithography technology, enabling chipmakers to create microchips that are more powerful, faster and energy efficient. They create the machines used by companies like Intel to produce high-quality chips.",
-		description:
-			"I had the opportunity to work on a code analysis tool that generates an interactive report, helping to visualize and understand complex codebases. This project pushed me to grow technically while also giving me insight into how global-scale companies operate.",
-	},
-	glow: {
-		context:
-			'Glow is a light festival in Eindhoven, which gathers around 800,000 visitors once a year to illuminate the sky and buildings, showcase professional and student-made attractions and push the limits of creativity. Ever since the first time I visited Glow I wanted to take part of it, just as people dreamingly say "I want to work at Netflix".',
-		description:
-			"I contributed to two Fontys teams for Glow: Delta (Eindhoven) and Phoenix (Venlo). Fisrt I was part of the Delta team and helped with the ideation, brainstrorming and prototyping. Then I helped the Venlo team with construction and lightning.",
-	},
 	books: {
 		"The Rust Programming Language":
 			"The official book on the Rust programming language, written by the Rust development team at the Mozilla Foundation, fully updated for Rust 2018",
@@ -78,135 +27,94 @@ const text = {
 	},
 };
 
-const education: Education[] = [
-	{
-		id: "books",
-		title: "Books",
-		description: "Books that I have read",
-		icon: "/3d/books.glb",
-		icon3D: {
-			scale: 1.5,
-			position: [-0.4, -0.36, 0.2],
-			rotation: [0, 1.5, 0],
-		},
-	},
-	{
-		id: "certificates",
-		title: "Certificates",
-		description: "",
-		icon: "/icons/other/certificate-detail.svg",
-		icon3D: {
-			scale: 0.001,
-			position: [-0.97, -0.03, -0.4],
-			rotation: [-0.5, -0.5, 0.2],
-			wide: true,
-		},
-	},
-	{
-		id: "fireship",
-		title: "Fireship",
-		description: "",
-		icon: "/icons/other/fireship.svg",
-		icon3D: {
-			scale: 0.0007,
-			position: [-1.53, 0.28, -0.3],
-			rotation: [-0.25, 0.1, 0.05],
-			wide: true,
-		},
-		altIcon: "/icons/other/fireship-original.svg",
-	},
-	{
-		id: "tue",
-		title: "Tue (Embedded Systems Pre-master)",
-		description: "",
-		icon: "/icons/other/tue.svg",
-		icon3D: {
-			scale: 0.004,
-			position: [0.4, 0.13, -0.2],
-			rotation: [0.25, 0.1, 0.05],
-			wide: true,
-		},
-	},
-	{
-		id: "fontys",
-		title: "Fontys (Academic preperation)",
-		description: "",
-		icon: "/icons/other/fontys.svg",
-		icon3D: {
-			scale: 0.006,
-			position: [1.52, 0.54, -0.5],
-			rotation: [-0.25, -0.6, 0.15],
-			wide: true,
-		},
-	},
-	{
-		id: "htb",
-		title: "Hack the Box",
-		description: "",
-		icon: "/icons/other/htb.svg",
-		icon3D: {
-			scale: 0.003,
-			position: [-2, 0.2, -0.05],
-			rotation: [-0.6, 0.5, -0.4],
-			wide: true,
-		},
-	},
-	{
-		id: "primagen",
-		title: "The Last Algorithms Course You'll Need",
-		description: "",
-		icon: "/images/other/primeagen-icon.webp",
-		icon3D: {
-			scale: 0.7,
-			position: [-2, -0.1, 0.07],
-			rotation: [-0.8, -0.6, -0.5],
-		},
-	},
-	{
-		id: "math",
-		title: "Academic Preparation",
-		description:
-			"Graph Theory\
-		 Logic and Set Thoery\
-		 Applied Logic\
-		 Linear Algebra\
-		 Data Structures & Algorithms 1\
-		 Automata\
-		 Data Science\
-		 Statistics\
-		 Decision Theory\
-		 Functional Programming\
-		 Synchronisation\
-		 Data Structures & Algorithms 2",
-		icon: "/3d/math.glb",
-		icon3D: {
-			scale: 1.5,
-			position: [2.8, 0.2, 0.25],
-			rotation: [0, -1, 0],
-			wide: true,
-		},
-		altIcon: "/images/other/math.webp",
-	},
-	{
-		id: "daily-dev",
-		title: "Daily Dev",
-		description: "",
-		icon: "/icons/other/daily-dev.svg",
-		icon3D: {
-			position: [-1.8, -0.2, 0.07],
-			rotation: [-1.35, 0.1, 0.05],
-			scale: 0.001,
-			wide: true,
-		},
-	},
-];
+export const aboutMe = {};
 
 export const fontys = {
+	img: "/icons/other/fontys.svg",
+	description:
+		"I study ICT (Information Communication Technology) at Fontys University of Applied Sciences in Eindhoven. This is an applied university which means that emphasis is put on practicing skills in a real life-like environment, rather than plain theory.",
 	semesters: [
 		{
-			github: "https://github.com/BRISINGR-01/Fontys-projects/tree/master/Greenhouse",
+			description:
+				"The 1st semester was introductory, so we made very basic projects which I did my best to overcomplicate",
+			projects: [
+				{
+					title: "Greenhouse",
+					github: "https://github.com/BRISINGR-01/Fontys-projects/tree/master/Greenhouse",
+					images: [
+						{ description: "", src: "images/gallery/fontys/sem1/graph.png" },
+						{ description: "", src: "images/gallery/fontys/sem1/termometers.png" },
+					],
+				},
+				{
+					title: "Pizzeria website",
+					github: "https://github.com/BRISINGR-01/Fontys-projects/tree/master/Pizzeria%20website",
+					images: [
+						{ description: "", src: "images/gallery/fontys/sem1/admin.png" },
+						{ description: "", src: "images/gallery/fontys/sem1/login.png" },
+						{ description: "", src: "images/gallery/fontys/sem1/menu.png" },
+					],
+				},
+			],
 		},
-	],
+		{
+			description:
+				"During the 2nd semester we had to make high-quality professional projects with both business needs and best practices in mind",
+			projects: [
+				{
+					title: "Event Manager",
+					github: "https://github.com/BRISINGR-01/Event-Manager-TSH/tree/84e5a940329e8965d555d0e67fa34f1c98ca3dae",
+					images: [
+						{
+							description:
+								"My personal project was an event management desktop app (WinForms) and website (.NET) for the place where I lived (TSH). The main focus was on best practices for a scalable professional product with the proper documentation and user testing. The most important features include:",
+							src: "images/gallery/fontys/sem2/tsh.png",
+						},
+						{
+							description:
+								"Layered architecture, authentication middleware, unit tests, design patterns, email service",
+							src: "images/gallery/fontys/sem2/login.png",
+						},
+						{
+							description:
+								"complete error handling, Azure hosted database (MySQL), CI/CD pipeline which updates a docker hub image, rate limiter and more.",
+							src: "images/gallery/fontys/sem2/error.png",
+						},
+					],
+				},
+				{
+					title: "SQL ORM",
+					github: "https://github.com/BRISINGR-01/Basic-SQL-Query-Builder",
+					images: [
+						{
+							description:
+								"We were not allowed to use ORMs, which meant that we have to write SQL queries in strings with no type checking and tons of boilerplate code. I couldn't stand it, so I implemented my own library in C# to make SQL queries with type checks and object construction. Basically one can make a simple select statement like on the picture with basic qsl features like where, order, limit... and recieve a single/list instance(s) of a class containing the data. I ended up using it on all my personal and group projects for two semesters.",
+							src: "images/gallery/fontys/sem2/sql.png",
+						},
+					],
+				},
+			],
+		},
+		{
+			description:
+				"I switched to a different form of education in my 3rd semester (Open Learning) which allowed me to work with real companies and no limitations",
+			projects: [
+				projects.icc,
+				{
+					title: "Personal Portfolio",
+					images: [
+						{
+							description:
+								"This is the first iteration of my this portfolio. I was inspired by 3D ones like Bruno Simon's and initially tried to create one with a moving character. The first draft included flying with different modes (testing it was quite fun).",
+							src: "images/gallery/fontys/sem3/wings.png",
+						},
+						{ description: "", src: "images/gallery/fontys/sem3/cycling.png" },
+						{ description: "", src: "images/gallery/fontys/sem3/physics.png" },
+					],
+				},
+			],
+		},
+	] as Semester[],
 };
 
 export const books: Book[] = [
@@ -620,398 +528,3 @@ export const certificates = [
 		tags: ["Databases", "Neo4j", "Go (Programming Language)"],
 	},
 ];
-
-const experience: Experience[] = [
-	{
-		id: "A1",
-		title: "A1 Internship",
-		icon: "/icons/other/A1.svg",
-		timespan: ["01/07/2021", "30/09/2021"],
-		context: text.A1.context,
-		description: text.A1.description,
-		links: [{ title: "A1", src: "https://www.a1.bg/", img: "icons/other/A1.svg" }],
-		icon3D: { scale: 0.0015, position: [-1.7, 0.39, 0.4], rotation: [-0.3, 0, 0.1], wide: true },
-		technologies: [
-			{ name: "React", percentage: 10 },
-			{ name: "Express", percentage: 65 },
-			{ name: "Docker", percentage: 5 },
-			{ name: "GraphQl", percentage: 20 },
-		],
-	},
-	{
-		id: "sdg-sabic",
-		title: "SDG Challenge - Sabic",
-		icon: "/images/other/SDG.png",
-		timespan: ["09/04/2024", "05/07/2024"],
-		context: text["sdg-sabic"].context,
-		links: [
-			{ title: "Sabic", src: "https://www.sabic.com/", img: "images/gallery/sabic/logo.svg" },
-			{
-				title: "Github",
-				src: "https://github.com/BRISINGR-01/SDG-Challenge-Game-SABIC",
-				img: "icons/other/github.svg",
-			},
-		],
-		description: text["sdg-sabic"].description,
-		images: [
-			{
-				title: "The final product",
-				src: "images/gallery/sabic/demo.mp4",
-				description:
-					"With a laser-cutter and borrowed hardware I made a box with a card scanner and my phone as a screen to serve as a prototype for the disposal system.",
-			},
-			{
-				title: "Plain hardware",
-				src: "images/gallery/sabic/hardware.png",
-				description:
-					"This is what the hardware looks like under the hood - an ESP32 connected to an RFID/NFC reader. It can scan cards and chips (such as those on the picture) as well as the NFC of mobile phones. The scanned ID is then sent to a server which updates the screen.",
-			},
-			{
-				title: "Login",
-				src: "images/gallery/sabic/ui-2.png",
-				description: "Login is possible either via credentials or QR code",
-			},
-			{
-				title: "Progress screen",
-				src: "images/gallery/sabic/ui-3.png",
-				description:
-					"You can view metrics about saved water/electricity..., encouraging statistics and your position in the scoreboard.",
-			},
-			{
-				title: "3D display",
-				src: "images/gallery/sabic/ui.png",
-				description: "To make it more interesting you can read valuable tips in a 3D explorable area, using ThreeJS",
-			},
-		],
-		icon3D: { scale: 0.4, position: [-0.9, 0.04, 0.27], rotation: [0.8, 0.3, 0.3], wide: false },
-		technologies: [
-			{ name: "ThreeJS", percentage: 12 },
-			{ name: "Typescript", percentage: 31 },
-			{ name: "React", percentage: 20 },
-			{ name: "Supabase + Vercel", percentage: 7 },
-			{ name: "C/C++", percentage: 10 },
-			{ name: "Arduino", percentage: 10 },
-		],
-	},
-	{
-		id: "sdg-solarwatt",
-		title: "SDG Challenge - Solarwatt",
-		icon: "/images/other/SDG-logo-2.webp",
-		links: [
-			{ title: "Solarwatt", src: "https://www.solarwatt.com/", img: "images/gallery/solarwatt/icon.png" },
-			{ title: "Github", src: "https://github.com/BRISINGR-01/solar-trace", img: "icons/other/github.svg" },
-			{ title: "Solartrace", src: "https://solar-trace.vercel.app/", img: "images/gallery/solarwatt/solartrace.png" },
-		],
-		timespan: ["09/04/2025", "05/07/2025"],
-		context: text["sdg-solarwatt"].context,
-		description: text["sdg-solarwatt"].description,
-		icon3D: { scale: 0.4, position: [-1.78, -0.1, 0.65], rotation: [-0.9, -1.1, 0.8], wide: false },
-		images: [
-			{
-				src: "images/gallery/solarwatt/qr-code.png",
-				title:
-					"The QR code designed to access the platform. The idea is to print it on the solar panels, share on social media...",
-				description: "",
-			},
-			{
-				src: "images/gallery/solarwatt/video.png",
-				title: "Video Lectures",
-				description:
-					"Example video lecture. It has most of the modern features + saving progress, but it is required to wathch the whole video to unlock the next section.",
-			},
-			{
-				src: "images/gallery/solarwatt/text.png",
-				title: "Paragraph Lectures",
-				description: "Additionally there are text + pictures style lectures.",
-			},
-			{
-				src: "images/gallery/solarwatt/quiz.png",
-				title: "Quizes",
-				description:
-					"After every couple of lectures there are obligatory questions testing the knowledge of the reader.",
-			},
-			{
-				src: "images/gallery/solarwatt/certificate.png",
-				title: "Certificate",
-				description:
-					"The idea behind the certificate is for companies to show that they are concious about their choices and for emplyees that they are aware of the hidden issues in the solar panel industry.",
-			},
-		],
-		technologies: [
-			{ name: "Typescript", percentage: 30 },
-			{ name: "React", percentage: 52 },
-			{ name: "Vercel", percentage: 8 },
-		],
-	},
-	{
-		id: "latin-is-simple",
-		title: "Latin is simple",
-		icon: "/icons/other/latin-is-simple.svg",
-		timespan: ["03/01/2022", "02/09/2025"],
-		context: text["latin-is-simple"].context,
-		description: text["latin-is-simple"].description,
-		links: [
-			{ title: "Latin is Simple", src: "https://www.latin-is-simple.com/", img: "icons/other/latin-is-simple.svg" },
-		],
-		icon3D: { scale: 0.0015, position: [-0.2, 0.4, -0.1], rotation: [-0.2, 0.2, 0], wide: true },
-		technologies: [
-			{ name: "React", percentage: 22 },
-			{ name: "Bootstrap", percentage: 22 },
-			{ name: "Typescript", percentage: 55 },
-			{ name: "Python", percentage: 1 },
-		],
-	},
-	{
-		id: "ablanitsa",
-		title: "Information club “Digital Studio”",
-		links: [{ title: "Github", src: "https://github.com/BRISINGR-01/Ablanitsa", img: "icons/other/github.svg" }],
-		icon: "/icons/other/2aeg.svg",
-		timespan: ["01/10/2020", "01/06/2021"],
-		context: text.ablanitsa.context,
-		description: text.ablanitsa.description,
-		icon3D: { scale: 0.005, position: [-0.5, -0.3, 0.2], rotation: [-1.5, 0, -0.5], wide: true },
-		technologies: [
-			{ name: "HTML", percentage: 10 },
-			{ name: "CSS", percentage: 15 },
-			{ name: "Javascript", percentage: 45 },
-			{ name: "ThreeJS", percentage: 20 },
-			{ name: "Firebase", percentage: 10 },
-		],
-	},
-	{
-		id: "icc",
-		title: "The International Cleaning Company",
-		icon: "/icons/other/ICClogo.svg",
-		timespan: ["05/02/2024", "27/07/2024"],
-		context: text.icc.context,
-		description: text.icc.description,
-		links: [
-			{ title: "ICC", src: "http://theinternationalcleaningcompany.com/", img: "icons/other/ICClogo.svg" },
-			{
-				title: "LinkdIn",
-				src: "https://www.linkedin.com/company/icc-the-international-cleaning-company/about/",
-				img: "icons/other/linkedin.svg",
-			},
-		],
-		icon3D: { scale: 0.001, position: [1.9, 0.45, 0.65], rotation: [-0.2, 0.2, 0], wide: true },
-		technologies: [
-			{ name: "Next JS", percentage: 7 },
-			{ name: "Typescript", percentage: 45 },
-			{ name: "Supabase", percentage: 13 },
-			{ name: "React", percentage: 35 },
-		],
-	},
-	{
-		id: "asml",
-		title: "ASML Internship",
-		icon: "/icons/other/ASML.svg",
-		timespan: ["09/09/2024", "02/02/2025"],
-		context: text.asml.context,
-		description: text.asml.description,
-		links: [{ title: "ASML", src: "https://www.asml.com/en", img: "icons/other/ASML.svg" }],
-		icon3D: { scale: 0.002, position: [0.5, 0.19, -0.4], rotation: [-0.4, -0.5, 0.2], wide: true },
-		technologies: [
-			{ name: "C/C++", percentage: 50 },
-			{ name: "HTML", percentage: 10 },
-			{ name: "CSS", percentage: 10 },
-			{ name: "Javascript", percentage: 30 },
-		],
-	},
-	{
-		id: "glow",
-		title: "Glow",
-		icon: "/icons/other/glow.svg",
-		timespan: ["02/02/2025", "01/07/2025"],
-		links: [
-			{
-				title: "Glow",
-				src: "https://gloweindhoven.nl/en/",
-				img: "images/gallery/glow/logo.ico",
-			},
-			{
-				title: "Hand Drawing",
-				src: "https://github.com/GLOW-Delta-2025/hand-drawing-prototype",
-				img: "icons/other/github.svg",
-			},
-			{
-				title: "Brainstorm",
-				src: "https://github.com/BRISINGR-01/Fontys-projects/tree/master/Brainstorm",
-				img: "icons/other/github.svg",
-			},
-		],
-		technologies: [
-			{ name: "Python", percentage: 20 },
-			{ name: "Spotlights", percentage: 40 },
-			{ name: "Ideation", percentage: 40 },
-		],
-		images: [
-			{
-				title: "Hand drawing",
-				src: "images/gallery/glow/Glow-demo.png",
-				description:
-					"With the Deltas we went through a few rounds of prototypes. In the first one Bram (another Delta) and I made a quick gesture controlled drawing animation with python, OpenCV and Cursor. The amount of fingers change the colour and certain gestures stop/start/change the brush.",
-			},
-			{
-				title: "Brainstorm",
-				description:
-					"Here is another prototype, this time for the final concept: The audience powers up the contraption with their ideas (clapping/shouting) which transfers the enrgy to the core and then explodes in light, hence the name - Brainstorm. This is a prototype of the conversion of sound to light.",
-				src: "images/gallery/glow/brainstorm.mp4",
-			},
-			{
-				title: "Diagram",
-				description:
-					"As you can see on the schematic, an Arduino UNO board uses a KY-038 microphone (which I had to tediously adjust with the potentiometer) as input and powers the LED strip directly. I didn't use a separate power source, because only 3-4 LEDs are powered at a time.",
-				src: "images/gallery/glow/diagram.png",
-			},
-			{
-				title: "Physical prototype",
-				description:
-					"At the end of the semester the whole team built a 1:10 scale prototype of the final contraption - it is made of a center piece, top section and 5 arms, full with LEDs as a Glow project should be.",
-				src: "images/gallery/glow/prototype.jpeg",
-			},
-			{
-				title: "Spotlights",
-				description: "As for the Phoenix, I volunteered to program and install the spotlights lightning up the scene.",
-				src: "../public/images/gallery/glow/spotlights.jpeg",
-			},
-			{
-				title: "Console",
-				description:
-					"What you see here is a Freekie console which I used to program the light sequence - bright yellow, gradually fading to red to die into blackness, to be reborn anew - depicting the lifecycle of a phoenix. The hardware limitations required me to be creative to create smooth animations.",
-				src: "images/gallery/glow/console.jpg",
-			},
-			{
-				title: "Phoenix",
-				description: "The final outcome. (Click to enlarge)",
-				src: "images/gallery/glow/phoenix.jpg",
-			},
-		],
-		context: text.glow.context,
-		description: text.glow.description,
-		icon3D: { scale: 0.001, position: [-0.5, 0.3, -0.2], rotation: [-0.7, -0.2, 0.5], wide: true },
-	},
-];
-
-const contacts: Contact[] = [
-	{
-		id: "gmail",
-		title: "Gmail",
-		icon: "icons/other/gmail.svg",
-		address: "alexander.popov233@gmail.com",
-		url: "mailto:alexander.popov233@gmail.com",
-		icon3D: {
-			position: [0.49, 0.574, 0.2],
-			rotation: [0.1, 0, 0],
-			scale: 0.009,
-			wide: true,
-		},
-	},
-	{
-		id: "github",
-		title: "Github",
-		icon: "icons/other/github.svg",
-		address: "BRISINGR-01",
-		url: "https://github.com/BRISINGR-01",
-		icon3D: {
-			position: [0, 0.25, 0.1],
-			rotation: [-0.15, 0, 0.05],
-			scale: 0.003,
-			wide: true,
-		},
-	},
-	{
-		id: "gitlab",
-		title: "Gitlab",
-		icon: "icons/other/gitlab.svg",
-		address: "BRISINGR-01",
-		url: "https://gitlab.com/BRISINGR-01",
-		icon3D: {
-			position: [0.319, -0.038, 0.159],
-			rotation: [-0.441, -0.208, -0.505],
-			scale: 0.005,
-			wide: true,
-		},
-	},
-	{
-		id: "linkedin",
-		title: "LinkedIn",
-		icon: "icons/other/linkedin.svg",
-		address: "alexander-popov-61126825a",
-		url: "https://www.linkedin.com/in/alexander-popov-61126825a/",
-		icon3D: {
-			position: [-0.502, 0.172, 0.319],
-			rotation: [0.143, 0.408, 0.028],
-			scale: 0.004,
-			wide: true,
-		},
-	},
-	{
-		id: "x",
-		title: "X",
-		icon: "icons/other/x.svg",
-		address: "AlexPopov233",
-		url: "https://twitter.com/AlexPopov233",
-		icon3D: {
-			position: [-1.61, -0.36, 0.7],
-			rotation: [-1.6, 0.0, -0.5],
-			scale: 0.0012,
-			wide: true,
-		},
-	},
-	{
-		id: "instagram",
-		title: "Instagram",
-		icon: "images/other/instagram.png",
-		address: "@alexan6451",
-		url: "https://www.instagram.com/alexan6451/",
-		icon3D: {
-			position: [-0.712, -0.13, 0.304],
-			rotation: [2.14, 0.61, 4.33],
-			scale: 0.3,
-			wide: true,
-		},
-	},
-	{
-		id: "whatsapp",
-		title: "Whatsapp",
-		icon: "icons/other/whatsapp.svg",
-		address: "+31620429868",
-		url: "tel:+31620429868",
-		icon3D: {
-			position: [1.682, 0.204, 0.064],
-			rotation: [0.4, -0.6, 0],
-			scale: 0.0016,
-			wide: true,
-		},
-	},
-];
-
-const languages: Language[] = [
-	{ id: "bulgarian", iso: "bul" },
-	{ id: "dutch", iso: "nld" },
-	{ id: "english", iso: "eng" },
-	{ id: "french", iso: "fra" },
-	{ id: "german", iso: "deu" },
-	{ id: "italian", iso: "ita" },
-	{ id: "portuguese", iso: "por" },
-	{ id: "spanish", iso: "spa" },
-	// {id: "russian", iso: "rus"},
-].map(({ id, iso }, i, total) => {
-	i -= (total.length - 1) / 2;
-
-	return {
-		id,
-		title: prettifyTitle(id),
-		icon: `/icons/languages/${id}.svg`,
-		iso,
-		icon3D: {
-			position: [i * 0.7 - 0.3, 0, 0.6] as [number, number, number],
-			rotation: [-Math.PI / 5, 0, 0] as [number, number, number],
-			scale: 0.015,
-			wide: true,
-		},
-	};
-});
-
-const content = { experience, education, contacts, languages };
-export default content;

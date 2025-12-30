@@ -8,28 +8,31 @@ import { svg } from "./hologram-display/svg";
 export default function HologramDisplay(props: {
 	children: React.ReactNode;
 	close: fn;
+	goBackCb: fn | null;
 	onSelect?: (i: number) => void;
 	nrOfPages?: number;
 	currentPage?: number;
 }) {
-	const [box, setBox] = useState<DOMRect | null>(null);
-	const innerFrame = useRef<SVGSVGElement | null>(null);
+	const [boxes, setBoxes] = useState<{
+		x: DOMRect | null;
+		frame: DOMRect | null;
+	}>({ frame: null, x: null });
+	const frameRef = useRef<SVGSVGElement | null>(null);
+	const XposRef = useRef<SVGSVGElement | null>(null);
 
-	function updateRect() {
-		if (innerFrame.current) setBox(innerFrame.current.getBoundingClientRect().toJSON());
+	function update() {
+		setBoxes({
+			frame: frameRef.current ? frameRef.current.getBoundingClientRect().toJSON() : null,
+			x: XposRef.current ? XposRef.current.getBoundingClientRect().toJSON() : null,
+		});
 	}
 
 	useEffect(() => {
-		if (!innerFrame.current) return;
+		if (!frameRef.current) return;
 
-		window.addEventListener("resize", updateRect);
-		return () => window.removeEventListener("resize", updateRect);
+		window.addEventListener("resize", update);
+		return () => window.removeEventListener("resize", update);
 	});
-
-	const rectCB = useCallback((node: SVGSVGElement | null) => {
-		innerFrame.current = node;
-		updateRect();
-	}, []);
 
 	return (
 		<>
@@ -39,14 +42,34 @@ export default function HologramDisplay(props: {
 				<GalleryNav onSelect={props.onSelect} nrOfPages={props.nrOfPages} currentPage={props.currentPage} />
 			)}
 
-			{box && <ContentContainer box={box} {...props} />}
+			{boxes.frame && boxes.x && (
+				<ContentContainer
+					box={
+						boxes as {
+							x: DOMRect;
+							frame: DOMRect;
+							backBtn: DOMRect;
+						}
+					}
+					{...props}
+				/>
+			)}
 
 			<AnimatedSVG onClick={props.close}>
 				{svg}
-				<foreignObject ref={rectCB} width="100%" height="100%" />
+				<foreignObject ref={useRegisterRef(frameRef, update)} width="100%" height="100%" />
+				<rect ref={useRegisterRef(XposRef, update)} x="90" y="6" width="1" height="1" />
 			</AnimatedSVG>
 		</>
 	);
+}
+
+function useRegisterRef(ref: React.RefObject<SVGElement | null>, update: fn) {
+	return useCallback((node: SVGElement | null) => {
+		ref.current = node;
+		update();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 }
 
 function animateChildren(node: JSX.Element) {

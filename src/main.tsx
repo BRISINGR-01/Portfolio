@@ -6,9 +6,11 @@ import { KeyboardControls } from "@react-three/drei";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { lazy } from "react";
 import Portfolio3D from "./components/3d/Portfolio3D";
-import Frame from "./components/floating-ui/components/Frame";
+import ContentDisplay from "./components/floating-ui/ContentDisplay";
 import { controlsMap } from "./constants";
+import content from "./content/index";
 import "./css/index.css";
+import { Mode } from "./types";
 
 const Preview = lazy(() => import("./components/Preview"));
 
@@ -19,8 +21,8 @@ createRoot(document.getElementById("root")!).render(
 				index
 				element={
 					<KeyboardControls map={controlsMap}>
-						<Portfolio3D />
-						{/* <Debug /> */}
+						{/* <Portfolio3D /> */}
+						<Debug />
 					</KeyboardControls>
 				}
 			/>
@@ -40,9 +42,5 @@ createRoot(document.getElementById("root")!).render(
 );
 
 function Debug() {
-	return (
-		<Frame size={5}>
-			<img src="images/gallery/glow/Glow-demo.png" height="200px" />
-		</Frame>
-	);
+	return <ContentDisplay close={() => {}} data={content.education[3]} type={Mode.Education} />;
 }

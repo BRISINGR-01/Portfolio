@@ -8,7 +8,7 @@ import Book3DEffect from "./Book3DEffect";
 
 export default function BookList(props: { onSelect: (book: Book) => void }) {
 	return (
-		<FadeAnim key="book-list">
+		<FadeAnim key="book-list" className="p-5">
 			<h4 className="text-center mt-2">Technical books that I have read</h4>
 			<Row className="m-2 justify-content-center">
 				{books.map((book, i) => (

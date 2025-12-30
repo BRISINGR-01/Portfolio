@@ -40,6 +40,8 @@
 	position: relative;
 	--cut: calc(2em / 2); /* size of the cut */
 	padding: 2px;
+	display: grid;
+	place-items: center;
 }
 
 .cut-corners > * {

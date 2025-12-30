@@ -11,7 +11,7 @@ import {
 import { BatchedMesh } from "three/webgpu";
 import { ICON_DELAY, MENU_DELAY, SKIP_ANIMATIONS, TABLE_DELAY } from "../../constants";
 
-import content from "../../content.ts";
+import content from "../../content/index.ts";
 import "../../css/floating-ui.css";
 import { Mode, type ContentData, type Controls, type Language } from "../../types.ts";
 import { prettifyTitle } from "../../utils.ts";

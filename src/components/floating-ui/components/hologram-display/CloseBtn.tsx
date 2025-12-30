@@ -6,12 +6,9 @@ export default function CloseBtn(props: { onClick: fn }) {
 	return (
 		<FadeAnim
 			onClick={props.onClick}
-			className="pointer hover"
+			className="pointer hover d-flex align-items-center"
 			style={{
-				position: "absolute",
-				zIndex: 10,
-				top: "3.5em",
-				right: "4.2rem",
+				height: "100%",
 				filter: `drop-shadow(0 0 6px ${COLOR_PALETTE.PRIMARY}) 
              drop-shadow(0 0 12px ${COLOR_PALETTE.PRIMARY})`,
 			}}

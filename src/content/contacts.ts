@@ -1,0 +1,95 @@
+import type { Contact } from "../types";
+
+export const contacts: Contact[] = [
+	{
+		id: "gmail",
+		title: "Gmail",
+		icon: "icons/other/gmail.svg",
+		address: "alexander.popov233@gmail.com",
+		url: "mailto:alexander.popov233@gmail.com",
+		icon3D: {
+			position: [0.49, 0.574, 0.2],
+			rotation: [0.1, 0, 0],
+			scale: 0.009,
+			wide: true,
+		},
+	},
+	{
+		id: "github",
+		title: "Github",
+		icon: "icons/other/github.svg",
+		address: "BRISINGR-01",
+		url: "https://github.com/BRISINGR-01",
+		icon3D: {
+			position: [0, 0.25, 0.1],
+			rotation: [-0.15, 0, 0.05],
+			scale: 0.003,
+			wide: true,
+		},
+	},
+	{
+		id: "gitlab",
+		title: "Gitlab",
+		icon: "icons/other/gitlab.svg",
+		address: "BRISINGR-01",
+		url: "https://gitlab.com/BRISINGR-01",
+		icon3D: {
+			position: [0.319, -0.038, 0.159],
+			rotation: [-0.441, -0.208, -0.505],
+			scale: 0.005,
+			wide: true,
+		},
+	},
+	{
+		id: "linkedin",
+		title: "LinkedIn",
+		icon: "icons/other/linkedin.svg",
+		address: "alexander-popov-61126825a",
+		url: "https://www.linkedin.com/in/alexander-popov-61126825a/",
+		icon3D: {
+			position: [-0.502, 0.172, 0.319],
+			rotation: [0.143, 0.408, 0.028],
+			scale: 0.004,
+			wide: true,
+		},
+	},
+	{
+		id: "x",
+		title: "X",
+		icon: "icons/other/x.svg",
+		address: "AlexPopov233",
+		url: "https://twitter.com/AlexPopov233",
+		icon3D: {
+			position: [-1.61, -0.36, 0.7],
+			rotation: [-1.6, 0.0, -0.5],
+			scale: 0.0012,
+			wide: true,
+		},
+	},
+	{
+		id: "instagram",
+		title: "Instagram",
+		icon: "images/other/instagram.png",
+		address: "@alexan6451",
+		url: "https://www.instagram.com/alexan6451/",
+		icon3D: {
+			position: [-0.712, -0.13, 0.304],
+			rotation: [2.14, 0.61, 4.33],
+			scale: 0.3,
+			wide: true,
+		},
+	},
+	{
+		id: "whatsapp",
+		title: "Whatsapp",
+		icon: "icons/other/whatsapp.svg",
+		address: "+31620429868",
+		url: "tel:+31620429868",
+		icon3D: {
+			position: [1.682, 0.204, 0.064],
+			rotation: [0.4, -0.6, 0],
+			scale: 0.0016,
+			wide: true,
+		},
+	},
+];
