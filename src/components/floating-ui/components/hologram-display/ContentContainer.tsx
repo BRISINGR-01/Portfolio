@@ -33,16 +33,13 @@ export default function ContentContainer({
 				transform: "translateY(0%)",
 				opacity: 1,
 				height: box.frame.height - 2,
-				// transition: { duration: 0.5, delay: 0.5 },
 			}}
 			initial={{ opacity: 0, height: 0, transform: "translateY(50%)" }}
 			exit={{
 				opacity: 0,
 				height: 0,
 				transform: "translateY(50%)",
-				transition: {
-					ease: "linear",
-				},
+				transition: { ease: "linear" },
 			}}
 			className="glow-text position-absolute clip glass-morpihic hologram-bg"
 		>
@@ -63,7 +60,7 @@ export default function ContentContainer({
 			</Stack>
 
 			<div className="overflow-auto w-100 p-5 pe-0 h-100 w-100 position-relative z-2">
-				<div className="w-100 h-100 p-0">{props.children}</div>
+				<div className="w-100 h-100 p-2">{props.children}</div>
 			</div>
 		</motion.div>
 	);

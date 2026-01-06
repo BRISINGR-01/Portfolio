@@ -12,13 +12,13 @@ export default function BackBtn(props: { onClick: fn }) {
 			src="icons/ui/go-back.svg"
 			alt="go-back"
 			onClick={props.onClick}
-			className="p-2 rounded-4 z-3 pointer back-btn"
+			className="p-2 rounded-3 z-3 pointer back-btn"
 			style={{
 				height: "100%",
 				cursor: "pointer",
 				border: "3px solid rgba(52, 144, 230, 0.8)",
 				transition: ".3s",
-				background: "linear-gradient(135deg, rgba(0,170,255,.35), rgba(0,255,255,.15))",
+				background: "linear-gradient(135deg, rgba(134, 215, 255, 0.3), rgba(0,255,255,.15))",
 			}}
 		/>
 	);

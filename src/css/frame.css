@@ -35,6 +35,9 @@
 .bl {
 	align-self: end;
 }
+.invert-h {
+	transform: rotateY(180deg);
+}
 
 .cut-corners {
 	position: relative;

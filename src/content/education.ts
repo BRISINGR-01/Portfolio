@@ -72,31 +72,6 @@ export const education: Education[] = [
 		},
 	},
 	{
-		id: "math",
-		title: "Academic Preparation",
-		description:
-			"Graph Theory\
-     Logic and Set Thoery\
-     Applied Logic\
-     Linear Algebra\
-     Data Structures & Algorithms 1\
-     Automata\
-     Data Science\
-     Statistics\
-     Decision Theory\
-     Functional Programming\
-     Synchronisation\
-     Data Structures & Algorithms 2",
-		icon: "/3d/math.glb",
-		icon3D: {
-			scale: 1.5,
-			position: [2.8, 0.2, 0.25],
-			rotation: [0, -1, 0],
-			wide: true,
-		},
-		altIcon: "/images/other/math.webp",
-	},
-	{
 		id: "daily-dev",
 		title: "Daily Dev",
 		description: "",

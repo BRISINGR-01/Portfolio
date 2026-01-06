@@ -1,7 +1,9 @@
+import Link from "./floating-ui/components/Link";
+
 export default function DailyDevCard(props: { wide?: boolean }) {
 	return (
 		<div className="daily-dev-card">
-			<a href="https://app.daily.dev/alexpopov45">
+			<Link url="https://app.daily.dev/alexpopov45">
 				<img
 					style={{ width: "100%" }}
 					src={
@@ -11,7 +13,7 @@ export default function DailyDevCard(props: { wide?: boolean }) {
 					}
 					alt="Alex Popov's Dev Card"
 				/>
-			</a>
+			</Link>
 		</div>
 	);
 }

@@ -29,13 +29,15 @@ export type Experience = ContentData & {
 
 export type Project = {
 	title: string;
-	description: React.JSX.Element | string;
-	icon: string;
-	timespan: string[];
+	description?: React.JSX.Element | string;
+	icon?: string;
+	timespan?: string[];
 	technologies?: { name: string; percentage: number }[];
 	github?: string;
-	content?: { description: React.JSX.Element | string; img: string }[];
+	content?: ProjectContent;
 };
+
+export type ProjectContent = { description: React.JSX.Element | string; img: string }[];
 
 export type Education = ContentData & {
 	description: string;
@@ -113,6 +115,8 @@ export type Countries = {
 };
 
 export type Semester = {
+	title: string;
 	description: string;
 	projects: Project[];
+	courses?: string[];
 };

@@ -59,7 +59,7 @@ export default function IconFrame(props: Props & { id: string }) {
 				}}
 			>
 				<ChangeAnimation id={props.id + "frame"} className="w-100 h-100">
-					<img src={`/images/ui/${frame}-frame.png`} alt="frame" width="100%" />
+					<img src={`/images/ui/${frame}-frame.svg`} alt="frame" width="100%" />
 				</ChangeAnimation>
 			</motion.div>
 			<FadeAnim

@@ -1,3 +1,15 @@
+.holo-item::before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	content: "";
+	background: #3093d1;
+	background: linear-gradient(135deg, rgba(48, 147, 209, 0.35) 0%, rgba(0, 53, 64, 0.35) 100%);
+	width: 100%;
+	height: 100%;
+}
+
 .holo-item {
 	--b: var(--primary);
 	--b-size: 5px;
@@ -9,6 +21,7 @@
 	width: fit-content;
 
 	margin-bottom: calc(-1 * var(--b-size));
+	margin-left: calc(-1 * var(--b-size));
 
 	background: linear-gradient(30deg, var(--b) 0 calc(var(--dent) + var(--b-size)), transparent 0) top left / 50% 100%,
 		linear-gradient(-155deg, var(--b) 0 calc(var(--dent) + var(--b-size)), transparent 0) top right / 50% 50%, var(--bg);
@@ -36,6 +49,12 @@
 	--bg: radial-gradient(circle, rgba(0, 153, 247, 0.3) 0%, rgba(0, 53, 64, 0.3) 100%);
 
 	transition: all 0.3s;
+}
+
+.holo-item:hover > .r-arrow {
+	transition: 0.3s;
+	transform: translateX(0%) !important;
+	opacity: 1 !important;
 }
 
 .holo-title {

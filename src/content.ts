@@ -35,86 +35,68 @@ export const fontys = {
 		"I study ICT (Information Communication Technology) at Fontys University of Applied Sciences in Eindhoven. This is an applied university which means that emphasis is put on practicing skills in a real life-like environment, rather than plain theory.",
 	semesters: [
 		{
+			title: "Semester 1 - Introduction",
 			description:
 				"The 1st semester was introductory, so we made very basic projects which I did my best to overcomplicate",
-			projects: [
-				{
-					title: "Greenhouse",
-					github: "https://github.com/BRISINGR-01/Fontys-projects/tree/master/Greenhouse",
-					images: [
-						{ description: "", src: "images/gallery/fontys/sem1/graph.png" },
-						{ description: "", src: "images/gallery/fontys/sem1/termometers.png" },
-					],
-				},
-				{
-					title: "Pizzeria website",
-					github: "https://github.com/BRISINGR-01/Fontys-projects/tree/master/Pizzeria%20website",
-					images: [
-						{ description: "", src: "images/gallery/fontys/sem1/admin.png" },
-						{ description: "", src: "images/gallery/fontys/sem1/login.png" },
-						{ description: "", src: "images/gallery/fontys/sem1/menu.png" },
-					],
-				},
-			],
+			projects: [projects.greenhouse, projects.pizzeria],
 		},
 		{
+			title: "Semester 2 - Professional Skills",
 			description:
 				"During the 2nd semester we had to make high-quality professional projects with both business needs and best practices in mind",
-			projects: [
-				{
-					title: "Event Manager",
-					github: "https://github.com/BRISINGR-01/Event-Manager-TSH/tree/84e5a940329e8965d555d0e67fa34f1c98ca3dae",
-					images: [
-						{
-							description:
-								"My personal project was an event management desktop app (WinForms) and website (.NET) for the place where I lived (TSH). The main focus was on best practices for a scalable professional product with the proper documentation and user testing. The most important features include:",
-							src: "images/gallery/fontys/sem2/tsh.png",
-						},
-						{
-							description:
-								"Layered architecture, authentication middleware, unit tests, design patterns, email service",
-							src: "images/gallery/fontys/sem2/login.png",
-						},
-						{
-							description:
-								"complete error handling, Azure hosted database (MySQL), CI/CD pipeline which updates a docker hub image, rate limiter and more.",
-							src: "images/gallery/fontys/sem2/error.png",
-						},
-					],
-				},
-				{
-					title: "SQL ORM",
-					github: "https://github.com/BRISINGR-01/Basic-SQL-Query-Builder",
-					images: [
-						{
-							description:
-								"We were not allowed to use ORMs, which meant that we have to write SQL queries in strings with no type checking and tons of boilerplate code. I couldn't stand it, so I implemented my own library in C# to make SQL queries with type checks and object construction. Basically one can make a simple select statement like on the picture with basic qsl features like where, order, limit... and recieve a single/list instance(s) of a class containing the data. I ended up using it on all my personal and group projects for two semesters.",
-							src: "images/gallery/fontys/sem2/sql.png",
-						},
-					],
-				},
-			],
+			projects: [projects.tsh, projects.sql],
 		},
 		{
+			title: "Semester 3 - Open Learning",
 			description:
 				"I switched to a different form of education in my 3rd semester (Open Learning) which allowed me to work with real companies and no limitations",
-			projects: [
-				projects.icc,
-				{
-					title: "Personal Portfolio",
-					images: [
-						{
-							description:
-								"This is the first iteration of my this portfolio. I was inspired by 3D ones like Bruno Simon's and initially tried to create one with a moving character. The first draft included flying with different modes (testing it was quite fun).",
-							src: "images/gallery/fontys/sem3/wings.png",
-						},
-						{ description: "", src: "images/gallery/fontys/sem3/cycling.png" },
-						{ description: "", src: "images/gallery/fontys/sem3/physics.png" },
-					],
-				},
-			],
+			projects: [projects.icc, projects.portfolio],
 		},
-	] as Semester[],
+		{
+			title: "Semester 4 - Academic Preparation",
+			description:
+				"To prepare myself for a pre-master I took academic courses as my 4th semester on top of semesters 2, 3 and 6. I took the folowing courses:",
+			courses: [
+				"Graph Theory",
+				"Logic and Set Theory",
+				"Applied Logic",
+				"Linear Algebra",
+				"Data Structures & Algorithms I",
+				"Automata",
+				"Data Science",
+				"Statistics",
+				"Decision Theory",
+				"Functional Programming",
+				"Synchronisation",
+				"Data Structures & Algorithms II",
+			],
+			projects: [projects.firefigther, projects.sync, projects.statistics],
+		},
+		{
+			title: "Semester 5 - Internship",
+			description: projects.asml.description,
+			projects: [projects.asml],
+		},
+		{
+			title: "Semester 6 - Delta",
+			description:
+				'For my "advanced" semester I joined Fontys\' excellence programme Delta where I could work on more complex projects.',
+			projects: [projects.glow],
+		},
+		{
+			title: "Semester 7 - Pre-master",
+			description: "As my minor I chose to do an Embedded Systems pre-master at TUe. I took the folowing courses:",
+			courses: [
+				"Circuits",
+				"Logic and Set theory",
+				"Calculus and Probability",
+				"Math I",
+				"Linear systems, signals and control",
+				"Computational modeling",
+			],
+			projects: [projects.premaster],
+		},
+	] satisfies Semester[],
 };
 
 export const books: Book[] = [

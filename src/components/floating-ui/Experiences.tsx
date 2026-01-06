@@ -1,12 +1,11 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { Modal, Nav, OverlayTrigger, Stack, Tab, Tooltip } from "react-bootstrap";
+import { Nav, OverlayTrigger, Stack, Tab, Tooltip } from "react-bootstrap";
 import { BLUE_FILTER } from "../../constants";
 import type { Experience, fn } from "../../types";
 import { useIcon } from "../../utils";
 import IconFrame from "./IconFrame";
 import ChangeAnimation from "./components/ChangeAnimation";
-import Frame from "./components/Frame";
+import { ProjectContent } from "./components/ProjectDisplay";
 
 export default function Experiences({ data }: { data: Experience; close: fn }) {
 	return (
@@ -17,26 +16,28 @@ export default function Experiences({ data }: { data: Experience; close: fn }) {
 					<Stack className="align-items-center" gap={3}>
 						<IconFrame id={data.id} img={data.altIcon ?? data.icon} />
 
-						<ChangeAnimation id={"img-meta-" + data.id}>
-							<Stack
-								className="align-items-center text-center px-3 py-2 rounded-3"
-								style={{
-									background: "#00000030",
-									backdropFilter: "blur(1.2px)",
-									boxShadow: "#0dcaf08c 0px 0px 4px 2px",
-								}}
-							>
-								<span className="fw-bold">{data.project.timespan[0]}</span>
-								<div
+						{data.project.timespan && (
+							<ChangeAnimation id={"img-meta-" + data.id}>
+								<Stack
+									className="align-items-center text-center px-3 py-2 rounded-3"
 									style={{
-										height: "2px",
-										width: "30px",
-										background: "linear-gradient(90deg,#68e4ff,#008cff)",
+										background: "#00000030",
+										backdropFilter: "blur(1.2px)",
+										boxShadow: "#0dcaf08c 0px 0px 4px 2px",
 									}}
-								/>
-								<span className="fw-bold mt-1">{data.project.timespan[1]}</span>
-							</Stack>
-						</ChangeAnimation>
+								>
+									<span className="fw-bold">{data.project.timespan[0]}</span>
+									<div
+										style={{
+											height: "2px",
+											width: "30px",
+											background: "linear-gradient(90deg,#68e4ff,#008cff)",
+										}}
+									/>
+									<span className="fw-bold mt-1">{data.project.timespan[1]}</span>
+								</Stack>
+							</ChangeAnimation>
+						)}
 					</Stack>
 
 					{/* Text */}
@@ -71,51 +72,8 @@ export default function Experiences({ data }: { data: Experience; close: fn }) {
 				<div>{data.project.technologies && <TechBarGraph id={data.id} data={data.project.technologies} />}</div>
 			</Stack>
 
-			<Images data={data} />
+			<ProjectContent content={data.project.content} />
 		</Stack>
-	);
-}
-
-function Images({ data }: { data: Experience }) {
-	const [showBigSrc, setShowBig] = useState<string | null>(null);
-
-	return (
-		<>
-			<Stack gap={5}>
-				{data.project.content &&
-					data.project.content.map(({ img, description }, i) => (
-						<div
-							key={i}
-							className={`d-flex flex-row${
-								i % 2 === 1 ? "-reverse justify-content-end" : " justify-content-between"
-							} gap-3`}
-						>
-							<span>{description}</span>
-							<div onClick={() => setShowBig(img)} className="hover">
-								<Frame size={4}>
-									{img.endsWith(".mp4") ? (
-										<video src={img} controls className="show-image-small" />
-									) : (
-										<img src={img} alt="title" className="show-image-small" />
-									)}
-								</Frame>
-							</div>
-						</div>
-					))}
-			</Stack>
-			<Modal show={!!showBigSrc} dialogClassName="show-image-backdrop" onHide={() => setShowBig(null)}>
-				<Modal.Body className="p-0">
-					<Frame size={8}>
-						{showBigSrc &&
-							(showBigSrc.endsWith(".mp4") ? (
-								<video src={showBigSrc} controls className="show-image-small show-image-extended" />
-							) : (
-								<img src={showBigSrc} className="show-image-small show-image-extended" alt="title" />
-							))}
-					</Frame>
-				</Modal.Body>
-			</Modal>
-		</>
 	);
 }
 
