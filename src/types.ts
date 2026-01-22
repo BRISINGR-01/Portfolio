@@ -2,7 +2,7 @@ export type fn = () => void;
 
 export type Icon3DParams = {
 	position: [x: number, y: number, z: number];
-	rotation?: [x: number, y: number, z: number];
+	rotation: [x: number, y: number, z: number];
 	scale: number;
 	wide?: boolean;
 };
@@ -70,14 +70,14 @@ export type Contact = ContentData & {
 
 export type Language = ContentData & {
 	iso: string;
+	level: string;
 };
 
 export enum Mode {
 	Experience = "experience",
 	Education = "education",
 	Interests = "interests",
-	Languages = "languages",
-	Contact = "contacts",
+	AboutMe = "about-me",
 	Info = "info",
 	None = "none",
 }
@@ -90,6 +90,8 @@ export enum WallFace {
 }
 
 export enum Controls {
+	Left = "left",
+	Right = "right",
 	Escape = "escape",
 	Recenter = "recenter",
 	FullScreeen = "full-screen",

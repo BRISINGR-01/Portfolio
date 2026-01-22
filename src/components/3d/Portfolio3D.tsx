@@ -13,15 +13,15 @@ import { ICON_DELAY, MENU_DELAY, SKIP_ANIMATIONS, TABLE_DELAY } from "../../cons
 
 import content from "../../content/index.ts";
 import "../../css/floating-ui.css";
-import { Mode, type ContentData, type Controls, type Language } from "../../types.ts";
+import { Mode, type ContentData, type Controls } from "../../types.ts";
 import { prettifyTitle } from "../../utils.ts";
-import Delay from "../Delay.tsx";
-import ContentDisplay from "../floating-ui/ContentDisplay.tsx";
-import Menu from "../floating-ui/Menu.tsx";
-import Environment3D from "./Environment.tsx";
-import Globe from "./Globe.tsx";
+import ContentDisplay from "../floating-ui/displays/ContentDisplay.tsx";
+import Menu from "../floating-ui/displays/Menu.tsx";
 import Icon from "./icon/Icon.tsx";
-import Raycast from "./Raycast.tsx";
+import AboutMe from "./other-components/AboutMe.tsx";
+import Delay from "./other-components/Delay.tsx";
+import Environment3D from "./other-components/Environment.tsx";
+import Raycast from "./other-components/Raycast.tsx";
 import Table from "./table/Table.tsx";
 
 BufferGeometry.prototype.computeBoundsTree = computeBoundsTree;
@@ -33,7 +33,7 @@ BatchedMesh.prototype.disposeBoundsTree = disposeBatchedBoundsTree;
 BatchedMesh.prototype.raycast = acceleratedRaycast;
 
 export default function Portfolio3D() {
-	const [mode, setMode] = useState(Mode.Experience);
+	const [mode, setMode] = useState(Mode.AboutMe);
 	const [contentIndex, setContentIndex] = useState<number>(-1);
 	const [hovered, setHovered] = useState<ContentData | null>(null);
 	const [visibleIcons, setVisibleIcons] = useState<ContentData[]>([]);
@@ -41,7 +41,7 @@ export default function Portfolio3D() {
 
 	const selectedContent = content[mode] as ContentData[];
 	const selectedIcon: ContentData | null = contentIndex === -1 ? null : selectedContent[contentIndex];
-	// useEdit(selectedContent?.at(-1));
+	// useEdit(contacts?.at(-2));
 
 	useEffect(() => {
 		const t = setTimeout(() => {
@@ -50,8 +50,6 @@ export default function Portfolio3D() {
 			if (!window.localStorage.getItem("isFirstEntry")) {
 				window.localStorage.setItem("isFirstEntry", "true");
 				setMode(Mode.Info);
-			} else {
-				setMode(Mode.Experience);
 			}
 		}, TABLE_DELAY);
 
@@ -111,7 +109,7 @@ export default function Portfolio3D() {
 					</Raycast>
 				</Delay>
 				<Table text={prettifyTitle(selectedIcon?.title ?? hovered?.title ?? mode)} />
-				{mode === Mode.Languages && <Globe langauge={(selectedIcon ?? hovered) as Language} />}
+				{mode === Mode.AboutMe && <AboutMe selectedIcon={selectedIcon ?? hovered} />}
 			</Environment3D>
 
 			<Delay time={MENU_DELAY}>

@@ -3,8 +3,8 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import { Mesh, type Object3D } from "three";
 import { HOLOGRAM_TRANSITION, TABLE_DELAY } from "../../../constants";
-import Delay from "../../Delay";
 import type HologramMaterial from "../icon/HologramMaterial";
+import Delay from "../other-components/Delay";
 import { fixGLTFDepth, restoreMaterial, setHologramMaterial } from "../utils";
 import TableControls from "./TableControls";
 

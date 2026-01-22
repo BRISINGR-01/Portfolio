@@ -1,21 +1,27 @@
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { Modal, Stack } from "react-bootstrap";
+import { TRANSITION } from "../../../constants";
 import type { ProjectContent } from "../../../types";
+import FadeAnim from "./FadeAnim";
 import Frame from "./Frame";
 
 function isVideo(src: string) {
 	return src.endsWith(".mp4");
 }
 
-export function ProjectContent({ content }: { content?: ProjectContent }) {
+export function ProjectContent({ content, fadeAnim }: { content?: ProjectContent; fadeAnim?: boolean }) {
 	const [showBigSrc, setShowBig] = useState<string | null>(null);
 
 	return (
-		<>
+		<FadeAnim>
 			<Stack gap={5}>
 				{content &&
 					content.map(({ img, description }, i) => (
-						<div
+						<motion.div
+							initial={{ y: fadeAnim ? 0 : "-100%" }}
+							animate={{ y: 0, transition: { ...TRANSITION, delay: i * 0.1 } }}
+							exit={{ y: fadeAnim ? 0 : "-100%" }}
 							key={i}
 							className={`d-flex flex-row${
 								i % 2 === 1 ? "-reverse justify-content-end" : " justify-content-between"
@@ -31,7 +37,7 @@ export function ProjectContent({ content }: { content?: ProjectContent }) {
 									)}
 								</Frame>
 							</div>
-						</div>
+						</motion.div>
 					))}
 			</Stack>
 			<Modal
@@ -52,6 +58,6 @@ export function ProjectContent({ content }: { content?: ProjectContent }) {
 					)}
 				</Modal.Body>
 			</Modal>
-		</>
+		</FadeAnim>
 	);
 }

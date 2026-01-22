@@ -5,18 +5,18 @@ import { COLOR_PALETTE, TRANSITION } from "../../../constants";
 import { fontys } from "../../../content";
 import "../../../css/fontys.css";
 import type { fn, Semester } from "../../../types";
-import IconFrame from "../IconFrame";
+import IconFrame from "../displays/IconFrame";
 import FadeAnim from "./FadeAnim";
 import Link from "./Link";
 import { ProjectContent } from "./ProjectDisplay";
 
-export default function Fontys(props: { setGoBackCb: (cb: fn | null) => void }) {
+export default function Fontys(props: { setGoBackCb: (cb?: fn) => void }) {
 	const [showSem, setShowSem] = useState<Semester | null>();
 	useEffect(() => {
 		if (showSem) {
 			props.setGoBackCb(() => () => setShowSem(null));
 		} else {
-			props.setGoBackCb(null);
+			props.setGoBackCb();
 		}
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -113,35 +113,49 @@ function SemestersList(props: { onSelect: (sem: Semester) => void }) {
 function SemesterDetails({ sem }: { sem: Semester }) {
 	return (
 		<FadeAnim className="mt-3 mx-2">
-			<h2>{sem.title}</h2>
-			{sem.description}
+			<motion.h2 initial={{ y: "-100%" }} animate={{ y: 0 }} exit={{ y: "-100%" }} transition={TRANSITION}>
+				{sem.title}
+			</motion.h2>
+			<motion.div initial={{ y: "-100%" }} animate={{ y: 0 }} exit={{ y: "-100%" }} transition={TRANSITION}>
+				{sem.description}
+			</motion.div>
 
 			{sem.courses && (
 				<Stack direction="horizontal" className="flex-wrap justify-content-center my-3" gap={2}>
-					{sem.courses.map((course) => (
-						<div>
-							<Badge
-								key={course}
-								style={{
-									background: "rgba(0, 170, 255, 0.48)",
-									border: "3px solid rgba(74, 195, 255, 1)",
-									color: "#e6faff",
-									letterSpacing: "0.03em",
-									fontWeight: 500,
-								}}
-								className="fs-6 pt-2 hover"
-								bg=""
+					{sem.courses.map((course, i) => (
+						<Stack direction="horizontal">
+							<motion.div
+								initial={{ opacity: 0, scale: 0.6 }}
+								animate={{ opacity: 1, scale: 1, transition: { delay: i * 0.05 } }}
+								exit={{ opacity: 0, scale: 0.6 }}
+								transition={TRANSITION}
 							>
-								{course}
-							</Badge>
+								<Badge
+									key={course}
+									style={{
+										background: "rgba(0, 170, 255, 0.48)",
+										border: "3px solid rgba(74, 195, 255, 1)",
+										color: "#e6faff",
+										letterSpacing: "0.03em",
+										fontWeight: 500,
+									}}
+									className="fs-6 pt-2 hover"
+									bg=""
+								>
+									{course}
+								</Badge>
+							</motion.div>
 							{course === "Data Structures & Algorithms II" && (
-								<Link className="ms-2" url="https://github.com/BRISINGR-01/Fontys-projects">
-									<img
+								<Link className="hover ms-2" url="https://github.com/BRISINGR-01/Fontys-projects">
+									<motion.img
+										initial={{ opacity: 0, scale: 0.6 }}
+										animate={{ opacity: 1, scale: 1, transition: { delay: i * 0.05, duration: 0.2 } }}
+										exit={{ opacity: 0, scale: 0.6 }}
 										src="icons/other/github.svg"
 										alt="github"
 										style={{
 											height: "2.2em",
-											border: "2px solid #c4e8ff",
+											border: "2px solid #3faaecff",
 											boxShadow: "inset #0dcaf0 0px 0px 4px 1px",
 											background: "var(--dark)",
 										}}
@@ -149,32 +163,39 @@ function SemesterDetails({ sem }: { sem: Semester }) {
 									/>
 								</Link>
 							)}
-						</div>
+						</Stack>
 					))}
 				</Stack>
 			)}
 
 			{sem.projects.map((project, i) => (
-				<Stack key={i}>
-					<h3
-						className="text-center my-3 mx-5"
-						style={{
-							borderBottom: `3px solid ${COLOR_PALETTE.PRIMARY}`,
-							letterSpacing: "0.08em",
-						}}
+				<Stack>
+					<motion.div
+						key={i}
+						initial={{ y: "-100%" }}
+						animate={{ y: 0, transition: { delay: i * 0.5, duration: 0.3 } }}
+						exit={{ y: "-100%" }}
 					>
-						{project.title}
-						{project.github && (
-							<Link url={project.github}>
-								<img
-									src="icons/other/github.svg"
-									alt="github"
-									style={{ height: "1em", border: "2px solid #c4e8ff", boxShadow: "#0dcaf0 0px 0px 4px 1px" }}
-									className="ms-2 rounded-5 pointer hover"
-								/>
-							</Link>
-						)}
-					</h3>
+						<h3
+							className="text-center my-3 mx-5"
+							style={{
+								borderBottom: `3px solid ${COLOR_PALETTE.PRIMARY}`,
+								letterSpacing: "0.08em",
+							}}
+						>
+							{project.title}
+							{project.github && (
+								<Link url={project.github}>
+									<img
+										src="icons/other/github.svg"
+										alt="github"
+										style={{ height: "1em", border: "2px solid #c4e8ff", boxShadow: "#0dcaf0 0px 0px 4px 1px" }}
+										className="ms-2 rounded-5 pointer hover"
+									/>
+								</Link>
+							)}
+						</h3>
+					</motion.div>
 
 					<ProjectContent content={project.content} />
 				</Stack>

@@ -12,8 +12,6 @@ export const COLOR_PALETTE = {
 	TERTIARY: "",
 };
 
-export const GLOBE_SIDE_COLOR = "#1abaff1c";
-export const GLOBE_HIGHLIGHT_COLOR = "#0019bbff";
 export const HOVER_OUTLINE_HIDDEN = "#1abaff";
 export const PERSISTENT_OUTLINE = "#ffffff";
 
@@ -29,6 +27,8 @@ export const controlsMap = [
 	{ name: Controls.Escape, keys: ["Escape"] },
 	{ name: Controls.Recenter, keys: ["Space"] },
 	{ name: Controls.FullScreeen, keys: ["f"] },
+	{ name: Controls.Left, keys: ["ArrowLeft"] },
+	{ name: Controls.Right, keys: ["ArrowRight"] },
 ] as KeyboardControlsEntry<Controls>[];
 
 export const ROOM = {

@@ -7,5 +7,5 @@ export default function Icon(props: ContentData) {
 	if (props.icon.endsWith(".svg")) return <SVGObject {...props} />;
 	if (props.icon.endsWith(".glb")) return <GLB {...props} />;
 
-	return <Image {...props} />;
+	return <Image {...props} {...props.icon3D} src={props.icon} />;
 }

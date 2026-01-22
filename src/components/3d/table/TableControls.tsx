@@ -1,4 +1,4 @@
-import Text from "../Text";
+import Text from "../other-components/Text";
 
 const sides = [
 	{
@@ -14,8 +14,8 @@ const sides = [
 	rotation: [number, number, number];
 }[];
 
-export    default function TableControls({ text }: { text: string | null }) {
-	return  (
+export default function TableControls({ text }: { text: string | null }) {
+	return (
 		<group>
 			{sides.map((side, i) => (
 				<group key={i} {...side}>

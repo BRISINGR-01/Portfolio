@@ -24,18 +24,18 @@ export const education: Education[] = [
 			wide: true,
 		},
 	},
-	{
-		id: "tue",
-		title: "Tue (Embedded Systems Pre-master)",
-		description: "",
-		icon: "/icons/other/tue.svg",
-		icon3D: {
-			scale: 0.004,
-			position: [0.4, 0.13, -0.2],
-			rotation: [0.25, 0.1, 0.05],
-			wide: true,
-		},
-	},
+	// {
+	// 	id: "tue",
+	// 	title: "Tue (Embedded Systems Pre-master)",
+	// 	description: "",
+	// 	icon: "/icons/other/tue.svg",
+	// 	icon3D: {
+	// 		scale: 0.004,
+	// 		position: [0.4, 0.13, -0.2],
+	// 		rotation: [0.25, 0.1, 0.05],
+	// 		wide: true,
+	// 	},
+	// },
 	{
 		id: "fontys",
 		title: "Fontys (Academic preperation)",
@@ -58,17 +58,6 @@ export const education: Education[] = [
 			position: [-2, 0.2, -0.05],
 			rotation: [-0.6, 0.5, -0.4],
 			wide: true,
-		},
-	},
-	{
-		id: "primagen",
-		title: "The Last Algorithms Course You'll Need",
-		description: "",
-		icon: "/images/other/primeagen-icon.webp",
-		icon3D: {
-			scale: 0.7,
-			position: [-2, -0.1, 0.07],
-			rotation: [-0.8, -0.6, -0.5],
 		},
 	},
 	{

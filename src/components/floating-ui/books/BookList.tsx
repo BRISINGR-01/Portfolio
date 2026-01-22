@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { Row, Stack } from "react-bootstrap";
 import { books } from "../../../content";
 import type { Book } from "../../../types";
-import Loader from "../../3d/Loader";
+import Loader from "../../3d/other-components/Loader";
 import FadeAnim from "../components/FadeAnim";
 import Book3DEffect from "./Book3DEffect";
 

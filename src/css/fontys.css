@@ -1,9 +1,10 @@
 .holo-item::before {
+	content: " ";
+
 	position: absolute;
 	top: 0;
 	left: 0;
 	z-index: -1;
-	content: "";
 	background: #3093d1;
 	background: linear-gradient(135deg, rgba(48, 147, 209, 0.35) 0%, rgba(0, 53, 64, 0.35) 100%);
 	width: 100%;

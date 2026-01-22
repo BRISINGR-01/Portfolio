@@ -37,8 +37,8 @@ export function usePos(p?: [number, number, number]) {
 }
 
 export function useEdit(data?: ContentData) {
-	const p = usePos([0, 0, 0]);
-	const r = useRot([0, 0, 0]);
+	const p = usePos(data?.icon3D.position);
+	const r = useRot(data?.icon3D.rotation);
 
 	if (!data) return;
 	data.icon3D.position = p;

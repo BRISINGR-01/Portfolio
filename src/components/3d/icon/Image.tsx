@@ -2,11 +2,17 @@ import { useFrame, useLoader, useThree } from "@react-three/fiber";
 import { useEffect, useState } from "react";
 import { Color, TextureLoader, Vector3 } from "three";
 import { COLOR_PALETTE, HOLOGRAM_TRANSITION, IMAGE_DEPTH } from "../../../constants";
-import type { ContentData } from "../../../types";
 import HologramMaterial from "./HologramMaterial";
 
-export default function Image(props: ContentData) {
-	const texture = useLoader(TextureLoader, props.icon);
+export default function Image(props: {
+	id: string;
+	src: string;
+	position: [number, number, number];
+	rotation: [number, number, number];
+	scale: number;
+	ratio?: number;
+}) {
+	const texture = useLoader(TextureLoader, props.src);
 	const { get } = useThree();
 
 	const [hologramMaterial, setHologramMaterial] = useState<HologramMaterial | null>(
@@ -36,12 +42,10 @@ export default function Image(props: ContentData) {
 		return (
 			<mesh
 				name={props.id}
-				position={props.icon3D.position}
-				rotation={new Vector3(...(props.icon3D.rotation ?? [0, 0, 0]))
-					.add(new Vector3(Math.PI / 4, Math.PI / 2, 0))
-					.toArray()}
+				position={props.position}
+				rotation={new Vector3(...(props.rotation ?? [0, 0, 0])).add(new Vector3(Math.PI / 4, Math.PI / 2, 0)).toArray()}
 			>
-				<cylinderGeometry args={[props.icon3D.scale, props.icon3D.scale, IMAGE_DEPTH]} />
+				<cylinderGeometry args={[props.scale, props.scale, IMAGE_DEPTH]} />
 				<meshBasicMaterial transparent attach="material-0" color={COLOR_PALETTE.PRIMARY} />
 				{hologramMaterial ? (
 					<shaderMaterial attach="material-1" {...hologramMaterial} />
@@ -58,8 +62,8 @@ export default function Image(props: ContentData) {
 	}
 
 	return (
-		<mesh name={props.id} position={props.icon3D.position} rotation={props.icon3D.rotation}>
-			<boxGeometry args={[props.icon3D.scale, props.icon3D.scale, IMAGE_DEPTH]} />
+		<mesh name={props.id} position={props.position} rotation={props.rotation}>
+			<boxGeometry args={[props.scale, props.scale / (props.ratio ?? 1), IMAGE_DEPTH]} />
 			<meshBasicMaterial attach="material-0" color={COLOR_PALETTE.PRIMARY} />
 			<meshBasicMaterial attach="material-1" color={COLOR_PALETTE.PRIMARY} />
 			<meshBasicMaterial attach="material-2" color={COLOR_PALETTE.PRIMARY} />

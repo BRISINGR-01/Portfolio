@@ -1,6 +1,6 @@
 import { WALL_DELAY } from "../../../constants";
 import { WallFace } from "../../../types";
-import Delay from "../../Delay";
+import Delay from "../other-components/Delay";
 import Ceiling from "./Ceiling";
 import CircuitPattern from "./CircuitPattern";
 import Wall from "./Wall";

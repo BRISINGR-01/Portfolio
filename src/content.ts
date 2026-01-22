@@ -27,8 +27,6 @@ const text = {
 	},
 };
 
-export const aboutMe = {};
-
 export const fontys = {
 	img: "/icons/other/fontys.svg",
 	description:
