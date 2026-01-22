@@ -3,11 +3,18 @@ import { COLOR_PALETTE } from "../../../constants";
 import { contacts, languages } from "../../../content/about-me";
 import Link from "../components/Link";
 
-export default function AboutMe() {
-	console.log(`1px solid ${COLOR_PALETTE.PRIMARY}`);
+function IconLink(i: number) {
 	return (
-		<Stack className="flex-lg-row w-100" gap={4}>
-			<div className="d-flex flex-column my-5 gap-3" style={{ width: "min-content" }}>
+		<Link key={i} url={contacts[i].address} className="p-1 hover" style={{ width: "min-content" }}>
+			<Image src={contacts[i].altIcon} style={{ height: "2em", filter: "drop-shadow(0px 0px 3px #00aaff)" }} />
+		</Link>
+	);
+}
+
+export default function AboutMe() {
+	return (
+		<Stack className="flex-lg-row w-100 p-5" gap={4}>
+			<div className="d-flex flex-column mb-5 gap-3" style={{ width: "min-content" }}>
 				<Image src="public/images/other/me.png" style={{ width: "100%" }} />
 				<Stack direction="vertical">
 					<span className="mt-2 mb-1">Spoken languages:</span>
@@ -48,29 +55,18 @@ export default function AboutMe() {
 				</Stack>
 			</div>
 			<Row className="justify-content-center gap-2" style={{ height: "min-content" }}>
+				<h1>Welcome to my portfolio!</h1>
+				<span>
+					My name is Alexander Popov and I specialize mostly in web development. However I also develop embedded
+					systems, mobile apps and other types of software. I'm in my last year of my ICT bachelor at Fontys.
+				</span>
 				<Stack direction="horizontal" gap={2}>
 					<span className="fs-4">My code</span>
-					<Link url={contacts[1].address} className="p-1" style={{ width: "min-content" }}>
-						<Image src={contacts[1].icon} style={{ height: "2em" }} />
-					</Link>
-					<Link url={contacts[2].address} className="p-1" style={{ width: "min-content" }}>
-						<Image src={contacts[2].icon} style={{ height: "2em" }} />
-					</Link>
+					{[1, 2].map(IconLink)}
 				</Stack>
 				<Stack direction="horizontal" gap={2}>
 					<span className="fs-4">My socials & contact</span>
-					<Link url={contacts[3].address} className="p-1" style={{ width: "min-content" }}>
-						<Image src={contacts[3].icon} style={{ height: "2em" }} />
-					</Link>
-					<Link url={contacts[4].address} className="p-1" style={{ width: "min-content" }}>
-						<Image src={contacts[4].icon} style={{ height: "2em" }} />
-					</Link>
-					<Link url={contacts[5].address} className="p-1" style={{ width: "min-content" }}>
-						<Image src={contacts[5].icon} style={{ height: "2em" }} />
-					</Link>
-					<Link url={contacts[0].address} className="p-1" style={{ width: "min-content" }}>
-						<Image src={contacts[0].icon} style={{ height: "2em" }} />
-					</Link>
+					{[3, 4, 5, 0].map(IconLink)}
 				</Stack>
 			</Row>
 		</Stack>

@@ -3,6 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import { DEFAULT_CAMERA_POS, INITIAL_CAMERA_POS, SKIP_ANIMATIONS, ZOOM_IN_DELAY } from "../../../constants";
 import type { Controls } from "../../../types";
+import Room from "../room/Room";
 
 export default function Environment(props: { pause: boolean; children: React.ReactNode }) {
 	const [sub] = useKeyboardControls<Controls>();
@@ -59,8 +60,8 @@ export default function Environment(props: { pause: boolean; children: React.Rea
 			<ambientLight intensity={0.6} />
 			<directionalLight intensity={0.9} position={[200, 100, 300]} />
 
-			{/* <Room>{props.children}</Room> */}
-			{props.children}
+			<Room>{props.children}</Room>
+			{/* {props.children} */}
 		</Canvas>
 	);
 }

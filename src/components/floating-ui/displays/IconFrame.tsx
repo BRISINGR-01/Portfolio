@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { BLUE_FILTER } from "../../../constants";
 import ChangeAnimation from "../components/ChangeAnimation";
 import FadeAnim from "../components/FadeAnim";
 
@@ -31,7 +30,7 @@ export default function IconFrame(props: Props & { id: string }) {
 			<motion.div
 				className="w-100 h-100 position-absolute top-0 left-0 z-2"
 				initial={{ opacity: 0 }}
-				animate={{ transition: { delay: 0.8 }, opacity: 1 }}
+				animate={{ transition: { delay: 0.5 }, opacity: 1 }}
 				transition={{ duration: 0.4 }}
 			>
 				<ChangeAnimation id={props.id + "logo"} className="w-100 h-100">
@@ -43,14 +42,14 @@ export default function IconFrame(props: Props & { id: string }) {
 							width: "60%",
 							maxHeight: "60%",
 							zIndex: 2,
-							filter: BLUE_FILTER,
+							// filter: BLUE_FILTER,
 						}}
 					/>
 				</ChangeAnimation>
 			</motion.div>
 			<motion.div
 				initial={{ scale: 0.7 }}
-				animate={{ transition: { delay: 0.8 }, scale: 1 }}
+				animate={{ transition: { delay: 0.5 }, scale: 1 }}
 				transition={{ duration: 0.4 }}
 				style={{
 					zIndex: 1,
@@ -63,7 +62,7 @@ export default function IconFrame(props: Props & { id: string }) {
 				</ChangeAnimation>
 			</motion.div>
 			<FadeAnim
-				transition={{ delay: 0.7, duration: 0.4 }}
+				transition={{ delay: 0.4, duration: 0.4 }}
 				noExit
 				className="centered"
 				style={{

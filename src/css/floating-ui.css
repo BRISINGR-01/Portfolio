@@ -152,7 +152,7 @@
 .hologram-bg::before {
 	--size: 3;
 	--color1: rgba(15, 166, 236, 0.35);
-	--color2: rgba(15, 166, 236, 0.144);
+	--color2: rgba(12, 53, 72, 0.18);
 	content: "";
 	position: absolute;
 	inset: 0;
@@ -199,7 +199,9 @@
 .glow-text {
 	font-family: "Armstrong";
 	color: #c4e8ff;
-	text-shadow: 0 0 2.5px #37c8ff, 0 0 4px rgba(21, 180, 255, 0.4);
+	text-shadow:
+		0 0 2.5px #37c8ff,
+		0 0 4px rgba(21, 180, 255, 0.4);
 
 	a {
 		color: #c4e8ff !important;
@@ -285,7 +287,9 @@
 }
 
 .book-card-3d:hover {
-	cursor: url("/cursors/link_select.cur") 0 0, pointer;
+	cursor:
+		url("/cursors/link_select.cur") 0 0,
+		pointer;
 
 	transition: 0.2s all ease-out;
 	transform: rotateX(6deg) rotateY(-6deg) scale(1.05);
@@ -339,32 +343,8 @@
 }
 
 .desc-context {
-	/* Cyberpunk neon Nav pills */
 	.nav-pills .nav-link {
 		all: unset;
-		color: #9ffcff;
-		background: #1414284d;
-		border: 1px solid #00e5ff;
-		border-radius: 10px;
-		padding: 0.65rem 1.2rem;
-		margin-right: 0.5rem;
-		text-decoration: none;
-		text-shadow: 0 0 6px #00e5ff;
-		box-shadow: 0 0 8px rgba(0, 229, 255, 0.6), inset 0 0 8px rgba(0, 229, 255, 0.4);
-		transition: all 0.25s ease;
-	}
-
-	.nav-pills .nav-link:hover {
-		color: #fff;
-		background: #00000040;
-		box-shadow: 0 0 6px #00e5ff, 0 0 6px var(--primary);
-		transform: scale(1.03);
-	}
-
-	.nav-pills .nav-link.active {
-		background: linear-gradient(135deg, #00e5ff4e, #053b68);
-		text-shadow: 0 0 10px #fff;
-		box-shadow: 0 0 14px #00e5ff5d inset;
 	}
 }
 
@@ -398,4 +378,20 @@
 	transition: 0.3s;
 	background: radial-gradient(circle, rgba(0, 152, 247, 0.39) 0%, rgba(0, 53, 64, 0.419) 100%) !important;
 	box-shadow: 0 0 4px rgba(0, 255, 255, 0.9);
+}
+
+.holo-btn {
+	background: rgba(0, 180, 255, 0.15);
+	border: 1px solid #00eaff;
+	color: #7df9ff;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	backdrop-filter: blur(8px);
+}
+
+.holo-btn:hover {
+	color: #ffffff;
+	box-shadow:
+		0 0 16px #00eaff,
+		0 0 32px rgba(0, 234, 255, 0.8);
 }

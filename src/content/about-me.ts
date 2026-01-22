@@ -113,6 +113,7 @@ export const contacts: Contact[] = [
 	{
 		id: "gmail",
 		title: "Gmail",
+		altIcon: "icons/other/gmail-outline.svg",
 		icon: "icons/other/gmail.svg",
 		address: "alexander.popov233@gmail.com",
 		url: "mailto:alexander.popov233@gmail.com",
@@ -126,6 +127,7 @@ export const contacts: Contact[] = [
 	{
 		id: "github",
 		title: "Github",
+		altIcon: "icons/other/github-outline.svg",
 		icon: "icons/other/github.svg",
 		address: "BRISINGR-01",
 		url: "https://github.com/BRISINGR-01",
@@ -139,6 +141,7 @@ export const contacts: Contact[] = [
 	{
 		id: "gitlab",
 		title: "Gitlab",
+		altIcon: "icons/other/gitlab-outline.svg",
 		icon: "icons/other/gitlab.svg",
 		address: "BRISINGR-01",
 		url: "https://gitlab.com/BRISINGR-01",
@@ -152,6 +155,7 @@ export const contacts: Contact[] = [
 	{
 		id: "linkedin",
 		title: "LinkedIn",
+		altIcon: "icons/other/linkedin-outline.svg",
 		icon: "icons/other/linkedin.svg",
 		address: "alexander-popov-61126825a",
 		url: "https://www.linkedin.com/in/alexander-popov-61126825a/",
@@ -166,6 +170,7 @@ export const contacts: Contact[] = [
 	{
 		id: "instagram",
 		title: "Instagram",
+		altIcon: "icons/other/instagram-outline.svg",
 		icon: "images/other/instagram.png",
 		address: "@alexan6451",
 		url: "https://www.instagram.com/alexan6451/",
@@ -179,6 +184,7 @@ export const contacts: Contact[] = [
 	{
 		id: "whatsapp",
 		title: "Whatsapp",
+		altIcon: "icons/other/whatsapp-outline.svg",
 		icon: "icons/other/whatsapp.svg",
 		address: "+31620429868",
 		url: "tel:+31620429868",

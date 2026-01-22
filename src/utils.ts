@@ -11,7 +11,7 @@ export function parseTimeSpan(str: string) {
 }
 
 export function calculateSVGPathRenderOffset(index: number, isWide?: boolean) {
-	return index * -5 * (isWide ? 0.01 : 0.001);
+	return index * -5 * (isWide ? 0.02 : 0.001);
 }
 
 export function useIcon() {
@@ -46,7 +46,7 @@ export function useEdit(data?: ContentData) {
 
 	console.log(
 		`position: [${p[0].toFixed(3)}, ${p[1].toFixed(3)}, ${p[2].toFixed(3)}],
-									rotation: [${r[0].toFixed(3)}, ${r[1].toFixed(3)}, ${r[2].toFixed(3)}],`
+									rotation: [${r[0].toFixed(3)}, ${r[1].toFixed(3)}, ${r[2].toFixed(3)}],`,
 	);
 }
 
@@ -61,14 +61,15 @@ export function setDefaultCursor() {
 export function prettifyTitle(text: string | null | Mode) {
 	switch (text) {
 		case Mode.Experience:
-			return "Internships and Big Projects";
+			return "Experience";
 		case Mode.Education:
-			return "Education and Knowledge Sources";
-		case Mode.Contact:
-			return "Contacts";
+			return "Education";
+		case Mode.AboutMe:
+			return "About Me";
 		case Mode.Interests:
 			return "Interests";
 		case Mode.Info:
+			return "Info";
 		case Mode.None:
 			return "";
 		default:

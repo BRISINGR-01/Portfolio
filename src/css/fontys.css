@@ -24,13 +24,16 @@
 	margin-bottom: calc(-1 * var(--b-size));
 	margin-left: calc(-1 * var(--b-size));
 
-	background: linear-gradient(30deg, var(--b) 0 calc(var(--dent) + var(--b-size)), transparent 0) top left / 50% 100%,
-		linear-gradient(-155deg, var(--b) 0 calc(var(--dent) + var(--b-size)), transparent 0) top right / 50% 50%, var(--bg);
+	background:
+		linear-gradient(30deg, var(--b) 0 calc(var(--dent) + var(--b-size)), transparent 0) top left / 50% 100%,
+		linear-gradient(-155deg, var(--b) 0 calc(var(--dent) + var(--b-size)), transparent 0) top right / 50% 50%,
+		var(--bg);
 
 	background-origin: border-box;
 	background-repeat: no-repeat;
 
-	mask: linear-gradient(45deg, transparent 0 var(--dent), #fff 0) bottom left,
+	mask:
+		linear-gradient(45deg, transparent 0 var(--dent), #fff 0) bottom left,
 		linear-gradient(-45deg, transparent 0 0, #fff 0) bottom right,
 		linear-gradient(145deg, transparent 0 0, #fff 0) top left,
 		linear-gradient(-145deg, transparent 0 var(--dent), #fff 0) top right;

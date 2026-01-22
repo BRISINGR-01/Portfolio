@@ -40,7 +40,6 @@ export const ROOM = {
 export const IMAGE_DEPTH = 0.02;
 export const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 export const TRANSITION = { duration: 0.3, ease: "easeOut" as Easing };
-export const BLUE_FILTER = "sepia(100%) hue-rotate(157deg) saturate(500%)";
 
 export const SKIP_ANIMATIONS = import.meta.env.DEV && true;
 
