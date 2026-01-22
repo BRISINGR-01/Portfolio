@@ -53,7 +53,7 @@ export default function ContentContainer({
 					transform: "translateX(-50%)",
 					height: "2.5em",
 				}}
-				gap={2}
+				gap={1}
 			>
 				<AnimatePresence>{props.goBackCb && <BackBtn onClick={props.goBackCb} />}</AnimatePresence>
 				<CloseBtn onClick={props.close} />

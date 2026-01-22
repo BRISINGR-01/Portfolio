@@ -20,7 +20,7 @@ export default function CircuitPattern() {
 
 		const t = setTimeout(() => {
 			video.play();
-			meshRef.current!.material = new THREE.MeshBasicMaterial({ map: texture });
+			meshRef.current!.material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
 			meshRef.current!.material.needsUpdate = true;
 		}, 4300);
 
@@ -30,7 +30,7 @@ export default function CircuitPattern() {
 	}, []);
 
 	return (
-		<mesh ref={meshRef} rotation={[-Math.PI / 2, 0, Math.PI / 2]} position={[0, -2, 0]}>
+		<mesh ref={meshRef} rotation={[-Math.PI / 2, 0, Math.PI / 2]} position={[0, -2.1, 0]}>
 			<planeGeometry args={[ROOM.WIDTH - ROOM.OFFSET, ROOM.WIDTH - ROOM.OFFSET]} />
 			{/* Until video loads */}
 			<meshBasicMaterial color={COLOR_PALETTE.SECONDARY} />

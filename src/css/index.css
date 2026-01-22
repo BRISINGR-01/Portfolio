@@ -13,12 +13,16 @@
 
 @font-face {
 	font-family: "Toxigenesis";
-	src: local("Toxigenesis"), url("/fonts/toxigenesis bd.otf") format("opentype");
+	src:
+		local("Toxigenesis"),
+		url("/fonts/toxigenesis bd.otf") format("opentype");
 }
 
 @font-face {
 	font-family: "Armstrong";
-	src: local("Armstrong"), url("/fonts/Armstrong.otf") format("opentype");
+	src:
+		local("Armstrong"),
+		url("/fonts/Armstrong.otf") format("opentype");
 }
 
 * {
@@ -29,15 +33,21 @@ a,
 button,
 .pointer,
 .pointer > * {
-	cursor: url("/cursors/link_select.cur") 0 0, pointer !important;
+	cursor:
+		url("/cursors/link_select.cur") 0 0,
+		pointer !important;
 }
 .grab,
 .grab > * {
-	cursor: url("/cursors/link_select.cur") 0 0, grab !important;
+	cursor:
+		url("/cursors/link_select.cur") 0 0,
+		grab !important;
 }
 .grabbing,
 .grabbing > * {
-	cursor: url("/cursors/link_grab.cur") 0 0, grabbing !important;
+	cursor:
+		url("/cursors/link_grab.cur") 0 0,
+		grabbing !important;
 }
 
 html,
@@ -54,7 +64,9 @@ body,
 body {
 	position: fixed;
 	overflow: hidden;
-	cursor: url("/cursors/normal_select.cur") 0 0, auto;
+	cursor:
+		url("/cursors/normal_select.cur") 0 0,
+		auto;
 }
 
 canvas {
@@ -84,6 +96,7 @@ canvas {
 .hover {
 	transition: 0.3s;
 }
+
 .hover:hover {
 	transform: scale(1.1);
 	transition: 0.3s;

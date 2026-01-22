@@ -14,7 +14,7 @@ export default function BookList(props: { onSelect: (book: Book) => void }) {
 				{books.map((book, i) => (
 					<div
 						key={i}
-						className="book-card-3d rounded-3 col-10 col-sm-5 col-md-4 col-lg-3 m-2 py-3"
+						className="book-card-3d rounded-3 pointer col-10 col-sm-5 col-md-4 col-lg-3 m-2 py-3"
 						onClick={(e) => {
 							e.stopPropagation();
 							props.onSelect(book);

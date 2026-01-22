@@ -32,7 +32,7 @@ export const controlsMap = [
 ] as KeyboardControlsEntry<Controls>[];
 
 export const ROOM = {
-	HEIGHT: 5,
+	HEIGHT: 8,
 	WIDTH: 15,
 	OFFSET: 0.01,
 	CEILING_NOISE: 0.2,

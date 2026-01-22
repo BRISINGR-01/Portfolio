@@ -33,7 +33,7 @@ BatchedMesh.prototype.disposeBoundsTree = disposeBatchedBoundsTree;
 BatchedMesh.prototype.raycast = acceleratedRaycast;
 
 export default function Portfolio3D() {
-	const [mode, setMode] = useState(Mode.AboutMe);
+	const [mode, setMode] = useState(Mode.Education);
 	const [contentIndex, setContentIndex] = useState<number>(-1);
 	const [hovered, setHovered] = useState<ContentData | null>(null);
 	const [visibleIcons, setVisibleIcons] = useState<ContentData[]>([]);
@@ -55,7 +55,7 @@ export default function Portfolio3D() {
 
 		const unsub = sub(
 			(state) => state.escape,
-			(pressed) => pressed && setContentIndex(-1)
+			(pressed) => pressed && setContentIndex(-1),
 		);
 
 		return () => {

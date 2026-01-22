@@ -5,7 +5,6 @@ import { OverlayTrigger, Row, Tooltip } from "react-bootstrap";
 import { TRANSITION } from "../../../constants.ts";
 import { Mode, type Controls, type fn } from "../../../types.ts";
 import { prettifyTitle } from "../../../utils.ts";
-import G_Card from "../components/G_Card.tsx";
 import InfoDisplay from "./InfoDisplay.tsx";
 
 const modes = [
@@ -48,7 +47,7 @@ export default function Menu(props: {
 					transition={TRANSITION}
 					exit={{ transform: "translateY(100px)", opacity: 0 }}
 				>
-					<G_Card
+					{/* <G_Card
 						style={{
 							bottom: 0,
 							left: "50%",
@@ -58,8 +57,14 @@ export default function Menu(props: {
 						}}
 						className={`mb-${props.disabled ? 2 : 4} ${props.disabled && "opacity-50"}`}
 					>
+					<MenuButtons {...props} show={() => setShowInfo(true)} />
+					</G_Card> */}
+					<div
+						className={`position-absolute bottom-0 end-50 mb-${props.disabled ? 2 : 4} ${props.disabled && "opacity-50"}`}
+						style={{ transform: "translateX(50%)" }}
+					>
 						<MenuButtons {...props} show={() => setShowInfo(true)} />
-					</G_Card>
+					</div>
 				</motion.div>
 			)}
 		</AnimatePresence>
@@ -68,18 +73,23 @@ export default function Menu(props: {
 
 export function MenuButtons(props: { selected: Mode; onSelect: (type: Mode) => void; disabled: boolean; show: fn }) {
 	return (
-		<Row className="gap-3 px-2 justify-content-center">
-			{modes.map(({ mode, icon }, i) => (
-				<div
-					className="position-relative p-0"
-					style={{
-						height: "3.5em",
-						width: "3.5em",
-					}}
-				>
+		<Row className="gap-1 px-2 justify-content-center">
+			{modes.map(({ mode, icon }, i) => {
+				const handleProps = {
+					style: {
+						transition: ".6s",
+						strokeDasharray: 100,
+						strokeDashoffset: props.selected === mode ? 0 : 100,
+					},
+					pathLength: "100",
+					stroke: "#00AAFF",
+					strokeWidth: "8",
+				};
+
+				return (
 					<OverlayTrigger
+						placement="top"
 						key={i}
-						placement="bottom"
 						overlay={(p) => (
 							<Tooltip {...p} arrowProps={{}}>
 								{prettifyTitle(icon)}
@@ -87,8 +97,12 @@ export function MenuButtons(props: { selected: Mode; onSelect: (type: Mode) => v
 						)}
 					>
 						<div
-							className="position-absolute w-100 h-100 top-0 left-0 menu-icon pointer"
-							style={{ padding: "0.7em" }}
+							className="position-relative p-0 menu-icon"
+							style={{
+								height: "4.5em",
+								width: "4.5em",
+								opacity: props.selected === mode ? 1 : 0.6,
+							}}
 							onClick={() => {
 								if (props.disabled) return;
 
@@ -99,20 +113,26 @@ export function MenuButtons(props: { selected: Mode; onSelect: (type: Mode) => v
 								}
 							}}
 						>
-							<img className="w-100 h-100" src={`icons/ui/${icon}.svg`} alt={icon} />
+							<div className="position-absolute w-100 h-100 top-0 left-0 pointer" style={{ padding: "1.2em" }}>
+								<img className="w-100 h-100" src={`icons/ui/${icon}.svg`} alt={icon} />
+							</div>
+							<svg viewBox="0 0 178 178" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path
+									className="menu-icon-frame"
+									d="M53.0696 25.3101H124.006L151.764 54.0958V122.976L141.483 116.807V59.2362L118.352 35.5907H59.238L36.6206 59.2362V116.807L59.238 140.453H118.352L141.483 116.807L151.764 122.976L124.006 150.733H53.0696L26.34 122.976V54.0958L53.0696 25.3101Z"
+									fill="#00AAFF"
+								/>
+								<path className="menu-icon-handle-l" {...handleProps} d="M4 74.256L4.0001 39.8158L38.3432 4H72.7833" />
+								<path
+									className="menu-icon-handle-r"
+									{...handleProps}
+									d="M174.003 102.33V136.77L139.661 172.586H105.22"
+								/>
+							</svg>
 						</div>
 					</OverlayTrigger>
-					<svg viewBox="0 0 122 122" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M26 0H95L122 28V95L112 89V33L89.5 10H32L10 33V89L32 112H89.5L112 89L122 95L95 122H26L0 95V28L26 0Z"
-							style={{
-								boxShadow: props.selected === mode ? "rgb(255, 255, 255) 0px 0px 5px" : undefined,
-							}}
-							fill="#00AAFF"
-						/>
-					</svg>
-				</div>
-			))}
+				);
+			})}
 		</Row>
 	);
 }

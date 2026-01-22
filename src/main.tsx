@@ -38,7 +38,7 @@ createRoot(document.getElementById("root")!).render(
 			<Route index path="preview" element={<Preview />} />
 			<Route path="em" element={<Emergency />} />
 		</Routes>
-	</BrowserRouter>
+	</BrowserRouter>,
 );
 
 function Debug() {

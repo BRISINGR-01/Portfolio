@@ -14,7 +14,7 @@ export default function Ceiling() {
 			geom.attributes.position.setY(i, geom.attributes.position.getY(i) + (Math.random() - 0.5) * ROOM.CEILING_NOISE);
 			geom.attributes.position.setZ(
 				i,
-				geom.attributes.position.getZ(i) + (Math.random() - 0.5) * ROOM.CEILING_NOISE * 2
+				geom.attributes.position.getZ(i) + (Math.random() - 0.5) * ROOM.CEILING_NOISE * 2,
 			);
 		}
 		geom.computeVertexNormals();
@@ -73,7 +73,7 @@ export default function Ceiling() {
 	}, []);
 
 	return (
-		<group position={[0, ROOM.HEIGHT - 0.2 + 2 * ROOM.OFFSET, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+		<group position={[0, ROOM.HEIGHT - 2 + 2 * ROOM.OFFSET, 0]} rotation={[-Math.PI / 2, 0, 0]}>
 			<mesh ref={meshRef} geometry={planeGeometry} position={[0, 0, -0.1]}>
 				<meshStandardMaterial vertexColors wireframe transparent opacity={1} toneMapped={false} />
 			</mesh>

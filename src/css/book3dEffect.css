@@ -1,3 +1,37 @@
+.book-card-3d {
+	position: relative;
+	border-radius: 1rem;
+	transform-style: preserve-3d;
+	transition: 0.2s all ease-out;
+	display: flex;
+	flex-direction: column;
+	height: 260px;
+	background: transparent !important;
+	border: none;
+	box-shadow: none;
+}
+
+.book-card-3d:hover {
+	transition: 0.2s all ease-out;
+	transform: rotateX(6deg) rotateY(-6deg) scale(1.05);
+	text-decoration: underline;
+
+	.book-3d {
+		transition: 0.2s;
+		scale: 1.05;
+	}
+
+	.book-3d__inner::before {
+		transition: 0.2s;
+		width: 0;
+	}
+
+	.book-3d__inner {
+		transition: 0.2s;
+		transform: rotateY(0);
+	}
+}
+
 .book-3d {
 	--book-thickness: 12px;
 
@@ -70,7 +104,6 @@
 	height: 100%;
 	transform: translateZ(calc(var(--book-thickness) * -1));
 	border-radius: 0 2px 2px 0;
-	box-shadow: -10px 0 50px 10px rgba(0, 0, 0, 0.3);
 }
 
 .book-3d__cover {

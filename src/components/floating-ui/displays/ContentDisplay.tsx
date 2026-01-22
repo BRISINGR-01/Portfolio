@@ -52,7 +52,7 @@ function Content({ data, ...props }: Props & { data: ContentData; setGoBackCb: (
 				case "fontys":
 					return <Fontys setGoBackCb={props.setGoBackCb} />;
 				case "books":
-					return <Books />;
+					return <Books setGoBackCb={props.setGoBackCb} />;
 				default:
 					return <EducationDisplay data={data as Education} />;
 			}

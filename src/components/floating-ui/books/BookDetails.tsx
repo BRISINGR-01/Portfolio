@@ -1,11 +1,11 @@
 import { Image, Stack } from "react-bootstrap";
-import type { Book, fn } from "../../../types";
+import type { Book } from "../../../types";
 import FadeAnim from "../components/FadeAnim";
 import Frame from "../components/Frame";
 
-export default function BookDetails(props: { book: Book; onClick: fn }) {
+export default function BookDetails(props: { book: Book }) {
 	return (
-		<FadeAnim onClick={props.onClick} className="p-5">
+		<FadeAnim className="p-5">
 			<Stack className="justify-content-between" gap={5}>
 				<Stack direction="horizontal" gap={4} className="align-items-start">
 					<div className="col-4 col-md-3">
@@ -35,14 +35,6 @@ export default function BookDetails(props: { book: Book; onClick: fn }) {
 
 						<p className="mt-4">"{props.book.description}"</p>
 					</div>
-				</Stack>
-				<Stack direction="horizontal">
-					<Image
-						src={`/icons/ui/click.svg`}
-						alt="click"
-						style={{ filter: "opacity(0.8) blur(0.3px)", width: "auto", height: "2em" }}
-					/>
-					Click anywhere to go back
 				</Stack>
 			</Stack>
 		</FadeAnim>

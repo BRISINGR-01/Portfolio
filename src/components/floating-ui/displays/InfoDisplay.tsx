@@ -8,6 +8,8 @@ const keyboardShortcuts = [
 	{ key: "esc", description: "Close window" },
 	{ key: "f", description: "Toggle fullscreen" },
 	{ key: "space", description: "Recenter" },
+	{ key: "➜", description: "Previuos" },
+	{ key: "➜", description: "Next" },
 ];
 
 const mobileControls = [
@@ -39,12 +41,17 @@ function Grid(props: { children: React.ReactElement[] }) {
 export default function InfoDisplay(props: { onClick: fn }) {
 	return (
 		<HologramDisplay close={props.onClick}>
-			<Stack className="py-5 ms-3" gap={3}>
+			<Stack className="py-5 ps-3 ms-3" gap={3}>
 				<h3 className="text-center">Welcome to my portfolio!</h3>
 				<Grid>
 					{keyboardShortcuts.map(({ key, description }, i) => (
 						<React.Fragment key={i}>
-							<div className="key-badge text-center me-3">
+							<div
+								className="key-badge text-center me-3"
+								style={{
+									transform: "Previuos" === description ? "rotateY(180/*  */deg)" : "",
+								}}
+							>
 								<div>{key.toUpperCase()}</div>
 							</div>
 							<div className="pt-1">{description}</div>
@@ -54,12 +61,13 @@ export default function InfoDisplay(props: { onClick: fn }) {
 				<div>
 					<p className="fs-6">Use the menu to navigate</p>
 					<div
-						className="rounded p-2 px-3"
+						className="p-2 px-3"
 						style={{
+							borderRadius: "20%",
 							transform: "scale(.8)",
+							transformOrigin: "left",
 							width: "fit-content",
-							boxShadow: `0 0 14px 2px white`,
-							background: "#c4ebff5e",
+							background: "#093246ac",
 						}}
 					>
 						<MenuButtons onSelect={() => {}} show={() => {}} selected={Mode.Education} disabled={false} />

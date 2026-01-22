@@ -12,7 +12,7 @@ export default function Experiences({ data }: { data: Experience; close: fn }) {
 	const [showDescription, setShowDescription] = useState(true);
 	return (
 		<Stack className="p-5" gap={4}>
-			<Stack className="flex-lg-row" gap={4}>
+			<Stack className="pt-2 flex-lg-row" gap={4}>
 				<Stack direction="horizontal" gap={4}>
 					{/* Logo + timespan */}
 					<Stack className="align-items-center flex-shrink-0" style={{ width: "10em" }} gap={3}>
