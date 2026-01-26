@@ -1,5 +1,5 @@
-import projects from "./content/projects";
-import type { Book, DailyDevBadge, HTBBadge, Semester } from "./types";
+import type { Book, DailyDevBadge, HTBBadge, Semester } from "../types";
+import projects from "./projects";
 
 const text = {
 	books: {
@@ -24,6 +24,8 @@ const text = {
 			"Programmers who endure and succeed amidst swirling uncertainty and nonstop pressure share a common attribute: They care deeply about the practice of creating software. They treat it as a craft. They are professionals.",
 		"Little Book Of Semaphores":
 			"The Little Book of Semaphores is a textbook that introduces the principles of synchronization for concurrent programming. In most computer science curricula, synchronization is a module in an Operating Systems class.",
+		"Make: Electronics":
+			"Explores the properties and applications of discrete components that are the fundamental building blocks of circuit design. Understanding resistors, capacitors, transistors, inductors, diodes, and integrated circuit chips is essential even when using microcontrollers.",
 	},
 };
 
@@ -186,6 +188,15 @@ export const books: Book[] = [
 		cover: "LittleBookOfSemaphores.webp",
 		tags: ["Code Quality", "Concurrency"],
 	},
+
+	{
+		title: "Make: Electronics",
+		subTitle: "2nd Edition",
+		author: "Charles Platt",
+		description: text.books["Make: Electronics"],
+		cover: "Make_Electronics.webp",
+		tags: ["Electronics", "Embedded Systems"],
+	},
 ];
 
 export const htbBadges: HTBBadge[] = [
@@ -252,6 +263,14 @@ export const dailyDevBadges: DailyDevBadge[] = [
 	{ image: "images/daily-dev/January 2025 Top Reader in Shell.png", title: "Top Reader in Shell" },
 	{
 		image: "images/daily-dev/October 2025 Top Reader in Embedded Systems.png",
+		title: "Top Reader in Embedded Systems",
+	},
+	{
+		image: "images/daily-dev/November 2025 Top Reader in Embedded Systems.png",
+		title: "Top Reader in Embedded Systems",
+	},
+	{
+		image: "images/daily-dev/December 2025 Top Reader in Embedded Systems.png",
 		title: "Top Reader in Embedded Systems",
 	},
 ];

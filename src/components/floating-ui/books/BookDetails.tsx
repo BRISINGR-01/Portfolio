@@ -1,26 +1,25 @@
-import { Image, Stack } from "react-bootstrap";
+import { Stack } from "react-bootstrap";
 import type { Book } from "../../../types";
 import FadeAnim from "../components/FadeAnim";
 import Frame from "../components/Frame";
 
 export default function BookDetails(props: { book: Book }) {
 	return (
-		<FadeAnim className="p-5">
+		<FadeAnim>
 			<Stack className="justify-content-between" gap={5}>
 				<Stack direction="horizontal" gap={4} className="align-items-start">
 					<div className="col-4 col-md-3">
-						<Frame size={3}>
-							<Image
-								src={`/images/book-covers/${props.book.cover}`}
-								alt={props.book.title}
-								fluid
-								style={{
-									boxShadow: "0px 0 10px 0px rgb(0 170 255 / 70%)",
-									borderRadius: "15px",
-									objectFit: "contain",
-								}}
-							/>
-						</Frame>
+						<Frame
+							src={`/images/book-covers/${props.book.cover}`}
+							alt={props.book.title}
+							size={3}
+							style={{
+								boxShadow: "0px 0 10px 0px rgb(0 170 255 / 70%)",
+								borderRadius: "15px",
+								objectFit: "contain",
+								maxWidth: "100%",
+							}}
+						/>
 					</div>
 
 					<div className="col-8 col-xs-12 pe-0 pt-1">

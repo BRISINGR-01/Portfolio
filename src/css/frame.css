@@ -4,6 +4,8 @@
 	height: fit-content;
 	display: grid;
 	place-items: center;
+	max-width: 100vw;
+	max-height: 100vh;
 }
 
 .frame {
@@ -41,10 +43,13 @@
 
 .cut-corners {
 	position: relative;
-	--cut: calc(2em / 2); /* size of the cut */
+	--cut: max(1em, 5%);
 	padding: 2px;
 	display: grid;
 	place-items: center;
+
+	max-width: 100%;
+	max-height: 100%;
 }
 
 .cut-corners > * {

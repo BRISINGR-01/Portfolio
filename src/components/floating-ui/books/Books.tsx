@@ -15,7 +15,7 @@ export default function Books(props: { setGoBackCb: (cb?: fn) => void }) {
 		} else {
 			props.setGoBackCb(() => {});
 		}
-	}, [props, selected]);
+	}, [selected]);
 
 	return (
 		<FadeAnim key="books" transition={TRANSITION}>

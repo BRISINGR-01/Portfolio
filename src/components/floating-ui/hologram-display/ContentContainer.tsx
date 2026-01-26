@@ -12,6 +12,7 @@ export default function ContentContainer({
 	box: {
 		x: DOMRect;
 		frame: DOMRect;
+		contentFrame: DOMRect;
 	};
 	children: React.ReactNode;
 	close: fn;
@@ -59,8 +60,16 @@ export default function ContentContainer({
 				<CloseBtn onClick={props.close} />
 			</Stack>
 
-			<div className="overflow-auto w-100 p-5 pe-0 h-100 w-100 position-relative z-2">
-				<div className="w-100 h-100 p-2">{props.children}</div>
+			<div className="overflow-auto w-100 h-100 w-100 position-relative z-2">
+				<div
+					style={{
+						paddingLeft: box.contentFrame.left - box.frame.left,
+						paddingTop: box.contentFrame.top - box.frame.top,
+						paddingBottom: box.frame.bottom - box.contentFrame.bottom,
+					}}
+				>
+					<div className="pt-2 px-2">{props.children}</div>
+				</div>
 			</div>
 		</motion.div>
 	);

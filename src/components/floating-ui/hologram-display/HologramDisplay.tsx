@@ -16,12 +16,15 @@ export default function HologramDisplay(props: {
 	const [boxes, setBoxes] = useState<{
 		x: DOMRect | null;
 		frame: DOMRect | null;
-	}>({ frame: null, x: null });
+		contentFrame: DOMRect | null;
+	}>({ frame: null, contentFrame: null, x: null });
+	const contentFrameRef = useRef<SVGSVGElement | null>(null);
 	const frameRef = useRef<SVGSVGElement | null>(null);
 	const XposRef = useRef<SVGSVGElement | null>(null);
 
 	function update() {
 		setBoxes({
+			contentFrame: contentFrameRef.current ? contentFrameRef.current.getBoundingClientRect().toJSON() : null,
 			frame: frameRef.current ? frameRef.current.getBoundingClientRect().toJSON() : null,
 			x: XposRef.current ? XposRef.current.getBoundingClientRect().toJSON() : null,
 		});
@@ -48,6 +51,7 @@ export default function HologramDisplay(props: {
 						boxes as {
 							x: DOMRect;
 							frame: DOMRect;
+							contentFrame: DOMRect;
 							backBtn: DOMRect;
 						}
 					}
@@ -59,6 +63,7 @@ export default function HologramDisplay(props: {
 				{svg}
 				<foreignObject ref={useRegisterRef(frameRef, update)} width="100%" height="100%" />
 				<rect ref={useRegisterRef(XposRef, update)} x="90" y="6" width="1" height="1" />
+				<rect ref={useRegisterRef(contentFrameRef, update)} x="5" y="7" width="90" height="39" />
 			</AnimatedSVG>
 		</>
 	);

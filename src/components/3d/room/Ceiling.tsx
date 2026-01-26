@@ -3,13 +3,37 @@ import * as THREE from "three";
 import { CEILING_BUILD_UP_DURATION, COLOR_PALETTE, ROOM } from "../../../constants";
 
 export default function Ceiling() {
+	const size = 48;
 	const meshRef = useRef<THREE.Mesh>(null);
 
 	const planeGeometry = useMemo(() => {
-		const geom = new THREE.PlaneGeometry(ROOM.WIDTH, ROOM.WIDTH, 40, 40);
+		const geom = new THREE.PlaneGeometry(ROOM.WIDTH, ROOM.WIDTH, size, size);
 
-		// Add slight noise
-		for (let i = 0; i < geom.attributes.position.count; i++) {
+		let j = 1;
+		// Add slight noise, but align the edges with hex wall
+		function lower(i: number) {
+			geom.attributes.position.setZ(i, geom.attributes.position.getZ(i) - 0.17);
+		}
+
+		for (let i = 0; i <= size; i++) {
+			if (i % 2 === 0) {
+				lower(i);
+				lower(i + geom.attributes.position.count - size + 1);
+			}
+		}
+
+		for (let i = size; i < geom.attributes.position.count - size; i++) {
+			if (i % (size * j + j + size) === 0) {
+				if (i % 2 === 0) lower(i);
+
+				j++;
+				continue;
+			}
+			if (i % (size + 1) === 0) {
+				if (i % 2 === 0) lower(i);
+				continue;
+			}
+
 			geom.attributes.position.setX(i, geom.attributes.position.getX(i) + (Math.random() - 0.5) * ROOM.CEILING_NOISE);
 			geom.attributes.position.setY(i, geom.attributes.position.getY(i) + (Math.random() - 0.5) * ROOM.CEILING_NOISE);
 			geom.attributes.position.setZ(
@@ -73,7 +97,7 @@ export default function Ceiling() {
 	}, []);
 
 	return (
-		<group position={[0, ROOM.HEIGHT - 2 + 2 * ROOM.OFFSET, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+		<group position={[0, ROOM.HEIGHT - 2.03 + 2 * ROOM.OFFSET, 0]} rotation={[-Math.PI / 2, 0, 0]}>
 			<mesh ref={meshRef} geometry={planeGeometry} position={[0, 0, -0.1]}>
 				<meshStandardMaterial vertexColors wireframe transparent opacity={1} toneMapped={false} />
 			</mesh>

@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import { Stack } from "react-bootstrap";
 import { TRANSITION } from "../../../constants.ts";
-import { dailyDevBadges, htbBadges } from "../../../content.ts";
+import { dailyDevBadges, htbBadges } from "../../../content/content.ts";
 import type { Education } from "../../../types.ts";
 import Badges from "../components/Badges.tsx";
 import ChangeAnimation from "../components/ChangeAnimation.tsx";

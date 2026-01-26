@@ -68,6 +68,8 @@ function createShapes(data: SVGResult, materialRefs: RefObject<HologramMaterial[
 		const color = new Color(path.userData!.style.fill);
 
 		const material = new HologramMaterial(color);
+		material.depthWrite = false;
+		material.depthTest = false;
 		materialRefs.current.push(material);
 
 		const originalMaterial = phongMaterial.clone();

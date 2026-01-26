@@ -11,8 +11,8 @@ import IconFrame from "./IconFrame";
 export default function Experiences({ data }: { data: Experience; close: fn }) {
 	const [showDescription, setShowDescription] = useState(true);
 	return (
-		<Stack className="p-5" gap={4}>
-			<Stack className="pt-2 flex-lg-row" gap={4}>
+		<Stack gap={4}>
+			<Stack className="flex-lg-row" gap={4}>
 				<Stack direction="horizontal" gap={4}>
 					{/* Logo + timespan */}
 					<Stack className="align-items-center flex-shrink-0" style={{ width: "10em" }} gap={3}>
@@ -43,7 +43,7 @@ export default function Experiences({ data }: { data: Experience; close: fn }) {
 				<div>{data.project.technologies && <TechBarGraph id={data.id} data={data.project.technologies} />}</div>
 			</Stack>
 
-			<ChangeAnimation className="pb-5 mb-5" id={"content-" + data.id}>
+			<ChangeAnimation id={"content-" + data.id}>
 				<ProjectContent content={data.project.content} fadeAnim />
 			</ChangeAnimation>
 		</Stack>

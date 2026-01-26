@@ -2,13 +2,13 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Badge, Col, ListGroup, Row, Stack } from "react-bootstrap";
 import { COLOR_PALETTE, TRANSITION } from "../../../constants";
-import { fontys } from "../../../content";
+import { fontys } from "../../../content/content";
 import "../../../css/fontys.css";
 import type { fn, Semester } from "../../../types";
+import FadeAnim from "../components/FadeAnim";
+import Link from "../components/Link";
+import { ProjectContent } from "../components/ProjectDisplay";
 import IconFrame from "../displays/IconFrame";
-import FadeAnim from "./FadeAnim";
-import Link from "./Link";
-import { ProjectContent } from "./ProjectDisplay";
 
 export default function Fontys(props: { setGoBackCb: (cb?: fn) => void }) {
 	const [showSem, setShowSem] = useState<Semester | null>();
@@ -23,7 +23,7 @@ export default function Fontys(props: { setGoBackCb: (cb?: fn) => void }) {
 	}, [showSem]);
 
 	return (
-		<Stack className="position-relative px-4 pt-5" gap={4} style={{ paddingBottom: "5em" }}>
+		<Stack className="position-relative" gap={4} style={{ paddingBottom: "5em" }}>
 			{showSem ? (
 				<SemesterDetails sem={showSem} />
 			) : (

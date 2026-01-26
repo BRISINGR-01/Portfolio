@@ -33,7 +33,7 @@ BatchedMesh.prototype.disposeBoundsTree = disposeBatchedBoundsTree;
 BatchedMesh.prototype.raycast = acceleratedRaycast;
 
 export default function Portfolio3D() {
-	const [mode, setMode] = useState(Mode.Education);
+	const [mode, setMode] = useState(Mode.AboutMe);
 	const [contentIndex, setContentIndex] = useState<number>(-1);
 	const [hovered, setHovered] = useState<ContentData | null>(null);
 	const [visibleIcons, setVisibleIcons] = useState<ContentData[]>([]);
@@ -41,7 +41,7 @@ export default function Portfolio3D() {
 
 	const selectedContent = content[mode] as ContentData[];
 	const selectedIcon: ContentData | null = contentIndex === -1 ? null : selectedContent[contentIndex];
-	// useEdit(contacts?.at(-2));
+	// useEdit(education?.at(-2));
 
 	useEffect(() => {
 		const t = setTimeout(() => {

@@ -1,12 +1,14 @@
 import { AnimatePresence } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Mode, type ContentData, type Education, type Experience, type fn } from "../../../types";
 import Books from "../books/Books";
-import Fontys from "../components/Fontys";
+import HTB from "../books/HTB";
 import HologramDisplay from "../hologram-display/HologramDisplay";
 import AboutMe from "./AboutMe";
+import DailyDev from "./DailyDev";
 import EducationDisplay from "./Education";
 import Experiences from "./Experiences";
+import Fontys from "./Fontys";
 import InfoDisplay from "./InfoDisplay";
 
 type Props = {
@@ -21,6 +23,10 @@ type Props = {
 
 export default function ContentDisplay(props: Props) {
 	const [goBackCb, setGoBackCb] = useState<fn | undefined>(undefined);
+
+	useEffect(() => {
+		setGoBackCb(undefined);
+	}, [props.type, props.data?.id]);
 
 	return (
 		<AnimatePresence>
@@ -53,6 +59,10 @@ function Content({ data, ...props }: Props & { data: ContentData; setGoBackCb: (
 					return <Fontys setGoBackCb={props.setGoBackCb} />;
 				case "books":
 					return <Books setGoBackCb={props.setGoBackCb} />;
+				case "htb":
+					return <HTB />;
+				case "daily-dev":
+					return <DailyDev />;
 				default:
 					return <EducationDisplay data={data as Education} />;
 			}

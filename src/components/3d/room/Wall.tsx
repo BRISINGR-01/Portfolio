@@ -85,7 +85,7 @@ function calcPos(dir: WallFace) {
 			break;
 	}
 
-	pos[1] += 2;
+	pos[1] += 1.9;
 
 	return pos;
 }

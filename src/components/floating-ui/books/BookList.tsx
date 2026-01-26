@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Row, Stack } from "react-bootstrap";
-import { books } from "../../../content";
+import { books } from "../../../content/content";
 import type { Book } from "../../../types";
 import Loader from "../../3d/other-components/Loader";
 import FadeAnim from "../components/FadeAnim";
@@ -8,9 +8,9 @@ import Book3DEffect from "./Book3DEffect";
 
 export default function BookList(props: { onSelect: (book: Book) => void }) {
 	return (
-		<FadeAnim key="book-list" className="p-5">
+		<FadeAnim key="book-list">
 			<h4 className="text-center mt-2">Technical books that I have read</h4>
-			<Row className="m-2 justify-content-center">
+			<Row className="justify-content-center">
 				{books.map((book, i) => (
 					<div
 						key={i}
@@ -24,7 +24,7 @@ export default function BookList(props: { onSelect: (book: Book) => void }) {
 							<Book3DEffect {...book} />
 						</Suspense>
 						<Stack className="mt-1 justify-content-between">
-							<div className="fs-6 text-center mb-1 mt-3">{book.title}</div>
+							<div className="fs-6 text-center mt-3">{book.title}</div>
 						</Stack>
 					</div>
 				))}

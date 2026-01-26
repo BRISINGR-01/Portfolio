@@ -8,7 +8,7 @@ export const education: Education[] = [
 		icon: "/3d/books.glb",
 		icon3D: {
 			scale: 1.5,
-			position: [-0.4, -0.36, 0.2],
+			position: [-0.7, -0.36, 0.2],
 			rotation: [0, 1.5, 0],
 		},
 	},
@@ -19,8 +19,8 @@ export const education: Education[] = [
 		icon: "/icons/other/certificate-detail.svg",
 		icon3D: {
 			scale: 0.001,
-			position: [-0.97, -0.03, -0.4],
-			rotation: [-0.5, -0.5, 0.2],
+			position: [1.6, -0.03, 0.37],
+			rotation: [-0.5, 0.153, -0.053],
 			wide: true,
 		},
 	},
@@ -43,8 +43,8 @@ export const education: Education[] = [
 		icon: "/icons/other/fontys.svg",
 		icon3D: {
 			scale: 0.006,
-			position: [1.52, 0.54, -0.5],
-			rotation: [-0.25, -0.6, 0.15],
+			position: [-0.12, 0.5, -0.4],
+			rotation: [-0.25, -0.3, 0.05],
 			wide: true,
 		},
 	},
@@ -55,8 +55,8 @@ export const education: Education[] = [
 		icon: "/icons/other/htb.svg",
 		icon3D: {
 			scale: 0.003,
-			position: [-2, 0.2, -0.05],
-			rotation: [-0.6, 0.5, -0.4],
+			position: [-1.5, 0.05, -0.5],
+			rotation: [-0.526, -0.427, -0.186],
 			wide: true,
 		},
 	},
@@ -66,8 +66,8 @@ export const education: Education[] = [
 		description: "",
 		icon: "/icons/other/daily-dev.svg",
 		icon3D: {
-			position: [-1.8, -0.2, 0.07],
-			rotation: [-1.35, 0.1, 0.05],
+			position: [-1.1, -0.355, 0.87],
+			rotation: [-1.41, -0.064, -2.89],
 			scale: 0.001,
 			wide: true,
 		},
