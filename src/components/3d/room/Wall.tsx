@@ -1,18 +1,42 @@
 import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import { DoubleSide, type ShaderMaterial } from "three";
 import { ROOM } from "../../../constants";
 import { WallFace } from "../../../types";
 
 const shader = {
 	fragment: `
-			uniform float uTime;
-      uniform vec2 uResolution;
+			uniform float uReveal;   // 0 → 1
+			uniform bool uInvert;    // flip diagonal per wall
       varying vec2 vUv;
       
       const float WIDTH = ${ROOM.WIDTH}.0;
       const float HEIGHT = ${ROOM.HEIGHT}.0;
-      
+
+      float diagonalMask(vec2 uv01) {
+				float d;
+
+				// top-left → bottom-right
+				if (!uInvert) {
+						d = uv01.x + (1.0 - uv01.y);
+				} else {
+						// top-right → bottom-left
+						d = (1.0 - uv01.x) + (1.0 - uv01.y);
+				}
+
+				// normalize so both diagonals go 0 → 1
+				d = clamp(d * 0.5, 0.0, 1.0);
+
+				// apply reveal
+				float mask = smoothstep(uReveal, uReveal, d);
+
+				// ensure fully visible behind reveal
+				mask = clamp(mask, 0.0, 1.0);
+
+				return 1.0 - mask;
+		}
+
+
       float hexDist(vec2 p) {
         p = abs(p);
         float c = dot(p, normalize(vec2(1.0, 1.732)));
@@ -40,25 +64,35 @@ const shader = {
         // Animated color based on position and time
         vec2 id = uv - gv;
         
-        vec3 outlineColor = vec3(0.051, 0.184, 0.341);
+        vec3 outlineColor = vec3(0.000, 0.173, 0.357);
         // Transparent background with colored outlines
         vec3 finalColor = outlineColor * outline;
-        float alpha = outline * 0.8;
+        float alpha = outline;
         
         return vec4(finalColor, alpha);
       }
       
       void main() {
-        vec2 uv = vUv * vec2(WIDTH, HEIGHT);
-        uv -= vec2(WIDTH, HEIGHT) * 0.5;				
-        
-        // Scale for better hex visibility
-        uv *= 1.6;
-        uv.y += 0.258;
+				// wall space (centered)
+				vec2 uv = vUv * vec2(WIDTH, HEIGHT);
+				uv -= vec2(WIDTH, HEIGHT) * 0.5;
+				
+				// hex scaling
+				uv *= 1.6;
+				uv.y += 0.258;
+				
+				vec4 hex = hexGrid(uv);
+				
+				// normalized UV (0-1)
+				vec2 uv01 = vUv;
+				// diagonal fade
+				float fade = diagonalMask(uv01);
 
-        gl_FragColor = hexGrid(uv);
-      }`,
-	vertex: `varying vec2 vUv;
+				gl_FragColor = vec4(hex.rgb, hex.a * fade);
+			}
+`,
+	vertex: `
+varying vec2 vUv;
 
 void main() {
   vUv = uv;
@@ -85,7 +119,7 @@ function calcPos(dir: WallFace) {
 			break;
 	}
 
-	pos[1] += 1.9;
+	pos[1] += 1.99;
 
 	return pos;
 }
@@ -105,20 +139,29 @@ function calcRot(dir: WallFace) {
 
 export default function Wall({ wallFace }: { wallFace: WallFace }) {
 	const mat = useRef<ShaderMaterial>(null);
+	const uniforms = useMemo(
+		() => ({
+			uReveal: { value: 0 },
+			uInvert: { value: wallFace === WallFace.North || wallFace === WallFace.South },
+		}),
+		[wallFace],
+	);
 
 	useFrame((_, delta) => {
-		if (!mat.current) return;
+		if (mat.current && mat.current.uniforms.uReveal.value <= 1) {
+			mat.current.uniforms.uReveal.value += delta;
+		}
+	}, 0);
 
-		mat.current.uniforms.uProgress.value = Math.min(mat.current.uniforms.uProgress.value + delta, 1);
-	});
 	return (
 		<mesh position={calcPos(wallFace)} rotation={[0, calcRot(wallFace), 0]}>
 			<planeGeometry args={[ROOM.WIDTH, ROOM.HEIGHT]} />
 			<shaderMaterial
 				transparent
+				ref={mat}
 				side={DoubleSide}
 				depthWrite={false}
-				uniforms={{ uProgress: { value: 0 } }}
+				uniforms={uniforms}
 				vertexShader={shader.vertex}
 				fragmentShader={shader.fragment}
 			/>

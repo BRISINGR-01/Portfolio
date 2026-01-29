@@ -41,7 +41,8 @@ export const IMAGE_DEPTH = 0.02;
 export const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 export const TRANSITION = { duration: 0.3, ease: "easeOut" as Easing };
 
-export const SKIP_ANIMATIONS = import.meta.env.DEV && true;
+export const IS_DEV = import.meta.env.DEV;
+export const SKIP_ANIMATIONS = IS_DEV && false;
 
 export const MENU_DELAY = SKIP_ANIMATIONS ? 0 : 4.2;
 export const TABLE_DELAY = SKIP_ANIMATIONS ? 0 : 4;
@@ -56,5 +57,5 @@ export const ZOOM_IN_DELAY = SKIP_ANIMATIONS ? 0 : 4100;
 
 export const CEILING_BUILD_UP_DURATION = SKIP_ANIMATIONS ? 0.1 : 3;
 export const WALL_BUILD_UP_DURATION = SKIP_ANIMATIONS ? 0.1 : 2;
-export const WALL_DELAY = SKIP_ANIMATIONS ? 0 : 1.5;
+export const WALL_DELAY = SKIP_ANIMATIONS ? 0 : 3;
 export const ICON_DELAY = SKIP_ANIMATIONS ? 0 : 120;

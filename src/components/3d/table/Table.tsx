@@ -1,6 +1,6 @@
 import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Mesh, type Object3D } from "three";
 import { HOLOGRAM_TRANSITION, TABLE_DELAY } from "../../../constants";
 import type HologramMaterial from "../icon/HologramMaterial";
@@ -18,6 +18,7 @@ export default function Table({ text }: { text: string | null }) {
 	const { scene } = useGLTF("/3d/table.glb");
 	const { clock } = useThree();
 	const materialRef = useRef<HologramMaterial>(null);
+	const [displayText, setDisplayText] = useState(false);
 
 	useFrame(({ clock }) => materialRef.current?.update(clock));
 
@@ -29,6 +30,7 @@ export default function Table({ text }: { text: string | null }) {
 
 		t = setTimeout(() => {
 			toggleVisibility(scene);
+			setDisplayText(true);
 			materialRef.current = setHologramMaterial(scene, clock, 200);
 
 			t = setTimeout(() => restoreMaterial(scene), HOLOGRAM_TRANSITION);
@@ -42,9 +44,11 @@ export default function Table({ text }: { text: string | null }) {
 
 	return (
 		<group>
-			<Delay time={TABLE_DELAY}>
-				<TableControls text={text} />
-			</Delay>
+			{displayText && (
+				<Delay time={0.2}>
+					<TableControls text={text} />
+				</Delay>
+			)}
 			<primitive object={scene} scale={40} position={[0, -2, 0]} />
 		</group>
 	);

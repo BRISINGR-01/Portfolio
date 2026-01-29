@@ -18,9 +18,7 @@ export default function Fontys(props: { setGoBackCb: (cb?: fn) => void }) {
 		} else {
 			props.setGoBackCb();
 		}
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [showSem]);
+	}, [props, showSem]);
 
 	return (
 		<Stack className="position-relative" gap={4} style={{ paddingBottom: "5em" }}>

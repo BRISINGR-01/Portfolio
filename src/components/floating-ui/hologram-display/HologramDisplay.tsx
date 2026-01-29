@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import React, { useCallback, useEffect, useRef, useState, type JSX } from "react";
+import React, { useEffect, useRef, useState, type JSX } from "react";
 import type { fn } from "../../../types";
 import ContentContainer from "./ContentContainer";
 import GalleryNav from "./GalleryNav";
@@ -18,9 +18,9 @@ export default function HologramDisplay(props: {
 		frame: DOMRect | null;
 		contentFrame: DOMRect | null;
 	}>({ frame: null, contentFrame: null, x: null });
-	const contentFrameRef = useRef<SVGSVGElement | null>(null);
+	const contentFrameRef = useRef<SVGRectElement | null>(null);
 	const frameRef = useRef<SVGSVGElement | null>(null);
-	const XposRef = useRef<SVGSVGElement | null>(null);
+	const XposRef = useRef<SVGRectElement | null>(null);
 
 	function update() {
 		setBoxes({
@@ -33,9 +33,10 @@ export default function HologramDisplay(props: {
 	useEffect(() => {
 		if (!frameRef.current) return;
 
+		update();
 		window.addEventListener("resize", update);
 		return () => window.removeEventListener("resize", update);
-	});
+	}, []);
 
 	return (
 		<>
@@ -61,20 +62,12 @@ export default function HologramDisplay(props: {
 
 			<AnimatedSVG onClick={props.close}>
 				{svg}
-				<foreignObject ref={useRegisterRef(frameRef, update)} width="100%" height="100%" />
-				<rect ref={useRegisterRef(XposRef, update)} x="90" y="6" width="1" height="1" />
-				<rect ref={useRegisterRef(contentFrameRef, update)} x="5" y="7" width="90" height="39" />
+				<foreignObject ref={frameRef} width="100%" height="100%" />
+				<rect ref={XposRef} x="90" y="6" width="1" height="1" />
+				<rect ref={contentFrameRef} x="5" y="7" width="90" height="39" />
 			</AnimatedSVG>
 		</>
 	);
-}
-
-function useRegisterRef(ref: React.RefObject<SVGElement | null>, update: fn) {
-	return useCallback((node: SVGElement | null) => {
-		ref.current = node;
-		update();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
 }
 
 function animateChildren(node: JSX.Element) {

@@ -77,7 +77,7 @@ export function MenuButtons(props: { selected: Mode; onSelect: (type: Mode) => v
 			{modes.map(({ mode, icon }, i) => {
 				const handleProps = {
 					style: {
-						transition: ".6s",
+						transition: "1.6s",
 						strokeDasharray: 100,
 						strokeDashoffset: props.selected === mode ? 0 : 100,
 					},
@@ -87,15 +87,7 @@ export function MenuButtons(props: { selected: Mode; onSelect: (type: Mode) => v
 				};
 
 				return (
-					<OverlayTrigger
-						placement="top"
-						key={i}
-						overlay={(p) => (
-							<Tooltip {...p} arrowProps={{}}>
-								{prettifyTitle(icon)}
-							</Tooltip>
-						)}
-					>
+					<OverlayTrigger placement="top" key={i} overlay={(p) => <Tooltip {...p}>{prettifyTitle(icon)}</Tooltip>}>
 						<div
 							className="position-relative p-0 menu-icon"
 							style={{

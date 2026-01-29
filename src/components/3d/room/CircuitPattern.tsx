@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { COLOR_PALETTE, ROOM } from "../../../constants";
+import { ROOM } from "../../../constants";
 
 export default function CircuitPattern() {
 	const meshRef = useRef<THREE.Mesh>(null);
@@ -30,10 +30,10 @@ export default function CircuitPattern() {
 	}, []);
 
 	return (
-		<mesh ref={meshRef} rotation={[-Math.PI / 2, 0, Math.PI / 2]} position={[0, -2.1, 0]}>
+		<mesh ref={meshRef} rotation={[-Math.PI / 2, 0, Math.PI / 2]} position={[0, -2.01, 0]}>
 			<planeGeometry args={[ROOM.WIDTH - ROOM.OFFSET, ROOM.WIDTH - ROOM.OFFSET]} />
 			{/* Until video loads */}
-			<meshBasicMaterial color={COLOR_PALETTE.SECONDARY} />
+			<meshBasicMaterial color="black" />
 		</mesh>
 	);
 }

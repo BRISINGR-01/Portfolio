@@ -1,5 +1,5 @@
 import { useKeyboardControls } from "@react-three/drei";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 import { BufferGeometry, Mesh } from "three";
 import {
 	acceleratedRaycast,
@@ -9,7 +9,7 @@ import {
 	disposeBoundsTree,
 } from "three-mesh-bvh";
 import { BatchedMesh } from "three/webgpu";
-import { ICON_DELAY, MENU_DELAY, SKIP_ANIMATIONS, TABLE_DELAY } from "../../constants";
+import { ICON_DELAY, SKIP_ANIMATIONS, TABLE_DELAY } from "../../constants";
 
 import content from "../../content/index.ts";
 import "../../css/floating-ui.css";
@@ -22,6 +22,7 @@ import AboutMe from "./other-components/AboutMe.tsx";
 import Delay from "./other-components/Delay.tsx";
 import Environment3D from "./other-components/Environment.tsx";
 import Raycast from "./other-components/Raycast.tsx";
+import Room from "./room/Room.tsx";
 import Table from "./table/Table.tsx";
 
 BufferGeometry.prototype.computeBoundsTree = computeBoundsTree;
@@ -32,8 +33,10 @@ BatchedMesh.prototype.computeBoundsTree = computeBatchedBoundsTree;
 BatchedMesh.prototype.disposeBoundsTree = disposeBatchedBoundsTree;
 BatchedMesh.prototype.raycast = acceleratedRaycast;
 
+const defMode = Mode.Education;
+
 export default function Portfolio3D() {
-	const [mode, setMode] = useState(Mode.AboutMe);
+	const [mode, setMode] = useState(Mode.None);
 	const [contentIndex, setContentIndex] = useState<number>(-1);
 	const [hovered, setHovered] = useState<ContentData | null>(null);
 	const [visibleIcons, setVisibleIcons] = useState<ContentData[]>([]);
@@ -45,13 +48,18 @@ export default function Portfolio3D() {
 
 	useEffect(() => {
 		const t = setTimeout(() => {
-			if (SKIP_ANIMATIONS) return;
+			if (SKIP_ANIMATIONS) {
+				setMode(defMode);
+				return;
+			}
 
 			if (!window.localStorage.getItem("isFirstEntry")) {
 				window.localStorage.setItem("isFirstEntry", "true");
 				setMode(Mode.Info);
+			} else {
+				setMode(defMode);
 			}
-		}, TABLE_DELAY);
+		}, TABLE_DELAY * 1000);
 
 		const unsub = sub(
 			(state) => state.escape,
@@ -79,50 +87,55 @@ export default function Portfolio3D() {
 		return () => clearTimeout(t);
 	}, [selectedContent]);
 
+	const onClick = useCallback(
+		(m: Mesh | null) => {
+			if (!m || !selectedContent) return setContentIndex(-1);
+			const newSelected = selectedContent.find((el) => el.id === m.name) ?? null;
+
+			if (!newSelected || newSelected.id === selectedIcon?.id) return setContentIndex(-1);
+
+			setContentIndex(selectedContent.findIndex(({ id }) => id === newSelected.id));
+		},
+		[selectedContent, selectedIcon?.id],
+	);
+	const onHover = useCallback(
+		(id: string | null) => {
+			if (!id || !selectedContent) {
+				setHovered(null);
+			} else {
+				setHovered(selectedContent.find((data) => data.id === id)!);
+			}
+		},
+		[selectedContent],
+	);
+
 	return (
 		<>
 			<Environment3D pause={!!selectedIcon}>
-				<Delay time={TABLE_DELAY}>
-					<Raycast
-						key={mode} // refreshes values in the callback
-						onClick={(m: Mesh | null) => {
-							if (!m || !selectedContent) return setContentIndex(-1);
-							const newSelected = selectedContent.find((el) => el.id === m.name) ?? null;
+				<Room />
 
-							if (!newSelected || newSelected.id === selectedIcon?.id) return setContentIndex(-1);
-
-							setContentIndex(selectedContent.findIndex(({ id }) => id === newSelected.id));
-						}}
-						onHover={(id: string | null) => {
-							if (!id || !selectedContent) {
-								setHovered(null);
-							} else {
-								setHovered(selectedContent.find((data) => data.id === id)!);
-							}
-						}}
-					>
-						{visibleIcons.map((icon) => (
-							<Suspense key={icon.id} fallback={null}>
-								<Icon {...icon} />
-							</Suspense>
-						))}
-					</Raycast>
-				</Delay>
+				<Raycast onClick={onClick} onHover={onHover}>
+					{visibleIcons.map((icon) => (
+						<Suspense key={icon.id} fallback={null}>
+							<Icon {...icon} />
+						</Suspense>
+					))}
+				</Raycast>
 				<Table text={prettifyTitle(selectedIcon?.title ?? hovered?.title ?? mode)} />
 				{mode === Mode.AboutMe && <AboutMe selectedIcon={selectedIcon ?? hovered} />}
 			</Environment3D>
 
-			<Delay time={MENU_DELAY}>
-				{selectedContent && (
-					<ContentDisplay
-						close={() => setContentIndex(-1)}
-						data={selectedIcon}
-						type={mode}
-						nrOfPages={selectedContent.length}
-						onSelect={(i) => setContentIndex(i)}
-						currentPage={contentIndex}
-					/>
-				)}
+			{selectedContent && (
+				<ContentDisplay
+					close={() => setContentIndex(-1)}
+					data={selectedIcon}
+					type={mode}
+					nrOfPages={selectedContent.length}
+					onSelect={(i) => setContentIndex(i)}
+					currentPage={contentIndex}
+				/>
+			)}
+			<Delay time={TABLE_DELAY}>
 				<Menu
 					show={!selectedIcon}
 					selected={mode}

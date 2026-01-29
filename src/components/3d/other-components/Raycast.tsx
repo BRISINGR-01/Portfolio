@@ -29,7 +29,7 @@ export default function Raycast({
 	const composer = useRef<EffectComposer>(null);
 	const persistentOutlinePass = useRef<OutlinePass>(null);
 
-	useFrame(() => composer.current?.render());
+	useFrame(() => composer.current?.render(), 1);
 
 	useEffect(() => {
 		const t = setTimeout(() => {
@@ -123,8 +123,7 @@ export default function Raycast({
 			composer.current?.dispose();
 			composer.current = null;
 		};
-		//  eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [camera, gl, onClick, onHover, raycaster, scene]);
 
 	return (
 		<group ref={groupRef} name={RAYCAST_CONTAINER_NAME}>

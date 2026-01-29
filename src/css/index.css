@@ -2,7 +2,7 @@
 	--primary: rgb(0, 170, 255);
 	--bs-primary: var(--primary);
 	--secondary: rgb(2, 10, 21);
-	--bs-secondary: var(var(--bs-secondary));
+	--bs-secondary: var(--bs-secondary);
 	--tertiary: #339ffe;
 	--bs-tertiary: var(--tertiary);
 	--dark: #00000040;

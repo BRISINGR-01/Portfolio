@@ -43,6 +43,10 @@ const projects = {
 					"This is what the hardware looks like under the hood - an ESP32 connected to an RFID/NFC reader. It can scan cards and chips (such as those on the picture) as well as the NFC of mobile phones. The scanned ID is then sent to a server which updates the screen.",
 			},
 			{
+				img: "images/gallery/sabic/present.jpeg",
+				description: "We even presented the demo at the SDG fair in Utrecht.",
+			},
+			{
 				img: "images/gallery/sabic/ui-2.png",
 				description: "Login is possible either via credentials or QR code",
 			},
@@ -112,6 +116,11 @@ const projects = {
 				title: "Certificate",
 				description:
 					"The idea behind the certificate is for companies to show that they are concious about their choices and for emplyees that they are aware of the hidden issues in the solar panel industry.",
+			},
+			{
+				img: "images/gallery/solarwatt/group.jpeg",
+				description:
+					"We presented our solution in Utrecht at the SDG fair in Utrecht. This was our group with Paulo Vieira on my right - he developed the platform with me.",
 			},
 		],
 	},

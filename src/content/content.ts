@@ -527,3 +527,58 @@ export const certificates = [
 		tags: ["Databases", "Neo4j", "Go (Programming Language)"],
 	},
 ];
+
+export const other = [
+	{
+		id: "zelinsoft",
+		title: "Zelinsoft Mentorship",
+		description:
+			"The lead and grounder of Zelinsoft .... asked me to make a couple of lectures to his team of students" +
+			`I recently had the pleasure of mentoring a group of talented interns at Zelinsoft, where we focused on both the technical and professional aspects of professional software engineering. We dove into coding best practices, TDD, alongside essential soft skills like effective communication and teamwork. These sessions were designed to help the interns build a strong foundation for their future careers.
+
+A big thanks to Ivan Hristov for organizing this initiative. His leadership and dedication as the founder of Zelinsoft, a startup with a clear vision for nurturing young talent, were key to making this happen. It’s great to see a company so committed to innovation and growth.
+
+For those interested, I’ve compiled the presentations and resources into a GitHub repository: https://lnkd.in/d8JERmUc.
+
+Excited to see where these interns go next!
+Zelinsoft: https://lnkd.in/dRvtnT_M`,
+		icon3D: { scale: 0.001, position: [-0.5, 0.3, -0.4], rotation: [-0.7, -0.2, 0.5], wide: true },
+	},
+
+	{
+		id: "mine-the-matrix",
+		// title: projects.glow.title,
+		// icon: projects.glow.icon,
+		// project: projects.glow,
+		// context: text.glow.context,
+		description: `Celebrating My 69th Place in HTB Mine the Matrix Tryout 🏆
+
+I’m pleased to share that I achieved 69th place out of 5000 participants in the HTB Mine the Matrix tryout! 🎉
+
+The competition covered a range of challenging areas:
+ ‣ Reverse Engineering: 🔍 Analyzing and deconstructing binaries to uncover hidden elements.
+ ‣ Exploitation: 💣 Identifying and leveraging vulnerabilities to gain control.
+ ‣ Cryptography: 🔐 Breaking down and deciphering encrypted messages.
+ ‣ Forensics: 🕵️‍♂️ Investigating data and files to retrieve critical information.
+ ‣ Web Exploitation: 🌐 Finding and exploiting security weaknesses in web applications.
+
+This experience was both demanding and rewarding, offering a great opportunity to test and expand my skills. A big thank you to the Hack The Box team for organizing such a rigorous event and to everyone who supported me along the way. 🙌
+
+Looking forward to applying these insights and continuing to grow in the cybersecurity field. 🚀
+`,
+		icon3D: { scale: 0.001, position: [-0.5, 0.3, -0.4], rotation: [-0.7, -0.2, 0.5], wide: true },
+	},
+	{
+		id: "international-week",
+		description: `🌍✨ Proud to be part of Fontys' International Week and thrilled to have contributed to an amazing team project!
+
+As a team, we've developed an innovative product that not only enhances our productivity but also promotes our health and well-being. 
+🚶‍♂️💼
+
+Our product? A smart solution that encourages us to take a break from work and go for a short walk. It locks our Trello boards and prompts us with: "Walk 20 meters to the location shown in the image and scan the QR code to unlock this task!" 🌳📱
+
+This initiative underscores the importance of work-life balance, reminding us to step away from our desks occasionally and enjoy some fresh air and movement. 🌿💻
+
+Thanks to my amazing teammates for their collaboration and to Fontys for facilitating this inspiring week filled with innovation and creativity! 💡👏`,
+	},
+];

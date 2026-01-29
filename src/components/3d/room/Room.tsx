@@ -5,13 +5,11 @@ import Ceiling from "./Ceiling";
 import CircuitPattern from "./CircuitPattern";
 import Wall from "./Wall";
 
-export default function Room(props: { children: React.ReactNode }) {
+export default function Room() {
 	return (
 		<>
 			<CircuitPattern />
 			<Ceiling />
-
-			{props.children}
 
 			<Delay time={WALL_DELAY}>
 				<Wall wallFace={WallFace.North} />
