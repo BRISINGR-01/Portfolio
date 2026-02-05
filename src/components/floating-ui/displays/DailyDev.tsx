@@ -1,6 +1,6 @@
 import { Card, Col, Container, Row, Stack } from "react-bootstrap";
 import { dailyDevBadges } from "../../../content/content";
-import DailyDevCard from "../../DailyDevCard";
+import DailyDevCard from "../components/DailyDevCard";
 import FadeAnim from "../components/FadeAnim";
 import Frame from "../components/Frame";
 

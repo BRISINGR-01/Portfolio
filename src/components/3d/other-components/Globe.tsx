@@ -18,7 +18,7 @@ const SIDE_HIGHLIGHT_COLOR = "#1aabff75";
 const POLYGON_OFFSET = 0.3;
 
 export default function Globe(props: { language: ContentData | null }) {
-	const { scene, clock } = useThree();
+	const { scene, clock } = useThree((state) => ({ scene: state.scene, clock: state.clock }));
 	const materialRef = useRef<HologramMaterial>(null);
 	const globeRef = useRef<G>(null);
 	const lang = (props.language as Language)?.iso ? (props.language as Language) : undefined;

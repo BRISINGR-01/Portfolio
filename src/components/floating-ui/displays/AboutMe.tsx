@@ -5,7 +5,7 @@ import Link from "../components/Link";
 
 function IconLink(i: number) {
 	return (
-		<Link key={i} url={contacts[i].url} className="p-1 hover" style={{ width: "min-content" }}>
+		<Link key={i} hoverText={contacts[i].id} url={contacts[i].url}>
 			<Image src={contacts[i].altIcon} style={{ height: "2em", filter: "drop-shadow(0px 0px 3px #00aaff)" }} />
 		</Link>
 	);
@@ -13,12 +13,11 @@ function IconLink(i: number) {
 
 export default function AboutMe() {
 	return (
-		<Stack className="flex-lg-row" gap={4}>
+		<Stack direction="horizontal" gap={4}>
 			<div className="d-flex flex-column gap-3" style={{ width: "min-content" }}>
 				<Image src="public/images/other/me.png" style={{ width: "100%" }} />
 				<Stack direction="horizontal" className="justify-content-center flex-wrap">
-					{[3, 5, 0, 4].map(IconLink)}
-					<div>{[1, 2].map(IconLink)}</div>
+					{contacts.map((_, i) => IconLink(i))}
 				</Stack>
 
 				<Stack direction="vertical">
@@ -34,6 +33,19 @@ export default function AboutMe() {
 					My name is Alexander Popov and I specialize mostly in web development. However I also develop embedded
 					systems, mobile apps and other types of software. I'm in my last year of my ICT bachelor at Fontys.
 				</span>
+				<div>
+					You can sonwload my CV if you are interested
+					{/* <Link >
+					</Link> */}
+					<img src="files/CV.png" alt="cv" />
+					<iframe
+						src="files/cv.pdf"
+						style={{
+							height: "auto",
+							width: "auto",
+						}}
+					/>
+				</div>
 			</Stack>
 		</Stack>
 	);

@@ -1,5 +1,6 @@
 import React from "react";
 import { Stack } from "react-bootstrap";
+import { COLOR_PALETTE } from "../../../constants.ts";
 import { Mode, type fn } from "../../../types.ts";
 import HologramDisplay from "../hologram-display/HologramDisplay.tsx";
 import { MenuButtons } from "./Menu.tsx";
@@ -27,6 +28,7 @@ function Grid(props: { children: React.ReactElement[] }) {
 		<div
 			className="rounded-3"
 			style={{
+				height: "fit-content",
 				display: "grid",
 				gridTemplateColumns: "max-content 1fr",
 				rowGap: "0.5rem",
@@ -41,46 +43,57 @@ function Grid(props: { children: React.ReactElement[] }) {
 export default function InfoDisplay(props: { onClick: fn }) {
 	return (
 		<HologramDisplay close={props.onClick}>
-			<Stack className="py-5 ps-3 ms-3" gap={3}>
+			<Stack className="py-2 ps-3 ms-3" gap={3}>
 				<h3 className="text-center">Welcome to my portfolio!</h3>
-				<Grid>
-					{keyboardShortcuts.map(({ key, description }, i) => (
-						<React.Fragment key={i}>
+				<Stack gap={3} className="flex-lg-row justify-content-lg-between">
+					<Grid>
+						{keyboardShortcuts.map(({ key, description }, i) => (
+							<React.Fragment key={i}>
+								<div
+									className="key-badge me-3"
+									style={{
+										transform: "Previuos" === description ? "rotateY(180deg)" : "",
+										background: "#389fe498",
+									}}
+								>
+									<div>{key.toUpperCase()}</div>
+								</div>
+								<div className="pt-1">{description}</div>
+							</React.Fragment>
+						))}
+					</Grid>
+					<div className="d-flex flex-column gap-3">
+						<div>
+							<p className="fs-6">Use the menu to navigate</p>
 							<div
-								className="key-badge text-center me-3"
+								className="p-2 px-3"
 								style={{
-									transform: "Previuos" === description ? "rotateY(180/*  */deg)" : "",
+									borderRadius: "20%",
+									transform: "scale(.8)",
+									transformOrigin: "left",
+									width: "fit-content",
+									background: "#093246ac",
 								}}
 							>
-								<div>{key.toUpperCase()}</div>
+								<MenuButtons onSelect={() => {}} show={() => {}} selected={Mode.Education} disabled={false} />
 							</div>
-							<div className="pt-1">{description}</div>
-						</React.Fragment>
-					))}
-				</Grid>
-				<div>
-					<p className="fs-6">Use the menu to navigate</p>
-					<div
-						className="p-2 px-3"
-						style={{
-							borderRadius: "20%",
-							transform: "scale(.8)",
-							transformOrigin: "left",
-							width: "fit-content",
-							background: "#093246ac",
-						}}
-					>
-						<MenuButtons onSelect={() => {}} show={() => {}} selected={Mode.Education} disabled={false} />
+						</div>
+						<div>
+							<span className="fs-6">Click on the icons to reveal more information</span>
+							<br />
+							<img
+								src="images/other/icon-example.png"
+								alt="example-icon"
+								style={{
+									height: "6em",
+									width: "fit-content",
+									boxShadow: `0 0 5px 1px ${COLOR_PALETTE.PRIMARY}`,
+									borderRadius: "10px",
+								}}
+							/>
+						</div>
 					</div>
-				</div>
-				<div>
-					<p className="fs-6">Click on the icons to reveal more information</p>
-					<img
-						src="images/other/icon-example.png"
-						alt="example-icon"
-						style={{ height: "6em", width: "fit-content", boxShadow: `0 0 5px 1px white`, borderRadius: "10px" }}
-					/>
-				</div>
+				</Stack>
 
 				<span className="fs-4 gap-2 d-flex">
 					Mouse
@@ -106,7 +119,6 @@ export default function InfoDisplay(props: { onClick: fn }) {
 						</React.Fragment>
 					))}
 				</Grid>
-				<div className="mb-5" />
 			</Stack>
 		</HologramDisplay>
 	);

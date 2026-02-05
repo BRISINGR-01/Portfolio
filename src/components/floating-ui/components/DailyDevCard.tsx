@@ -1,4 +1,4 @@
-import Link from "./floating-ui/components/Link";
+import Link from "./Link";
 
 export default function DailyDevCard(props: { wide?: boolean }) {
 	return (

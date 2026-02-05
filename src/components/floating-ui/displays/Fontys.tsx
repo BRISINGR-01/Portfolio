@@ -5,20 +5,21 @@ import { COLOR_PALETTE, TRANSITION } from "../../../constants";
 import { fontys } from "../../../content/content";
 import "../../../css/fontys.css";
 import type { fn, Semester } from "../../../types";
+import { makeClickSound } from "../../../utils";
 import FadeAnim from "../components/FadeAnim";
-import Link from "../components/Link";
-import { ProjectContent } from "../components/ProjectDisplay";
+import { GithubLink } from "../components/Link";
 import IconFrame from "../displays/IconFrame";
+import { ProjectContent } from "./ProjectDisplay";
 
-export default function Fontys(props: { setGoBackCb: (cb?: fn) => void }) {
-	const [showSem, setShowSem] = useState<Semester | null>();
+export default function Fontys({ setGoBackCb }: { setGoBackCb: (cb?: fn) => void }) {
+	const [showSem, setShowSem] = useState<Semester | null>(null);
 	useEffect(() => {
 		if (showSem) {
-			props.setGoBackCb(() => () => setShowSem(null));
+			setGoBackCb(() => () => setShowSem(null));
 		} else {
-			props.setGoBackCb();
+			setGoBackCb();
 		}
-	}, [props, showSem]);
+	}, [setGoBackCb, showSem]);
 
 	return (
 		<Stack className="position-relative" gap={4} style={{ paddingBottom: "5em" }}>
@@ -29,9 +30,6 @@ export default function Fontys(props: { setGoBackCb: (cb?: fn) => void }) {
 					<Row>
 						<Col xs={4} sm={3}>
 							<IconFrame id="fontys" img={fontys.img} />
-							{/* <Frame size={5}>
-								<Image src={fontys.img} />
-							</Frame> */}
 						</Col>
 
 						<Col xs={9}>
@@ -39,19 +37,9 @@ export default function Fontys(props: { setGoBackCb: (cb?: fn) => void }) {
 								<h3>Fontys</h3>
 								{fontys.description}
 								<br />
-								<Link url="https://github.com/BRISINGR-01/Fontys-projects">
-									<img
-										src="icons/other/github.svg"
-										alt="github"
-										style={{
-											height: "3em",
-											border: "2px solid #69bcefff",
-											boxShadow: "inset #0dcaf0 0px 0px 4px 1px",
-											background: "var(--dark)",
-										}}
-										className="p-2 rounded-3 pointer hover"
-									/>
-								</Link>
+								<div>
+									<GithubLink url="https://github.com/BRISINGR-01/Fontys-projects" />
+								</div>
 							</FadeAnim>
 						</Col>
 					</Row>
@@ -78,7 +66,11 @@ function SemestersList(props: { onSelect: (sem: Semester) => void }) {
 							exit={{ y: -5 * (i + 1) + "em", x: semI === 1 ? 0 : `${semI === 0 ? "" : "-"}100%` }}
 							transition={TRANSITION}
 						>
-							<ListGroup.Item className="holo-item pointer" onClick={() => props.onSelect(sem)}>
+							<ListGroup.Item
+								onMouseEnter={() => makeClickSound()}
+								className="holo-item pointer"
+								onClick={() => props.onSelect(sem)}
+							>
 								<Stack direction="horizontal" gap={1} className="holo-title glow-text px-3">
 									Semester{" "}
 									<div
@@ -121,7 +113,7 @@ function SemesterDetails({ sem }: { sem: Semester }) {
 			{sem.courses && (
 				<Stack direction="horizontal" className="flex-wrap justify-content-center my-3" gap={2}>
 					{sem.courses.map((course, i) => (
-						<Stack direction="horizontal">
+						<Stack key={course} direction="horizontal">
 							<motion.div
 								initial={{ opacity: 0, scale: 0.6 }}
 								animate={{ opacity: 1, scale: 1, transition: { delay: i * 0.05 } }}
@@ -129,70 +121,57 @@ function SemesterDetails({ sem }: { sem: Semester }) {
 								transition={TRANSITION}
 							>
 								<Badge
-									key={course}
 									style={{
 										background: "rgba(0, 170, 255, 0.48)",
 										border: "3px solid rgba(74, 195, 255, 1)",
 										color: "#e6faff",
 										letterSpacing: "0.03em",
 										fontWeight: 500,
+										fontSize: ".8rem",
 									}}
-									className="fs-6 pt-2 hover"
+									className="pt-2"
 									bg=""
 								>
 									{course}
 								</Badge>
 							</motion.div>
-							{course === "Data Structures & Algorithms II" && (
-								<Link className="hover ms-2" url="https://github.com/BRISINGR-01/Fontys-projects">
-									<motion.img
-										initial={{ opacity: 0, scale: 0.6 }}
-										animate={{ opacity: 1, scale: 1, transition: { delay: i * 0.05, duration: 0.2 } }}
-										exit={{ opacity: 0, scale: 0.6 }}
-										src="icons/other/github.svg"
-										alt="github"
-										style={{
-											height: "2.2em",
-											border: "2px solid #3faaecff",
-											boxShadow: "inset #0dcaf0 0px 0px 4px 1px",
-											background: "var(--dark)",
-										}}
-										className="p-1 rounded-3 pointer hover"
-									/>
-								</Link>
-							)}
 						</Stack>
 					))}
 				</Stack>
 			)}
 
+			{sem.title === "Semester 4 - Academic Preparation" && (
+				<span className="d-flex gap-4 align-items-center mb-4">
+					You can check out most of my projects and homework:
+					<GithubLink url="http://github.com/BRISINGR-01/Maths" />
+				</span>
+			)}
+
 			{sem.projects.map((project, i) => (
-				<Stack>
+				<Stack key={i}>
 					<motion.div
 						key={i}
 						initial={{ y: "-100%" }}
 						animate={{ y: 0, transition: { delay: i * 0.5, duration: 0.3 } }}
 						exit={{ y: "-100%" }}
 					>
-						<h3
-							className="text-center my-3 mx-5"
-							style={{
-								borderBottom: `3px solid ${COLOR_PALETTE.PRIMARY}`,
-								letterSpacing: "0.08em",
-							}}
-						>
-							{project.title}
+						<Row className="align-items-center">
 							{project.github && (
-								<Link url={project.github}>
-									<img
-										src="icons/other/github.svg"
-										alt="github"
-										style={{ height: "1em", border: "2px solid #c4e8ff", boxShadow: "#0dcaf0 0px 0px 4px 1px" }}
-										className="ms-2 rounded-5 pointer hover"
-									/>
-								</Link>
+								<Col xs={1} className="pe-0">
+									<GithubLink url="project.github" />
+								</Col>
 							)}
-						</h3>
+							<Col>
+								<h3
+									className="my-3 p-0"
+									style={{
+										borderBottom: `3px solid ${COLOR_PALETTE.PRIMARY}`,
+									}}
+								>
+									{project.title}
+								</h3>
+							</Col>
+						</Row>
 					</motion.div>
 
 					<ProjectContent content={project.content} />

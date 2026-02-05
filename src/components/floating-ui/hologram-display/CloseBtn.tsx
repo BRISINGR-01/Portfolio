@@ -1,11 +1,15 @@
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import type { fn } from "../../../types";
+import { makeClickSound } from "../../../utils";
 import FadeAnim from "../components/FadeAnim";
 
 export default function CloseBtn(props: { onClick: fn }) {
 	return (
 		<FadeAnim
-			onClick={props.onClick}
+			onClick={() => {
+				makeClickSound();
+				props.onClick();
+			}}
 			className="pointer d-flex align-items-center go-back-arrow"
 			style={{ height: "100%" }}
 		>

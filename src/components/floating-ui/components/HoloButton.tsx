@@ -1,6 +1,7 @@
 import { useState, type CSSProperties, type PropsWithChildren } from "react";
 import { COLOR_PALETTE } from "../../../constants";
 import type { fn } from "../../../types";
+import { makeClickSound } from "../../../utils";
 
 export default function HoloButton(
 	props: { onClick: fn; inactive?: boolean; style?: CSSProperties } & PropsWithChildren,
@@ -28,7 +29,10 @@ function SVG() {
 			viewBox="0 0 501 260"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
-			onMouseEnter={() => setIsHovered(true)}
+			onMouseEnter={() => {
+				makeClickSound();
+				setIsHovered(true);
+			}}
 			onMouseLeave={() => setIsHovered(false)}
 		>
 			<path

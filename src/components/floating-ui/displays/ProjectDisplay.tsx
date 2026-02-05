@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { Stack } from "react-bootstrap";
 import { TRANSITION } from "../../../constants";
 import type { ProjectContent } from "../../../types";
-import FadeAnim from "./FadeAnim";
-import Frame from "./Frame";
+import FadeAnim from "../components/FadeAnim";
+import Frame from "../components/Frame";
 
 export function ProjectContent({ content, fadeAnim }: { content?: ProjectContent; fadeAnim?: boolean }) {
 	return (
@@ -21,7 +21,7 @@ export function ProjectContent({ content, fadeAnim }: { content?: ProjectContent
 							} gap-3`}
 						>
 							<span className="mt-3">{description}</span>
-							<Frame size={4} src={img} style={{ height: "10em", width: "min-content" }} />
+							<Frame alt={img} size={4} src={img} style={{ height: "10em", width: "min-content" }} />
 						</motion.div>
 					))}
 			</Stack>

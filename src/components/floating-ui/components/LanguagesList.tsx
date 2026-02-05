@@ -6,9 +6,9 @@ export default function LanguagesList() {
 		<svg width="100%" viewBox={`0 0 484 ${98 * languages.length + 2}`} fill="none" xmlns="http://www.w3.org/2000/svg">
 			<defs>
 				<linearGradient id="gradient" x1="3.5" y1="67.5805" x2="480" y2="67.5805" gradientUnits="userSpaceOnUse">
-					<stop offset="0.00104096" stopColor="#0F4059" stopOpacity="0.93" />
-					<stop offset="0.456731" stopColor="#089CE6" stopOpacity="0.51" />
-					<stop offset="1" stopColor="#3BB7F5" stopOpacity="0.14" />
+					<stop offset="0" stopColor="#0F4059" stopOpacity="0.9" />
+					<stop offset="0.5" stopColor="#1086c0ff" stopOpacity="0.9" />
+					<stop offset="1" stopColor="#089CE6" stopOpacity="0.5" />
 				</linearGradient>
 			</defs>
 			{languages.map((lang, i) => (

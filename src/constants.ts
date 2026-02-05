@@ -42,7 +42,7 @@ export const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "
 export const TRANSITION = { duration: 0.3, ease: "easeOut" as Easing };
 
 export const IS_DEV = import.meta.env.DEV;
-export const SKIP_ANIMATIONS = IS_DEV && false;
+export const SKIP_ANIMATIONS = IS_DEV && true;
 
 export const MENU_DELAY = SKIP_ANIMATIONS ? 0 : 4.2;
 export const TABLE_DELAY = SKIP_ANIMATIONS ? 0 : 4;

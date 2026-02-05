@@ -13,10 +13,10 @@ export default function Image(props: {
 	ratio?: number;
 }) {
 	const texture = useLoader(TextureLoader, props.src);
-	const { get } = useThree();
+	const clock = useThree((state) => state.clock);
 
 	const [hologramMaterial, setHologramMaterial] = useState<HologramMaterial | null>(
-		() => new HologramMaterial(new Color(COLOR_PALETTE.PRIMARY), 15)
+		() => new HologramMaterial(new Color(COLOR_PALETTE.PRIMARY), 15),
 	);
 
 	useFrame(({ clock }) => {
@@ -25,7 +25,7 @@ export default function Image(props: {
 
 	useEffect(() => {
 		setHologramMaterial((mat) => {
-			if (mat) mat.uniforms.animStart.value = get().clock.elapsedTime;
+			if (mat) mat.uniforms.animStart.value = clock.elapsedTime;
 
 			return mat;
 		});
@@ -36,7 +36,7 @@ export default function Image(props: {
 			setHologramMaterial(null);
 			clearTimeout(t);
 		};
-	}, [get, texture]);
+	}, [clock, texture]);
 
 	if (props.id.startsWith("sdg") || props.id === "instagram") {
 		return (

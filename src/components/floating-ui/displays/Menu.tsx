@@ -47,21 +47,9 @@ export default function Menu(props: {
 					transition={TRANSITION}
 					exit={{ transform: "translateY(100px)", opacity: 0 }}
 				>
-					{/* <G_Card
-						style={{
-							bottom: 0,
-							left: "50%",
-							transform: "translateX(-50%)",
-							transition: TRANSITION.duration + "s",
-							padding: "1em",
-						}}
-						className={`mb-${props.disabled ? 2 : 4} ${props.disabled && "opacity-50"}`}
-					>
-					<MenuButtons {...props} show={() => setShowInfo(true)} />
-					</G_Card> */}
 					<div
-						className={`position-absolute bottom-0 end-50 mb-${props.disabled ? 2 : 4} ${props.disabled && "opacity-50"}`}
-						style={{ transform: "translateX(50%)" }}
+						className={`position-absolute w-100 bottom-0 end-50 mb-${props.disabled ? 2 : 4} ${props.disabled && "opacity-50"}`}
+						style={{ transform: "translateX(50%)", transition: ".25s" }}
 					>
 						<MenuButtons {...props} show={() => setShowInfo(true)} />
 					</div>
@@ -77,7 +65,7 @@ export function MenuButtons(props: { selected: Mode; onSelect: (type: Mode) => v
 			{modes.map(({ mode, icon }, i) => {
 				const handleProps = {
 					style: {
-						transition: "1.6s",
+						transition: ".5s",
 						strokeDasharray: 100,
 						strokeDashoffset: props.selected === mode ? 0 : 100,
 					},

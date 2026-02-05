@@ -94,3 +94,46 @@ export function bluify(color: Color) {
 	// keep brightness (l) from original, but use blue hue and saturation
 	return new Color().setHSL(targetHSL.h, targetHSL.s, adjustedL);
 }
+
+export function throttle(callback: () => void, delay = 100) {
+	let shouldWait = false;
+
+	return () => {
+		if (shouldWait) return;
+
+		callback();
+		shouldWait = true;
+
+		setTimeout(() => (shouldWait = false), delay);
+	};
+}
+
+const audioPlayer = new Audio("sounds/ambient.mp3");
+audioPlayer.loop = true;
+const clickSound = new Audio("sounds/click.mp3");
+clickSound.volume = 0.4;
+export let isAudioEnabled = false;
+
+export function enableMusic() {
+	try {
+		audioPlayer.play();
+	} catch {
+		return false;
+	}
+
+	isAudioEnabled = true;
+	return true;
+}
+
+export function disableMusic() {
+	isAudioEnabled = false;
+	audioPlayer.pause();
+}
+
+export function makeClickSound() {
+	if (isAudioEnabled) {
+		if (clickSound.currentTime !== 0) clickSound.currentTime = 0;
+
+		clickSound.play();
+	}
+}

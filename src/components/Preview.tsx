@@ -1,5 +1,5 @@
 import "../css/preview.css";
-import DailyDevCard from "./DailyDevCard";
+import DailyDevCard from "./floating-ui/components/DailyDevCard";
 
 export default function Preview() {
 	// const age = new Date().getFullYear() - 2003 - (new Date().getMonth() < 7 ? 1 : 0);

@@ -3,10 +3,10 @@ import { useState } from "react";
 import { OverlayTrigger, Stack, Tooltip } from "react-bootstrap";
 import { COLOR_PALETTE } from "../../../constants";
 import type { Experience, fn } from "../../../types";
-import { useIcon } from "../../../utils";
+import { makeClickSound, useIcon } from "../../../utils";
 import ChangeAnimation from "../components/ChangeAnimation";
-import { ProjectContent } from "../components/ProjectDisplay";
 import IconFrame from "./IconFrame";
+import { ProjectContent } from "./ProjectDisplay";
 
 export default function Experiences({ data }: { data: Experience; close: fn }) {
 	const [showDescription, setShowDescription] = useState(true);
@@ -50,6 +50,30 @@ export default function Experiences({ data }: { data: Experience; close: fn }) {
 	);
 }
 
+const colors = {
+	hover: {
+		active: "#0db0f069",
+		inactive: "#2982b3cf",
+	},
+	def: {
+		active: "#0db0f09e",
+		inactive: "#20658bcf",
+	},
+};
+
+function handleProps(hovered: "desc" | "ctx" | null, type: "desc" | "ctx") {
+	return {
+		pathLength: "100",
+		style: {
+			strokeDasharray: 100,
+			strokeDashoffset: hovered === type ? 50 : -50,
+			stroke: "#9cdae9",
+			transition: "0.4s",
+		},
+		strokeWidth: "7",
+	};
+}
+
 function SwitchButtons(props: { onSelect: (isDescription: boolean) => void; active: "desc" | "ctx" }) {
 	const [hovered, setHovered] = useState<"desc" | "ctx" | null>(null);
 
@@ -64,7 +88,10 @@ function SwitchButtons(props: { onSelect: (isDescription: boolean) => void; acti
 				style={{ height: "3em", width: "min-content" }}
 			>
 				<g
-					onMouseEnter={() => setHovered("desc")}
+					onMouseEnter={() => {
+						setHovered("desc");
+						makeClickSound();
+					}}
 					onMouseLeave={() => setHovered(null)}
 					onClick={() => props.onSelect(true)}
 					className={props.active === "desc" ? "" : "pointer"}
@@ -75,39 +102,11 @@ function SwitchButtons(props: { onSelect: (isDescription: boolean) => void; acti
 					/>
 					<path
 						d="M14 16H474V193L60 191.5L14 144.5V16Z"
-						style={{ transition: ".3s" }}
-						fill={
-							hovered === "desc"
-								? props.active === "desc"
-									? "#1e5b77c2"
-									: "#104056c2"
-								: props.active === "desc"
-									? "#0a6f9d9c"
-									: "#2744599c"
-						}
+						style={{ transition: ".6s" }}
+						fill={colors[hovered === "desc" ? "hover" : "def"][props.active === "desc" ? "active" : "inactive"]}
 					/>
-					<path
-						pathLength="100"
-						style={{
-							strokeDasharray: 100,
-							strokeDashoffset: hovered === "desc" ? 50 : -50,
-							stroke: hovered === "desc" ? "#72d2e8ff" : COLOR_PALETTE.PRIMARY,
-							transition: "0.4s",
-						}}
-						d="M457 80.5L457 33.3901L260 33.3901"
-						strokeWidth="7"
-					/>
-					<path
-						pathLength="100"
-						style={{
-							strokeDasharray: 100,
-							strokeDashoffset: hovered === "desc" ? -50 : 50,
-							stroke: hovered === "desc" ? "#72d2e8ff" : COLOR_PALETTE.PRIMARY,
-							transition: "0.4s",
-						}}
-						d="M252.5 174.143L67.5 174.143L31.5 138.643"
-						strokeWidth="7"
-					/>
+					<path {...handleProps(hovered, "desc")} d="M457 80.5L457 33.3901L260 33.3901" />
+					<path {...handleProps(hovered, "desc")} d="M252.5 174.143L67.5 174.143L31.5 138.643" />
 
 					<text
 						x="25%"
@@ -116,13 +115,16 @@ function SwitchButtons(props: { onSelect: (isDescription: boolean) => void; acti
 						dominantBaseline="middle"
 						fontSize="60"
 						fontWeight="600"
-						fill={hovered === "desc" || props.active === "desc" ? "#fff" : "#ffffff78"}
+						fill="#fff"
 					>
 						Description
 					</text>
 				</g>
 				<g
-					onMouseEnter={() => setHovered("ctx")}
+					onMouseEnter={() => {
+						setHovered("ctx");
+						makeClickSound();
+					}}
 					onMouseLeave={() => setHovered(null)}
 					onClick={() => props.onSelect(false)}
 					className={props.active === "ctx" ? "" : "pointer"}
@@ -134,38 +136,10 @@ function SwitchButtons(props: { onSelect: (isDescription: boolean) => void; acti
 					<path
 						d="M949 187H489V10L903 11.5L949 58.5V187Z"
 						style={{ transition: ".3s" }}
-						fill={
-							hovered === "ctx"
-								? props.active === "ctx"
-									? "#1e5b77c2"
-									: "#104056c2"
-								: props.active === "ctx"
-									? "#0a6e9d9c"
-									: "#2744599c"
-						}
+						fill={colors[hovered === "ctx" ? "hover" : "def"][props.active === "ctx" ? "active" : "inactive"]}
 					/>
-					<path
-						style={{
-							strokeDasharray: 100,
-							strokeDashoffset: hovered === "ctx" ? 50 : -50,
-							transition: "stroke-dashoffset 0.4s ease-in",
-							stroke: hovered === "ctx" ? "#72d2e8ff" : COLOR_PALETTE.PRIMARY,
-						}}
-						pathLength="100"
-						d="M510.261 124.239L510.261 171.349L707.261 171.349"
-						strokeWidth="7"
-					/>
-					<path
-						style={{
-							strokeDasharray: 100,
-							strokeDashoffset: hovered === "ctx" ? -50 : 50,
-							transition: "stroke-dashoffset 0.4s ease-in",
-							stroke: hovered === "ctx" ? "#72d2e8ff" : COLOR_PALETTE.PRIMARY,
-						}}
-						pathLength="100"
-						d="M710.334 29.3163L895.334 29.3163L931.334 64.8163"
-						strokeWidth="7"
-					/>
+					<path {...handleProps(hovered, "ctx")} d="M510.261 124.239L510.261 171.349L707.261 171.349" />
+					<path {...handleProps(hovered, "ctx")} d="M710.334 29.3163L895.334 29.3163L931.334 64.8163" />
 
 					<text
 						x="75%"
@@ -174,7 +148,7 @@ function SwitchButtons(props: { onSelect: (isDescription: boolean) => void; acti
 						dominantBaseline="middle"
 						fontSize="60"
 						fontWeight="600"
-						fill={hovered === "ctx" || props.active === "ctx" ? "#fff" : "#ffffff78"}
+						fill="#fff"
 					>
 						Context
 					</text>

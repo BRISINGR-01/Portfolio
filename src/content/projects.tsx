@@ -1,4 +1,4 @@
-import Link from "../components/floating-ui/components/Link";
+import { TextLink } from "../components/floating-ui/components/Link";
 import type { Project } from "../types";
 
 const projects = {
@@ -8,9 +8,9 @@ const projects = {
 		timespan: ["01/07/2021", "30/09/2021"],
 		description: (
 			<>
-				My first internship at <Link url="https://www.a1.bg/">A1</Link> introduced me to professional web development. I
-				learnt to navigate large scale codebases and fixed various issues on both the front- and backend. The project
-				was a marketing console - a tool for organizing TV channels and their content.
+				My first internship at <TextLink url="https://www.a1.bg/">A1</TextLink> introduced me to professional web
+				development. I learnt to navigate large scale codebases and fixed various issues on both the front- and backend.
+				The project was a marketing console - a tool for organizing TV channels and their content.
 			</>
 		),
 		technologies: [
@@ -81,9 +81,9 @@ const projects = {
 		description: (
 			<>
 				Together with Paulo Vieira we created a virtual educational platform called{" "}
-				<Link url="https://solar-trace.vercel.app/">Solartrace</Link>. I made a course (similar to LinkdIn learning or
-				Udemy) of our platform, which provides a certificate of completion upon finishing all lectures and questions. We
-				were nominated for the finals of the SDG Challenge 2025.
+				<TextLink url="https://solar-trace.vercel.app/">Solartrace</TextLink>. I made a course (similar to LinkdIn
+				learning or Udemy) of our platform, which provides a certificate of completion upon finishing all lectures and
+				questions. We were nominated for the finals of the SDG Challenge 2025.
 			</>
 		),
 		github: "https://github.com/BRISINGR-01/solar-trace",
@@ -131,7 +131,7 @@ const projects = {
 		description: (
 			<>
 				My task was to redevelop the training section for{" "}
-				<Link url="https://www.latin-is-simple.com/">latin-is-simple.com</Link>. There, students can practice
+				<TextLink url="https://www.latin-is-simple.com/">latin-is-simple.com</TextLink>. There, students can practice
 				translation, grammar and refresh their memory in any of the five trainers: "Translation", "Advenced", "Quiz",
 				"Cards" and "Forms". The trainers contain rigorously tested complex question generation, pattern matching to
 				accept various answers and a scoreboard system
@@ -151,10 +151,10 @@ const projects = {
 		description: (
 			<>
 				In my third semester, I worked on a project for{" "}
-				<Link url="https://www.linkedin.com/company/icc-the-international-cleaning-company">ICC</Link> (International
-				Cleaning Company) and collaborated directly with one of the founders. Since ICC is a startup, I was able to take
-				on more responsibility and have a bigger impact than I would have had at larger companies like at my
-				internships.
+				<TextLink url="https://www.linkedin.com/company/icc-the-international-cleaning-company">ICC</TextLink>{" "}
+				(International Cleaning Company) and collaborated directly with one of the founders. Since ICC is a startup, I
+				was able to take on more responsibility and have a bigger impact than I would have had at larger companies like
+				at my internships.
 			</>
 		),
 		content: [
@@ -202,9 +202,9 @@ const projects = {
 		timespan: ["02/02/2025", "01/07/2025"],
 		description: (
 			<>
-				I contributed to two Fontys teams for <Link url="https://gloweindhoven.nl/en/">Glow</Link>:{" "}
-				<Link url="https://deltafontysict.nl/">Delta</Link> (Eindhoven) and Phoenix (Venlo). Fisrt I was part of the
-				Delta team and helped with the ideation, brainstrorming and prototyping. Then I helped the Venlo team with
+				I contributed to two Fontys teams for <TextLink url="https://gloweindhoven.nl/en/">Glow</TextLink>:{" "}
+				<TextLink url="https://deltafontysict.nl/">Delta</TextLink> (Eindhoven) and Phoenix (Venlo). Fisrt I was part of
+				the Delta team and helped with the ideation, brainstrorming and prototyping. Then I helped the Venlo team with
 				construction and lightning.
 			</>
 		),
@@ -214,9 +214,9 @@ const projects = {
 				description: (
 					<>
 						With the Deltas we went through a few rounds of prototypes. For the{" "}
-						<Link url="https://github.com/GLOW-Delta-2025/hand-drawing-prototype">first prototype</Link> we made a quick
-						gesture controlled drawing animation with python, OpenCV and Cursor. The amount of fingers change the colour
-						and certain gestures stop/start/change the brush.
+						<TextLink url="https://github.com/GLOW-Delta-2025/hand-drawing-prototype">first prototype</TextLink> we made
+						a quick gesture controlled drawing animation with python, OpenCV and Cursor. The amount of fingers change
+						the colour and certain gestures stop/start/change the brush.
 					</>
 				),
 			},
@@ -224,8 +224,8 @@ const projects = {
 				description: (
 					<>
 						Here is another{" "}
-						<Link url="https://github.com/BRISINGR-01/Fontys-projects/tree/master/Brainstorm">prototype</Link> I made on
-						my own, this time for the final concept: The audience powers up the contraption with their ideas
+						<TextLink url="https://github.com/BRISINGR-01/Fontys-projects/tree/master/Brainstorm">prototype</TextLink> I
+						made on my own, this time for the final concept: The audience powers up the contraption with their ideas
 						(clapping/shouting) which transfers the enrgy to the core and then explodes in light, hence the name -
 						Brainstorm. This is a prototype of the conversion of sound to light.
 					</>
@@ -351,9 +351,9 @@ const projects = {
 				description: (
 					<>
 						In the second version the user can ride a bike and explore a world with my achievements inspired by{" "}
-						<Link url="https://bruno-simon.com/">Bruno Simon's</Link>. The bike had automatic balancing engineered from
-						scratch and could jump, so it was possible to do quite cool tricks. However I decided that for a portfolio a
-						more content-centered design was appropriate instead of a video game.
+						<TextLink url="https://bruno-simon.com/">Bruno Simon's</TextLink>. The bike had automatic balancing
+						engineered from scratch and could jump, so it was possible to do quite cool tricks. However I decided that
+						for a portfolio a more content-centered design was appropriate instead of a video game.
 					</>
 				),
 				img: "images/gallery/fontys/sem3/physics.png",
@@ -374,7 +374,7 @@ const projects = {
 					<>
 						The game itself was made from scratch using pygame and freely available pixel art - I built the mechanics,
 						animations, design and controls. You can give it a try{" "}
-						<Link url="https://firefighter-game-deth-on-81184.web.app/">here</Link>.
+						<TextLink url="https://firefighter-game-deth-on-81184.web.app/">here</TextLink>.
 					</>
 				),
 				img: "images/gallery/fontys/sem4/fire-end.png",

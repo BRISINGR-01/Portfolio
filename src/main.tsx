@@ -2,9 +2,9 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Emergency from "./components/Emergency";
 
-import { KeyboardControls } from "@react-three/drei";
+import { KeyboardControls, Loader } from "@react-three/drei";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 import Portfolio3D from "./components/3d/Portfolio3D";
 import ContentDisplay from "./components/floating-ui/displays/ContentDisplay";
 import { controlsMap } from "./constants";
@@ -21,8 +21,8 @@ createRoot(document.getElementById("root")!).render(
 				index
 				element={
 					<KeyboardControls map={controlsMap}>
-						<Portfolio3D />
-						{/* <Debug /> */}
+						<Suspense fallback={<Loader />}>{/* <Portfolio3D /> */}</Suspense>
+						<Debug />
 					</KeyboardControls>
 				}
 			/>
@@ -42,5 +42,5 @@ createRoot(document.getElementById("root")!).render(
 );
 
 function Debug() {
-	return <ContentDisplay close={() => {}} data={content.education[3]} type={Mode.Education} />;
+	return <ContentDisplay close={() => {}} data={content.experience.at(-1)} type={Mode.Experience} />;
 }

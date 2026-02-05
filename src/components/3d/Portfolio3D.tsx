@@ -9,18 +9,20 @@ import {
 	disposeBoundsTree,
 } from "three-mesh-bvh";
 import { BatchedMesh } from "three/webgpu";
-import { ICON_DELAY, SKIP_ANIMATIONS, TABLE_DELAY } from "../../constants";
+import { ICON_DELAY, TABLE_DELAY } from "../../constants";
 
 import content from "../../content/index.ts";
 import "../../css/floating-ui.css";
 import { Mode, type ContentData, type Controls } from "../../types.ts";
 import { prettifyTitle } from "../../utils.ts";
+import BgMusic from "../floating-ui/components/BgMusic.tsx";
 import ContentDisplay from "../floating-ui/displays/ContentDisplay.tsx";
 import Menu from "../floating-ui/displays/Menu.tsx";
 import Icon from "./icon/Icon.tsx";
 import AboutMe from "./other-components/AboutMe.tsx";
 import Delay from "./other-components/Delay.tsx";
 import Environment3D from "./other-components/Environment.tsx";
+import Loader from "./other-components/Loader.tsx";
 import Raycast from "./other-components/Raycast.tsx";
 import Room from "./room/Room.tsx";
 import Table from "./table/Table.tsx";
@@ -47,37 +49,26 @@ export default function Portfolio3D() {
 	// useEdit(education?.at(-2));
 
 	useEffect(() => {
-		const t = setTimeout(() => {
-			if (SKIP_ANIMATIONS) {
-				setMode(defMode);
-				return;
-			}
+		if (!window.localStorage.getItem("isFirstEntry")) {
+			window.localStorage.setItem("isFirstEntry", "true");
+			setMode(Mode.Info);
+		} else {
+			setMode(defMode);
+		}
 
-			if (!window.localStorage.getItem("isFirstEntry")) {
-				window.localStorage.setItem("isFirstEntry", "true");
-				setMode(Mode.Info);
-			} else {
-				setMode(defMode);
-			}
-		}, TABLE_DELAY * 1000);
-
-		const unsub = sub(
+		return sub(
 			(state) => state.escape,
 			(pressed) => pressed && setContentIndex(-1),
 		);
-
-		return () => {
-			unsub();
-			clearTimeout(t);
-		};
 	}, [sub]);
 
 	useEffect(() => {
+		setContentIndex(-1);
+		setVisibleIcons([]);
+
 		if (!selectedContent) return;
 
 		let t: number;
-		setContentIndex(-1);
-		setVisibleIcons([]);
 
 		for (let i = 0; i < selectedContent.length; i++) {
 			// let React and the browser breathe before next mesh mount
@@ -111,19 +102,22 @@ export default function Portfolio3D() {
 
 	return (
 		<>
-			<Environment3D pause={!!selectedIcon}>
-				<Room />
-
-				<Raycast onClick={onClick} onHover={onHover}>
-					{visibleIcons.map((icon) => (
-						<Suspense key={icon.id} fallback={null}>
-							<Icon {...icon} />
-						</Suspense>
-					))}
-				</Raycast>
-				<Table text={prettifyTitle(selectedIcon?.title ?? hovered?.title ?? mode)} />
-				{mode === Mode.AboutMe && <AboutMe selectedIcon={selectedIcon ?? hovered} />}
-			</Environment3D>
+			<Suspense fallback={<Loader />}>
+				<Environment3D pause={false}>
+					<Room />
+					<Raycast onClick={onClick} onHover={onHover}>
+						<Delay time={TABLE_DELAY}>
+							{visibleIcons.map((icon) => (
+								<Suspense key={icon.id} fallback={null}>
+									<Icon {...icon} />
+								</Suspense>
+							))}
+						</Delay>
+					</Raycast>
+					<Table text={prettifyTitle(selectedIcon?.title ?? hovered?.title ?? mode)} />
+					{mode === Mode.AboutMe && <AboutMe selectedIcon={selectedIcon ?? hovered} />}
+				</Environment3D>
+			</Suspense>
 
 			{selectedContent && (
 				<ContentDisplay
@@ -143,6 +137,7 @@ export default function Portfolio3D() {
 					disabled={!!selectedContent && visibleIcons.length !== selectedContent.length}
 				/>
 			</Delay>
+			<BgMusic />
 		</>
 	);
 }

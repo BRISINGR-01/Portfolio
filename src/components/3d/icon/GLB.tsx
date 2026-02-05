@@ -8,7 +8,7 @@ import type HologramMaterial from "./HologramMaterial";
 
 export default function GLB(props: ContentData) {
 	const { scene } = useGLTF(props.icon);
-	const { clock } = useThree();
+	const clock = useThree((state) => state.clock);
 	const materialRef = useRef<HologramMaterial>(null);
 
 	useEffect(() => {

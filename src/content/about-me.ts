@@ -58,6 +58,17 @@ export const languages: Language[] = [
 		level: "B2",
 	},
 	{
+		id: "spanish",
+		iso: "spa",
+		icon3D: {
+			position: [-0.75, 0.5, 0.45] as [number, number, number],
+			rotation: [-Math.PI / 10, 0.3, -0.05] as [number, number, number],
+			scale: 0.015,
+			wide: true,
+		},
+		level: "B1*",
+	},
+	{
 		id: "italian",
 		iso: "ita",
 		icon3D: {
@@ -79,17 +90,7 @@ export const languages: Language[] = [
 		},
 		level: "A2*",
 	},
-	{
-		id: "spanish",
-		iso: "spa",
-		icon3D: {
-			position: [-0.75, 0.5, 0.45] as [number, number, number],
-			rotation: [-Math.PI / 10, 0.3, -0.05] as [number, number, number],
-			scale: 0.015,
-			wide: true,
-		},
-		level: "B1*",
-	},
+
 	{
 		id: "russian",
 		iso: "rus",
@@ -110,20 +111,6 @@ export const languages: Language[] = [
 });
 
 export const contacts: Contact[] = [
-	{
-		id: "gmail",
-		title: "Gmail",
-		altIcon: "icons/other/gmail-outline.svg",
-		icon: "icons/other/gmail.svg",
-		address: "alexander.popov233@gmail.com",
-		url: "mailto:alexander.popov233@gmail.com",
-		icon3D: {
-			position: [1.15, 0.6, 0.0],
-			rotation: [0.3, -0.6, -0.14],
-			scale: 0.009,
-			wide: true,
-		},
-	},
 	{
 		id: "github",
 		title: "Github",
@@ -166,21 +153,21 @@ export const contacts: Contact[] = [
 			wide: true,
 		},
 	},
-
 	{
-		id: "instagram",
-		title: "Instagram",
-		altIcon: "icons/other/instagram-outline.svg",
-		icon: "images/other/instagram.png",
-		address: "@alexan6451",
-		url: "https://www.instagram.com/alexan6451/",
+		id: "gmail",
+		title: "Gmail",
+		altIcon: "icons/other/gmail-outline.svg",
+		icon: "icons/other/gmail.svg",
+		address: "alexander.popov233@gmail.com",
+		url: "mailto:alexander.popov233@gmail.com",
 		icon3D: {
-			position: [0.39, -0.1, 0.25],
-			rotation: [-0.6, 0.61, 4.53],
-			scale: 0.3,
+			position: [1.15, 0.6, 0.0],
+			rotation: [0.3, -0.6, -0.14],
+			scale: 0.009,
 			wide: true,
 		},
 	},
+
 	{
 		id: "whatsapp",
 		title: "Whatsapp",
@@ -192,6 +179,20 @@ export const contacts: Contact[] = [
 			position: [2.3, 0.22, 0.56],
 			rotation: [-0.3, 0.1, 0.2],
 			scale: 0.0016,
+			wide: true,
+		},
+	},
+	{
+		id: "instagram",
+		title: "Instagram",
+		altIcon: "icons/other/instagram-outline.svg",
+		icon: "images/other/instagram.png",
+		address: "@alexan6451",
+		url: "https://www.instagram.com/alexan6451/",
+		icon3D: {
+			position: [0.39, -0.1, 0.25],
+			rotation: [-0.6, 0.61, 4.53],
+			scale: 0.3,
 			wide: true,
 		},
 	},

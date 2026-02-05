@@ -21,15 +21,13 @@ export default function SVGObject(props: ContentData) {
 	const svg = useLoader(SVGLoader, props.icon);
 	const groupRef = useRef<Group>(null);
 	const materialRefs = useRef<HologramMaterial[]>([]);
-	const { get } = useThree();
+	const clock = useThree((state) => state.clock);
 
 	const shapes = useMemo(() => createShapes(svg, materialRefs, props.icon3D.wide), [svg, props.icon3D.wide]);
 
 	useEffect(() => {
-		const time = get().clock;
-
 		for (const material of materialRefs.current) {
-			material.start(time);
+			material.start(clock);
 		}
 
 		const group = groupRef.current!;
@@ -39,7 +37,7 @@ export default function SVGObject(props: ContentData) {
 			restoreMaterial(group);
 			clearTimeout(t);
 		};
-	}, [svg, get]);
+	}, [svg, clock]);
 
 	useFrame(({ clock }) => updateMaterials(clock, materialRefs));
 

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import type { fn } from "../../../types";
+import { makeClickSound } from "../../../utils";
 
 export default function BackBtn(props: { onClick: fn }) {
 	return (
@@ -11,7 +12,10 @@ export default function BackBtn(props: { onClick: fn }) {
 				animate={{ opacity: 1, x: 0 }}
 				exit={{ opacity: 0, x: 30 }}
 				transition={{ duration: 0.2, ease: "easeOut" }}
-				onClick={props.onClick}
+				onClick={() => {
+					makeClickSound();
+					props.onClick();
+				}}
 				className="py-2 pointer back-btn"
 				style={{
 					height: "100%",

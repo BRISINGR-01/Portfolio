@@ -16,7 +16,7 @@ function toggleVisibility(obj: Object3D) {
 
 export default function Table({ text }: { text: string | null }) {
 	const { scene } = useGLTF("/3d/table.glb");
-	const { clock } = useThree();
+	const clock = useThree((state) => state.clock);
 	const materialRef = useRef<HologramMaterial>(null);
 	const [displayText, setDisplayText] = useState(false);
 

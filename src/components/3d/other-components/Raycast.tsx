@@ -11,7 +11,7 @@ import {
 	PERSISTENT_OUTLINE,
 	RAYCAST_CONTAINER_NAME,
 } from "../../../constants";
-import { setDefaultCursor, setPointerCursor } from "../../../utils";
+import { setDefaultCursor, setPointerCursor, throttle } from "../../../utils";
 
 export default function Raycast({
 	children,
@@ -20,10 +20,14 @@ export default function Raycast({
 }: {
 	onClick: (m: Mesh | null) => void;
 	onHover: (title: string | null) => void;
-
-	children: null | React.JSX.Element[];
+	children: null | React.JSX.Element[] | React.JSX.Element;
 }) {
-	const { scene, camera, gl, raycaster } = useThree();
+	const { scene, camera, gl, raycaster } = useThree((state) => ({
+		scene: state.scene,
+		camera: state.camera,
+		gl: state.gl,
+		raycaster: state.raycaster,
+	}));
 	const groupRef = useRef<Group>(null);
 	const mouse = useRef(new Vector2());
 	const composer = useRef<EffectComposer>(null);
@@ -67,20 +71,22 @@ export default function Raycast({
 		composer.current.addPass(new OutputPass());
 
 		let hovered: Mesh | null = null;
-		function unselect() {
+		const unselect = throttle(() => {
+			if (!hovered) return;
+
 			outlinePass!.selectedObjects = [];
 			hovered = null;
 			onHover(null);
 			setDefaultCursor();
-		}
+		}, 800);
 
 		const canvas = gl.domElement;
-		let rect = canvas.getBoundingClientRect();
+
 		function onMove(e: PointerEvent) {
 			if (!groupRef.current) return;
 
-			mouse.current.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-			mouse.current.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+			mouse.current.x = (e.clientX / innerWidth) * 2 - 1;
+			mouse.current.y = -(e.clientY / innerHeight) * 2 + 1;
 
 			raycaster.setFromCamera(mouse.current, camera);
 
@@ -90,7 +96,9 @@ export default function Raycast({
 			let mesh = intersects[0].object as Mesh;
 			if (!mesh.isMesh) return unselect();
 
-			while (mesh.parent?.name !== RAYCAST_CONTAINER_NAME) {
+			for (let i = 0; i < 100; i++) {
+				// max 100 attempts
+				if (mesh.parent?.name === RAYCAST_CONTAINER_NAME) break;
 				mesh = mesh.parent as Mesh;
 			}
 
@@ -108,7 +116,7 @@ export default function Raycast({
 		}
 
 		function onResize() {
-			rect = canvas.getBoundingClientRect();
+			if (composer.current) composer.current.setSize(window.innerWidth, window.innerHeight);
 		}
 
 		canvas.addEventListener("click", onClickCb);
