@@ -11,7 +11,7 @@ export default function CloseBtn(props: { onClick: fn }) {
 				props.onClick();
 			}}
 			className="pointer d-flex align-items-center go-back-arrow"
-			style={{ height: "100%" }}
+			style={{ height: "100%", filter: "drop-shadow(0 0 2px #000)" }}
 		>
 			<OverlayTrigger placement="bottom" delay={500} overlay={<Tooltip className="glow-text">close</Tooltip>}>
 				<svg width="1.5em" height="1.5em" viewBox="0 0 36 33" fill="none" xmlns="http://www.w3.org/2000/svg">

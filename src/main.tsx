@@ -21,8 +21,8 @@ createRoot(document.getElementById("root")!).render(
 				index
 				element={
 					<KeyboardControls map={controlsMap}>
-						<Suspense fallback={<Loader />}>{/* <Portfolio3D /> */}</Suspense>
-						<Debug />
+						<Suspense fallback={<Loader />}>{<Portfolio3D />}</Suspense>
+						{/* <Debug /> */}
 					</KeyboardControls>
 				}
 			/>

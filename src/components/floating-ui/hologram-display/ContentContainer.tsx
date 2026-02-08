@@ -60,15 +60,15 @@ export default function ContentContainer({
 				<CloseBtn onClick={props.close} />
 			</Stack>
 
-			<div className="overflow-auto w-100 h-100 w-100 position-relative z-2">
+			<div id="scroll-container" className="overflow-auto w-100 h-100 w-100 position-relative z-2">
 				<div
 					style={{
 						paddingLeft: box.contentFrame.left - box.frame.left,
-						paddingTop: box.contentFrame.top - box.frame.top,
+						paddingTop: box.contentFrame.top - box.frame.top, // In about-me section this is checked using the id and the paddingTop, make this is the first child of "scroll-container"
 						paddingBottom: box.frame.bottom - box.contentFrame.bottom,
 					}}
 				>
-					<div className="pt-2 px-2">{props.children}</div>
+					<div className="p-2">{props.children}</div>
 				</div>
 			</div>
 		</motion.div>

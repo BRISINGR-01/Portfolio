@@ -18,6 +18,7 @@ export default function BackBtn(props: { onClick: fn }) {
 				}}
 				className="py-2 pointer back-btn"
 				style={{
+					filter: "drop-shadow(0 0 2px #000)",
 					height: "100%",
 					width: "auto",
 					transition: ".3s",

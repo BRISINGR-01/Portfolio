@@ -127,7 +127,7 @@ const projects = {
 	latinIsSimple: {
 		title: "Latin is simple",
 		icon: "/icons/other/latin-is-simple.svg",
-		timespan: ["03/01/2022", "02/09/2025"],
+		timespan: ["03/01/2022", ""],
 		description: (
 			<>
 				My task was to redevelop the training section for{" "}

@@ -83,7 +83,7 @@ function createShapes(data: SVGResult, materialRefs: RefObject<HologramMaterial[
 
 			return (
 				<mesh
-					position={[offset, offset, offset]}
+					position={[offset, offset, offset * 2]}
 					geometry={geometry}
 					key={renderOrder}
 					material={material}

@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { OverlayTrigger, Stack, Tooltip } from "react-bootstrap";
 
-export default function Link(props: React.PropsWithChildren & { url: string; hoverText?: string }) {
+export default function Link(props: React.PropsWithChildren & { url: string; hoverText?: string; download?: boolean }) {
 	const [isHoverred, setIsHovered] = useState(false);
 	return (
-		<OverlayTrigger delay={1000} overlay={<Tooltip className="glow-text">{props.hoverText}</Tooltip>}>
+		<OverlayTrigger
+			show={props.hoverText ? undefined : false}
+			delay={500}
+			overlay={<Tooltip className="glow-text">{props.hoverText}</Tooltip>}
+		>
 			<Stack
 				onMouseEnter={() => setIsHovered(true)}
 				onMouseLeave={() => setIsHovered(false)}
@@ -12,7 +16,7 @@ export default function Link(props: React.PropsWithChildren & { url: string; hov
 				style={{ width: "min-content", flex: 0 }}
 				gap={1}
 			>
-				<a href={props.url} target="_blank">
+				<a href={props.url} target="_blank" download={props.download}>
 					{props.children}
 				</a>
 				<div

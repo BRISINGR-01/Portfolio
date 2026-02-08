@@ -14,17 +14,6 @@ export const languages: Language[] = [
 		level: "native",
 	},
 	{
-		id: "dutch",
-		iso: "nld",
-		icon3D: {
-			position: [-2.15, 0.06, 0.6] as [number, number, number],
-			rotation: [-Math.PI / 10, -0.15, 0.05] as [number, number, number],
-			scale: 0.015,
-			wide: true,
-		},
-		level: "B1*",
-	},
-	{
 		id: "english",
 		iso: "eng",
 		icon3D: {
@@ -36,15 +25,15 @@ export const languages: Language[] = [
 		level: "C2",
 	},
 	{
-		id: "french",
-		iso: "fra",
+		id: "dutch",
+		iso: "nld",
 		icon3D: {
-			position: [-0.75, 0.06, 0.6] as [number, number, number],
-			rotation: [-Math.PI / 10, 0.3, -0.05] as [number, number, number],
+			position: [-2.15, 0.06, 0.6] as [number, number, number],
+			rotation: [-Math.PI / 10, -0.15, 0.05] as [number, number, number],
 			scale: 0.015,
 			wide: true,
 		},
-		level: "B2*",
+		level: "B1*",
 	},
 	{
 		id: "german",
@@ -56,6 +45,17 @@ export const languages: Language[] = [
 			wide: true,
 		},
 		level: "B2",
+	},
+	{
+		id: "french",
+		iso: "fra",
+		icon3D: {
+			position: [-0.75, 0.06, 0.6] as [number, number, number],
+			rotation: [-Math.PI / 10, 0.3, -0.05] as [number, number, number],
+			scale: 0.015,
+			wide: true,
+		},
+		level: "B2*",
 	},
 	{
 		id: "spanish",

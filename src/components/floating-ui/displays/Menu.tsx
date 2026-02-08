@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { OverlayTrigger, Row, Tooltip } from "react-bootstrap";
 import { TRANSITION } from "../../../constants.ts";
 import { Mode, type Controls, type fn } from "../../../types.ts";
-import { prettifyTitle } from "../../../utils.ts";
+import { makeClickSound, prettifyTitle } from "../../../utils.ts";
 import InfoDisplay from "./InfoDisplay.tsx";
 
 const modes = [
@@ -75,7 +75,15 @@ export function MenuButtons(props: { selected: Mode; onSelect: (type: Mode) => v
 				};
 
 				return (
-					<OverlayTrigger placement="top" key={i} overlay={(p) => <Tooltip {...p}>{prettifyTitle(icon)}</Tooltip>}>
+					<OverlayTrigger
+						placement="top"
+						key={i}
+						overlay={(p) => (
+							<Tooltip {...p} className="glow-text">
+								{prettifyTitle(icon)}
+							</Tooltip>
+						)}
+					>
 						<div
 							className="position-relative p-0 menu-icon"
 							style={{
@@ -89,6 +97,7 @@ export function MenuButtons(props: { selected: Mode; onSelect: (type: Mode) => v
 								if (mode === Mode.Info) {
 									props.show();
 								} else {
+									makeClickSound();
 									props.onSelect(mode);
 								}
 							}}

@@ -14,7 +14,7 @@ import { ICON_DELAY, TABLE_DELAY } from "../../constants";
 import content from "../../content/index.ts";
 import "../../css/floating-ui.css";
 import { Mode, type ContentData, type Controls } from "../../types.ts";
-import { prettifyTitle } from "../../utils.ts";
+import { makeClickSound, prettifyTitle } from "../../utils.ts";
 import BgMusic from "../floating-ui/components/BgMusic.tsx";
 import ContentDisplay from "../floating-ui/displays/ContentDisplay.tsx";
 import Menu from "../floating-ui/displays/Menu.tsx";
@@ -86,6 +86,7 @@ export default function Portfolio3D() {
 			if (!newSelected || newSelected.id === selectedIcon?.id) return setContentIndex(-1);
 
 			setContentIndex(selectedContent.findIndex(({ id }) => id === newSelected.id));
+			makeClickSound();
 		},
 		[selectedContent, selectedIcon?.id],
 	);
