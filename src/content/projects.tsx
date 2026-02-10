@@ -184,9 +184,9 @@ const projects = {
 			'My "medewerkerstage" ("middle internship") was at ASML - a global leader in lythography. They develop the machines used by Intel and Samsung, just to name a few, to make their microchips.',
 		technologies: [
 			{ name: "C/C++", percentage: 50 },
+			{ name: "Javascript", percentage: 30 },
 			{ name: "HTML", percentage: 10 },
 			{ name: "CSS", percentage: 10 },
-			{ name: "Javascript", percentage: 30 },
 		],
 		content: [
 			{

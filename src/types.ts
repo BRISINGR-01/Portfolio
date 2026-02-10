@@ -122,3 +122,11 @@ export type Semester = {
 	projects: Project[];
 	courses?: string[];
 };
+
+export type Certificate = {
+	name: string;
+	tags: string[];
+	ext?: string;
+	company?: string;
+	subCertificates?: Certificate[];
+};

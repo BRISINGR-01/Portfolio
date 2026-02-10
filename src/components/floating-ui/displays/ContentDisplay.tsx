@@ -5,6 +5,7 @@ import Books from "../books/Books";
 import HTB from "../books/HTB";
 import HologramDisplay from "../hologram-display/HologramDisplay";
 import AboutMe from "./AboutMe";
+import Certificates from "./Certificates";
 import DailyDev from "./DailyDev";
 import EducationDisplay from "./Education";
 import Experiences from "./Experiences";
@@ -63,6 +64,8 @@ function Content({ data, ...props }: Props & { data: ContentData; setGoBackCb: (
 					return <HTB />;
 				case "daily-dev":
 					return <DailyDev />;
+				case "certificates":
+					return <Certificates setGoBackCb={props.setGoBackCb} />;
 				default:
 					return <EducationDisplay data={data as Education} />;
 			}

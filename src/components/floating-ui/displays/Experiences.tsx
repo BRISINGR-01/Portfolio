@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { useState } from "react";
 import { OverlayTrigger, Stack, Tooltip } from "react-bootstrap";
 import { COLOR_PALETTE } from "../../../constants";
@@ -23,7 +22,6 @@ export default function Experiences({ data }: { data: Experience; close: fn }) {
 								<Timespan span={data.project.timespan} />
 							</ChangeAnimation>
 						)}
-						{data.project.technologies && <TechBarGraph id={data.id} data={data.project.technologies} />}
 					</Stack>
 
 					{/* Text */}
@@ -33,10 +31,13 @@ export default function Experiences({ data }: { data: Experience; close: fn }) {
 							<ChangeAnimation id={showDescription ? "1" : "0"}>
 								{showDescription ? data.project.description : data.context}
 							</ChangeAnimation>
-							<SwitchButtons
-								onSelect={(isDescription) => setShowDescription(isDescription)}
-								active={showDescription ? "desc" : "ctx"}
-							/>
+							<Stack direction="horizontal" gap={4} className="mt-3 justify-content-between me-3">
+								<SwitchButtons
+									onSelect={(isDescription) => setShowDescription(isDescription)}
+									active={showDescription ? "desc" : "ctx"}
+								/>
+								{data.project.technologies && <TechBarGraph id={data.id} data={data.project.technologies} />}
+							</Stack>
 						</ChangeAnimation>
 					</Stack>
 				</Stack>
@@ -77,7 +78,7 @@ function SwitchButtons(props: { onSelect: (isDescription: boolean) => void; acti
 	const [hovered, setHovered] = useState<"desc" | "ctx" | null>(null);
 
 	return (
-		<div className="position-relative d-flex mt-3">
+		<div className="position-relative d-flex">
 			<svg
 				width="963"
 				height="204"
@@ -173,17 +174,11 @@ function TechBarGraph({
 	return (
 		<Stack direction="horizontal" className="gap-2 justify-content-center flex-wrap">
 			{data.map((t) => {
-				const pct = Math.max(0, Math.min(100, Math.round(t.percentage)));
 				const icon = icons.find((i) => i.name === t.name);
 
-				// number of strips = proportional to pct
-				const totalStrips = Math.min(10, Math.max(7, 100 / Math.min(...data.map((d) => d.percentage))));
-				const max = Math.max(...data.map((d) => d.percentage));
-				const filled = Math.max(1, Math.round((pct / max) * totalStrips));
-
 				return (
-					<OverlayTrigger overlay={<Tooltip>{t.name}</Tooltip>}>
-						<div className="position-relative d-flex" key={t.name + id} style={{ width: "min-content" }}>
+					<OverlayTrigger key={t.name + id} overlay={<Tooltip>{t.name}</Tooltip>}>
+						<div className="position-relative d-flex" style={{ width: "min-content" }}>
 							<svg
 								className="h-100 w-auto position-absolute left-0 z-0"
 								width="331"
@@ -208,8 +203,8 @@ function TechBarGraph({
 								<div
 									className="d-flex align-items-center justify-content-center pointer z-1"
 									style={{
-										width: "2.5em",
-										height: "2.5em",
+										width: "2.8em",
+										height: "2.8em",
 									}}
 								>
 									{icon ? (
@@ -233,68 +228,6 @@ function TechBarGraph({
 				);
 			})}
 		</Stack>
-	);
-}
-
-function Strip({ count, value }: { count: number; value: number }) {
-	return (
-		<div
-			className="position-relative d-flex justify-content-start align-items-stretch"
-			style={{
-				width: 200,
-				height: 14,
-			}}
-		>
-			{Array.from({ length: count }).map((_, i) => {
-				const active = i < value;
-
-				return (
-					<motion.div
-						key={i}
-						initial={{ opacity: 0, x: -10 }}
-						animate={{
-							opacity: 1,
-							x: 0,
-						}}
-						transition={{
-							duration: 0.2,
-							delay: i * 0.03,
-						}}
-						style={{
-							height: "100%",
-							width: "100%",
-						}}
-					>
-						<motion.div
-							key={i}
-							initial={{ x: -10 }}
-							animate={{
-								x: [0, -2, 0],
-
-								filter: ["blur(0px)", "blur(6px)", "blur(0px)"],
-							}}
-							transition={{
-								duration: 0.5,
-								delay: i * 0.03 + 1,
-								times: [0, 0.5 * Math.min(i, 4), 2],
-								repeat: Infinity,
-								repeatDelay: 3,
-							}}
-							style={{
-								height: "100%",
-								width: "100%",
-								background: active ? "linear-gradient(180deg,#67d8ff,#007df4)" : "rgba(255,255,255,0.08)",
-								marginBottom: 2,
-								clipPath: "polygon(15% 0, 100% 0, 85% 100%, 0 100%)",
-								boxShadow: active ? "0 0 8px rgba(0,200,255,0.4) inset" : "none",
-								position: "relative",
-								overflow: "hidden",
-							}}
-						/>
-					</motion.div>
-				);
-			})}
-		</div>
 	);
 }
 

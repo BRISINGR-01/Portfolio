@@ -17,7 +17,7 @@ export function ProjectContent({ content, fadeAnim }: { content?: ProjectContent
 							exit={{ y: fadeAnim ? 0 : "-100%" }}
 							key={i}
 							className={`d-flex flex-row${
-								i % 2 === 1 ? "-reverse justify-content-end" : " justify-content-between"
+								i % 2 === 1 ? "-reverse justify-content-end" : " justify-content-end"
 							} gap-3`}
 						>
 							<span className="mt-3">{description}</span>

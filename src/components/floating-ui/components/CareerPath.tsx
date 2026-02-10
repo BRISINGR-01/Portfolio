@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Card } from "react-bootstrap";
 import type { fn } from "../../../types";
 import { setDefaultCursor, setPointerCursor } from "../../../utils";
+import ChangeAnimation from "./ChangeAnimation";
 
 const data = [
 	{
@@ -132,6 +133,13 @@ const graphH = () => innerHeight * 2;
 const bottomPad = 12;
 const shadowH = 10;
 const sliderH = () => containerH() - bottomPad;
+const constraint = (val: number) => {
+	if (val <= 0) return 0;
+	const max = sliderH();
+	if (val >= max) return max;
+
+	return val;
+};
 
 const transformToSliderY = (n: number) => (n / graphH()) * sliderH();
 let previousY = 0;
@@ -197,18 +205,23 @@ export default function CareerPath() {
 		}
 
 		snapTo(closestMonth);
+		setIsMovingFrame(false);
 	}, [frameY, months, snapTo]);
 
 	useEffect(() => {
 		function resize() {
-			setRulerDist(graphH() / 52);
+			setRulerDist(Math.round(graphH() / 52));
 			snap();
 		}
+		resize();
 		window.addEventListener("resize", resize);
-		return () => window.removeEventListener("resize", resize);
-	}, [snap]);
 
-	useEffect(() => () => clearTimeout(timeout.current), []);
+		return () => {
+			window.removeEventListener("resize", resize);
+			clearTimeout(timeout.current);
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	useEffect(() => {
 		if (isMovingFrame) {
@@ -223,27 +236,13 @@ export default function CareerPath() {
 	return (
 		<div
 			className="d-flex glow-text"
-			style={{
-				height: containerH(),
-				overflowY: "clip",
-			}}
-			onTouchEnd={() => {
-				setIsMovingFrame(false);
-				snap();
-			}}
-			onTouchCancel={() => {
-				setIsMovingFrame(false);
-				snap();
-			}}
-			onMouseLeave={() => {
-				setIsMovingFrame(false);
-				snap();
-			}}
-			onMouseUp={() => {
-				setIsMovingFrame(false);
-				snap();
-			}}
-			onPointerMove={useCallback(
+			style={{ height: containerH(), overflowY: "clip" }}
+			onTouchStart={(e) => (previousY = e.touches[0].clientY)}
+			onTouchEnd={snap}
+			onTouchCancel={snap}
+			onMouseLeave={snap}
+			onMouseUp={snap}
+			onMouseMove={useCallback(
 				(e) => {
 					e.preventDefault();
 
@@ -253,7 +252,7 @@ export default function CareerPath() {
 						const val = prev + e.movementY;
 
 						if (val <= 0) return 0;
-						const max = sliderH(); // hard-coded constraint to not go too down
+						const max = sliderH();
 						if (val >= max) return max;
 
 						return val;
@@ -261,7 +260,6 @@ export default function CareerPath() {
 				},
 				[isMovingFrame],
 			)}
-			onTouchStart={(e) => (previousY = e.touches[0].clientY)}
 			onTouchMove={useCallback(
 				(e) => {
 					if (!isMovingFrame) return;
@@ -270,25 +268,15 @@ export default function CareerPath() {
 						const val = prev + (e.touches[0].clientY - previousY);
 						previousY = e.touches[0].clientY;
 
-						if (val <= 0) return 0;
-						const max = sliderH(); // hard-coded constraint to not go too down
-						if (val >= max) return max;
-
-						return val;
+						return constraint(val);
 					});
 				},
 				[isMovingFrame],
 			)}
 			onWheel={(e) => {
-				setFrameY((prev) => prev + (e.deltaY > 0 ? 15 : -15));
-				if (timeout.current) {
-					clearTimeout(timeout.current);
-				}
-
-				timeout.current = setTimeout(() => {
-					console.log(1);
-					snap();
-				}, 500);
+				setFrameY((prev) => constraint(prev + (e.deltaY > 0 ? 15 : -15)));
+				if (timeout.current) clearTimeout(timeout.current);
+				timeout.current = setTimeout(snap, 500);
 			}}
 		>
 			<DisplayCard location={mouse} hovered={hovered} />
@@ -331,11 +319,11 @@ export default function CareerPath() {
 					style={{
 						width: "fit-content",
 						height: graphH(),
-						transform: `translateX(160px)`,
+						marginLeft: "160px",
 						maskImage: `linear-gradient(to bottom,transparent ${slideOffset}px, black ${slideOffset + shadowH}px, black ${slideOffset + containerH() - shadowH}px, transparent ${slideOffset + containerH()}px)`,
 						opacity: 0.9,
 					}}
-					viewBox="130 0 280 996"
+					viewBox="130 0 250 996"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
 				>
@@ -458,6 +446,8 @@ function DisplayCard(props: { location: { x: number; y: number }; hovered: numbe
 			className="position-absolute glow-text"
 			style={{
 				display: props.hovered !== null ? "flex" : "none",
+				opacity: props.hovered !== null ? 1 : 0,
+				transition: "opacity .3s",
 				top: props.location.y,
 				left: props.location.x,
 				transform: "translateX(-100%)",
@@ -477,38 +467,40 @@ function DisplayCard(props: { location: { x: number; y: number }; hovered: numbe
 						color: "white",
 					}}
 				>
-					<Card.Header className="p-2 border-0">
-						<Card.Title
-							className="mb-0 text-center w-100"
-							style={{
-								fontSize: "1.25rem",
-								fontWeight: "bold",
-							}}
-						>
-							{data[props.hovered].info.title}
-						</Card.Title>
-						<div
-							className="d-flex justify-content-center align-items-center"
-							style={{
-								fontSize: "0.85rem",
-								fontWeight: "500",
-							}}
-						>
-							<span>{data[props.hovered].info.from}</span>
-							{data[props.hovered].info.to && <span className="mx-2">—</span>}
-							<span>{data[props.hovered].info.to}</span>
-						</div>
-					</Card.Header>
-					<Card.Body className="p-2">
-						<Card.Text
-							style={{
-								fontSize: "0.95rem",
-								margin: 0,
-							}}
-						>
-							{data[props.hovered].info.description}
-						</Card.Text>
-					</Card.Body>
+					<ChangeAnimation id={props.hovered + ""} speed={0.1}>
+						<Card.Header className="p-2 border-0">
+							<Card.Title
+								className="mb-0 text-center w-100"
+								style={{
+									fontSize: "1.25rem",
+									fontWeight: "bold",
+								}}
+							>
+								{data[props.hovered].info.title}
+							</Card.Title>
+							<div
+								className="d-flex justify-content-center align-items-center"
+								style={{
+									fontSize: "0.85rem",
+									fontWeight: "500",
+								}}
+							>
+								<span>{data[props.hovered].info.from}</span>
+								{data[props.hovered].info.to && <span className="mx-2">—</span>}
+								<span>{data[props.hovered].info.to}</span>
+							</div>
+						</Card.Header>
+						<Card.Body className="p-2">
+							<Card.Text
+								style={{
+									fontSize: "0.95rem",
+									margin: 0,
+								}}
+							>
+								{data[props.hovered].info.description}
+							</Card.Text>
+						</Card.Body>
+					</ChangeAnimation>
 				</Card>
 			)}
 		</div>
@@ -536,6 +528,8 @@ function Ruler({ frameY, rulerDist }: { frameY: number; rulerDist: number }) {
 			className="me-3"
 			style={{
 				height: h,
+				maskImage: `linear-gradient(to bottom,transparent 0px, black 10%, black 90%, transparent 100%)`,
+
 				width: 12,
 				filter: "drop-shadow(0px 0px 2px var(--primary))",
 				background: `repeating-linear-gradient(to bottom, #fff 0px, #fff ${rulerSize}px, transparent ${rulerSize}px, transparent ${rulerDist}px) 0 ${frameY + 8}px`,

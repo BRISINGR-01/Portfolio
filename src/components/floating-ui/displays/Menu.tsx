@@ -8,10 +8,10 @@ import { makeClickSound, prettifyTitle } from "../../../utils.ts";
 import InfoDisplay from "./InfoDisplay.tsx";
 
 const modes = [
+	{ mode: Mode.AboutMe, icon: "about-me" },
 	{ mode: Mode.Experience, icon: "experience" },
 	{ mode: Mode.Education, icon: "education" },
 	{ mode: Mode.Interests, icon: "other" },
-	{ mode: Mode.AboutMe, icon: "about-me" },
 	{ mode: Mode.Info, icon: "info" },
 ];
 

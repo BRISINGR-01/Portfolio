@@ -6,6 +6,7 @@ export default function ChangeAnimation(props: {
 	children: React.ReactNode;
 	style?: CSSProperties;
 	className?: string;
+	speed?: number;
 }) {
 	return (
 		<motion.div
@@ -15,6 +16,7 @@ export default function ChangeAnimation(props: {
 			initial={{ opacity: 0, scale: 1.05, filter: "blur(4px)" }}
 			animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
 			exit={{ opacity: 0, scale: 0.95, filter: "blur(4px)" }}
+			transition={{ duration: props.speed ?? 0.3 }}
 		>
 			{props.children}
 		</motion.div>

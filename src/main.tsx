@@ -6,9 +6,11 @@ import { KeyboardControls, Loader } from "@react-three/drei";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { lazy, Suspense } from "react";
 import Portfolio3D from "./components/3d/Portfolio3D";
-import AboutMe from "./components/floating-ui/displays/AboutMe";
+import ContentDisplay from "./components/floating-ui/displays/ContentDisplay";
 import { controlsMap } from "./constants";
+import { education } from "./content/education";
 import "./css/index.css";
+import { Mode } from "./types";
 
 const Preview = lazy(() => import("./components/Preview"));
 
@@ -40,5 +42,14 @@ createRoot(document.getElementById("root")!).render(
 );
 
 function Debug() {
-	return <AboutMe />;
+	return (
+		<ContentDisplay
+			close={() => {}}
+			currentPage={0}
+			data={education[1]}
+			nrOfPages={1}
+			onSelect={() => {}}
+			type={Mode.Education}
+		/>
+	);
 }

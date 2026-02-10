@@ -70,7 +70,17 @@ export default function AboutMe() {
 							height: "100vh",
 						}}
 					>
-						<CareerPath />
+						<div
+							style={{
+								padding: "2em",
+								borderRadius: "20px",
+								boxShadow: "0 0 4px 2px #1168a2",
+								background: "#09365d8f",
+								backdropFilter: "blur(4px)",
+							}}
+						>
+							<CareerPath />
+						</div>
 					</Modal.Body>
 				</Modal>
 				<span className="mt-1">More detailed information is available in the "Experience" section.</span>

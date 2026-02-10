@@ -90,6 +90,7 @@ export default function Portfolio3D() {
 		},
 		[selectedContent, selectedIcon?.id],
 	);
+
 	const onHover = useCallback(
 		(id: string | null) => {
 			if (!id || !selectedContent) {
