@@ -342,3 +342,12 @@
 		0 0 16px #00eaff,
 		0 0 32px rgba(0, 234, 255, 0.8);
 }
+
+.modal-content {
+	background-color: transparent;
+	border: none;
+}
+
+.modal-dialog {
+	margin: 0 auto;
+}

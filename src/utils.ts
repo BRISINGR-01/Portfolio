@@ -99,7 +99,9 @@ export function throttle(callback: () => void, delay = 100) {
 	let shouldWait = false;
 
 	return () => {
-		if (shouldWait) return;
+		if (shouldWait) {
+			return;
+		}
 
 		callback();
 		shouldWait = true;

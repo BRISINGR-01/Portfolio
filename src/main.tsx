@@ -6,11 +6,9 @@ import { KeyboardControls, Loader } from "@react-three/drei";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { lazy, Suspense } from "react";
 import Portfolio3D from "./components/3d/Portfolio3D";
-import ContentDisplay from "./components/floating-ui/displays/ContentDisplay";
+import AboutMe from "./components/floating-ui/displays/AboutMe";
 import { controlsMap } from "./constants";
-import content from "./content/index";
 import "./css/index.css";
-import { Mode } from "./types";
 
 const Preview = lazy(() => import("./components/Preview"));
 
@@ -42,5 +40,5 @@ createRoot(document.getElementById("root")!).render(
 );
 
 function Debug() {
-	return <ContentDisplay close={() => {}} data={content.experience.at(-1)} type={Mode.Experience} />;
+	return <AboutMe />;
 }

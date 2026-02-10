@@ -1,5 +1,5 @@
-import { useCallback, useRef } from "react";
-import { Button, Image, OverlayTrigger, Stack, Tooltip } from "react-bootstrap";
+import { useState } from "react";
+import { Button, Image, Modal, OverlayTrigger, Stack, Tooltip } from "react-bootstrap";
 import { contacts } from "../../../content/about-me";
 import CareerPath from "../components/CareerPath";
 import LanguagesList from "../components/LanguagesList";
@@ -14,7 +14,7 @@ function IconLink(i: number) {
 }
 
 export default function AboutMe() {
-	const ref = useRef<HTMLDivElement>(null);
+	const [showCareer, setShowCareer] = useState(false);
 
 	return (
 		<Stack direction="horizontal" className="align-items-start" gap={4}>
@@ -53,20 +53,8 @@ export default function AboutMe() {
 					</Stack>
 					<Stack direction="horizontal" className="mt-5 mb-2 justify-content-between gap-2">
 						Or you could take a look at my career:
-						<OverlayTrigger overlay={<Tooltip className="glow-text">scroll to career path</Tooltip>}>
-							<Button
-								variant=""
-								className="border-2 border-light hover"
-								onClick={useCallback(() => {
-									const parent = getScrollableParent();
-									if (ref.current) {
-										ref.current.scrollIntoView(true);
-										if (parent.children[0]) {
-											parent.scrollBy(0, -20 - parseInt(parent.children[0].style.paddingTop.replace("px", "")));
-										}
-									}
-								}, [])}
-							>
+						<OverlayTrigger overlay={<Tooltip className="glow-text">open career path</Tooltip>}>
+							<Button variant="" className="border-2 border-light hover" onClick={() => setShowCareer(true)}>
 								<img
 									style={{ height: "1.5em", filter: "invert(1) drop-shadow(0 0 4px #a1d5ff)" }}
 									src="icons/ui/recenter.svg"
@@ -75,15 +63,18 @@ export default function AboutMe() {
 						</OverlayTrigger>
 					</Stack>
 				</div>
-				<div ref={ref}>
-					<CareerPath />
-				</div>
+				<Modal show={showCareer} onHide={() => setShowCareer(false)} onEscapeKeyDown={() => setShowCareer(false)}>
+					<Modal.Body
+						className="p-0 d-flex align-items-center"
+						style={{
+							height: "100vh",
+						}}
+					>
+						<CareerPath />
+					</Modal.Body>
+				</Modal>
 				<span className="mt-1">More detailed information is available in the "Experience" section</span>
 			</Stack>
 		</Stack>
 	);
-}
-
-function getScrollableParent() {
-	return document.getElementById("scroll-container")!;
 }
