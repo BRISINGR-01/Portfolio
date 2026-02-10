@@ -5,7 +5,7 @@ const projects = {
 	a1: {
 		title: "A1 Internship",
 		icon: "/icons/other/A1.svg",
-		timespan: ["01/07/2021", "30/09/2021"],
+		timespan: ["07/2021", "09/2021"],
 		description: (
 			<>
 				My first internship at <TextLink url="https://www.a1.bg/">A1</TextLink> introduced me to professional web
@@ -24,7 +24,7 @@ const projects = {
 		title: "SDG Challenge - Sabic",
 		icon: "/images/other/SDG.png",
 		github: "https://github.com/BRISINGR-01/SDG-Challenge-Game-SABIC",
-		timespan: ["09/04/2024", "05/07/2024"],
+		timespan: ["04/2024", "07/2024"],
 		description: (
 			<>
 				https://www.sabic.com/ My proposal was to make a game out of recycling and let employees compete for prizes by
@@ -72,7 +72,7 @@ const projects = {
 	sdgSolarwatt: {
 		title: "SDG Challenge - Solarwatt",
 		icon: "/images/other/SDG-logo-2.webp",
-		timespan: ["09/04/2025", "05/07/2025"],
+		timespan: ["04/2025", "07/2025"],
 		technologies: [
 			{ name: "Typescript", percentage: 30 },
 			{ name: "React", percentage: 52 },
@@ -127,7 +127,7 @@ const projects = {
 	latinIsSimple: {
 		title: "Latin is simple",
 		icon: "/icons/other/latin-is-simple.svg",
-		timespan: ["03/01/2022", ""],
+		timespan: ["01/2022", ""],
 		description: (
 			<>
 				My task was to redevelop the training section for{" "}
@@ -147,7 +147,7 @@ const projects = {
 	icc: {
 		title: "ICC",
 		icon: "/icons/other/ICClogo.svg",
-		timespan: ["05/02/2024", "27/07/2024"],
+		timespan: ["02/2024", "07/2024"],
 		description: (
 			<>
 				In my third semester, I worked on a project for{" "}
@@ -179,7 +179,7 @@ const projects = {
 	asml: {
 		title: "ASML Internship",
 		icon: "/icons/other/ASML.svg",
-		timespan: ["09/09/2024", "02/02/2025"],
+		timespan: ["09/2024", "02/2025"],
 		description:
 			'My "medewerkerstage" ("middle internship") was at ASML - a global leader in lythography. They develop the machines used by Intel and Samsung, just to name a few, to make their microchips.',
 		technologies: [
@@ -199,7 +199,7 @@ const projects = {
 	glow: {
 		title: "Glow",
 		icon: "/icons/other/glow.svg",
-		timespan: ["02/02/2025", "01/07/2025"],
+		timespan: ["02/2025", "07/2025"],
 		description: (
 			<>
 				I contributed to two Fontys teams for <TextLink url="https://gloweindhoven.nl/en/">Glow</TextLink>:{" "}

@@ -51,7 +51,7 @@ export default function AboutMe() {
 						</Link>
 						{contacts.map((_, i) => IconLink(i))}
 					</Stack>
-					<Stack direction="horizontal" className="mt-5 mb-2 justify-content-between gap-2">
+					<Stack direction="horizontal" className="mt-5 mb-2 gap-2">
 						Or you could take a look at my career:
 						<OverlayTrigger overlay={<Tooltip className="glow-text">open career path</Tooltip>}>
 							<Button variant="" className="border-2 border-light hover" onClick={() => setShowCareer(true)}>
@@ -73,7 +73,7 @@ export default function AboutMe() {
 						<CareerPath />
 					</Modal.Body>
 				</Modal>
-				<span className="mt-1">More detailed information is available in the "Experience" section</span>
+				<span className="mt-1">More detailed information is available in the "Experience" section.</span>
 			</Stack>
 		</Stack>
 	);

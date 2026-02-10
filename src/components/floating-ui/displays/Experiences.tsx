@@ -14,7 +14,7 @@ export default function Experiences({ data }: { data: Experience; close: fn }) {
 		<Stack gap={4}>
 			<Stack className="flex-lg-row" gap={4}>
 				<Stack direction="horizontal" gap={4}>
-					{/* Logo + timespan */}
+					{/* Logo + timespan + Texh stack*/}
 					<Stack className="align-items-center flex-shrink-0" style={{ width: "10em" }} gap={3}>
 						<IconFrame id={data.id} img={data.altIcon ?? data.icon} />
 
@@ -23,6 +23,7 @@ export default function Experiences({ data }: { data: Experience; close: fn }) {
 								<Timespan span={data.project.timespan} />
 							</ChangeAnimation>
 						)}
+						{data.project.technologies && <TechBarGraph id={data.id} data={data.project.technologies} />}
 					</Stack>
 
 					{/* Text */}
@@ -39,8 +40,6 @@ export default function Experiences({ data }: { data: Experience; close: fn }) {
 						</ChangeAnimation>
 					</Stack>
 				</Stack>
-
-				<div>{data.project.technologies && <TechBarGraph id={data.id} data={data.project.technologies} />}</div>
 			</Stack>
 
 			<ChangeAnimation id={"content-" + data.id}>
@@ -172,7 +171,7 @@ function TechBarGraph({
 	const icons = useIcon();
 
 	return (
-		<Stack gap={2} style={{ width: "min-content", height: "min-content" }}>
+		<Stack direction="horizontal" className="gap-2 justify-content-center flex-wrap">
 			{data.map((t) => {
 				const pct = Math.max(0, Math.min(100, Math.round(t.percentage)));
 				const icon = icons.find((i) => i.name === t.name);
@@ -183,52 +182,54 @@ function TechBarGraph({
 				const filled = Math.max(1, Math.round((pct / max) * totalStrips));
 
 				return (
-					<div className="position-relative d-flex flex-row gap-2 align-items-center" key={t.name + id}>
-						<svg
-							className="h-100 w-auto position-absolute left-0 z-0"
-							width="331"
-							height="355"
-							viewBox="0 0 331 357"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path d="M36.5 44H265.5L291 68L293.5 297L76 295.5L36.5 242V44Z" fill="#031628" fill-opacity="0.423529" />
-							<path
-								d="M317 89.5L251.5 18H14L36.5 44.5H250L289.5 89.5L291 295.5H80L38 250.5L36.5 44.5L14 18L14.5 250.5L78.5 321H317V89.5Z"
-								fill="#00AAFF"
-							/>
-							<path d="M44 239.5H-1.52588e-05L85.5 334.5V289.5L44 239.5Z" fill="#A4E1FF" />
-							<path d="M246.5 0H198L331 145V93L246.5 0Z" fill="#A4E1FF" />
-							<path d="M284.306 328L268.5 357H301.694L317.5 328H284.306Z" fill="#A4E1FF" />
-							<path d="M239.306 328L223.5 357H256.694L272.5 328H239.306Z" fill="#A4E1FF" />
-							<path d="M190.306 328L174.5 357H207.694L223.5 328H190.306Z" fill="#A4E1FF" />
-						</svg>
+					<OverlayTrigger overlay={<Tooltip>{t.name}</Tooltip>}>
+						<div className="position-relative d-flex" key={t.name + id} style={{ width: "min-content" }}>
+							<svg
+								className="h-100 w-auto position-absolute left-0 z-0"
+								width="331"
+								height="355"
+								viewBox="0 0 331 357"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path d="M36.5 44H265.5L291 68L293.5 297L76 295.5L36.5 242V44Z" fill="#031628" fillOpacity="0.423529" />
+								<path
+									d="M317 89.5L251.5 18H14L36.5 44.5H250L289.5 89.5L291 295.5H80L38 250.5L36.5 44.5L14 18L14.5 250.5L78.5 321H317V89.5Z"
+									fill="#00AAFF"
+								/>
+								<path d="M44 239.5H-1.52588e-05L85.5 334.5V289.5L44 239.5Z" fill="#A4E1FF" />
+								<path d="M246.5 0H198L331 145V93L246.5 0Z" fill="#A4E1FF" />
+								<path d="M284.306 328L268.5 357H301.694L317.5 328H284.306Z" fill="#A4E1FF" />
+								<path d="M239.306 328L223.5 357H256.694L272.5 328H239.306Z" fill="#A4E1FF" />
+								<path d="M190.306 328L174.5 357H207.694L223.5 328H190.306Z" fill="#A4E1FF" />
+							</svg>
 
-						<div
-							className="d-flex align-items-center justify-content-center pointer z-1"
-							style={{
-								width: "2.2em",
-								height: "2.2em",
-							}}
-						>
-							<OverlayTrigger placement="left" overlay={<Tooltip>{t.name}</Tooltip>}>
-								{icon ? (
-									<img
-										src={icon.url}
-										alt={t.name}
-										style={{
-											width: "60%",
-											height: "60%",
-											objectFit: "contain",
-										}}
-									/>
-								) : (
-									<span style={{ fontSize: 10, color: "#9fe6ff" }}>{t.name.slice(0, 2).toUpperCase()}</span>
-								)}
-							</OverlayTrigger>
+							<ChangeAnimation id={t.name}>
+								<div
+									className="d-flex align-items-center justify-content-center pointer z-1"
+									style={{
+										width: "2.5em",
+										height: "2.5em",
+									}}
+								>
+									{icon ? (
+										<img
+											src={icon.url}
+											alt={t.name}
+											style={{
+												width: "60%",
+												height: "60%",
+												objectFit: "contain",
+												transform: "translate(-1px, -1px)",
+											}}
+										/>
+									) : (
+										<span style={{ fontSize: 10, color: "#9fe6ff" }}>{t.name.slice(0, 2).toUpperCase()}</span>
+									)}
+								</div>
+							</ChangeAnimation>
 						</div>
-						<Strip count={totalStrips} value={filled} />
-					</div>
+					</OverlayTrigger>
 				);
 			})}
 		</Stack>

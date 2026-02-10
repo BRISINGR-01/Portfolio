@@ -17,7 +17,7 @@ const text = {
 	},
 	"latin-is-simple": {
 		context:
-			"Created by two Austrian graduates this language learning app has gained dozens of thousands of users over the years. It is arguably the most advanced Latin-learning platform. It provides tools such as trainers, sentence analisys, and many more. URL: https://www.latin-is-simple.com/",
+			"Created by two Austrian graduates this language learning app has gained dozens of thousands of users over the years. It is arguably the most advanced Latin-learning platform. It provides tools such as trainers, sentence analisys, and many more.",
 	},
 	ablanitsa: {
 		context:
