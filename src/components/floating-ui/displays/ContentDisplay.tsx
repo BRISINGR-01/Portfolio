@@ -11,6 +11,7 @@ import EducationDisplay from "./Education";
 import Experiences from "./Experiences";
 import Fontys from "./Fontys";
 import InfoDisplay from "./InfoDisplay";
+import TagsDisplay from "./Tags";
 
 type Props = {
 	data: ContentData | null;
@@ -33,6 +34,8 @@ export default function ContentDisplay(props: Props) {
 		<AnimatePresence>
 			{props.type === Mode.Info ? (
 				<InfoDisplay onClick={props.close} />
+			) : props.type === Mode.Tags ? (
+				<TagsDisplay onClick={props.close} />
 			) : props.data ? (
 				<HologramDisplay
 					goBackCb={goBackCb}
@@ -50,10 +53,8 @@ export default function ContentDisplay(props: Props) {
 
 function Content({ data, ...props }: Props & { data: ContentData; setGoBackCb: (cb?: fn) => void }) {
 	switch (props.type) {
-		case Mode.Experience: {
-			const expData = data as Experience;
-			return <Experiences close={close} data={expData} />;
-		}
+		case Mode.Experience:
+			return <Experiences data={data as Experience} />;
 		case Mode.Education:
 			switch (data.id) {
 				case "fontys":

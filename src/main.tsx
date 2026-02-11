@@ -13,6 +13,7 @@ import "./css/index.css";
 import { Mode } from "./types";
 
 const Preview = lazy(() => import("./components/Preview"));
+const isDebug = 0;
 
 createRoot(document.getElementById("root")!).render(
 	<BrowserRouter>
@@ -21,8 +22,7 @@ createRoot(document.getElementById("root")!).render(
 				index
 				element={
 					<KeyboardControls map={controlsMap}>
-						<Suspense fallback={<Loader />}>{<Portfolio3D />}</Suspense>
-						{/* <Debug /> */}
+						{isDebug ? <Debug /> : <Suspense fallback={<Loader />}>{<Portfolio3D />}</Suspense>}
 					</KeyboardControls>
 				}
 			/>
@@ -49,7 +49,7 @@ function Debug() {
 			data={education[1]}
 			nrOfPages={1}
 			onSelect={() => {}}
-			type={Mode.Education}
+			type={Mode.Tags}
 		/>
 	);
 }

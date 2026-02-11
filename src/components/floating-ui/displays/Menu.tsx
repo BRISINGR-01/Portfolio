@@ -3,15 +3,16 @@ import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { OverlayTrigger, Row, Tooltip } from "react-bootstrap";
 import { TRANSITION } from "../../../constants.ts";
-import { Mode, type Controls, type fn } from "../../../types.ts";
+import { Mode, type Controls } from "../../../types.ts";
 import { makeClickSound, prettifyTitle } from "../../../utils.ts";
 import InfoDisplay from "./InfoDisplay.tsx";
+import TagsDisplay from "./Tags.tsx";
 
 const modes = [
 	{ mode: Mode.AboutMe, icon: "about-me" },
 	{ mode: Mode.Experience, icon: "experience" },
 	{ mode: Mode.Education, icon: "education" },
-	{ mode: Mode.Interests, icon: "other" },
+	{ mode: Mode.Tags, icon: "tags" },
 	{ mode: Mode.Info, icon: "info" },
 ];
 
@@ -21,7 +22,7 @@ export default function Menu(props: {
 	onSelect: (type: Mode) => void;
 	disabled: boolean;
 }) {
-	const [showInfo, setShowInfo] = useState(false);
+	const [openDirectly, setOpenDirectly] = useState<Mode | null>(null);
 	const [sub] = useKeyboardControls<Controls>();
 
 	useEffect(
@@ -29,7 +30,7 @@ export default function Menu(props: {
 			sub(
 				(state) => state.escape,
 				(pressed) => {
-					if (pressed) setShowInfo(false);
+					if (pressed) setOpenDirectly(null);
 				},
 			),
 		[sub],
@@ -37,8 +38,10 @@ export default function Menu(props: {
 
 	return (
 		<AnimatePresence>
-			{!props.show ? null : showInfo ? (
-				<InfoDisplay onClick={() => setShowInfo(false)} />
+			{!props.show ? null : openDirectly === Mode.Info ? (
+				<InfoDisplay onClick={() => setOpenDirectly(null)} />
+			) : openDirectly === Mode.Tags ? (
+				<TagsDisplay onClick={() => setOpenDirectly(null)} />
 			) : (
 				<motion.div
 					key="menu"
@@ -51,7 +54,7 @@ export default function Menu(props: {
 						className={`position-absolute w-100 bottom-0 end-50 mb-${props.disabled ? 2 : 4} ${props.disabled && "opacity-50"}`}
 						style={{ transform: "translateX(50%)", transition: ".25s" }}
 					>
-						<MenuButtons {...props} show={() => setShowInfo(true)} />
+						<MenuButtons {...props} show={(mode) => setOpenDirectly(mode)} />
 					</div>
 				</motion.div>
 			)}
@@ -59,7 +62,12 @@ export default function Menu(props: {
 	);
 }
 
-export function MenuButtons(props: { selected: Mode; onSelect: (type: Mode) => void; disabled: boolean; show: fn }) {
+export function MenuButtons(props: {
+	selected: Mode;
+	onSelect: (type: Mode) => void;
+	disabled: boolean;
+	show: (m: Mode) => void;
+}) {
 	return (
 		<Row className="gap-1 px-2 justify-content-center">
 			{modes.map(({ mode, icon }, i) => {
@@ -94,8 +102,8 @@ export function MenuButtons(props: { selected: Mode; onSelect: (type: Mode) => v
 							onClick={() => {
 								if (props.disabled) return;
 
-								if (mode === Mode.Info) {
-									props.show();
+								if (mode === Mode.Info || mode === Mode.Tags) {
+									props.show(mode);
 								} else {
 									makeClickSound();
 									props.onSelect(mode);

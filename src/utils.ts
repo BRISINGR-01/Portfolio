@@ -66,7 +66,7 @@ export function prettifyTitle(text: string | null | Mode) {
 			return "Education";
 		case Mode.AboutMe:
 			return "About Me";
-		case Mode.Interests:
+		case Mode.Tags:
 			return "Interests";
 		case Mode.Info:
 			return "Info";

@@ -1,10 +1,11 @@
 import { TextLink } from "../components/floating-ui/components/Link";
 import type { Project } from "../types";
+import { Tags } from "./tags";
 
 const projects = {
 	a1: {
 		title: "A1 Internship",
-		icon: "/icons/other/A1.svg",
+		image: "/icons/other/A1.svg",
 		timespan: ["07/2021", "09/2021"],
 		description: (
 			<>
@@ -13,16 +14,11 @@ const projects = {
 				The project was a marketing console - a tool for organizing TV channels and their content.
 			</>
 		),
-		technologies: [
-			{ name: "React", percentage: 10 },
-			{ name: "Express", percentage: 65 },
-			{ name: "Docker", percentage: 5 },
-			{ name: "GraphQl", percentage: 20 },
-		],
+		tags: [Tags.React, Tags.NodeJS, Tags.TypeScript, Tags["JS/TS"], Tags.Express, Tags.Docker, Tags.GraphQl],
 	},
 	sdgSabic: {
 		title: "SDG Challenge - Sabic",
-		icon: "/images/other/SDG.png",
+		image: "/images/other/SDG.png",
 		github: "https://github.com/BRISINGR-01/SDG-Challenge-Game-SABIC",
 		timespan: ["04/2024", "07/2024"],
 		description: (
@@ -60,24 +56,24 @@ const projects = {
 				description: "To make it more interesting you can read valuable tips in a 3D explorable area, using ThreeJS",
 			},
 		],
-		technologies: [
-			{ name: "ThreeJS", percentage: 12 },
-			{ name: "Typescript", percentage: 31 },
-			{ name: "React", percentage: 20 },
-			{ name: "Supabase + Vercel", percentage: 7 },
-			{ name: "C/C++", percentage: 10 },
-			{ name: "Arduino", percentage: 10 },
+		tags: [
+			Tags.React,
+			Tags.ThreeJS,
+			Tags.TypeScript,
+			Tags.Supabase,
+			Tags.Deployment,
+			Tags.Vercel,
+			Tags["C/C++"],
+			Tags.Arduino,
+			Tags["Embedded Systems"],
+			Tags.IOT,
 		],
 	},
 	sdgSolarwatt: {
 		title: "SDG Challenge - Solarwatt",
-		icon: "/images/other/SDG-logo-2.webp",
+		image: "/images/other/SDG-logo-2.webp",
 		timespan: ["04/2025", "07/2025"],
-		technologies: [
-			{ name: "Typescript", percentage: 30 },
-			{ name: "React", percentage: 52 },
-			{ name: "Vercel", percentage: 8 },
-		],
+		tags: [Tags.TypeScript, Tags.React, Tags.Vercel, Tags.Deployment, Tags["JS/TS"]],
 		description: (
 			<>
 				Together with Paulo Vieira we created a virtual educational platform called{" "}
@@ -126,7 +122,7 @@ const projects = {
 	},
 	latinIsSimple: {
 		title: "Latin is simple",
-		icon: "/icons/other/latin-is-simple.svg",
+		image: "/icons/other/latin-is-simple.svg",
 		timespan: ["01/2022", ""],
 		description: (
 			<>
@@ -137,16 +133,20 @@ const projects = {
 				accept various answers and a scoreboard system
 			</>
 		),
-		technologies: [
-			{ name: "React", percentage: 22 },
-			{ name: "Bootstrap", percentage: 22 },
-			{ name: "Typescript", percentage: 55 },
-			{ name: "Python", percentage: 1 },
+		tags: [
+			Tags.React,
+			Tags.TypeScript,
+			Tags["JS/TS"],
+			Tags.Bootstrap,
+			Tags["Design Patterns"],
+			Tags["Code Quality"],
+			Tags.Jest,
+			Tags.Python,
 		],
 	},
 	icc: {
 		title: "ICC",
-		icon: "/icons/other/ICClogo.svg",
+		image: "/icons/other/ICClogo.svg",
 		timespan: ["02/2024", "07/2024"],
 		description: (
 			<>
@@ -169,25 +169,15 @@ const projects = {
 				img: "images/gallery/fontys/sem3/icc.png",
 			},
 		],
-		technologies: [
-			{ name: "Next JS", percentage: 7 },
-			{ name: "Typescript", percentage: 45 },
-			{ name: "Supabase", percentage: 13 },
-			{ name: "React", percentage: 35 },
-		],
+		tags: [Tags["Next JS"], Tags.TypeScript, Tags.Supabase, Tags.React, Tags["JS/TS"], Tags.Docker],
 	},
 	asml: {
 		title: "ASML Internship",
-		icon: "/icons/other/ASML.svg",
+		image: "/icons/other/ASML.svg",
 		timespan: ["09/2024", "02/2025"],
 		description:
 			'My "medewerkerstage" ("middle internship") was at ASML - a global leader in lythography. They develop the machines used by Intel and Samsung, just to name a few, to make their microchips.',
-		technologies: [
-			{ name: "C/C++", percentage: 50 },
-			{ name: "Javascript", percentage: 30 },
-			{ name: "HTML", percentage: 10 },
-			{ name: "CSS", percentage: 10 },
-		],
+		tags: [Tags["C/C++"], Tags["JS/TS"], Tags.HTML, Tags.CSS, Tags["Code Quality"], Tags["Design Patterns"]],
 		content: [
 			{
 				img: "images/other/ASML-report.png",
@@ -198,7 +188,7 @@ const projects = {
 	},
 	glow: {
 		title: "Glow",
-		icon: "/icons/other/glow.svg",
+		image: "/icons/other/glow.svg",
 		timespan: ["02/2025", "07/2025"],
 		description: (
 			<>
@@ -256,26 +246,23 @@ const projects = {
 				img: "images/gallery/glow/phoenix.jpg",
 			},
 		],
-		technologies: [
-			{ name: "Python", percentage: 20 },
-			{ name: "Spotlights", percentage: 40 },
-			{ name: "Ideation", percentage: 40 },
-		],
+		tags: [Tags.Python, Tags["Embedded Systems"]],
 	},
 	v2g: {
 		title: "Vehicle 2 Grid",
 		github: "https://github.com/V2G-Fontys",
 		content: [
 			{
-				description:
-					"One of the first projects was a greenhouse measurement system with an Arduino and a RichShield for humidity, temperature and sunlight readings.",
-				img: "images/gallery/fontys/sem1/graph.png",
+				description: "",
+				img: "",
 			},
 		],
+		tags: [Tags.Flutter, Tags["Embedded Systems"]],
 	},
 	greenhouse: {
 		title: "Greenhouse",
 		github: "https://github.com/BRISINGR-01/Fontys-projects/tree/master/Greenhouse",
+		tags: [Tags.HTML, Tags.CSS, Tags.Web, Tags["JS/TS"]],
 		content: [
 			{
 				description:
@@ -290,6 +277,7 @@ const projects = {
 		],
 	},
 	pizzeria: {
+		tags: [Tags.HTML, Tags.CSS, Tags.Web, Tags["JS/TS"], Tags.Python, Tags["Embedded Systems"], Tags.Arduino, Tags.IOT],
 		title: "Pizzeria website",
 		github: "https://github.com/BRISINGR-01/Fontys-projects/tree/master/Pizzeria%20website",
 		content: [
@@ -327,6 +315,18 @@ const projects = {
 				img: "images/gallery/fontys/sem2/error.png",
 			},
 		],
+		tags: [
+			Tags.Docker,
+			Tags["C#"],
+			Tags[".NET"],
+			Tags["Code Quality"],
+			Tags.SQL,
+			Tags.Web,
+			Tags.Database,
+			Tags.Deployment,
+			Tags["Software Architecture"],
+			Tags["Design Patterns"],
+		],
 	},
 	sql: {
 		title: "SQL ORM",
@@ -338,9 +338,19 @@ const projects = {
 				img: "images/gallery/fontys/sem2/sql.png",
 			},
 		],
+		tags: [
+			Tags["C#"],
+			Tags["Design Patterns"],
+			Tags["Code Quality"],
+			Tags.SQL,
+			Tags.Database,
+			Tags["Software Architecture"],
+		],
+		image: "icons/technologies/sql.svg",
 	},
 	portfolio: {
 		title: "Personal Portfolio",
+		tags: [Tags.TypeScript, Tags["JS/TS"], Tags.Deployment, Tags.Vercel, Tags.ThreeJS, Tags["Game Dev"]],
 		content: [
 			{
 				description:
@@ -363,6 +373,7 @@ const projects = {
 	firefigther: {
 		title: "Firefighter game - Reinforcment Learning",
 		github: "https://github.com/BRISINGR-01/Firefighter-Game/",
+		tags: [Tags.Python, Tags.Deployment, Tags.Vercel, Tags["Game Dev"], Tags.Maths],
 		content: [
 			{
 				description:
@@ -385,10 +396,10 @@ const projects = {
 				img: "images/gallery/fontys/sem4/tiles.png",
 			},
 		],
-		technologies: [{ name: "Python", percentage: 100 }],
 	},
 	statistics: {
 		title: "Research paper",
+		tags: [Tags.Rust, Tags.Maths],
 		github: "https://github.com/BRISINGR-01/Maths/tree/main/Statistics",
 		content: [
 			{
@@ -401,6 +412,7 @@ const projects = {
 	},
 	sync: {
 		title: "Synchronization project",
+		tags: [Tags.Maths, Tags.Python, Tags.Concurrency],
 		github: "https://github.com/BRISINGR-01/Maths/tree/main/Synchronisation",
 		content: [
 			{
@@ -409,9 +421,10 @@ const projects = {
 				img: "images/gallery/fontys/sem4/sync.png",
 			},
 		],
-		technologies: [{ name: "Python", percentage: 100 }],
 	},
 	premaster: {
+		image: "icons/other/reading.svg",
+		tags: [Tags.Maths, Tags.Arduino, Tags["Embedded Systems"]],
 		title: "Projects made during my pre-master",
 		github: "https://github.com/BRISINGR-01/song-plaque",
 		content: [
@@ -429,7 +442,6 @@ const projects = {
 				img: "images/gallery/fontys/sem6/box.png",
 			},
 		],
-		technologies: [{ name: "Arduino", percentage: 100 }],
 	},
 };
 

@@ -1,45 +1,45 @@
 import { useState } from "react";
 import { OverlayTrigger, Stack, Tooltip } from "react-bootstrap";
 import { COLOR_PALETTE } from "../../../constants";
-import type { Experience, fn } from "../../../types";
+import { Tags } from "../../../content/tags";
+import type { Experience } from "../../../types";
 import { makeClickSound, useIcon } from "../../../utils";
 import ChangeAnimation from "../components/ChangeAnimation";
 import IconFrame from "./IconFrame";
 import { ProjectContent } from "./ProjectDisplay";
 
-export default function Experiences({ data }: { data: Experience; close: fn }) {
+export default function Experiences({ data }: { data: Experience }) {
 	const [showDescription, setShowDescription] = useState(true);
+
 	return (
 		<Stack gap={4}>
-			<Stack className="flex-lg-row" gap={4}>
-				<Stack direction="horizontal" gap={4}>
-					{/* Logo + timespan + Texh stack*/}
-					<Stack className="align-items-center flex-shrink-0" style={{ width: "10em" }} gap={3}>
-						<IconFrame id={data.id} img={data.altIcon ?? data.icon} />
+			<Stack className="flex-lg-row" direction="horizontal" gap={4}>
+				{/* Logo + timespan + Texh stack*/}
+				<Stack className="align-items-center flex-shrink-0" style={{ width: "10em" }} gap={3}>
+					<IconFrame id={data.id} img={data.altIcon ?? data.icon} />
 
-						{data.project.timespan && (
-							<ChangeAnimation className="w-100" id={"img-meta-" + data.id}>
-								<Timespan span={data.project.timespan} />
-							</ChangeAnimation>
-						)}
-					</Stack>
-
-					{/* Text */}
-					<Stack className="desc-context" gap={3}>
-						<ChangeAnimation id={"-content-" + data.id}>
-							<h2 className="text-center m-0">{data.title}</h2>
-							<ChangeAnimation id={showDescription ? "1" : "0"}>
-								{showDescription ? data.project.description : data.context}
-							</ChangeAnimation>
-							<Stack direction="horizontal" gap={4} className="mt-3 justify-content-between me-3">
-								<SwitchButtons
-									onSelect={(isDescription) => setShowDescription(isDescription)}
-									active={showDescription ? "desc" : "ctx"}
-								/>
-								{data.project.technologies && <TechBarGraph id={data.id} data={data.project.technologies} />}
-							</Stack>
+					{data.project.timespan && (
+						<ChangeAnimation className="w-100" id={"img-meta-" + data.id}>
+							<Timespan span={data.project.timespan} />
 						</ChangeAnimation>
-					</Stack>
+					)}
+				</Stack>
+
+				{/* Text */}
+				<Stack className="desc-context" gap={3}>
+					<ChangeAnimation id={"-content-" + data.id}>
+						<h2 className="text-center m-0">{data.title}</h2>
+						<ChangeAnimation id={showDescription ? "1" : "0"}>
+							{showDescription ? data.project.description : data.context}
+						</ChangeAnimation>
+						<Stack direction="horizontal" gap={4} className="mt-3 justify-content-between me-3">
+							<SwitchButtons
+								onSelect={(isDescription) => setShowDescription(isDescription)}
+								active={showDescription ? "desc" : "ctx"}
+							/>
+							{data.project.tags && <TechBarGraph id={data.id} data={data.project.tags} />}
+						</Stack>
+					</ChangeAnimation>
 				</Stack>
 			</Stack>
 
@@ -158,26 +158,18 @@ function SwitchButtons(props: { onSelect: (isDescription: boolean) => void; acti
 	);
 }
 
-function TechBarGraph({
-	data,
-	id,
-}: {
-	data: {
-		name: string;
-		percentage: number; // 0..100
-		icon?: string | React.ReactNode; // URL or ReactNode
-	}[];
-	id: string;
-}) {
+function TechBarGraph({ data, id }: { data: Tags[]; id: string }) {
 	const icons = useIcon();
 
 	return (
 		<Stack direction="horizontal" className="gap-2 justify-content-center flex-wrap">
-			{data.map((t) => {
-				const icon = icons.find((i) => i.name === t.name);
+			{data.map((tag) => {
+				const t = Tags[tag].toString();
+				const icon = icons.find((i) => i.name === t);
+				if (!icon) return;
 
 				return (
-					<OverlayTrigger key={t.name + id} overlay={<Tooltip>{t.name}</Tooltip>}>
+					<OverlayTrigger key={t + id} overlay={<Tooltip>{t}</Tooltip>}>
 						<div className="position-relative d-flex" style={{ width: "min-content" }}>
 							<svg
 								className="h-100 w-auto position-absolute left-0 z-0"
@@ -199,7 +191,7 @@ function TechBarGraph({
 								<path d="M190.306 328L174.5 357H207.694L223.5 328H190.306Z" fill="#A4E1FF" />
 							</svg>
 
-							<ChangeAnimation id={t.name}>
+							<ChangeAnimation id={t}>
 								<div
 									className="d-flex align-items-center justify-content-center pointer z-1"
 									style={{
@@ -210,7 +202,7 @@ function TechBarGraph({
 									{icon ? (
 										<img
 											src={icon.url}
-											alt={t.name}
+											alt={t}
 											style={{
 												width: "60%",
 												height: "60%",
@@ -219,7 +211,7 @@ function TechBarGraph({
 											}}
 										/>
 									) : (
-										<span style={{ fontSize: 10, color: "#9fe6ff" }}>{t.name.slice(0, 2).toUpperCase()}</span>
+										<span style={{ fontSize: 10, color: "#9fe6ff" }}>{t.slice(0, 2).toUpperCase()}</span>
 									)}
 								</div>
 							</ChangeAnimation>

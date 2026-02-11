@@ -1,5 +1,6 @@
 import type { Book, Certificate, DailyDevBadge, HTBBadge, Semester } from "../types";
 import projects from "./projects";
+import { Tags } from "./tags";
 
 const text = {
 	books: {
@@ -10,7 +11,7 @@ const text = {
 		"The C++ Programming Language":
 			"The C++ Programming Language, Fourth Edition, delivers meticulous, richly explained, and integrated coverage of the entire language—its facilities, abstraction mechanisms, standard libraries, and key design techniques. Throughout, Stroustrup presents concise, “pure C++11” examples, which have been carefully crafted to clarify both usage and program design. To promote deeper understanding, the author provides extensive cross-references, both within the book and to the ISO standard.",
 		"Clean Code":
-			"Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees. Every year, countless hours and significant resources are lost because of poorly written code. But it doesn't have to be that way.",
+			"Even bad code can function. But if code isn't clean, it can bring a development organization to its knees. Every year, countless hours and significant resources are lost because of poorly written code. But it doesn't have to be that way.",
 		"Software Architecture Patterns":
 			"The success of any software application or system depends on the architecture style you use. This updated report presents several common architecture styles to guide designers and developers on how to design components and to help you determine the ways in which those components should interact.",
 		"System Design Interview":
@@ -105,88 +106,88 @@ export const books: Book[] = [
 		subTitle: "Covers Rust 2018",
 		author: "Steve Klabnik and Carol Nichols",
 		description: text.books["The Rust Programming Language"],
-		cover: "The Rust Programming Language.jpg",
-		tags: ["Rust"],
+		image: "images/book-covers/The Rust Programming Language.jpg",
+		tags: [Tags.Rust],
 	},
 	{
 		title: "C Programming Language",
 		subTitle: "2nd Edition",
 		author: "Brian Kernighan and Dennis Ritchie",
 		description: text.books["C Programming Language"],
-		cover: "C Programming Language, 2nd Edition by Brian Kernighan.jpg",
-		tags: ["C/C++"],
+		image: "images/book-covers/C Programming Language, 2nd Edition by Brian Kernighan.jpg",
+		tags: [Tags["C/C++"]],
 	},
 	{
 		title: "The C++ Programming Language",
 		subTitle: "4th Edition",
 		author: "Bjarne Stroustrup",
 		description: text.books["The C++ Programming Language"],
-		cover: "The C++ Programming Language.jpg",
-		tags: ["C/C++"],
+		image: "images/book-covers/The C++ Programming Language.jpg",
+		tags: [Tags["C/C++"]],
 	},
 	{
 		title: "Clean Code",
 		subTitle: "A Handbook of Agile Software Craftsmanship",
 		author: "Robert C. Martin",
 		description: text.books["Clean Code"],
-		cover: "Clean Code by Robert C. Martin.jpg",
-		tags: ["Java", "Code Quality"],
+		image: "images/book-covers/Clean Code by Robert C. Martin.jpg",
+		tags: [Tags["Code Quality"]],
 	},
 	{
 		title: "Software Architecture Patterns",
 		subTitle: "2nd Edition",
 		author: "Mark Richards",
 		description: text.books["Software Architecture Patterns"],
-		cover: "Software Architecture Patterns.jpg",
-		tags: ["Software Architecture", "Code Quality"],
+		image: "images/book-covers/Software Architecture Patterns.jpg",
+		tags: [Tags["Software Architecture"], Tags["Code Quality"]],
 	},
 	{
 		title: "System Design Interview",
 		subTitle: "An insider's guide",
 		author: "Alex Xu",
 		description: text.books["System Design Interview"],
-		cover: "system design interview.jpg",
-		tags: ["Software Architecture", "Code Quality"],
+		image: "images/book-covers/system design interview.jpg",
+		tags: [Tags["Software Architecture"], Tags["Code Quality"]],
 	},
 	{
 		title: "Design Patterns",
 		subTitle: "Elements of Reusable Object-Oriented Software",
 		author: " Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides",
 		description: text.books["Design Patterns"],
-		cover: "design patterns.jpg",
-		tags: ["Software Architecture", "Code Quality", "Design Patterns"],
+		image: "images/book-covers/design patterns.jpg",
+		tags: [Tags["Software Architecture"], Tags["Code Quality"], Tags["Design Patterns"]],
 	},
 	{
 		title: "Code",
 		subTitle: "The Hidden Language of Computer Hardware and Software",
 		author: "Charles Petzold",
 		description: text.books["Code"],
-		cover: "Code: The Hidden Language of Computer Hardware and Software.jpg",
-		tags: ["Embedded Systems"],
+		image: "images/book-covers/Code: The Hidden Language of Computer Hardware and Software.jpg",
+		tags: [Tags["Embedded Systems"]],
 	},
 	{
 		title: "Refactoring",
 		subTitle: "Improving the Design of Existing Code",
 		author: "Martin Fowler, with Kent Beck",
 		description: text.books["Refactoring"],
-		cover: "Refactoring.jpg",
-		tags: ["Code Quality", "JavaScript"],
+		image: "images/book-covers/Refactoring.jpg",
+		tags: [Tags["Code Quality"], Tags["JS/TS"]],
 	},
 	{
 		title: "Clean Coder",
 		subTitle: "A Code of Conduct for Professional Programmers",
 		author: "Robert C. Martin",
 		description: text.books["Clean Coder"],
-		cover: "Clean Coder.jpg",
-		tags: ["Code Quality"],
+		image: "images/book-covers/Clean Coder.jpg",
+		tags: [Tags["Code Quality"]],
 	},
 	{
 		title: "Little Book Of Semaphores",
 		subTitle: "The Ins and Outs of Concurrency Control and Common Mistakes",
 		author: "Allen B. Downey",
 		description: text.books["Little Book Of Semaphores"],
-		cover: "LittleBookOfSemaphores.webp",
-		tags: ["Code Quality", "Concurrency"],
+		image: "images/book-covers/LittleBookOfSemaphores.webp",
+		tags: [Tags["Code Quality"], Tags.Concurrency],
 	},
 
 	{
@@ -194,8 +195,8 @@ export const books: Book[] = [
 		subTitle: "2nd Edition",
 		author: "Charles Platt",
 		description: text.books["Make: Electronics"],
-		cover: "Make_Electronics.webp",
-		tags: ["Electronics", "Embedded Systems"],
+		image: "images/book-covers/Make_Electronics.webp",
+		tags: [Tags["Embedded Systems"]],
 	},
 ];
 
@@ -207,6 +208,7 @@ export const htbBadges: HTBBadge[] = [
 	{
 		title: "Our favorite seabird",
 		description: "Linux Fundamentals module completed",
+		tags: [Tags.Linux],
 	},
 	{
 		title: "Everything is connected",
@@ -215,14 +217,17 @@ export const htbBadges: HTBBadge[] = [
 	{
 		title: "Your request is my demand",
 		description: "Web Requests module completed",
+		tags: [Tags.Web],
 	},
 	{
 		title: "Playing with the mess",
 		description: "JavaScript Deobfuscation module completed",
+		tags: [Tags.Web, Tags["JS/TS"]],
 	},
 	{
 		title: "Out of bounds",
 		description: "Stack-Based Buffer Overflows on Linux x86 module completed",
+		tags: [Tags.Linux],
 	},
 	{
 		title: "Crawl, walk, run",
@@ -231,6 +236,7 @@ export const htbBadges: HTBBadge[] = [
 	{
 		title: "Developer",
 		description: "Introduction to Web Applications module completed",
+		tags: [Tags.Web],
 	},
 	{
 		title: "An apple a day...",
@@ -256,20 +262,35 @@ export const htbBadges: HTBBadge[] = [
 		title: "Philomath",
 		description: "Learning Process module completed",
 	},
-].map((el) => ({ ...el, image: `/images/hack-the-box/${el.title.replace(/\s/g, "-").toLowerCase()}.webp` }));
+].map((el) => ({
+	...el,
+	image: `/images/hack-the-box/${el.title.replace(/\s/g, "-").toLowerCase()}.webp`,
+	tags: [Tags.Cybersecurity].concat(el.tags ?? []),
+}));
 
 export const dailyDevBadges: DailyDevBadge[] = [
-	{ image: "images/daily-dev/February 2025 Top Reader in UNIX.png", title: "Top Reader in UNIX" },
-	{ image: "images/daily-dev/January 2025 Top Reader in Shell.png", title: "Top Reader in Shell" },
 	{
+		tags: [Tags.Linux],
+		image: "images/daily-dev/February 2025 Top Reader in UNIX.png",
+		title: "Top Reader in UNIX",
+	},
+	{
+		tags: [Tags.Linux],
+		image: "images/daily-dev/January 2025 Top Reader in Shell.png",
+		title: "Top Reader in Shell",
+	},
+	{
+		tags: [Tags["Embedded Systems"]],
 		image: "images/daily-dev/October 2025 Top Reader in Embedded Systems.png",
 		title: "Top Reader in Embedded Systems",
 	},
 	{
+		tags: [Tags["Embedded Systems"]],
 		image: "images/daily-dev/November 2025 Top Reader in Embedded Systems.png",
 		title: "Top Reader in Embedded Systems",
 	},
 	{
+		tags: [Tags["Embedded Systems"]],
 		image: "images/daily-dev/December 2025 Top Reader in Embedded Systems.png",
 		title: "Top Reader in Embedded Systems",
 	},
@@ -277,253 +298,294 @@ export const dailyDevBadges: DailyDevBadge[] = [
 
 export const certificates: Certificate[] = [
 	{
-		name: "Neo4j Certified Professional",
+		title: "Neo4j Certified Professional",
+		image: "images/certificates/Neo4j Certified Professional.jpeg",
 		company: "Neo4j",
 		subCertificates: [
 			{
-				name: "Neo4j Fundamentals",
-				tags: ["Databases", "Neo4j"],
+				title: "Neo4j Fundamentals",
+				image: "images/certificates/Neo4j Fundamentals.jpeg",
+				tags: [Tags.Database, Tags.Neo4j],
 			},
 			{
-				name: "Cypher Fundamentals",
-				tags: ["Databases", "Cypher"],
+				title: "Cypher Fundamentals",
+				image: "images/certificates/Cypher Fundamentals.jpeg",
+				tags: [Tags.Database, Tags.Cypher],
 			},
 			{
-				name: "Intermediate Cypher Queries",
-				tags: ["Databases", "Cypher"],
+				title: "Intermediate Cypher Queries",
+				image: "images/certificates/Intermediate Cypher Queries.jpeg",
+				tags: [Tags.Database, Tags.Cypher],
 			},
 			{
-				name: "Graph Data Modeling Fundamentals",
-				tags: ["Databases", "Neo4j"],
+				title: "Graph Data Modeling Fundamentals",
+				image: "images/certificates/Graph Data Modeling Fundamentals.jpeg",
+				tags: [Tags.Database, Tags.Neo4j],
 			},
 			{
-				name: "Importing CSV data into Neo4j",
-				tags: ["Databases", "Neo4j"],
+				title: "Importing CSV data into Neo4j",
+				image: "images/certificates/Importing CSV data into Neo4j.jpeg",
+				tags: [Tags.Database, Tags.Neo4j],
 			},
 			{
-				name: "Building Neo4j Applications with Go",
-				tags: ["Databases", "Neo4j", "Go (Programming Language)"],
+				title: "Building Neo4j Applications with Go",
+				image: "images/certificates/Building Neo4j Applications with Go.jpeg",
+				tags: [Tags.Database, Tags.Neo4j, Tags.Go],
 			},
 		],
-		tags: ["Databases", "Neo4j", "Cypher", "Go (Programming Language)", "Code Quality"],
+		tags: [Tags.Database, Tags.Neo4j, Tags.Cypher, Tags.Go, Tags["Code Quality"]],
 	},
 	{
-		name: "Learning Linux Command Line",
-		tags: ["Linux", "Linux System Administration", "CLI"],
+		title: "Learning Linux Command Line",
+		image: "images/certificates/Learning Linux Command Line.jpeg",
+		tags: [Tags.Linux, Tags["Linux Administration"]],
 	},
 	{
-		name: "Getting Started with Linux",
-		tags: ["Linux", "Linux System Administration"],
+		title: "Getting Started with Linux",
+		image: "images/certificates/Getting Started with Linux.jpeg",
+		tags: [Tags.Linux, Tags["Linux Administration"]],
 		company: "Linux",
 		subCertificates: [
 			{
-				name: "Introduction to Linux",
-				tags: ["Linux"],
+				title: "Introduction to Linux",
+				image: "images/certificates/Introduction to Linux.jpeg",
+				tags: [Tags.Linux],
 			},
 			{
-				name: "Linux: Overview and Installation",
-				tags: ["Linux"],
+				title: "Linux: Overview and Installation",
+				image: "images/certificates/Linux: Overview and Installation.jpeg",
+				tags: [Tags.Linux],
 			},
 			{
-				name: "Linux: Files and Permissions",
-				tags: ["Linux"],
+				title: "Linux: Files and Permissions",
+				image: "images/certificates/Linux: Files and Permissions.jpeg",
+				tags: [Tags.Linux],
 			},
 		],
 	},
 	{
-		name: "Ubuntu Linux Professional Certificate by Canonical",
+		title: "Ubuntu Linux Professional Certificate by Canonical",
+		image: "images/certificates/Ubuntu Linux Professional Certificate by Canonical.jpeg",
 		company: "Canonical",
 		subCertificates: [
 			{
-				name: "Ubuntu Linux: Operating System Basics",
-				tags: ["Linux", "Linux System Administration", "Ubuntu"],
+				title: "Ubuntu Linux: Operating System Basics",
+				image: "images/certificates/Ubuntu Linux: Operating System Basics.jpeg",
+				tags: [Tags.Linux, Tags["Linux Administration"], Tags.Ubuntu],
 			},
 			{
-				name: "Ubuntu Linux: Storage Management",
-				tags: ["Storage Management", "Linux System Administration", "Ubuntu", "Linux"],
+				title: "Ubuntu Linux: Storage Management",
+				image: "images/certificates/Ubuntu Linux: Storage Management.jpeg",
+				tags: [Tags["Linux Administration"], Tags.Ubuntu, Tags.Linux],
 			},
 			{
-				name: "Ubuntu Linux: User and Group Management",
-				tags: ["Linux System Administration", "Ubuntu", "Linux", "User Management"],
+				title: "Ubuntu Linux: User and Group Management",
+				image: "images/certificates/Ubuntu Linux: User and Group Management.jpeg",
+				tags: [Tags["Linux Administration"], Tags.Ubuntu, Tags.Linux],
 			},
 		],
-		tags: ["Linux", "Linux System Administration", "Ubuntu", "User Management", "CLI"],
+		tags: [Tags.Linux, Tags["Linux Administration"], Tags.Ubuntu],
 	},
 	{
-		name: "Prepare for the Red Hat Certified System Administrator (EX200) Exam",
+		title: "Prepare for the Red Hat Certified System Administrator (EX200) Exam",
+		image: "images/certificates/Prepare for the Red Hat Certified System Administrator (EX200) Exam.jpeg",
 		company: "Red Hat",
-		tags: ["Red Hat", "Linux"],
+		tags: [Tags["Red Hat"], Tags.Linux],
 		subCertificates: [
 			{
-				name: "Red Hat Certified System Administrator (EX200) Cert Prep: 1 Deploy, Configure, and Manage",
-				tags: ["System Administration", "Red Hat", "Linux"],
+				title: "Red Hat Certified System Administrator (EX200) Cert Prep: 1 Deploy, Configure, and Manage",
+				image:
+					"images/certificates/Red Hat Certified System Administrator (EX200) Cert Prep: 1 Deploy, Configure, and Manage.jpeg",
+				tags: [Tags["Linux Administration"], Tags["Red Hat"], Tags.Linux],
 			},
 			{
-				name: "Red Hat Certified System Administrator (EX200) Cert Prep: 2 File Access, Storage, and Security",
-				tags: ["Linux System Administration", "Red Hat", "Linux"],
+				title: "Red Hat Certified System Administrator (EX200) Cert Prep: 2 File Access, Storage, and Security",
+				image:
+					"images/certificates/Red Hat Certified System Administrator (EX200) Cert Prep: 2 File Access, Storage, and Security.jpeg",
+				tags: [Tags["Linux Administration"], Tags["Red Hat"], Tags.Linux],
 			},
 		],
 	},
 	{
-		name: "Linux: Network Configuration",
-		tags: ["Linux Network Administration", "Linux"],
+		title: "Linux: Network Configuration",
+		image: "images/certificates/Linux: Network Configuration.jpeg",
+		tags: [Tags["Linux Administration"], Tags.Linux],
 	},
 	{
-		name: "Advanced Linux: The Linux Kernel (2020)",
-		tags: ["Linux Kernel", "Linux"],
+		title: "Advanced Linux: The Linux Kernel (2020)",
+		image: "images/certificates/Advanced Linux: The Linux Kernel (2020).jpeg",
+		tags: [Tags.Linux],
 	},
 	{
-		name: "IoT Foundations: Operating Systems Fundamentals",
-		tags: ["Internet of Things (IoT)"],
+		title: "IoT Foundations: Operating Systems Fundamentals",
+		image: "images/certificates/IoT Foundations: Operating Systems Fundamentals.jpeg",
+		tags: [Tags.IOT, Tags["Embedded Systems"]],
 	},
 	{
-		name: "Raspberry Pi Essential Training",
-		tags: ["Raspberry Pi", "Internet of Things (IoT)", "Embedded Systems"],
+		title: "Raspberry Pi Essential Training",
+		image: "images/certificates/Raspberry Pi Essential Training.jpeg",
+		tags: [Tags["Embedded Systems"], Tags.IOT],
 	},
 	{
-		name: "IoT Foundations: Fundamentals",
-		tags: ["Internet of Things (IoT)", "Embedded Systems"],
+		title: "IoT Foundations: Fundamentals",
+		image: "images/certificates/IoT Foundations: Fundamentals.jpeg",
+		tags: [Tags.IOT, Tags["Embedded Systems"]],
 	},
 	{
-		name: "Troubleshooting Slow Network with Wireshark",
-		ext: "png",
-		tags: ["Ethical Hacking", "Cybersecurity", "Network Security", "Wireshark"],
+		title: "Troubleshooting Slow Network with Wireshark",
+		image: "images/certificates/Troubleshooting Slow Network with Wireshark.png",
+		tags: [Tags.Cybersecurity],
 	},
 	{
-		name: "Go Essentials: Concurrency, Connectivity, and High-Performance Apps",
-		tags: ["Go (Programming Language)", "Code Quality"],
+		title: "Go Essentials: Concurrency, Connectivity, and High-Performance Apps",
+		image: "images/certificates/Go Essentials: Concurrency, Connectivity, and High-Performance Apps.jpeg",
+		tags: [Tags.Go, Tags.Concurrency, Tags["Code Quality"]],
 	},
 	{
-		name: "Master C++",
+		title: "Master C++",
+		image: "images/certificates/Master C++.jpeg",
 		company: "C++",
-		tags: [
-			"C++",
-			"Concurrent Programming",
-			"Parallel Programming",
-			"Test-Driven Development",
-			"Data Structures",
-			"Software Design Patterns",
-			"Code Quality",
-		],
+		tags: [Tags["C/C++"], Tags.Concurrency, Tags["Code Quality"], Tags["Design Patterns"], Tags["Code Quality"]],
 		subCertificates: [
 			{
-				name: "Complete Guide to C++ Programming Foundations",
-				ext: "-",
-				tags: ["C++"],
+				title: "Complete Guide to C++ Programming Foundations",
+				image: "icons/other/certificate-detail.svg",
+				tags: [Tags["C/C++"]],
 			},
 			{
-				ext: "-",
-				name: "Parallel and Concurrent Programming with C++ Part 1",
-				tags: ["Concurrent Programming", "Parallel Programming", "C++"],
+				title: "Parallel and Concurrent Programming with C++ Part 1",
+				image: "icons/other/certificate-detail.svg",
+				tags: [Tags.Concurrency, Tags["C/C++"]],
 			},
 			{
-				name: "Parallel and Concurrent Programming with C++ Part 2",
-				tags: ["Concurrent Programming", "C++", "Parallel Programming"],
+				title: "Parallel and Concurrent Programming with C++ Part 2",
+				image: "images/certificates/Parallel and Concurrent Programming with C++ Part 2.jpeg",
+				tags: [Tags.Concurrency, Tags["C/C++"]],
 			},
 			{
-				name: "Test-Driven Development in C++",
-				tags: ["Test-Driven Development", "C++"],
+				title: "Test-Driven Development in C++",
+				image: "images/certificates/Test-Driven Development in C++.jpeg",
+				tags: [Tags["C/C++"]],
 			},
 			{
-				name: "C++ Design Patterns: Behavioral",
-				tags: ["Software Design Patterns", "Data Structures", "C++"],
+				title: "C++ Design Patterns: Behavioral",
+				image: "images/certificates/C++ Design Patterns: Behavioral.jpeg",
+				tags: [Tags["Design Patterns"], Tags["Code Quality"], Tags["C/C++"]],
 			},
 			{
-				name: "C++ Design Patterns: Creational",
-				tags: ["Data Structures", "Software Design Patterns", "C++"],
+				title: "C++ Design Patterns: Creational",
+				image: "images/certificates/C++ Design Patterns: Creational.jpeg",
+				tags: [Tags["Code Quality"], Tags["Design Patterns"], Tags["C/C++"]],
 			},
 			{
-				name: "C++ Development: Advanced Concepts, Lambda Expressions, and Best Practices",
-				tags: ["C++"],
+				title: "C++ Development: Advanced Concepts, Lambda Expressions, and Best Practices",
+				image: "images/certificates/C++ Development: Advanced Concepts, Lambda Expressions, and Best Practices.jpeg",
+				tags: [Tags["C/C++"]],
 			},
 		],
 	},
 
 	{
-		name: "C++ Programming Professional Certificate by OpenEDG C++ Institute",
+		title: "C++ Programming Professional Certificate by OpenEDG C++ Institute",
+		image: "images/certificates/C++ Programming Professional Certificate by OpenEDG C++ Institute.jpeg",
 		company: "OpenEDG",
 		subCertificates: [
 			{
-				name: "C++ Design Patterns: Structural",
-				tags: ["Data Structures", "Software Design Patterns", "C++"],
+				title: "C++ Design Patterns: Structural",
+				image: "images/certificates/C++ Design Patterns: Structural.jpeg",
+				tags: [Tags["Code Quality"], Tags["Design Patterns"], Tags["C/C++"]],
 			},
 			{
-				name: "C++ Development: Advanced Concepts, Lambda Expressions, and Best Practices",
-				tags: ["C++"],
+				title: "C++ Development: Advanced Concepts, Lambda Expressions, and Best Practices",
+				image: "images/certificates/C++ Development: Advanced Concepts, Lambda Expressions, and Best Practices.jpeg",
+				tags: [Tags["C/C++"]],
 			},
 			{
-				name: "C++ Essential Training",
-				tags: ["C++"],
+				title: "C++ Essential Training",
+				image: "images/certificates/C++ Essential Training.jpeg",
+				tags: [Tags["C/C++"]],
 			},
 		],
-		tags: ["Data Structures", "C++"],
+		tags: [Tags["Code Quality"], Tags["C/C++"]],
 	},
 	{
-		name: "C++ Standard Template Library",
-		tags: ["C++"],
+		title: "C++ Standard Template Library",
+		image: "images/certificates/C++ Standard Template Library.jpeg",
+		tags: [Tags["C/C++"]],
 	},
 
 	{
-		name: "Docker Foundations Professional Certificate",
+		title: "Docker Foundations Professional Certificate",
+		image: "images/certificates/Docker Foundations Professional Certificate.jpeg",
 		company: "Docker",
 		subCertificates: [
 			{
-				name: "Learning Docker",
-				tags: ["Docker"],
+				title: "Learning Docker",
+				image: "images/certificates/Learning Docker.jpeg",
+				tags: [Tags.Docker],
 			},
 			{
-				name: "Docker: Your First Project",
-				tags: ["Docker"],
+				title: "Docker: Your First Project",
+				image: "images/certificates/Docker: Your First Project.jpeg",
+				tags: [Tags.Docker],
 			},
 			{
-				name: "Learning Docker Compose",
-				tags: ["Docker"],
+				title: "Learning Docker Compose",
+				image: "images/certificates/Learning Docker Compose.jpeg",
+				tags: [Tags.Docker],
 			},
 		],
-		tags: ["Containerization", "Docker"],
+		tags: [Tags.Docker],
 	},
 	{
-		name: "JavaScript Foundations Professional Certificate by Mozilla",
-		tags: ["Web Development", "JavaScript", "Code Quality"],
+		title: "JavaScript Foundations Professional Certificate by Mozilla",
+		image: "images/certificates/JavaScript Foundations Professional Certificate by Mozilla.jpeg",
+		tags: [Tags.Web, Tags["JS/TS"], Tags["Code Quality"]],
 		company: "Mozilla",
 		subCertificates: [
 			{
-				name: "JavaScript Essential Training",
-				tags: ["JavaScript"],
+				title: "JavaScript Essential Training",
+				image: "images/certificates/JavaScript Essential Training.jpeg",
+				tags: [Tags["JS/TS"]],
 			},
 			{
-				name: "Learning the JavaScript Language",
-				tags: ["JavaScript"],
+				title: "Learning the JavaScript Language",
+				image: "images/certificates/Learning the JavaScript Language.jpeg",
+				tags: [Tags["JS/TS"]],
 			},
 		],
 	},
 	{
-		name: "Advanced TypeScript Concepts",
-		tags: ["Web Development", "Front-End Development", "TypeScript", "Code Quality"],
+		title: "Advanced TypeScript Concepts",
+		image: "images/certificates/Advanced TypeScript Concepts.jpeg",
+		tags: [Tags.Web, Tags.TypeScript, Tags["Code Quality"]],
 	},
 	{
-		name: "Kubernetes: Native Tools (2018)",
-		tags: ["Kubernetes"],
+		title: "Kubernetes: Native Tools (2018)",
+		image: "images/certificates/Kubernetes: Native Tools (2018).jpeg",
+		tags: [Tags.Kubernetes],
 	},
 	{
-		name: "Learning Kubernetes",
-		tags: ["Kubernetes"],
+		title: "Learning Kubernetes",
+		image: "images/certificates/Learning Kubernetes.jpeg",
+		tags: [Tags.Kubernetes],
 	},
 	{
-		name: "Kubernetes: Your First Project",
-		tags: ["Kubernetes"],
-	},
-
-	{
-		name: "Hands-on JavaScript for Ethical Hacking",
-		ext: "png",
-		tags: ["Ethical Hacking", "Cybersecurity", "JavaScript"],
+		title: "Kubernetes: Your First Project",
+		image: "images/certificates/Kubernetes: Your First Project.jpeg",
+		tags: [Tags.Kubernetes],
 	},
 
 	{
-		name: "NodeJS - The Complete Guide (MVC, REST, APIs, GraphQl)",
-		tags: ["javaScript", "node", "react"],
-		ext: "-",
+		title: "Hands-on JavaScript for Ethical Hacking",
+		image: "images/certificates/Hands-on JavaScript for Ethical Hacking.png",
+		tags: [Tags.Cybersecurity, Tags["JS/TS"]],
+	},
+
+	{
+		title: "NodeJS - The Complete Guide (MVC, REST, APIs, GraphQl)",
+		image: "icons/other/certificate-detail.svg",
+		tags: [Tags["JS/TS"], Tags.NodeJS, Tags.React, Tags.Web],
 	},
 ];
 
@@ -535,9 +597,9 @@ export const other = [
 			"The lead and grounder of Zelinsoft .... asked me to make a couple of lectures to his team of students" +
 			`I recently had the pleasure of mentoring a group of talented interns at Zelinsoft, where we focused on both the technical and professional aspects of professional software engineering. We dove into coding best practices, TDD, alongside essential soft skills like effective communication and teamwork. These sessions were designed to help the interns build a strong foundation for their future careers.
 
-A big thanks to Ivan Hristov for organizing this initiative. His leadership and dedication as the founder of Zelinsoft, a startup with a clear vision for nurturing young talent, were key to making this happen. It’s great to see a company so committed to innovation and growth.
+A big thanks to Ivan Hristov for organizing this initiative. His leadership and dedication as the founder of Zelinsoft, a startup with a clear vision for nurturing young talent, were key to making this happen. It's great to see a company so committed to innovation and growth.
 
-For those interested, I’ve compiled the presentations and resources into a GitHub repository: https://lnkd.in/d8JERmUc.
+For those interested, I've compiled the presentations and resources into a GitHub repository: https://lnkd.in/d8JERmUc.
 
 Excited to see where these interns go next!
 Zelinsoft: https://lnkd.in/dRvtnT_M`,
@@ -552,7 +614,7 @@ Zelinsoft: https://lnkd.in/dRvtnT_M`,
 		// context: text.glow.context,
 		description: `Celebrating My 69th Place in HTB Mine the Matrix Tryout 🏆
 
-I’m pleased to share that I achieved 69th place out of 5000 participants in the HTB Mine the Matrix tryout! 🎉
+I'm pleased to share that I achieved 69th place out of 5000 participants in the HTB Mine the Matrix tryout! 🎉
 
 The competition covered a range of challenging areas:
  ‣ Reverse Engineering: 🔍 Analyzing and deconstructing binaries to uncover hidden elements.

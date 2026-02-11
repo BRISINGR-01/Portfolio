@@ -8,15 +8,15 @@
     "url": "icons/technologies/css.svg"
   },
   {
-    "name": "Node JS",
+    "name": "NodeJS",
     "url": "icons/technologies/node.svg"
   },
   {
-    "name": "Typescript",
+    "name": "TypeScript",
     "url": "icons/technologies/ts.svg"
   },
   {
-    "name": "Javascript",
+    "name": "JS/TS",
     "url": "icons/technologies/javascript.svg"
   },
   {
@@ -85,15 +85,11 @@
   },
   {
     "name": "GraphQl",
-    "url": "icons/technologies/graphQl.svg"
+    "url": "icons/technologies/graphql.svg"
   },
   {
     "name": "ThreeJS",
     "url": "icons/technologies/threejs.svg"
-  },
-  {
-    "name": "MySQL",
-    "url": "icons/technologies/mysql.svg"
   },
   {
     "name": ".NET",
@@ -116,10 +112,6 @@
     "url": "icons/technologies/vercel.svg"
   },
   {
-    "name": "RazorPages",
-    "url": "icons/technologies/net.svg"
-  },
-  {
     "name": "Next JS",
     "url": "icons/technologies/nextjs.svg"
   },
@@ -130,10 +122,6 @@
   {
     "name": "GraphQl",
     "url": "icons/technologies/graphql.svg"
-  },
-  {
-    "name": "SMT",
-    "url": "icons/technologies/smt.svg"
   },
   {
     "name": "Hack the Box",
@@ -156,7 +144,11 @@
     "url": "icons/technologies/firebase.svg"
   },
   {
-    "name": "Heroku",
-    "url": "icons/technologies/heroku.svg"
+    "name": "Kubernetes",
+    "url": "icons/technologies/kubernetes.svg"
+  },
+  {
+    "name": "Embedded Systems",
+    "url": "icons/technologies/hardware.svg"
   }
 ]

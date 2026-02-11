@@ -1,5 +1,12 @@
+import type { Tags } from "./content/tags";
+
 export type fn = () => void;
 
+export type Tagged = {
+	title: string;
+	tags: Tags[];
+	image?: string;
+};
 export type Icon3DParams = {
 	position: [x: number, y: number, z: number];
 	rotation: [x: number, y: number, z: number];
@@ -27,12 +34,9 @@ export type Experience = ContentData & {
 	project: Project;
 };
 
-export type Project = {
-	title: string;
+export type Project = Tagged & {
 	description?: React.JSX.Element | string;
-	icon?: string;
 	timespan?: string[];
-	technologies?: { name: string; percentage: number }[];
 	github?: string;
 	content?: ProjectContent;
 };
@@ -43,23 +47,19 @@ export type Education = ContentData & {
 	description: string;
 };
 
-export type Book = {
-	title: string;
+export type Book = Tagged & {
+	image: string;
 	subTitle: string;
 	author: string;
 	description: string;
-	cover: string;
-	tags: string[];
 };
 
-export type HTBBadge = {
-	title: string;
+export type HTBBadge = Tagged & {
 	description: string;
 	image: string;
 };
 
-export type DailyDevBadge = {
-	title: string;
+export type DailyDevBadge = Tagged & {
 	image: string;
 };
 
@@ -76,7 +76,7 @@ export type Language = ContentData & {
 export enum Mode {
 	Experience = "experience",
 	Education = "education",
-	Interests = "interests",
+	Tags = "interests",
 	AboutMe = "about-me",
 	Info = "info",
 	None = "none",
@@ -123,10 +123,8 @@ export type Semester = {
 	courses?: string[];
 };
 
-export type Certificate = {
-	name: string;
-	tags: string[];
-	ext?: string;
+export type Certificate = Tagged & {
+	image: string;
 	company?: string;
 	subCertificates?: Certificate[];
 };

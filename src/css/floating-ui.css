@@ -202,6 +202,14 @@
 		0 0 2.5px #37c8ff,
 		0 0 4px rgba(21, 180, 255, 0.4);
 
+	::placeholder {
+		color: #c4e8ffa8;
+	}
+
+	::-ms-input-placeholder {
+		color: #c4e8ffa8;
+	}
+
 	a {
 		color: #c4e8ff !important;
 	}
@@ -350,4 +358,10 @@
 
 .modal-dialog {
 	margin: 0 auto;
+}
+
+.list-item-tags:hover {
+	scale: 1.02;
+	border-radius: 5px;
+	box-shadow: inset 0 0 3px 1px #ffffff;
 }

@@ -15,6 +15,7 @@ export default function Books(props: { setGoBackCb: (cb?: fn) => void }) {
 		} else {
 			props.setGoBackCb(() => {});
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [selected]);
 
 	return (

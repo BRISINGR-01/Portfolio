@@ -37,27 +37,27 @@ function List(props: { company: string | null; onSelect: (certificates: string) 
 	return (
 		<Stack direction="horizontal" className="flex-wrap align-items-center justify-content-center" gap={4}>
 			{compCert && (
-				<Certificate
-					name={compCert.name}
+				<CertificateContainer
+					name={compCert.title}
+					image={compCert.image}
 					hasSubCertificates={false}
 					onSelect={() => {}}
 					company=""
-					ext={compCert.ext}
 				/>
 			)}
-			{(compCert?.subCertificates ?? certificates).map(({ name, company, ext, subCertificates }, i) => (
+			{(compCert?.subCertificates ?? certificates).map(({ title: name, company, image, subCertificates }, i) => (
 				<motion.div
 					key={name}
 					initial={{ opacity: 0, x: -(i + 1) * 30 }}
 					animate={{ opacity: 1, x: 0 }}
 					exit={{ opacity: 0, x: 10 }}
 				>
-					<Certificate
+					<CertificateContainer
 						hasSubCertificates={!!subCertificates}
 						name={name}
 						onSelect={() => props.onSelect(company!)}
 						company={company}
-						ext={ext}
+						image={image}
 					/>
 				</motion.div>
 			))}
@@ -65,16 +65,16 @@ function List(props: { company: string | null; onSelect: (certificates: string) 
 	);
 }
 
-function Certificate(props: {
+export function CertificateContainer(props: {
 	name: string;
 	company?: string;
-	ext?: string;
+	image: string;
 	hasSubCertificates: boolean;
 	onSelect: fn;
 }) {
 	return (
 		<OverlayTrigger overlay={<Tooltip className="glow-text">{props.name}</Tooltip>}>
-			<Stack className="flex-grow-0">
+			<div className="d-flex flex-column">
 				<div
 					style={{
 						filter: props.hasSubCertificates ? "drop-shadow(2px 2px 0px gold)" : "",
@@ -89,16 +89,12 @@ function Certificate(props: {
 							width: "fit-content",
 							background: "white",
 						}}
-						src={
-							props.ext === "-"
-								? "icons/other/certificate-detail.svg"
-								: `public/images/certificates/${props.name}.${props.ext ?? "jpeg"}`
-						}
+						src={props.image}
 						size={4}
 					/>
 				</div>
 				<span className="mt-1 w-100 text-center">{truncate(props.name)}</span>
-			</Stack>
+			</div>
 		</OverlayTrigger>
 	);
 }

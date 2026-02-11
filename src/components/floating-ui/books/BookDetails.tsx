@@ -10,7 +10,7 @@ export default function BookDetails(props: { book: Book }) {
 				<Stack direction="horizontal" gap={4} className="align-items-start">
 					<div className="col-4 col-md-3">
 						<Frame
-							src={`/images/book-covers/${props.book.cover}`}
+							src={props.book.image}
 							alt={props.book.title}
 							size={3}
 							style={{
