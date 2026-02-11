@@ -25,24 +25,33 @@ export default function Menu(props: {
 	const [openDirectly, setOpenDirectly] = useState<Mode | null>(null);
 	const [sub] = useKeyboardControls<Controls>();
 
-	useEffect(
-		() =>
-			sub(
-				(state) => state.escape,
-				(pressed) => {
-					if (pressed) setOpenDirectly(null);
-				},
-			),
-		[sub],
-	);
+	useEffect(() => {
+		if (!window.localStorage.getItem("isFirstEntry")) {
+			window.localStorage.setItem("isFirstEntry", "true");
+			setOpenDirectly(Mode.Info);
+		}
+
+		sub(
+			(state) => state.escape,
+			(pressed) => {
+				if (pressed) setOpenDirectly(null);
+			},
+		);
+	}, [sub]);
+
+	useEffect(() => {
+		if (props.selected === Mode.Info || props.selected === Mode.Tags) {
+			setOpenDirectly(props.selected);
+		}
+	}, [props.selected]);
 
 	return (
 		<AnimatePresence>
-			{!props.show ? null : openDirectly === Mode.Info ? (
+			{openDirectly === Mode.Info ? (
 				<InfoDisplay onClick={() => setOpenDirectly(null)} />
 			) : openDirectly === Mode.Tags ? (
 				<TagsDisplay onClick={() => setOpenDirectly(null)} />
-			) : (
+			) : !props.show ? null : (
 				<motion.div
 					key="menu"
 					initial={{ transform: "translateY(100px)", opacity: 0 }}

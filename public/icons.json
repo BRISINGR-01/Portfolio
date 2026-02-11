@@ -150,5 +150,9 @@
   {
     "name": "Embedded Systems",
     "url": "icons/technologies/hardware.svg"
+  },
+  {
+    "name": "Matlab",
+    "url": "icons/technologies/matlab.svg"
   }
 ]

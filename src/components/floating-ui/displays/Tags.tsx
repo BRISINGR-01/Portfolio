@@ -60,6 +60,7 @@ const sections = {
 		Tags.Neo4j,
 		Tags.Docker,
 		Tags.Kubernetes,
+		Tags.Matlab,
 	],
 	Other: [
 		Tags.Web,
@@ -95,41 +96,43 @@ export default function TagsDisplay(props: { onClick: fn }) {
 
 	return (
 		<HologramDisplay close={props.onClick} goBackCb={goBackCb}>
-			{!chosenTag ? (
-				<TagsList setChosenTag={setChosenTag} />
-			) : !chosenEntry ? (
-				<ResultsList tag={chosenTag} onClick={setChosenEntry} />
-			) : (
-				<FadeAnim key={chosenEntry.title}>
-					<Stack className="justify-content-center align-items-center h-100 w-100">
-						{chosenEntry.type === "certificate" ? (
-							<DisplayCertificate certificate={chosenEntry as Certificate} />
-						) : chosenEntry.type === "htb-badge" ? (
-							<DisplayHTB badge={chosenEntry as HTBBadge} />
-						) : chosenEntry.type === "daily-dev-badge" ? (
-							<DisplayDailyDev badge={chosenEntry as DailyDevBadge} />
-						) : chosenEntry.type === "book" ? (
-							<BookDetails book={chosenEntry as Book} />
-						) : chosenEntry.type === "project" ? (
-							(chosenEntry as Project).timespan ? (
-								<Experiences data={experience.find(({ title }) => title === (chosenEntry as Project).title)!} />
-							) : (
-								<Stack>
-									<h3>{chosenEntry.title}</h3>
-									<Stack direction="horizontal" gap={2} className="flex-wrap">
-										{chosenEntry.tags.map((t) => (
-											<CustomBadge>{stringify(t)}</CustomBadge>
-										))}
+			<div className="p-3">
+				{!chosenTag ? (
+					<TagsList setChosenTag={setChosenTag} />
+				) : !chosenEntry ? (
+					<ResultsList tag={chosenTag} onClick={setChosenEntry} />
+				) : (
+					<FadeAnim key={chosenEntry.title}>
+						<Stack className="justify-content-center align-items-center h-100 w-100">
+							{chosenEntry.type === "certificate" ? (
+								<DisplayCertificate certificate={chosenEntry as Certificate} />
+							) : chosenEntry.type === "htb-badge" ? (
+								<DisplayHTB badge={chosenEntry as HTBBadge} />
+							) : chosenEntry.type === "daily-dev-badge" ? (
+								<DisplayDailyDev badge={chosenEntry as DailyDevBadge} />
+							) : chosenEntry.type === "book" ? (
+								<BookDetails book={chosenEntry as Book} />
+							) : chosenEntry.type === "project" ? (
+								(chosenEntry as Project).timespan ? (
+									<Experiences data={experience.find(({ title }) => title === (chosenEntry as Project).title)!} />
+								) : (
+									<Stack>
+										<h3>{chosenEntry.title}</h3>
+										<Stack direction="horizontal" gap={2} className="flex-wrap">
+											{chosenEntry.tags.map((t) => (
+												<CustomBadge>{stringify(t)}</CustomBadge>
+											))}
+										</Stack>
+										<ProjectContent content={(chosenEntry as Project).content} />
 									</Stack>
-									<ProjectContent content={(chosenEntry as Project).content} />
-								</Stack>
-							)
-						) : (
-							<>Something went wrong here...</>
-						)}
-					</Stack>
-				</FadeAnim>
-			)}
+								)
+							) : (
+								<>Something went wrong here...</>
+							)}
+						</Stack>
+					</FadeAnim>
+				)}
+			</div>
 		</HologramDisplay>
 	);
 }

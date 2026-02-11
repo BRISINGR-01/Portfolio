@@ -25,7 +25,7 @@ export default function Globe(props: { language: ContentData | null }) {
 
 	useFrame(({ clock }) => {
 		materialRef.current?.update(clock);
-		if (globeRef.current) globeRef.current.rotateY(0.01);
+		if (globeRef.current) globeRef.current.rotateY(0.003);
 	});
 
 	useEffect(() => {

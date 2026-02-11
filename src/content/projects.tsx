@@ -423,23 +423,35 @@ const projects = {
 		],
 	},
 	premaster: {
-		image: "icons/other/reading.svg",
-		tags: [Tags.Maths, Tags.Arduino, Tags["Embedded Systems"]],
+		image: "icons/other/pre-master.svg",
+		tags: [Tags.Maths, Tags.Arduino, Tags["Embedded Systems"], Tags.Matlab],
 		title: "Projects made during my pre-master",
 		github: "https://github.com/BRISINGR-01/song-plaque",
 		content: [
 			{
 				description: "There was a practical side to the Circuits course where we built purely analog audio filters.",
-				img: "images/gallery/fontys/sem6/lab.jpg",
+				img: "images/gallery/fontys/sem7/lab.jpg",
+			},
+			{
+				description: (
+					<>
+						For a duo-team project, we developed a theoretical control system - inverted pendulum controlled by a
+						magnet. We used Matlab for the calculations and I made a{" "}
+						<TextLink url="https://systems-control.vercel.app/">3D animation</TextLink>. You can check out the paper and
+						code <TextLink url="https://github.com/BRISINGR-01/Maths/tree/main/Systems%20Control">here</TextLink>. The
+						paper we wrote compares control of the system using LQR and PID controllers.
+					</>
+				),
+				img: "images/gallery/fontys/sem7/control.png",
 			},
 			{
 				description: "With an ESP-32, a LED strip and a laser cutter I made this song plaque.",
-				img: "images/gallery/fontys/sem6/song-plaque.png",
+				img: "images/gallery/fontys/sem7/song-plaque.png",
 			},
 			{
 				description:
 					"I recycled LEDs from trash to create this measuring cups box which lights up when the lid is opened.",
-				img: "images/gallery/fontys/sem6/box.png",
+				img: "images/gallery/fontys/sem7/box.png",
 			},
 		],
 	},

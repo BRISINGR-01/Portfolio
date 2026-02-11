@@ -35,10 +35,10 @@ BatchedMesh.prototype.computeBoundsTree = computeBatchedBoundsTree;
 BatchedMesh.prototype.disposeBoundsTree = disposeBatchedBoundsTree;
 BatchedMesh.prototype.raycast = acceleratedRaycast;
 
-const defMode = Mode.Education;
+const defMode = Mode.AboutMe;
 
 export default function Portfolio3D() {
-	const [mode, setMode] = useState(Mode.None);
+	const [mode, setMode] = useState(defMode);
 	const [contentIndex, setContentIndex] = useState<number>(-1);
 	const [hovered, setHovered] = useState<ContentData | null>(null);
 	const [visibleIcons, setVisibleIcons] = useState<ContentData[]>([]);
@@ -48,19 +48,14 @@ export default function Portfolio3D() {
 	const selectedIcon: ContentData | null = contentIndex === -1 ? null : selectedContent[contentIndex];
 	// useEdit(education?.at(-2));
 
-	useEffect(() => {
-		if (!window.localStorage.getItem("isFirstEntry")) {
-			window.localStorage.setItem("isFirstEntry", "true");
-			setMode(Mode.Info);
-		} else {
-			setMode(defMode);
-		}
-
-		return sub(
-			(state) => state.escape,
-			(pressed) => pressed && setContentIndex(-1),
-		);
-	}, [sub]);
+	useEffect(
+		() =>
+			sub(
+				(state) => state.escape,
+				(pressed) => pressed && setContentIndex(-1),
+			),
+		[sub],
+	);
 
 	useEffect(() => {
 		setContentIndex(-1);
@@ -117,7 +112,9 @@ export default function Portfolio3D() {
 						</Delay>
 					</Raycast>
 					<Table text={prettifyTitle(selectedIcon?.title ?? hovered?.title ?? mode)} />
-					{mode === Mode.AboutMe && <AboutMe selectedIcon={selectedIcon ?? hovered} />}
+					<Delay time={TABLE_DELAY}>
+						{mode === Mode.AboutMe && <AboutMe selectedIcon={selectedIcon ?? hovered} />}
+					</Delay>
 				</Environment3D>
 			</Suspense>
 

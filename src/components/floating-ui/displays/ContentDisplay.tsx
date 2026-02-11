@@ -10,8 +10,6 @@ import DailyDev from "./DailyDev";
 import EducationDisplay from "./Education";
 import Experiences from "./Experiences";
 import Fontys from "./Fontys";
-import InfoDisplay from "./InfoDisplay";
-import TagsDisplay from "./Tags";
 
 type Props = {
 	data: ContentData | null;
@@ -32,11 +30,7 @@ export default function ContentDisplay(props: Props) {
 
 	return (
 		<AnimatePresence>
-			{props.type === Mode.Info ? (
-				<InfoDisplay onClick={props.close} />
-			) : props.type === Mode.Tags ? (
-				<TagsDisplay onClick={props.close} />
-			) : props.data ? (
+			{props.data ? (
 				<HologramDisplay
 					goBackCb={goBackCb}
 					close={props.close}
