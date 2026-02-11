@@ -33,9 +33,8 @@ export default function ContentDisplay(props: Props) {
 			{props.data ? (
 				<HologramDisplay
 					goBackCb={goBackCb}
-					close={props.close}
 					{...(props.type === Mode.AboutMe
-						? { nrOfPages: undefined, onSelect: undefined, currentPage: undefined }
+						? { nrOfPages: undefined, onSelect: undefined, currentPage: undefined, close: props.close }
 						: props)}
 				>
 					<Content {...props} data={props.data} setGoBackCb={setGoBackCb} />

@@ -54,6 +54,7 @@ export default function AboutMe() {
 					<Stack direction="horizontal" className="mt-5 mb-2 gap-2">
 						Or you could take a look at my career:
 						<OverlayTrigger overlay={<Tooltip className="glow-text">open career path</Tooltip>}>
+							{/*  @ts-expect-error union too complex (react-bootstrap) */}
 							<Button variant="" className="border-2 border-light hover" onClick={() => setShowCareer(true)}>
 								<img
 									style={{ height: "1.5em", filter: "invert(1) drop-shadow(0 0 4px #a1d5ff)" }}

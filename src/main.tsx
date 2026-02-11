@@ -4,7 +4,7 @@ import Emergency from "./components/Emergency";
 
 import { KeyboardControls, Loader } from "@react-three/drei";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { lazy, Suspense } from "react";
+import { Suspense } from "react";
 import Portfolio3D from "./components/3d/Portfolio3D";
 import ContentDisplay from "./components/floating-ui/displays/ContentDisplay";
 import { controlsMap } from "./constants";
@@ -12,7 +12,6 @@ import { education } from "./content/education";
 import "./css/index.css";
 import { Mode } from "./types";
 
-const Preview = lazy(() => import("./components/Preview"));
 const isDebug = 0;
 
 createRoot(document.getElementById("root")!).render(
@@ -35,7 +34,6 @@ createRoot(document.getElementById("root")!).render(
 					</KeyboardControls>
 				}
 			/>
-			<Route index path="preview" element={<Preview />} />
 			<Route path="em" element={<Emergency />} />
 		</Routes>
 	</BrowserRouter>,
