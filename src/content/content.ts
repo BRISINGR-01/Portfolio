@@ -464,22 +464,22 @@ export const certificates: Certificate[] = [
 			},
 			{
 				title: "Test-Driven Development in C++",
-				image: "images/certificates/Test-Driven Development in C++.jpeg",
+				image: "images/certificates/Test-Driven Development in C__.jpeg",
 				tags: [Tags["C/C++"]],
 			},
 			{
 				title: "C++ Design Patterns: Behavioral",
-				image: "images/certificates/C++ Design Patterns: Behavioral.jpeg",
+				image: "images/certificates/C__ Design Patterns: Behavioral.jpeg",
 				tags: [Tags["Design Patterns"], Tags["Code Quality"], Tags["C/C++"]],
 			},
 			{
 				title: "C++ Design Patterns: Creational",
-				image: "images/certificates/C++ Design Patterns: Creational.jpeg",
+				image: "images/certificates/C__ Design Patterns: Creational.jpeg",
 				tags: [Tags["Code Quality"], Tags["Design Patterns"], Tags["C/C++"]],
 			},
 			{
 				title: "C++ Development: Advanced Concepts, Lambda Expressions, and Best Practices",
-				image: "images/certificates/C++ Development: Advanced Concepts, Lambda Expressions, and Best Practices.jpeg",
+				image: "images/certificates/C__ Development: Advanced Concepts, Lambda Expressions, and Best Practices.jpeg",
 				tags: [Tags["C/C++"]],
 			},
 		],
@@ -487,22 +487,22 @@ export const certificates: Certificate[] = [
 
 	{
 		title: "C++ Programming Professional Certificate by OpenEDG C++ Institute",
-		image: "images/certificates/C++ Programming Professional Certificate by OpenEDG C++ Institute.jpeg",
+		image: "images/certificates/C__ Programming Professional Certificate by OpenEDG C__ Institute.jpeg",
 		company: "OpenEDG",
 		subCertificates: [
 			{
 				title: "C++ Design Patterns: Structural",
-				image: "images/certificates/C++ Design Patterns: Structural.jpeg",
+				image: "images/certificates/C__ Design Patterns: Structural.jpeg",
 				tags: [Tags["Code Quality"], Tags["Design Patterns"], Tags["C/C++"]],
 			},
 			{
 				title: "C++ Development: Advanced Concepts, Lambda Expressions, and Best Practices",
-				image: "images/certificates/C++ Development: Advanced Concepts, Lambda Expressions, and Best Practices.jpeg",
+				image: "images/certificates/C__ Development: Advanced Concepts, Lambda Expressions, and Best Practices.jpeg",
 				tags: [Tags["C/C++"]],
 			},
 			{
 				title: "C++ Essential Training",
-				image: "images/certificates/C++ Essential Training.jpeg",
+				image: "images/certificates/C__ Essential Training.jpeg",
 				tags: [Tags["C/C++"]],
 			},
 		],
@@ -510,7 +510,7 @@ export const certificates: Certificate[] = [
 	},
 	{
 		title: "C++ Standard Template Library",
-		image: "images/certificates/C++ Standard Template Library.jpeg",
+		image: "images/certificates/C__ Standard Template Library.jpeg",
 		tags: [Tags["C/C++"]],
 	},
 

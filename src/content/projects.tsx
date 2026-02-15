@@ -234,7 +234,7 @@ const projects = {
 			},
 			{
 				description: "As for the Phoenix, I volunteered to program and install the spotlights lightning up the scene.",
-				img: "../public/images/gallery/glow/spotlights.jpeg",
+				img: "images/gallery/glow/spotlights.jpeg",
 			},
 			{
 				description:

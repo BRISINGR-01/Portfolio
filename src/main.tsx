@@ -39,6 +39,7 @@ createRoot(document.getElementById("root")!).render(
 	</BrowserRouter>,
 );
 
+// eslint-disable-next-line react-refresh/only-export-components
 function Debug() {
 	return (
 		<ContentDisplay

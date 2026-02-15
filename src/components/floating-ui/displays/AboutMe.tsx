@@ -19,7 +19,7 @@ export default function AboutMe() {
 	return (
 		<Stack direction="horizontal" className="align-items-start" gap={4}>
 			<div className="d-flex flex-column gap-3" style={{ width: "min-content" }}>
-				<Image src="public/images/other/me.png" style={{ width: "100%" }} />
+				<Image src="images/other/me.png" style={{ width: "100%" }} />
 
 				<Stack direction="vertical">
 					<div style={{ width: "15em" }}>
