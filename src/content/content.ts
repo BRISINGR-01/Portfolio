@@ -122,7 +122,7 @@ export const books: Book[] = [
 		subTitle: "4th Edition",
 		author: "Bjarne Stroustrup",
 		description: text.books["The C++ Programming Language"],
-		image: "images/book-covers/The C++ Programming Language.jpg",
+		image: "images/book-covers/The C__ Programming Language.jpg",
 		tags: [Tags["C/C++"]],
 	},
 	{
@@ -443,7 +443,7 @@ export const certificates: Certificate[] = [
 	},
 	{
 		title: "Master C++",
-		image: "images/certificates/Master C++.jpeg",
+		image: "images/certificates/Master C__.jpeg",
 		company: "C++",
 		tags: [Tags["C/C++"], Tags.Concurrency, Tags["Code Quality"], Tags["Design Patterns"], Tags["Code Quality"]],
 		subCertificates: [
@@ -459,7 +459,7 @@ export const certificates: Certificate[] = [
 			},
 			{
 				title: "Parallel and Concurrent Programming with C++ Part 2",
-				image: "images/certificates/Parallel and Concurrent Programming with C++ Part 2.jpeg",
+				image: "images/certificates/Parallel and Concurrent Programming with C__ Part 2.jpeg",
 				tags: [Tags.Concurrency, Tags["C/C++"]],
 			},
 			{
