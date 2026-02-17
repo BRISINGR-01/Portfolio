@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Image, Modal, OverlayTrigger, Stack, Tooltip } from "react-bootstrap";
 import { contacts } from "../../../content/about-me";
+import { setEscAction } from "../../../utils";
 import CareerPath from "../components/CareerPath";
 import LanguagesList from "../components/LanguagesList";
 import Link, { TextLink } from "../components/Link";
@@ -15,6 +16,10 @@ function IconLink(i: number) {
 
 export default function AboutMe() {
 	const [showCareer, setShowCareer] = useState(false);
+
+	useEffect(() => {
+		setEscAction(showCareer ? () => setShowCareer(false) : null);
+	}, [showCareer]);
 
 	return (
 		<Stack direction="horizontal" className="align-items-start" gap={4}>
@@ -64,7 +69,7 @@ export default function AboutMe() {
 						</OverlayTrigger>
 					</Stack>
 				</div>
-				<Modal show={showCareer} onHide={() => setShowCareer(false)} onEscapeKeyDown={() => setShowCareer(false)}>
+				<Modal show={showCareer} onEscapeKeyDown={() => setShowCareer(false)}>
 					<Modal.Body
 						className="p-0 d-flex align-items-center"
 						style={{

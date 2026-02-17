@@ -93,7 +93,7 @@ export function CertificateContainer(props: {
 						size={4}
 					/>
 				</div>
-				<span className="mt-1 w-100 text-center">{truncate(props.name)}</span>
+				<span className="mt-2 w-100 text-center">{truncate(props.name)}</span>
 			</div>
 		</OverlayTrigger>
 	);

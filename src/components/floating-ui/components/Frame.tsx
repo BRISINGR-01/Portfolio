@@ -1,6 +1,7 @@
-import { useState, type CSSProperties } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { Modal } from "react-bootstrap";
 import "../../../css/frame.css";
+import { setEscAction } from "../../../utils";
 
 export default function Frame({
 	children,
@@ -17,6 +18,10 @@ export default function Frame({
 	alt: string;
 }) {
 	const [showBig, setShowBig] = useState(false);
+
+	useEffect(() => {
+		setEscAction(showBig ? () => setShowBig(false) : null);
+	}, [showBig]);
 
 	return (
 		<>
@@ -39,12 +44,7 @@ export default function Frame({
 					{children}
 				</FrameComponent>
 			</div>
-			<Modal
-				show={!notExpandable && !!showBig}
-				dialogClassName="show-image-backdrop"
-				onHide={() => setShowBig(false)}
-				onClick={() => setShowBig(false)}
-			>
+			<Modal show={!notExpandable && !!showBig} dialogClassName="show-image-backdrop" onClick={() => setShowBig(false)}>
 				<Modal.Body
 					className="p-5 d-flex justify-content-center align-items-center"
 					style={{ height: "100vh", width: "100vw" }}

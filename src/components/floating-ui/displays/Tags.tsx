@@ -7,7 +7,7 @@ import { experience } from "../../../content/experience";
 import projects from "../../../content/projects";
 import { Tags } from "../../../content/tags";
 import type { Book, Certificate, DailyDevBadge, fn, HTBBadge, Project } from "../../../types";
-import { useIcon } from "../../../utils";
+import { setEscAction, useIcon } from "../../../utils";
 import BookDetails from "../books/BookDetails";
 import FadeAnim from "../components/FadeAnim";
 import Frame from "../components/Frame";
@@ -94,6 +94,10 @@ export default function TagsDisplay(props: { onClick: fn }) {
 		setGoBackCb(chosenEntry ? () => () => setChosenEntry(null) : () => () => setChosenTag(null));
 	}, [chosenEntry, chosenTag]);
 
+	useEffect(() => {
+		setEscAction(goBackCb || null);
+	}, [goBackCb]);
+
 	return (
 		<HologramDisplay close={props.onClick} goBackCb={goBackCb}>
 			<div className="p-3">
@@ -119,8 +123,8 @@ export default function TagsDisplay(props: { onClick: fn }) {
 									<Stack>
 										<h3>{chosenEntry.title}</h3>
 										<Stack direction="horizontal" gap={2} className="flex-wrap">
-											{chosenEntry.tags.map((t) => (
-												<CustomBadge>{stringify(t)}</CustomBadge>
+											{chosenEntry.tags.map((t, i) => (
+												<CustomBadge key={i}>{stringify(t)}</CustomBadge>
 											))}
 										</Stack>
 										<ProjectContent content={(chosenEntry as Project).content} />
@@ -231,8 +235,8 @@ function DisplayCertificate(props: { certificate: Certificate }) {
 				size={4}
 			/>
 			<Stack direction="horizontal" gap={2} className="flex-wrap justify-content-center">
-				{props.certificate.tags.map((t) => (
-					<CustomBadge>{stringify(t)}</CustomBadge>
+				{props.certificate.tags.map((t, i) => (
+					<CustomBadge key={i}>{stringify(t)}</CustomBadge>
 				))}
 			</Stack>
 		</div>
@@ -288,8 +292,8 @@ function DisplayHTB(props: { badge: HTBBadge }) {
 				</Card.Body>
 			</Container>
 			<Stack direction="horizontal" gap={2} className="flex-wrap justify-content-center">
-				{props.badge.tags.map((t) => (
-					<CustomBadge>{stringify(t)}</CustomBadge>
+				{props.badge.tags.map((t, i) => (
+					<CustomBadge key={i}>{stringify(t)}</CustomBadge>
 				))}
 			</Stack>
 		</div>
@@ -313,8 +317,8 @@ function DisplayDailyDev(props: { badge: DailyDevBadge }) {
 				</Card.Body>
 			</Container>
 			<Stack direction="horizontal" gap={2} className="flex-wrap justify-content-center">
-				{props.badge.tags.map((t) => (
-					<CustomBadge>{stringify(t)}</CustomBadge>
+				{props.badge.tags.map((t, i) => (
+					<CustomBadge key={i}>{stringify(t)}</CustomBadge>
 				))}
 			</Stack>
 		</div>

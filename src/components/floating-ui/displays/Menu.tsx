@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { OverlayTrigger, Row, Tooltip } from "react-bootstrap";
 import { TRANSITION } from "../../../constants.ts";
 import { Mode, type Controls } from "../../../types.ts";
-import { makeClickSound, prettifyTitle } from "../../../utils.ts";
+import { getEscAction, makeClickSound, prettifyTitle } from "../../../utils.ts";
 import InfoDisplay from "./InfoDisplay.tsx";
 import TagsDisplay from "./Tags.tsx";
 
@@ -34,7 +34,7 @@ export default function Menu(props: {
 		sub(
 			(state) => state.escape,
 			(pressed) => {
-				if (pressed) setOpenDirectly(null);
+				if (pressed && !getEscAction()) setOpenDirectly(null);
 			},
 		);
 	}, [sub]);

@@ -2,7 +2,7 @@ import { useControls } from "leva";
 import { useEffect, useState } from "react";
 import { Color } from "three";
 import { MONTHS } from "./constants";
-import { Mode, type ContentData } from "./types";
+import { Mode, type ContentData, type fn } from "./types";
 
 export function parseTimeSpan(str: string) {
 	const [m, y] = str.split("/").map(Number).slice(1);
@@ -138,4 +138,13 @@ export function makeClickSound() {
 
 		clickSound.play();
 	}
+}
+
+let escAction: fn | null = null;
+export function getEscAction() {
+	return escAction;
+}
+
+export function setEscAction(action: fn | null) {
+	escAction = action;
 }

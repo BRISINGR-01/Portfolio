@@ -14,7 +14,7 @@ import { ICON_DELAY, TABLE_DELAY } from "../../constants";
 import content from "../../content/index.ts";
 import "../../css/floating-ui.css";
 import { Mode, type ContentData, type Controls } from "../../types.ts";
-import { makeClickSound, prettifyTitle } from "../../utils.ts";
+import { getEscAction, makeClickSound, prettifyTitle } from "../../utils.ts";
 import BgMusic from "../floating-ui/components/BgMusic.tsx";
 import ContentDisplay from "../floating-ui/displays/ContentDisplay.tsx";
 import Menu from "../floating-ui/displays/Menu.tsx";
@@ -52,7 +52,17 @@ export default function Portfolio3D() {
 		() =>
 			sub(
 				(state) => state.escape,
-				(pressed) => pressed && setContentIndex(-1),
+				(pressed) => {
+					if (!pressed) return;
+
+					const action = getEscAction();
+
+					if (action) {
+						return action();
+					}
+
+					setContentIndex(-1);
+				},
 			),
 		[sub],
 	);

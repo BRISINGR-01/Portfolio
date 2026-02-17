@@ -1,6 +1,7 @@
 import { AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
 import { Mode, type ContentData, type Education, type Experience, type fn } from "../../../types";
+import { setEscAction } from "../../../utils";
 import Books from "../books/Books";
 import HTB from "../books/HTB";
 import HologramDisplay from "../hologram-display/HologramDisplay";
@@ -27,6 +28,10 @@ export default function ContentDisplay(props: Props) {
 	useEffect(() => {
 		setGoBackCb(undefined);
 	}, [props.type, props.data?.id]);
+
+	useEffect(() => {
+		setEscAction(goBackCb || null);
+	}, [goBackCb]);
 
 	return (
 		<AnimatePresence>
