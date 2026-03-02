@@ -22,7 +22,6 @@ export default function SVGObject(props: ContentData) {
 	const groupRef = useRef<Group>(null);
 	const materialRefs = useRef<HologramMaterial[]>([]);
 	const clock = useThree((state) => state.clock);
-
 	const shapes = useMemo(() => createShapes(svg, materialRefs, props.icon3D.wide), [svg, props.icon3D.wide]);
 
 	useEffect(() => {

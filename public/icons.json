@@ -154,5 +154,9 @@
   {
     "name": "Matlab",
     "url": "icons/technologies/matlab.svg"
+  },
+  {
+    "name": "ROS",
+    "url": "icons/technologies/ROS.svg"
   }
 ]

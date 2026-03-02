@@ -594,15 +594,7 @@ export const other = [
 		id: "zelinsoft",
 		title: "Zelinsoft Mentorship",
 		description:
-			"The lead and grounder of Zelinsoft .... asked me to make a couple of lectures to his team of students" +
-			`I recently had the pleasure of mentoring a group of talented interns at Zelinsoft, where we focused on both the technical and professional aspects of professional software engineering. We dove into coding best practices, TDD, alongside essential soft skills like effective communication and teamwork. These sessions were designed to help the interns build a strong foundation for their future careers.
-
-A big thanks to Ivan Hristov for organizing this initiative. His leadership and dedication as the founder of Zelinsoft, a startup with a clear vision for nurturing young talent, were key to making this happen. It's great to see a company so committed to innovation and growth.
-
-For those interested, I've compiled the presentations and resources into a GitHub repository: https://lnkd.in/d8JERmUc.
-
-Excited to see where these interns go next!
-Zelinsoft: https://lnkd.in/dRvtnT_M`,
+			"The lead and grounder (Ivan Hristov) of Zelinsoft (https://lnkd.in/dRvtnT_M) asked me to make a couple of lectures to his team of students. They didn't have much prior experience with programming so I made two lectures - one on working in a professional matter and one for deeper software concepts. For the professional skills I talked about git, the steps from design to deployment and other topics that close the gap between a personal project and a mature product.",
 		icon3D: { scale: 0.001, position: [-0.5, 0.3, -0.4], rotation: [-0.7, -0.2, 0.5], wide: true },
 	},
 

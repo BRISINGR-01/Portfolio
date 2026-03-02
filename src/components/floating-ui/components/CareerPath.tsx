@@ -141,6 +141,7 @@ const constraint = (val: number) => {
 	return val;
 };
 
+const SCROLL_INTENSITY = 30;
 const transformToSliderY = (n: number) => (n / graphH()) * sliderH();
 let previousY = 0;
 
@@ -274,7 +275,7 @@ export default function CareerPath() {
 				[isMovingFrame],
 			)}
 			onWheel={(e) => {
-				setFrameY((prev) => constraint(prev + (e.deltaY > 0 ? 15 : -15)));
+				setFrameY((prev) => constraint(prev + (e.deltaY > 0 ? SCROLL_INTENSITY : -SCROLL_INTENSITY)));
 				if (timeout.current) clearTimeout(timeout.current);
 				timeout.current = setTimeout(snap, 500);
 			}}

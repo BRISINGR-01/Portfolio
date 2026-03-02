@@ -4,7 +4,6 @@ export const education: Education[] = [
 	{
 		id: "books",
 		title: "Books",
-		description: "Books that I have read",
 		icon: "/3d/books.glb",
 		icon3D: {
 			scale: 1.5,
@@ -15,7 +14,6 @@ export const education: Education[] = [
 	{
 		id: "certificates",
 		title: "Certificates",
-		description: "",
 		icon: "/icons/other/certificate-detail.svg",
 		icon3D: {
 			scale: 0.001,
@@ -27,7 +25,6 @@ export const education: Education[] = [
 	// {
 	// 	id: "tue",
 	// 	title: "Tue (Embedded Systems Pre-master)",
-	// 	description: "",
 	// 	icon: "/icons/other/tue.svg",
 	// 	icon3D: {
 	// 		scale: 0.004,
@@ -39,7 +36,6 @@ export const education: Education[] = [
 	{
 		id: "fontys",
 		title: "Fontys (Academic preperation)",
-		description: "",
 		icon: "/icons/other/fontys.svg",
 		icon3D: {
 			scale: 0.006,
@@ -51,7 +47,6 @@ export const education: Education[] = [
 	{
 		id: "htb",
 		title: "Hack the Box",
-		description: "",
 		icon: "/icons/other/htb.svg",
 		icon3D: {
 			scale: 0.003,
@@ -63,7 +58,6 @@ export const education: Education[] = [
 	{
 		id: "daily-dev",
 		title: "Daily Dev",
-		description: "",
 		icon: "/icons/other/daily-dev.svg",
 		icon3D: {
 			position: [-1.1, -0.355, 0.87],
@@ -72,4 +66,15 @@ export const education: Education[] = [
 			wide: true,
 		},
 	},
+	// {
+	// 	id: "events",
+	// 	title: "Events",
+	// 	icon: "icons/ui/events.svg",
+	// 	icon3D: {
+	// 		scale: 0.0008,
+	// 		position: [-3, 0.85, 0.4],
+	// 		rotation: [0, 0.4, 0],
+	// 		wide: true,
+	// 	},
+	// },
 ];

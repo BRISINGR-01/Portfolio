@@ -150,8 +150,8 @@
 
 .hologram-bg::before {
 	--size: 3;
-	--color1: rgba(15, 166, 236, 0.35);
-	--color2: rgba(12, 53, 72, 0.18);
+	--color1: rgba(18, 129, 181, 0.448);
+	--color2: rgba(12, 53, 72, 0.43);
 	content: "";
 	position: absolute;
 	inset: 0;

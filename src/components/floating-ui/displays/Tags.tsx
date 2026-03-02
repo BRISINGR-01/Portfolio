@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { Badge, Card, Container, Image, ListGroup, Stack } from "react-bootstrap";
 import { TRANSITION } from "../../../constants";
-import { books, certificates, dailyDevBadges, htbBadges } from "../../../content/content";
+import { books, certificates, dailyDevBadges, htbBadges, other } from "../../../content/content";
 import { experience } from "../../../content/experience";
 import projects from "../../../content/projects";
 import { Tags } from "../../../content/tags";
@@ -22,6 +22,7 @@ type Entry = (Book | Certificate | Project | HTBBadge | DailyDevBadge) & {
 
 const data: Entry[] = [];
 
+data.push(...other.map((o) => ({ ...o, type: "book" as Type })));
 data.push(...Object.values(projects).map((p) => ({ ...p, type: "project" as Type })));
 data.push(...books.map((b) => ({ ...b, type: "book" as Type })));
 data.push(...htbBadges.map((b) => ({ ...b, type: "htb-badge" as Type })));
@@ -44,25 +45,24 @@ const sections = {
 		Tags["C#"],
 		Tags.SQL,
 		Tags.NodeJS,
-		Tags.GraphQl,
 	],
 	Technologies: [
 		Tags.Linux,
 		Tags.ThreeJS,
+		Tags.ROS,
 		Tags.React,
 		Tags.Flutter,
 		Tags.Supabase,
 		Tags.Bootstrap,
 		Tags.Vercel,
-		Tags.Express,
 		Tags["Next JS"],
 		Tags[".NET"],
 		Tags.Neo4j,
 		Tags.Docker,
-		Tags.Kubernetes,
 		Tags.Matlab,
 	],
 	Other: [
+		Tags.Internship,
 		Tags.Web,
 		Tags["Embedded Systems"],
 		Tags.IOT,
@@ -85,13 +85,13 @@ export default function TagsDisplay(props: { onClick: fn }) {
 	const [goBackCb, setGoBackCb] = useState<fn | undefined>(undefined);
 
 	useEffect(() => {
-		setGoBackCb(chosenTag ? () => () => setChosenTag(null) : undefined);
+		setGoBackCb(chosenTag !== null ? () => () => setChosenTag(null) : undefined);
 		setChosenEntry(null);
 	}, [chosenTag]);
 
 	useEffect(() => {
 		if (!chosenTag) return;
-		setGoBackCb(chosenEntry ? () => () => setChosenEntry(null) : () => () => setChosenTag(null));
+		setGoBackCb(chosenEntry !== null ? () => () => setChosenEntry(null) : () => () => setChosenTag(null));
 	}, [chosenEntry, chosenTag]);
 
 	useEffect(() => {
@@ -101,7 +101,7 @@ export default function TagsDisplay(props: { onClick: fn }) {
 	return (
 		<HologramDisplay close={props.onClick} goBackCb={goBackCb}>
 			<div className="p-3">
-				{!chosenTag ? (
+				{chosenTag === null ? (
 					<TagsList setChosenTag={setChosenTag} />
 				) : !chosenEntry ? (
 					<ResultsList tag={chosenTag} onClick={setChosenEntry} />
@@ -153,7 +153,7 @@ function TagsList(props: { setChosenTag: (tag: Tags) => void }) {
 		<Stack direction="horizontal" className="flex-wrap mx-4" gap={4}>
 			{Object.entries(sections).map(([section, tags]) => (
 				<div key={section}>
-					<h6 className="mb-2">{section}</h6>
+					<h4 className="mb-2">{section}</h4>
 					<Stack direction="horizontal" className="flex-wrap" gap={2}>
 						{tags.map((t, i) => (
 							<motion.div

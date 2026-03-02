@@ -43,4 +43,7 @@ export enum Tags {
 	NodeJS,
 	Jest,
 	Matlab,
+	Internship,
+	ROS,
+	Wireshark,
 }

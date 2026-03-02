@@ -43,9 +43,7 @@ export type Project = Tagged & {
 
 export type ProjectContent = { description: React.JSX.Element | string; img: string }[];
 
-export type Education = ContentData & {
-	description: string;
-};
+export type Education = ContentData;
 
 export type Book = Tagged & {
 	image: string;

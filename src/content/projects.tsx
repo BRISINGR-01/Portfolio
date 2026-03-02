@@ -14,7 +14,17 @@ const projects = {
 				The project was a marketing console - a tool for organizing TV channels and their content.
 			</>
 		),
-		tags: [Tags.React, Tags.NodeJS, Tags.TypeScript, Tags["JS/TS"], Tags.Express, Tags.Docker, Tags.GraphQl],
+		tags: [
+			Tags.Internship,
+			Tags.React,
+			Tags.NodeJS,
+			Tags.TypeScript,
+			Tags["JS/TS"],
+			Tags.Express,
+			Tags.Docker,
+			Tags.GraphQl,
+			Tags.Web,
+		],
 	},
 	sdgSabic: {
 		title: "SDG Challenge - Sabic",
@@ -61,6 +71,9 @@ const projects = {
 			Tags.ThreeJS,
 			Tags.TypeScript,
 			Tags.Supabase,
+			Tags.SQL,
+			Tags.Web,
+			Tags["Next JS"],
 			Tags.Deployment,
 			Tags.Vercel,
 			Tags["C/C++"],
@@ -73,7 +86,7 @@ const projects = {
 		title: "SDG Challenge - Solarwatt",
 		image: "/images/other/SDG-logo-2.webp",
 		timespan: ["04/2025", "07/2025"],
-		tags: [Tags.TypeScript, Tags.React, Tags.Vercel, Tags.Deployment, Tags["JS/TS"]],
+		tags: [Tags.TypeScript, Tags.React, Tags.Vercel, Tags.Deployment, Tags["JS/TS"], Tags.Web],
 		description: (
 			<>
 				Together with Paulo Vieira we created a virtual educational platform called{" "}
@@ -142,6 +155,7 @@ const projects = {
 			Tags["Code Quality"],
 			Tags.Jest,
 			Tags.Python,
+			Tags.Web,
 		],
 	},
 	icc: {
@@ -169,7 +183,7 @@ const projects = {
 				img: "images/gallery/fontys/sem3/icc.png",
 			},
 		],
-		tags: [Tags["Next JS"], Tags.TypeScript, Tags.Supabase, Tags.React, Tags["JS/TS"], Tags.Docker],
+		tags: [Tags["Next JS"], Tags.TypeScript, Tags.Supabase, Tags.SQL, Tags.React, Tags["JS/TS"], Tags.Docker, Tags.Web],
 	},
 	asml: {
 		title: "ASML Internship",
@@ -177,7 +191,15 @@ const projects = {
 		timespan: ["09/2024", "02/2025"],
 		description:
 			'My "medewerkerstage" ("middle internship") was at ASML - a global leader in lythography. They develop the machines used by Intel and Samsung, just to name a few, to make their microchips.',
-		tags: [Tags["C/C++"], Tags["JS/TS"], Tags.HTML, Tags.CSS, Tags["Code Quality"], Tags["Design Patterns"]],
+		tags: [
+			Tags.Internship,
+			Tags["C/C++"],
+			Tags["JS/TS"],
+			Tags.HTML,
+			Tags.CSS,
+			Tags["Code Quality"],
+			Tags["Design Patterns"],
+		],
 		content: [
 			{
 				img: "images/other/ASML-report.png",
@@ -350,7 +372,7 @@ const projects = {
 	},
 	portfolio: {
 		title: "Personal Portfolio",
-		tags: [Tags.TypeScript, Tags["JS/TS"], Tags.Deployment, Tags.Vercel, Tags.ThreeJS, Tags["Game Dev"]],
+		tags: [Tags.TypeScript, Tags["JS/TS"], Tags.Deployment, Tags.Vercel, Tags.ThreeJS, Tags["Game Dev"], Tags.Web],
 		content: [
 			{
 				description:

@@ -48,7 +48,7 @@ function Debug() {
 			data={education[1]}
 			nrOfPages={1}
 			onSelect={() => {}}
-			type={Mode.Tags}
+			type={Mode.AboutMe}
 		/>
 	);
 }
