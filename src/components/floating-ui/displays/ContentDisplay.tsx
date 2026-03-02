@@ -1,6 +1,6 @@
 import { AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
-import { Mode, type ContentData, type Education, type Experience, type fn } from "../../../types";
+import { Mode, type ContentData, type Experience, type fn } from "../../../types";
 import { setEscAction } from "../../../utils";
 import Books from "../books/Books";
 import HTB from "../books/HTB";
@@ -8,7 +8,6 @@ import HologramDisplay from "../hologram-display/HologramDisplay";
 import AboutMe from "./AboutMe";
 import Certificates from "./Certificates";
 import DailyDev from "./DailyDev";
-import EducationDisplay from "./Education";
 import Experiences from "./Experiences";
 import Fontys from "./Fontys";
 
@@ -66,7 +65,7 @@ function Content({ data, ...props }: Props & { data: ContentData; setGoBackCb: (
 				case "certificates":
 					return <Certificates setGoBackCb={props.setGoBackCb} />;
 				default:
-					return <EducationDisplay data={data as Education} />;
+					return <></>;
 			}
 		case Mode.AboutMe:
 			return <AboutMe />;

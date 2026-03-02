@@ -595,43 +595,42 @@ export const other = [
 		title: "Zelinsoft Mentorship",
 		description:
 			"The lead and grounder (Ivan Hristov) of Zelinsoft (https://lnkd.in/dRvtnT_M) asked me to make a couple of lectures to his team of students. They didn't have much prior experience with programming so I made two lectures - one on working in a professional matter and one for deeper software concepts. For the professional skills I talked about git, the steps from design to deployment and other topics that close the gap between a personal project and a mature product.",
-		icon3D: { scale: 0.001, position: [-0.5, 0.3, -0.4], rotation: [-0.7, -0.2, 0.5], wide: true },
+		tags: [],
 	},
 
 	{
 		id: "mine-the-matrix",
-		// title: projects.glow.title,
-		// icon: projects.glow.icon,
-		// project: projects.glow,
-		// context: text.glow.context,
+		title: "Mine The Matrix CTF",
 		description: `Celebrating My 69th Place in HTB Mine the Matrix Tryout 🏆
-
-I'm pleased to share that I achieved 69th place out of 5000 participants in the HTB Mine the Matrix tryout! 🎉
-
-The competition covered a range of challenging areas:
- ‣ Reverse Engineering: 🔍 Analyzing and deconstructing binaries to uncover hidden elements.
- ‣ Exploitation: 💣 Identifying and leveraging vulnerabilities to gain control.
- ‣ Cryptography: 🔐 Breaking down and deciphering encrypted messages.
- ‣ Forensics: 🕵️‍♂️ Investigating data and files to retrieve critical information.
- ‣ Web Exploitation: 🌐 Finding and exploiting security weaknesses in web applications.
-
-This experience was both demanding and rewarding, offering a great opportunity to test and expand my skills. A big thank you to the Hack The Box team for organizing such a rigorous event and to everyone who supported me along the way. 🙌
-
-Looking forward to applying these insights and continuing to grow in the cybersecurity field. 🚀
-`,
-		icon3D: { scale: 0.001, position: [-0.5, 0.3, -0.4], rotation: [-0.7, -0.2, 0.5], wide: true },
+		
+		I'm pleased to share that I achieved 69th place out of 5000 participants in the HTB Mine the Matrix tryout! 🎉
+		
+		The competition covered a range of challenging areas:
+		‣ Reverse Engineering: 🔍 Analyzing and deconstructing binaries to uncover hidden elements.
+		‣ Exploitation: 💣 Identifying and leveraging vulnerabilities to gain control.
+		‣ Cryptography: 🔐 Breaking down and deciphering encrypted messages.
+		‣ Forensics: 🕵️‍♂️ Investigating data and files to retrieve critical information.
+		‣ Web Exploitation: 🌐 Finding and exploiting security weaknesses in web applications.
+		
+		This experience was both demanding and rewarding, offering a great opportunity to test and expand my skills. A big thank you to the Hack The Box team for organizing such a rigorous event and to everyone who supported me along the way. 🙌
+		
+		Looking forward to applying these insights and continuing to grow in the cybersecurity field. 🚀
+		`,
+		tags: [],
 	},
 	{
 		id: "international-week",
+		title: "Fontys International Week",
 		description: `🌍✨ Proud to be part of Fontys' International Week and thrilled to have contributed to an amazing team project!
-
-As a team, we've developed an innovative product that not only enhances our productivity but also promotes our health and well-being. 
-🚶‍♂️💼
-
-Our product? A smart solution that encourages us to take a break from work and go for a short walk. It locks our Trello boards and prompts us with: "Walk 20 meters to the location shown in the image and scan the QR code to unlock this task!" 🌳📱
-
-This initiative underscores the importance of work-life balance, reminding us to step away from our desks occasionally and enjoy some fresh air and movement. 🌿💻
-
-Thanks to my amazing teammates for their collaboration and to Fontys for facilitating this inspiring week filled with innovation and creativity! 💡👏`,
+		
+		As a team, we've developed an innovative product that not only enhances our productivity but also promotes our health and well-being. 
+		🚶‍♂️💼
+		
+		Our product? A smart solution that encourages us to take a break from work and go for a short walk. It locks our Trello boards and prompts us with: "Walk 20 meters to the location shown in the image and scan the QR code to unlock this task!" 🌳📱
+		
+		This initiative underscores the importance of work-life balance, reminding us to step away from our desks occasionally and enjoy some fresh air and movement. 🌿💻
+		
+		Thanks to my amazing teammates for their collaboration and to Fontys for facilitating this inspiring week filled with innovation and creativity! 💡👏`,
+		tags: [],
 	},
 ];
