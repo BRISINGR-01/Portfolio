@@ -12,12 +12,8 @@
     "url": "icons/technologies/node.svg"
   },
   {
-    "name": "TypeScript",
-    "url": "icons/technologies/ts.svg"
-  },
-  {
     "name": "JS/TS",
-    "url": "icons/technologies/javascript.svg"
+    "url": "icons/technologies/ts.svg"
   },
   {
     "name": "Dart",

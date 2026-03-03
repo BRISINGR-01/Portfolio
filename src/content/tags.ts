@@ -5,7 +5,6 @@ export enum Tags {
 	Docker,
 	GraphQl,
 	ThreeJS,
-	TypeScript,
 	Supabase,
 	Bootstrap,
 	Python,
@@ -38,7 +37,7 @@ export enum Tags {
 	Ubuntu,
 	"Red Hat",
 	IOT,
-	Cybersecurity,
+	"Cyber Security",
 	Kubernetes,
 	NodeJS,
 	Jest,
@@ -46,4 +45,5 @@ export enum Tags {
 	Internship,
 	ROS,
 	Wireshark,
+	Teaching,
 }

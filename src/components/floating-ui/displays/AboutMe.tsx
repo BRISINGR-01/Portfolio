@@ -89,9 +89,9 @@ export default function AboutMe() {
 							img: "icons/technologies/hardware.svg",
 							content: (
 								<span>
-									<b>Embedded & Robotics</b> - Experience with embedded systems, hardware integration, and real-time
-									control. Currently working on a robotic arm for RoboCup, focusing on low-level control and reliable
-									hardware-software interaction.
+									<b>Embedded & Robotics</b> - I'm interested in any system where electricity flows, which brought me to
+									embedded systems with Arduino, robotics with ROS2 or plain old hardware that I can solder and debug
+									with a multimeter.
 								</span>
 							),
 						},
@@ -100,7 +100,8 @@ export default function AboutMe() {
 							content: (
 								<span>
 									<b>Linux & Systems</b> - Daily Linux user for {linuxUserSince}+ years across NixOS, Ubuntu, Fedora,
-									and Arch. Comfortable with system configuration, debugging, and working close to the OS.
+									and Arch. I have reconfigured, messed up and fixed almost every part of my laptop's operating system
+									by now, from deleting my bootloader to making scripts for random wallpapers.
 								</span>
 							),
 						},
@@ -109,8 +110,8 @@ export default function AboutMe() {
 							content: (
 								<span>
 									<b>Cybersecurity</b> - Completed multiple courses on Hack The Box and participated in CTFs such as
-									MineTheMatrix and TrojanCTF. Developed several challenges for TrojanCTF, gaining hands-on experience
-									in offensive security and challenge design.
+									MineTheMatrix and TrojanCTF and even Developed several challenges for the latter. It started out as a
+									hobby, but helped me to understand security on a much deeper level.
 								</span>
 							),
 						},
@@ -166,8 +167,8 @@ export default function AboutMe() {
 							img: "icons/technologies/robot.svg",
 							content: (
 								<span>
-									<b>Robotics - RoboCup</b> - Developing a robotic arm focused on embedded control, hardware
-									integration, and reliable real-time behavior for competition scenarios.
+									<b>Robotics - RoboCup</b> - Developing a robotic arm mounted on a moving base for an international
+									challenge - RoboCup.
 								</span>
 							),
 						},
@@ -192,7 +193,7 @@ export default function AboutMe() {
 							content: (
 								<span>
 									<b>ASML Internship</b> - Developed a C++ code analysis tool that generates interactive reports to
-									visualize large codebases. Built custom bundling and recreated internal UI styling under strict
+									visualize large codebases. Built custom HTML bundler and recreated internal UI styling under strict
 									constraints.
 								</span>
 							),
@@ -228,7 +229,7 @@ export default function AboutMe() {
 							Tags.ROS,
 							Tags.Matlab,
 							Tags.Python,
-							Tags.TypeScript,
+							Tags["JS/TS"],
 							Tags.ThreeJS,
 							Tags.React,
 							Tags.Wireshark,

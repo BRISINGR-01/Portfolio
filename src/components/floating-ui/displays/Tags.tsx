@@ -66,7 +66,7 @@ const sections = {
 		Tags.Web,
 		Tags["Embedded Systems"],
 		Tags.IOT,
-		Tags.Cybersecurity,
+		Tags["Cyber Security"],
 		Tags.Maths,
 		Tags.Concurrency,
 		Tags["Software Architecture"],

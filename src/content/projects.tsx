@@ -14,17 +14,7 @@ const projects = {
 				The project was a marketing console - a tool for organizing TV channels and their content.
 			</>
 		),
-		tags: [
-			Tags.Internship,
-			Tags.React,
-			Tags.NodeJS,
-			Tags.TypeScript,
-			Tags["JS/TS"],
-			Tags.Express,
-			Tags.Docker,
-			Tags.GraphQl,
-			Tags.Web,
-		],
+		tags: [Tags.Internship, Tags.React, Tags.NodeJS, Tags["JS/TS"], Tags.Express, Tags.Docker, Tags.GraphQl, Tags.Web],
 	},
 	sdgSabic: {
 		title: "SDG Challenge - Sabic",
@@ -69,7 +59,7 @@ const projects = {
 		tags: [
 			Tags.React,
 			Tags.ThreeJS,
-			Tags.TypeScript,
+			Tags["JS/TS"],
 			Tags.Supabase,
 			Tags.SQL,
 			Tags.Web,
@@ -86,7 +76,7 @@ const projects = {
 		title: "SDG Challenge - Solarwatt",
 		image: "/images/other/SDG-logo-2.webp",
 		timespan: ["04/2025", "07/2025"],
-		tags: [Tags.TypeScript, Tags.React, Tags.Vercel, Tags.Deployment, Tags["JS/TS"], Tags.Web],
+		tags: [Tags.React, Tags.Vercel, Tags.Deployment, Tags["JS/TS"], Tags.Web],
 		description: (
 			<>
 				Together with Paulo Vieira we created a virtual educational platform called{" "}
@@ -148,7 +138,6 @@ const projects = {
 		),
 		tags: [
 			Tags.React,
-			Tags.TypeScript,
 			Tags["JS/TS"],
 			Tags.Bootstrap,
 			Tags["Design Patterns"],
@@ -183,7 +172,7 @@ const projects = {
 				img: "images/gallery/fontys/sem3/icc.png",
 			},
 		],
-		tags: [Tags["Next JS"], Tags.TypeScript, Tags.Supabase, Tags.SQL, Tags.React, Tags["JS/TS"], Tags.Docker, Tags.Web],
+		tags: [Tags["Next JS"], Tags.Supabase, Tags.SQL, Tags.React, Tags["JS/TS"], Tags.Docker, Tags.Web],
 	},
 	asml: {
 		title: "ASML Internship",
@@ -372,7 +361,7 @@ const projects = {
 	},
 	portfolio: {
 		title: "Personal Portfolio",
-		tags: [Tags.TypeScript, Tags["JS/TS"], Tags.Deployment, Tags.Vercel, Tags.ThreeJS, Tags["Game Dev"], Tags.Web],
+		tags: [Tags["JS/TS"], Tags.Deployment, Tags.Vercel, Tags.ThreeJS, Tags["Game Dev"], Tags.Web],
 		content: [
 			{
 				description:
@@ -474,6 +463,42 @@ const projects = {
 				description:
 					"I recycled LEDs from trash to create this measuring cups box which lights up when the lid is opened.",
 				img: "images/gallery/fontys/sem7/box.png",
+			},
+		],
+	},
+	robocup: {
+		image: "icons/technologies/robot.svg",
+		tags: [Tags.ROS, Tags.Python, Tags["Embedded Systems"]],
+		title: "RoboCup@Home",
+		content: [
+			{
+				description:
+					"Currently working on a robotics assignment for the RoboCup@Home Challenge. The task is to assemble and mount a robotic arm on a moving base to participate in the challenge to complete simple domestic tasks like opening doors and moving objects",
+				img: "images/gallery/fontys/sem6_2/assembly.jpg",
+			},
+			{
+				description:
+					"We alredy have the arms assembled and I tested the teleoperation feature used for training the AI",
+				img: "images/gallery/fontys/sem6_2/demo.mp4",
+			},
+			{
+				description: "Here is the base with which we have to connect the arm",
+				img: "images/gallery/fontys/sem6_2/base.jpg",
+			},
+		],
+	},
+	custom_mouse: {
+		tags: [Tags["Embedded Systems"]],
+		title: "Custom mouse",
+		content: [
+			{
+				description:
+					"My personal project for this semester is a custom mouse which uses a joystick controller to move the cursor. I already built a working prototype, next is to finish the actual product",
+				img: "images/gallery/fontys/sem6_2/mouse-prot.jpg",
+			},
+			{
+				description: "This is the design that I have in mind. It should have all features of a normal mouse",
+				img: "images/gallery/fontys/sem6_2/custom-mouse-design.png",
 			},
 		],
 	},

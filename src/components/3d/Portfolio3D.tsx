@@ -35,7 +35,7 @@ BatchedMesh.prototype.computeBoundsTree = computeBatchedBoundsTree;
 BatchedMesh.prototype.disposeBoundsTree = disposeBatchedBoundsTree;
 BatchedMesh.prototype.raycast = acceleratedRaycast;
 
-const defMode = Mode.Education;
+const defMode = Mode.AboutMe;
 
 export default function Portfolio3D() {
 	const [mode, setMode] = useState(defMode);
