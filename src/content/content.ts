@@ -609,6 +609,13 @@ export const other = [
 		tags: [Tags["Cyber Security"]],
 	},
 	{
+		id: "trojan-ctf-2025",
+		title: "Trojan CTF 2025",
+		img: "images/gallery/events/trojan-horse-poster.jpeg",
+		description: `Ended up 47th out of 200 participants in the student organized Trojan CTF. The challenges covered a nice mix of web, network, and binary exploitation — things like cookie manipulation, port abuse, steganography, .NET reverse engineering, and even a classic buffer overflow. It was the kind of competition where you constantly switch gears, from running Gobuster scans to digging a payload out of an embedded PowerShell script.`,
+		tags: [Tags["Cyber Security"]],
+	},
+	{
 		id: "international-week",
 		title: "Fontys International Week",
 		description: `Took part in Fontys International Week. We built a simple system that forces you to take a short walk before continuing your work. When it's time for a break, your Trello board locks and shows a location. You walk about 20 meters, scan a QR code, and only then the task unlocks again. It worked via a Chrome extention`,

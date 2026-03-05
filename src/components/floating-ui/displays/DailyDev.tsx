@@ -3,6 +3,7 @@ import { dailyDevBadges } from "../../../content/content";
 import DailyDevCard from "../components/DailyDevCard";
 import FadeAnim from "../components/FadeAnim";
 import Frame from "../components/Frame";
+import { TextLink } from "../components/Link";
 
 export default function DailyDev() {
 	return (
@@ -17,7 +18,8 @@ export default function DailyDev() {
 						<DailyDevCard />
 					</div>
 					<Col xs={3} className="align-self-start pt-2 ps-2">
-						Click on the dev card to check out my profile!
+						Click on the dev card to check out my profile! (Or click{" "}
+						<TextLink url="https://app.daily.dev/alexpopov45">here</TextLink> in case it doesn't load)
 					</Col>
 				</Stack>
 				<Stack direction="horizontal">

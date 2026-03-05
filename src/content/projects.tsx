@@ -89,30 +89,25 @@ const projects = {
 		content: [
 			{
 				img: "images/gallery/solarwatt/qr-code.png",
-				title:
+				description:
 					"The QR code designed to access the platform. The idea is to print it on the solar panels, share on social media...",
-				description: "",
 			},
 			{
 				img: "images/gallery/solarwatt/video.png",
-				title: "Video Lectures",
 				description:
 					"Example video lecture. It has most of the modern features + saving progress, but it is required to wathch the whole video to unlock the next section.",
 			},
 			{
 				img: "images/gallery/solarwatt/text.png",
-				title: "Paragraph Lectures",
 				description: "Additionally there are text + pictures style lectures.",
 			},
 			{
 				img: "images/gallery/solarwatt/quiz.png",
-				title: "Quizes",
 				description:
 					"After every couple of lectures there are obligatory questions testing the knowledge of the reader.",
 			},
 			{
 				img: "images/gallery/solarwatt/certificate.png",
-				title: "Certificate",
 				description:
 					"The idea behind the certificate is for companies to show that they are concious about their choices and for emplyees that they are aware of the hidden issues in the solar panel industry.",
 			},
@@ -226,6 +221,11 @@ const projects = {
 				img: "images/other/ASML-report.png",
 				description:
 					"My task was to make a code analysis tool that generates an interactive report, helping to visualize and understand complex codebases. This project pushed me to grow technically while also giving me insight into how global-scale companies operate. Due to security limitations I had to create a bundler from scratch, recreate the company UI style and more.",
+			},
+			{
+				img: "images/other/ai-doc.png",
+				description:
+					"Additionally I participated in the first steps of the development of a side project for AI automation of documentation",
 			},
 		],
 	},
