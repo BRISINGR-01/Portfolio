@@ -1,5 +1,6 @@
 import { AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
+import { languages } from "../../../content/about-me";
 import { Mode, type ContentData, type Experience, type fn } from "../../../types";
 import { setEscAction } from "../../../utils";
 import Books from "../books/Books";
@@ -10,6 +11,7 @@ import Certificates from "./Certificates";
 import DailyDev from "./DailyDev";
 import Experiences from "./Experiences";
 import Fontys from "./Fontys";
+import LanguageDisplay from "./LanguageDisplay";
 
 type Props = {
 	data: ContentData | null;
@@ -67,7 +69,11 @@ function Content({ data, ...props }: Props & { data: ContentData; setGoBackCb: (
 				default:
 					return <></>;
 			}
-		case Mode.AboutMe:
+		case Mode.AboutMe: {
+			const language = languages.find(({ id }) => id === data.id);
+
+			if (language) return <LanguageDisplay language={language} />;
 			return <AboutMe />;
+		}
 	}
 }

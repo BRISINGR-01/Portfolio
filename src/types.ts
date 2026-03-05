@@ -69,6 +69,7 @@ export type Contact = ContentData & {
 export type Language = ContentData & {
 	iso: string;
 	level: string;
+	description: string;
 };
 
 export enum Mode {

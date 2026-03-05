@@ -11,7 +11,10 @@ import {
 	PERSISTENT_OUTLINE,
 	RAYCAST_CONTAINER_NAME,
 } from "../../../constants";
+import { contacts } from "../../../content/about-me";
 import { setDefaultCursor, setPointerCursor, throttle } from "../../../utils";
+
+const contactIds = contacts.map((c) => c.id);
 
 export default function Raycast({
 	children,
@@ -104,9 +107,14 @@ export default function Raycast({
 
 			if (hovered?.id === mesh.id) return;
 
+			if (contactIds.includes(mesh.name)) {
+				outlinePass!.selectedObjects = groupRef.current.children.filter((m) => contactIds.includes(m.name));
+			} else {
+				outlinePass!.selectedObjects = [mesh];
+			}
 			hovered = mesh;
 			onHover(mesh.name);
-			outlinePass!.selectedObjects = [mesh];
+
 			setPointerCursor();
 		}
 

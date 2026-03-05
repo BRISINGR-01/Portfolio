@@ -146,6 +146,38 @@ const projects = {
 			Tags.Python,
 			Tags.Web,
 		],
+		content: [
+			{
+				img: "images/gallery/latin-is-simple/advanced.png",
+				description: (
+					<>
+						The first trainer(s) is <i>Translation/Advanced</i> where the user has to input certain grammar forms of a
+						specific word
+					</>
+				),
+			},
+			{
+				img: "images/gallery/latin-is-simple/quiz.png",
+				description: (
+					<>
+						Perhaps the most complicated trainer is the <i>Quiz</i> - automatically generated multiple choice questions
+						covering 30+ topics for several parts of speech
+					</>
+				),
+			},
+			{
+				img: "images/gallery/latin-is-simple/cards.png",
+				description: (
+					<>
+						Similar to Quizlet <i>Cards</i> allows students to revise words and phrases and their translations
+					</>
+				),
+			},
+			{
+				img: "images/gallery/latin-is-simple/forms.png",
+				description: <>Drag and drop trainer for inclinations and conjugations (inspired by Duolingo) </>,
+			},
+		],
 	},
 	icc: {
 		title: "ICC",

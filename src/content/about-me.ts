@@ -12,6 +12,7 @@ export const languages: Language[] = [
 			wide: true,
 		},
 		level: "native",
+		description: "Аз съм българин по народност и това е моят майчин език.",
 	},
 	{
 		id: "english",
@@ -23,6 +24,8 @@ export const languages: Language[] = [
 			wide: true,
 		},
 		level: "C2",
+		description:
+			"I have been studying English since I was 6 years old. I used it extensively during my studies in the Netherlands and hold a C2 CAE certificate.",
 	},
 	{
 		id: "dutch",
@@ -34,6 +37,8 @@ export const languages: Language[] = [
 			wide: true,
 		},
 		level: "B1*",
+		description:
+			"Ik woon al meer dan 4 jaar in Nederland en probeer zo veel mogelijk Nederlands te leren door met docenten te praten, en met iedereen die niet meteen naar Engels overschakelt.",
 	},
 	{
 		id: "german",
@@ -45,6 +50,8 @@ export const languages: Language[] = [
 			wide: true,
 		},
 		level: "B2",
+		description:
+			"Ich habe 4 Jahre lang Deutsch in der Schule am Schiller Institut gelernt und eine B2-Prüfung bestanden. Mein Chef bei Latin Is Simple ist Österreicher, daher sprechen wir oft Deutsch.",
 	},
 	{
 		id: "french",
@@ -56,6 +63,8 @@ export const languages: Language[] = [
 			wide: true,
 		},
 		level: "B2*",
+		description:
+			"J'ai commencé mon parcours de polyglotte avec le français. J'ai découvert la chanson \"J'ai cherché\", qui m'a inspiré à apprendre cette langue si belle.",
 	},
 	{
 		id: "spanish",
@@ -67,6 +76,8 @@ export const languages: Language[] = [
 			wide: true,
 		},
 		level: "B1*",
+		description:
+			"Aprendí español para un viaje a Valencia. También me ayudó mucho en Holanda con mis compañeros de clase (incluso enseñé OOP a uno de ellos en español). En ASML trabajé con un colega en un proyecto adicional de IA.",
 	},
 	{
 		id: "italian",
@@ -78,6 +89,8 @@ export const languages: Language[] = [
 			wide: true,
 		},
 		level: "A2*",
+		description:
+			"Ho imparato l'italiano per un viaggio a Roma e mi è piaciuto moltissimo. La trovo una delle lingue più belle e potenti del mondo. Mi fa pensare al latino, ma in versione moderna.",
 	},
 	{
 		id: "portuguese",
@@ -89,8 +102,8 @@ export const languages: Language[] = [
 			wide: true,
 		},
 		level: "A2*",
+		description: "No meu estágio na ASML eu falei quase inteiramente em português com o meu mentor brasileiro.",
 	},
-
 	{
 		id: "russian",
 		iso: "rus",
@@ -101,6 +114,8 @@ export const languages: Language[] = [
 			wide: true,
 		},
 		level: "A1*",
+		description:
+			'Я всегда думал, что русский - красивый язык и довольно близкий к болгарскому (моему родному языку). Многое я выучил, смотря один из лучших сериалов - "Кухня".',
 	},
 ].map((l) => {
 	return {
