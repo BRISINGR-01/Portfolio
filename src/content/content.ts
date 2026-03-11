@@ -26,6 +26,8 @@ const bookSummaries = {
 		"The Little Book of Semaphores is a textbook that introduces the principles of synchronization for concurrent programming. In most computer science curricula, synchronization is a module in an Operating Systems class.",
 	"Make: Electronics":
 		"Explores the properties and applications of discrete components that are the fundamental building blocks of circuit design. Understanding resistors, capacitors, transistors, inductors, diodes, and integrated circuit chips is essential even when using microcontrollers.",
+	AGITR:
+		"ROS (Robot Operating System) is rapidly becoming a de facto standard for writing interoperable and reusable robot software. This book supplements ROS's own documentation, explaining how to interact with existing ROS systems and how to create new ROS programs using C++, with special attention to common mistakes and misunderstandings. The intended audience includes new and potential ROS users.",
 };
 
 export const fontys = {
@@ -201,6 +203,14 @@ export const books: Book[] = [
 		description: bookSummaries["Make: Electronics"],
 		image: "images/book-covers/Make_Electronics.webp",
 		tags: [Tags["Embedded Systems"]],
+	},
+	{
+		title: "A Gentle Introduction to ROS",
+		subTitle: "",
+		author: "Jason M. O'Kane",
+		description: bookSummaries["AGITR"],
+		image: "images/book-covers/agitr.jpg",
+		tags: [Tags["Embedded Systems"], Tags.ROS],
 	},
 ];
 
