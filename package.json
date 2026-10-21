@@ -9,9 +9,6 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
-  "engines": {
-    "node": ">24"
-  },
   "dependencies": {
     "@mui/material": "^7.3.2",
     "@react-three/drei": "^10.7.4",
